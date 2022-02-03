@@ -16,6 +16,7 @@ This project is a basic example of website using **React** with **Typescript** a
 ## Miembros del equipo
 - UO277178 - Sergio Murillo Álvarez
 - UO277931 - Pablo Alonso Alonso
+- UO276417 - Iker Jiménez Herrero
 
 ## Quick start guide
 <mark>In case you already have node.js and npm, make sure you update them before attempting to build the images</mark>
