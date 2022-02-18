@@ -50,18 +50,21 @@ image:08-Crosscutting-Concepts-Structure-EN.png["Possible topics for crosscuttin
 ****
 
 
-=== Domain model
+=== Interfaz de usuario
 
-image:UmlDiagram.png["Example UML Diagram"]
+Para crear la interfaz de usuario utilizaremos la biblioteca React junto a Typescript. React proporciona una
+gran ayuda a la hora de crear interfaces, ya que se basa en componentes, que son piezas de código lógicas
+y autocontenidas. Juntando varios componentes se puede obtener una interfaz de usuario.
 
+=== Seguridad
 
+En cuanto a seguridad, nuestra aplicación seguirá los principios SOLID y nuestros usuarios usarán sus
+propios PODS para acceder a ella.
 
-=== _<Concept 2>_
+=== Persistencia
 
-_<explanation>_
-
-...
-
-=== _<Concept n>_
-
-_<explanation>_
+Para la persistencia utilizaremos la base de datos MongoDB junto al ODM (Object Document Mapping) Mongoose,
+ya que este proporciona una gran cantidad de funcionalidades para tabajar con MongoDB. Decidimos utilizar MongoDB
+ya que se recomienda utilizar en proyectos como el nuestro en el que desarrollamos una tienda online
+y es muy fácil de integrar con Node.js, y ya que vamos a utilizar la pila MERN (MongoDB, Express, React, Node),
+esto nos viene muy bien a la hora de trabajar.
