@@ -7,8 +7,8 @@
 .Contents
 En este apartado se muestran las distintas restricciones sobre el proyecto DeDe clasificadas en restricciones técnicas, organizativas y convecciones.
 
-=== Restricciones técnicas
-
+Restricciones técnicas::
+[options="header",cols="1,2"]
 |===
 |Requisito|Explicación
 |React|Framework orientado al Frontend de la aplicación.
@@ -19,8 +19,8 @@ En este apartado se muestran las distintas restricciones sobre el proyecto DeDe 
 |Testing|Pruebas automáticas y manuales sobre el código.
 |===
 
-=== Restricciones organizativas
-
+Restricciones organizativas
+[options="header",cols="1,2"]
 |===
 |Requisito|Explicación
 |GitHub|Sistema de control de versiones Git con herramientas adicionales.
@@ -29,8 +29,8 @@ En este apartado se muestran las distintas restricciones sobre el proyecto DeDe 
 |Entregas|Debe de haber entregas continuas que aporten valor a la aplicación.
 |===
 
-=== Convecciones
-
+Convecciones
+[options="header",cols="1,2"]
 |===
 |Requisito|Explicación
 |Español|Tanto la aplicación como la documentación serán implementados en español.
