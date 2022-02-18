@@ -19,7 +19,7 @@ Restricciones técnicas::
 |Testing|Pruebas automáticas y manuales sobre el código.
 |===
 
-Restricciones organizativas
+Restricciones organizativas::
 [options="header",cols="1,2"]
 |===
 |Requisito|Explicación
@@ -29,7 +29,7 @@ Restricciones organizativas
 |Entregas|Debe de haber entregas continuas que aporten valor a la aplicación.
 |===
 
-Convecciones
+Convecciones::
 [options="header",cols="1,2"]
 |===
 |Requisito|Explicación
