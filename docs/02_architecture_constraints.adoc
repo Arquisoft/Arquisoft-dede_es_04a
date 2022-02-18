@@ -1,19 +1,39 @@
 [[section-architecture-constraints]]
-== Architecture Constraints
+== Restricciones de la arquitectura
 
 
 [role="arc42help"]
 ****
 .Contents
-Any requirement that constrains software architects in their freedom of design and implementation decisions or decision about the development process. These constraints sometimes go beyond individual systems and are valid for whole organizations and companies.
+En este apartado se muestran las distintas restricciones sobre el proyecto DeDe clasificadas en restricciones técnicas, organizativas y convecciones.
 
-.Motivation
-Architects should know exactly where they are free in their design decisions and where they must adhere to constraints.
-Constraints must always be dealt with; they may be negotiable, though.
+=== Restricciones técnicas
 
-.Form
-Simple tables of constraints with explanations.
-If needed you can subdivide them into
-technical constraints, organizational and political constraints and
-conventions (e.g. programming or versioning guidelines, documentation or naming conventions)
-****
+|===
+|Requisito|Explicación
+|React|Framework orientado al Frontend de la aplicación.
+|Typescript|Lenguaje de programación para la lógica de negocio.
+|Solid|Se usarán Pods de Solid para obtener la información personal de los clientes.
+|MongoDb|Base de datos NoSql donde se guardará la información sobre la tienda.
+|Hosting|La aplicación debe ser accesible de forma continua.
+|Testing|Pruebas automáticas y manuales sobre el código.
+|===
+
+=== Restricciones organizativas
+
+|===
+|Requisito|Explicación
+|GitHub|Sistema de control de versiones Git con herramientas adicionales.
+|Grupo de trabajo|El grupo está conformado por 4 personas.
+|Reuniones|Se tendrá al menos una reunión de equipo a la semana que quedará registrada en un acta.
+|Entregas|Debe de haber entregas continuas que aporten valor a la aplicación.
+|===
+
+=== Convecciones
+
+|===
+|Requisito|Explicación
+|Español|Tanto la aplicación como la documentación serán implementados en español.
+|Arc42|Para desarrollar la documentación seguiremos el modelo Arc42.
+|SOLID|Se seguirán los principios SOLID respecto a la privacidad de los clientes.
+|Interfaz|La interfaz debe ser intuitiva para personas poco ténicas.
