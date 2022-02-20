@@ -1,24 +1,35 @@
 [[section-solution-strategy]]
 == Solution Strategy
 
+=== Technologies
 
-[role="arc42help"]
-****
-.Contents
-A short summary and explanation of the fundamental decisions and solution strategies, that shape the system's architecture. These include
+These are the technologies we have decided to use:
+* MongoDB: NoSQL database.
+* Express: Node.js web application infrastructure.
+* React: Library for creating user interfaces.
+* Node.js: Allows to execute TypeScript on the server side.
+* TypeScript: JavaScript superset, which mainly adds static typing to JavaScript.
+* GitHub: Allows to host Git-based projects.
+* VisualStudio Code: Code editor that thanks to its large number of extensions will facilitate our work.
+* SOLID: Project that aims to allow users to decide where their data is stored, 
+in order to improve privacy.
 
-* technology decisions
-* decisions about the top-level decomposition of the system, e.g. usage of an architectural pattern or design pattern
-* decisions on how to achieve key quality goals
-* relevant organizational decisions, e.g. selecting a development process or delegating certain tasks to third parties.
+=== Architectural and design patterns
 
-.Motivation
-These decisions form the cornerstones for your architecture. They are the basis for many other detailed decisions or implementation rules.
+We have decided to follow the MVC (Model, View and Controller) pattern, which consists of separating the application data
+from the logic and the user interface.
 
-.Form
-Keep the explanation of these key decisions short.
+=== Decisions to achive quality goals
 
-Motivate what you have decided and why you decided that way,
-based upon your problem statement, the quality goals and key constraints.
-Refer to details in the following sections.
-****
+In order to achieve the proposed objectives we have decided to distribute the work in such a way that part of the group focuses more on
+the backend and the other one on the frontend.
+We have taken this decision since all the technologies to be used are new for all of us,
+and we believe that it will be easier to achieve the objectives if we focus mostly on one part
+
+=== Organizational decisions
+
+To communicate we will use:
+* Microsoft Teams: We will meet weekly to make decisions.
+* WhatsApp: We will use it to make a quick comment, such as to warn of a sudden problem or things that come up.
+* GitHub: Here we will communicate through issues and the project board, where we will share tasks.
+
