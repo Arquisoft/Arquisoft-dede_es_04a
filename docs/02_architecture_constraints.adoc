@@ -1,39 +1,39 @@
 [[section-architecture-constraints]]
-== Restricciones de la arquitectura
+== Architectural constraints
 
 
 [role="arc42help"]
 ****
 .Contents
-En este apartado se muestran las distintas restricciones sobre el proyecto DeDe clasificadas en restricciones técnicas, organizativas y convecciones.
+This section shows the different restrictions on the DeDe project classified into technical, organizational and convective restrictions.
 
-Restricciones técnicas::
+Technical restrictions::
 [options="header",cols="1,2"]
 |===
-|Requisito|Explicación
-|React|Framework orientado al Frontend de la aplicación.
-|Typescript|Lenguaje de programación para la lógica de negocio.
-|Solid|Se usarán Pods de Solid para obtener la información personal de los clientes.
-|MongoDb|Base de datos NoSql donde se guardará la información sobre la tienda.
-|Hosting|La aplicación debe ser accesible de forma continua.
-|Testing|Pruebas automáticas y manuales sobre el código.
+|Requirement|Explanation
+|React|Framework oriented to the Frontend of the application.
+|Typescript|Programming language for business logic.
+|Solid|Solid Pods will be used to obtain customers' personal information.
+|MongoDb|NoSql database where the information about the store will be stored.
+|Hosting|The application must be continuously accessible.
+|Testing|Automatic and manual tests on the code.
 |===
 
-Restricciones organizativas::
+Organizational restrictions::
 [options="header",cols="1,2"]
 |===
-|Requisito|Explicación
-|GitHub|Sistema de control de versiones Git con herramientas adicionales.
-|Grupo de trabajo|El grupo está conformado por 4 personas.
-|Reuniones|Se tendrá al menos una reunión de equipo a la semana que quedará registrada en un acta.
-|Entregas|Debe de haber entregas continuas que aporten valor a la aplicación.
+|Requirement|Explanation
+|GitHub|Git version control system with additional tools.
+|Working group|The group is made up of 4 people.
+|Meetings|At least one team meeting per week will be held and recorded.
+|Deliveries|There must be continuous deliveries that add value to the application.
 |===
 
-Convecciones::
+Convections::
 [options="header",cols="1,2"]
 |===
-|Requisito|Explicación
-|Español|Tanto la aplicación como la documentación serán implementados en español.
-|Arc42|Para desarrollar la documentación seguiremos el modelo Arc42.
-|SOLID|Se seguirán los principios SOLID respecto a la privacidad de los clientes.
-|Interfaz|La interfaz debe ser intuitiva para personas poco ténicas.
+|Requirement|Explanation
+|Internationalization|Both the application and the documentation will be implemented in English in order to reach more people.
+|Arc42|To develop the documentation we will follow the Arc42 model.
+|SOLID|SOLID principles will be followed with respect to customer privacy.
+|Interface|The interface must be intuitive for non-technical people.

@@ -10,7 +10,8 @@ This section shows the quality requirements tree with the description of each of
 
 Quality Tree::
 [options="header",cols="1,2"]
-image:requisitos.drawio.png["Quality tree"]
+:imagesdir: images/
+image::requisitos.drawio.png["Quality tree"]
 
 Quality Scenarios::
 [options="header",cols="1,2"]
