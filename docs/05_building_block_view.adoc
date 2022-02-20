@@ -1,6 +1,4 @@
 [[section-building-block-view]]
-
-
 == Building Block View
 
 === Whitebox Overall System
@@ -10,17 +8,17 @@ image:level1.PNG[]
 
 Motivation::
 
-Descripción general de la estructura de DeDe y MongoDB.
+Overview DeDe and MongoDB structure.
 
 Contained Building Blocks::
 
 [options="header",cols="1,3"]
 |===
 |Name| Description
-|Actor | Actor que interactúa con la aplicación
-|DeDe | Aplicación de venta de productos electrónicos  
-|POD | Sistema que guarda la información personal del usuario
-|MongoDB | Sistema de base de datos que utilizaremos 
+|Actor | Actor interacting with the application.
+|DeDe | Electronics sales application  
+|POD | System that stores the user's personal information
+|MongoDB | Database system to be used 
 |===
 
 
@@ -30,14 +28,14 @@ image:level2.PNG[]
 
 Motication::
 
-Descripición que muestra como se comunicará nuestra aplicación con la base de datos y los PODS de los usuarios
+Description showing how our application will communicate with the database and the users' PODS.
 
 Contained Building Blocks::
 
 [options="header",cols="1,3"]
 |===
 |Name| Description
-|User interface | Parte de la aplicación que el usuario verá e interactuará
-|Solid auth client | Cliente con el que podremos manejar la información de los PODS de nuestros usuarios
-|Mongoose | Nos permitirá manejar la base de datos
+|User interface | Part of the application that the user will see and interact with.
+|Solid auth client | Client with which we can manage the information of our users' PODS.
+|Mongoose | It will allow us to manage the database
 |===

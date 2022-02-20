@@ -1,57 +1,35 @@
 [[section-solution-strategy]]
 == Solution Strategy
 
+=== Technologies
 
-[role="arc42help"]
-****
-.Contents
-A short summary and explanation of the fundamental decisions and solution strategies, that shape the system's architecture. These include
-
-* technology decisions
-* decisions about the top-level decomposition of the system, e.g. usage of an architectural pattern or design pattern
-* decisions on how to achieve key quality goals
-* relevant organizational decisions, e.g. selecting a development process or delegating certain tasks to third parties.
-
-.Motivation
-These decisions form the cornerstones for your architecture. They are the basis for many other detailed decisions or implementation rules.
-
-.Form
-Keep the explanation of these key decisions short.
-
-Motivate what you have decided and why you decided that way,
-based upon your problem statement, the quality goals and key constraints.
-Refer to details in the following sections.
-****
-=== Tecnologías
-
-Estas son las tecnologías que hemos decidido utilizar:
-* MongoDB: Base de datos NoSQL.
-* Express: Infraestructura de aplicaciones web Node.js.
-* React: Biblioteca para crear interfaces de usuario.
-* Node.js: Permite ejecutar TypeScript en el lado del servidor.
-* TypeScript: Superconjunto de JavaScript, que principalmente añade tipado estático a este.
-* GitHub: Permite alojar proyectos basados en Git.
-* VisualStudio Code: Editor de código que gracias a su gran cantidad de extensiones nos facilitará el trabajo.
-* SOLID: Proyecto que tiene como objetivo que sean los usuarios quienes deciden dónde se almacenan sus datos, 
-para así mejorar la privacidad.
+These are the technologies we have decided to use:
+* MongoDB: NoSQL database.
+* Express: Node.js web application infrastructure.
+* React: Library for creating user interfaces.
+* Node.js: Allows to execute TypeScript on the server side.
+* TypeScript: JavaScript superset, which mainly adds static typing to JavaScript.
+* GitHub: Allows to host Git-based projects.
+* VisualStudio Code: Code editor that thanks to its large number of extensions will facilitate our work.
+* SOLID: Project that aims to allow users to decide where their data is stored, 
+in order to improve privacy.
 
 === Architectural and design patterns
 
-Hemos decido seguir el patrón MVC (Modelo, Vista y Controlador), que consiste en separar los datos
-de la aplicación de la lógica y la interfaz de usuario.
+We have decided to follow the MVC (Model, View and Controller) pattern, which consists of separating the application data
+from the logic and the user interface.
 
 === Decisions to achive quality goals
 
-Para internar alcanzar los objetivos propuestos hemos decidido repartir el trabajo de forma que una parte del
-grupo se centre más en el backend y la otra en el frontend. Hemos tomado esta decisión ya que al ser todas las
-tecnologías a emplear nuevas para todos creemos que va a ser más fácil alcanzar los objetivos si nos centramos
-mayoritariamente en una de las partes.
+In order to achieve the proposed objectives we have decided to distribute the work in such a way that part of the group focuses more on
+the backend and the other one on the frontend.
+We have taken this decision since all the technologies to be used are new for all of us,
+and we believe that it will be easier to achieve the objectives if we focus mostly on one part
 
 === Organizational decisions
 
-Para comunicarnos utilizaremos:
-* Microsoft Teams: Nos reuniremos semanalmente para tomar decisiones.
-* WhatsApp: Lo utilizaremos para realizar algún comentario de manera rápida, como puede ser avisar de algún
-problema repentino o cosas que vayan surgiendo.
-* GitHub: Aquí nos comunicaremos mediante issues y con el tablón de proyectos, donde nos repartiremos las tareas.
+To communicate we will use:
+* Microsoft Teams: We will meet weekly to make decisions.
+* WhatsApp: We will use it to make a quick comment, such as to warn of a sudden problem or things that come up.
+* GitHub: Here we will communicate through issues and the project board, where we will share tasks.
 
