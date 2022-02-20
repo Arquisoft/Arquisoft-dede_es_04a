@@ -5,22 +5,13 @@
 [role="arc42help"]
 ****
 .Contents
-Important, expensive, large scale or risky architecture decisions including rationals.
-With "decisions" we mean selecting one alternative based on given criteria.
+This section shows the different design decisions presented in a table sorted by importance with their pros and cons.
 
-Please use your judgement to decide whether an architectural decision should be documented
-here in this central section or whether you better document it locally
-(e.g. within the white box template of one building block).
+|===
+|Decision|Pros|Cons
+|SOLID|Respect for the privacy of user data|Technology unknown to the group
+|NoSql|Versatile and well-integrated databases for this project|They do not have atomicity and do not allow transactions
+|GitHub|Allows version control with utility tools|Some functions are subject to a fee
+|===
 
-Avoid redundancy. Refer to section 4, where you already captured the most important decisions of your architecture.
-
-.Motivation
-Stakeholders of your system should be able to comprehend and retrace your decisions.
-
-.Form
-Various options:
-
-* List or table, ordered by importance and consequences or:
-* more detailed in form of separate sections per decision
-* ADR (architecture decision record) for every important decision
-****
+For the rest of the technological decisions on how DeDe will be implemented, see section 4.
