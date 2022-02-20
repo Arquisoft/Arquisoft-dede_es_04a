@@ -1,56 +1,41 @@
 [[section-runtime-view]]
-== Runtime View
+== Vista en tiempo de ejecucion
 
 
 [role="arc42help"]
 ****
-.Contents
-The runtime view describes concrete behavior and interactions of the system’s building blocks in form of scenarios from the following areas:
+Una vez inicies la aplicacion veras un ventana de registro, en la cual podras registrarte o no. Si decides registrarte y tus credenciales son correctas podras, ademas de 
+realizar busquedas, realizar compras y devoluciones, en el caso de que seas administrador ademas podras realizar labores de gestión. 
 
-* important use cases or features: how do building blocks execute them?
-* interactions at critical external interfaces: how do building blocks cooperate with users and neighboring systems?
-* operation and administration: launch, start-up, stop
-* error and exception scenarios
+En la ventana principal de la pagina encontraras:
 
-Remark: The main criterion for the choice of possible scenarios (sequences, workflows) is their *architectural relevance*. It is *not* important to describe a large number of scenarios. You should rather document a representative selection.
+·Una caja de busqueda textual para poder buscar los productos asi como unas pestañas con filtros
 
-.Motivation
-You should understand how (instances of) building blocks of your system perform their job and communicate at runtime.
-You will mainly capture scenarios in your documentation to communicate your architecture to stakeholders that are less willing or able to read and understand the static models (building block view, deployment view).
+·Un icono para poder consultar tu carrito actual
 
-.Form
-There are many notations for describing scenarios, e.g.
+·Una label que te permita acceder a un apartado de devoluciones para poder devolver productos
 
-* numbered list of steps (in natural language)
-* activity diagrams or flow charts
-* sequence diagrams
-* BPMN or EPCs (event process chains)
-* state machines
-* ...
+·Un icono para poder cerrar la sesión del usuario
 
-****
+Algunos escenarios posibles:
 
-=== <Runtime Scenario 1>
+Escenario 1: Un usuario quiere acceder a la pagina solo para realizar una consulta rapida para saber si cierto producto esta disponible.
+
+:imagesdir: images/
+image::CAso 1.drawio.png[]
+
+Escenario 2: Un usuario quiere realizar la compra de un producto en especifico y quiere dos unidadaes, por lo que lo busca y lleva a cabo la compra.
+
+:imagesdir: images/
+image::caso 2.png[]
+
+Escenario 3: Un usuario no estuvo contento con una de sus compras por lo que se registra y realiza la devolucion.
+
+:imagesdir: images/
+image::Caso 3.drawio.png[]
 
 
-* _<insert runtime diagram or textual description of the scenario>_
-* _<insert description of the notable aspects of the interactions between the
-building block instances depicted in this diagram.>_
 
-It is possible to use a sequence diagram:
-
-[plantuml,"Sequence diagram",png]
-----
-actor Alice
-actor Bob
-database Pod as "Bob's Pod"
-Alice -> Bob: Authentication Request
-Bob --> Alice: Authentication Response
-Alice  --> Pod: Store route
-Alice -> Bob: Another authentication Request
-Alice <-- Bob: another authentication Response
-----
-=== <Runtime Scenario 2>
 
 === ...
 
