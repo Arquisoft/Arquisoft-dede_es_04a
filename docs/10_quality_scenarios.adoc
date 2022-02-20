@@ -10,25 +10,25 @@ This section shows the quality requirements tree with the description of each of
 
 Quality Tree::
 [options="header",cols="1,2"]
-image:requisitos.drawio.png[arc42]
+image:requisitos.drawio.png["Quality tree"]
 
-Quality Scenarios:
+Quality Scenarios::
 [options="header",cols="1,2"]
 
-Security
+.Security
 * SOLID: The use of Solid PODs helps each client to own their data and avoid data loss.
 * Privacy: Each user will only be able to know his data as well as the products in the basket.
 
-Usability
+.Usability
 * Good interface: The application should have a good interface for all customers, whether or not they have experience in online stores. In addition, the interface should also facilitate the work of administrators.
 * Internationalization: The application will be implemented in English so that it can be used by more people.
 * Interaction: The interface should make the customer feel comfortable through a readable and functional presentation of the products.
 
-Integrity
+.Integrity
 * User - Admin: Users (clients and administrators), will have different options within the application depending on their role.
 * Products: The products in the store must be constantly updated (new products and new stock) and never with inconsistent values.
 
-Performance
+.Performance
 * Response time: Response times should be as short as possible so as not to make the user impatient.
 *Low latency: This requirement will help meet low response times.
 * Efficiency: The code should be as optimal as possible for the application to run efficiently.
