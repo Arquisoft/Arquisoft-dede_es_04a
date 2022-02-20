@@ -21,15 +21,15 @@ Algunos escenarios posibles:
 
 Escenario 1: Un usuario quiere acceder a la pagina solo para realizar una consulta rapida para saber si cierto producto esta disponible.
 
-[6 Caso1]
+image:Caso1.jpg[escenario1]
 
 Escenario 2: Un usuario quiere realizar la compra de un producto en especifico y quiere dos unidadaes, por lo que lo busca y lleva a cabo la compra.
 
-[6 Caso2]
+image:Caso2.jpg[escenario2]
 
 Escenario 3: Un usuario no estuvo contento con una de sus compras por lo que se registra y realiza la devolucion.
 
-[6 Caso3]
+image:Escenario3.jpg[escenario3]
 
 
 
