@@ -56,6 +56,6 @@ Los stakeholders seran los desarrolladores, los usuarios y el profesor
 | Desarrollador | Pablo Alonso | Trabajar con la arquitectura y el código asi como la documentacion y ayudar en la toma de decisiones
 | Desarrollador | Pablo Fernández| Trabajar con la arquitectura y el código asi como la documentacion y ayudar en la toma de decisiones
 | Desarrollador | Iker Jiménez | Trabajar con la arquitectura y el código asi como la documentacion y ayudar en la toma de decisiones
-| Profesor | Hugo | Supervisar el proyecto
+| Profesor | Hugo Lebredo | Supervisar el proyecto
 | Usuarios || Usuarios que podran usar libremente la tienda bien sea para realizar una compra o una devolucion o simplemente consultar
 |===
