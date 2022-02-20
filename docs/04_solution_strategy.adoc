@@ -22,3 +22,36 @@ Motivate what you have decided and why you decided that way,
 based upon your problem statement, the quality goals and key constraints.
 Refer to details in the following sections.
 ****
+=== Tecnologías
+
+Estas son las tecnologías que hemos decidido utilizar:
+* MongoDB: Base de datos NoSQL.
+* Express: Infraestructura de aplicaciones web Node.js.
+* React: Biblioteca para crear interfaces de usuario.
+* Node.js: Permite ejecutar TypeScript en el lado del servidor.
+* TypeScript: Superconjunto de JavaScript, que principalmente añade tipado estático a este.
+* GitHub: Permite alojar proyectos basados en Git.
+* VisualStudio Code: Editor de código que gracias a su gran cantidad de extensiones nos facilitará el trabajo.
+* SOLID: Proyecto que tiene como objetivo que sean los usuarios quienes deciden dónde se almacenan sus datos, 
+para así mejorar la privacidad.
+
+=== Architectural and design patterns
+
+Hemos decido seguir el patrón MVC (Modelo, Vista y Controlador), que consiste en separar los datos
+de la aplicación de la lógica y la interfaz de usuario.
+
+=== Decisions to achive quality goals
+
+Para internar alcanzar los objetivos propuestos hemos decidido repartir el trabajo de forma que una parte del
+grupo se centre más en el backend y la otra en el frontend. Hemos tomado esta decisión ya que al ser todas las
+tecnologías a emplear nuevas para todos creemos que va a ser más fácil alcanzar los objetivos si nos centramos
+mayoritariamente en una de las partes.
+
+=== Organizational decisions
+
+Para comunicarnos utilizaremos:
+* Microsoft Teams: Nos reuniremos semanalmente para tomar decisiones.
+* WhatsApp: Lo utilizaremos para realizar algún comentario de manera rápida, como puede ser avisar de algún
+problema repentino o cosas que vayan surgiendo.
+* GitHub: Aquí nos comunicaremos mediante issues y con el tablón de proyectos, donde nos repartiremos las tareas.
+
