@@ -7,9 +7,11 @@
 .Contents
 This section shows the different design decisions presented in a table sorted by importance with their pros and cons.
 
+|===
 |Decision|Pros|Cons
 |GitHub|Allows version control with utility tools|Some functions are subject to a fee
 |NoSql|Versatile and well-integrated databases for this project|They do not have atomicity and do not allow transactions
 |SOLID|Respect for the privacy of user data|Technology unknown to the group
+|===
 
 For the rest of the technological decisions on how DeDe will be implemented, see section 4.
