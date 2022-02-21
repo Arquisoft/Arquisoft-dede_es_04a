@@ -1,12 +1,12 @@
 [[section-introduction-and-goals]]
-== Introduccion y metas
+== Introduccion and goals
 
 [role="arc42help"]
 ****
 We intend to develop an online store using SOLID and REACT technologies. The store will allow the user to purchase any of the available products, as well as to search through them and add them to a personal shopping cart.
 ****
 
-=== Requisitos generales
+=== General requirements
 
 [role="arc42help"]
 ****
@@ -58,7 +58,7 @@ The stakeholders will be the developers, the users and the teacher.
 | Developer | Pablo Alonso | Work with architecture and code as well as documentation and help in decision making.
 | Developer | Pablo Fernández| Work with the architecture and code as well as the documentation and help in the decision making process.
 | Developer | Iker Jiménez | Work with the architecture and code as well as the documentation and help in decision making.
-| Teacher | Hugo Lebredo | Overseeing the project
+| Teachers || Overseeing the project
 | Users || Users who will be able to freely use the store either to make a purchase or a return or simply to consult the store.
 
 
