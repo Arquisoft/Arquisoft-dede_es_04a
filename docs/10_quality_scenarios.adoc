@@ -1,7 +1,7 @@
 [[section-quality-scenarios]]
 == Quality Requirements
 
-.Content
+=== Contents
 This section shows the quality requirements tree with the description of each of them.
 
 Quality Tree::

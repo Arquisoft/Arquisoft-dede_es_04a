@@ -1,7 +1,7 @@
 [[section-architecture-constraints]]
 == Architectural constraints
 
-.Contents
+=== Contents
 This section shows the different restrictions on the DeDe project classified into technical, organizational and convective restrictions.
 
 Technical restrictions::
