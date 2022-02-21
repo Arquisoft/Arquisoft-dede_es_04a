@@ -59,5 +59,20 @@ This view shows a request from a customer to buy a product from the catalog.
 
 =======
 
+[plantuml,"SignUpProcess",png]
+@startuml
+actor Client
+participant DeDe
+database MongoDb
+database Solid
+Client -> DeDe: Request store registration
+DeDe -> Client: Request for Pod access
+DeDe -> Solid: Pod Access
+Solid --> DeDe: Return of personal information
+DeDe -> Client: User and password request
+Client --> DeDe: User and password return
+DeDe -> MongoDb: Save credentials
+DeDe --> Client: Successful registration
+@enduml
 
-
+This view shows the sign up process by a customer.
