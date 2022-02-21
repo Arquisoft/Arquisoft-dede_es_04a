@@ -1,7 +1,11 @@
 [[section-runtime-view]]
 
 == Runtime View
+ 
+ .Contents
 
+ This section shows the main sequence diagrams between the users and the application.
+ 
 [plantuml,"PresentationOfTheProductCatalog",png]
 ----
 @startuml
@@ -34,7 +38,7 @@ DeDe --> Admin: Notification of changes
 ----
 
 This view shows the administrator login. The website receives the admin's credentials, and after verification of the information allows the admin to add, delete and update the desired products.
-=======
+
 
 [plantuml,"BuyingProcess",png]
 ----
@@ -57,7 +61,7 @@ DeDe --> Client: Inform the customer of his purchase
 
 This view shows a request from a customer to buy a product from the catalog.
 
-=======
+
 
 [plantuml,"SignUpProcess",png]
 ----

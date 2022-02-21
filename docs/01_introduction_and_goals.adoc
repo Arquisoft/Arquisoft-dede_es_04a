@@ -1,15 +1,14 @@
 [[section-introduction-and-goals]]
 == Introduccion and goals
 
-[role="arc42help"]
-****
+
 We intend to develop an online store using SOLID and REACT technologies. The store will allow the user to purchase any of the available products, as well as to search through them and add them to a personal shopping cart.
-****
+
 
 === General requirements
 
-[role="arc42help"]
-****
+
+
 The website must mainly meet the following requirements:
 
   -The data storage shall be separated from the application itself.
@@ -28,12 +27,11 @@ The website must mainly meet the following requirements:
 
 
 
-****
+
 
 === Quality goals
 
-[role="arc42help"]
-****
+
 Given that those who will habitually use the web will be the users and the administrator, the main goals would be:
 
   -Intuitive usability in the case of both the administrator and the user.
@@ -42,14 +40,12 @@ Given that those who will habitually use the web will be the users and the admin
 
   -All information regarding the data of users and their baskets must be private.
 
-****
+
 
 === Stakeholders
 
-[role="arc42help"]
-****
 The stakeholders will be the developers, the users and the teacher.
-****
+
 
 [options="header",cols="1,2,2"]
 |===
