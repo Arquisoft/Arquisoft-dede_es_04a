@@ -1,9 +1,6 @@
 [[section-design-decisions]]
 == Design Decisions
 
-
-[role="arc42help"]
-****
 .Contents
 This section shows the different design decisions presented in a table sorted by importance with their pros and cons.
 

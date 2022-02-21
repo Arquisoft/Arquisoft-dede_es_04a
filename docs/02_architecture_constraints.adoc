@@ -1,9 +1,6 @@
 [[section-architecture-constraints]]
 == Architectural constraints
 
-
-[role="arc42help"]
-****
 .Contents
 This section shows the different restrictions on the DeDe project classified into technical, organizational and convective restrictions.
 
