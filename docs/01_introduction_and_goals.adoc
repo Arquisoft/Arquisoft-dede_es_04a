@@ -1,75 +1,61 @@
 [[section-introduction-and-goals]]
-== Introduction and Goals
+== Introduccion y metas
 
 [role="arc42help"]
 ****
-Describes the relevant requirements and the driving forces that software architects and development team must consider. These include
-
-* underlying business goals, essential features and functional requirements for the system
-* quality goals for the architecture
-* relevant stakeholders and their expectations
+Se pretende desarrollar una tienda online utilizando las tecnologías de SOLID y REACT. La tienda permitirá al usuario realizar la compra de cualquiera de los productos disponibles, así como realizar búsquedas entre estos y poder añadirlos a una cesta personal.
 ****
 
-=== Requirements Overview
+=== Requisitos generales
 
 [role="arc42help"]
 ****
-.Contents
-Short description of the functional requirements, driving forces, extract (or abstract)
-of requirements. Link to (hopefully existing) requirements documents
-(with version number and information where to find it).
+La web deberá de cumplir principalmente los siguientes requisitos:
 
-.Motivation
-From the point of view of the end users a system is created or modified to
-improve support of a business activity and/or improve the quality.
+  ·El almacenamiento de los datos deberá de estar separado de la aplicación en si.
 
-.Form
-Short textual description, probably in tabular use-case format.
-If requirements documents exist this overview should refer to these documents.
+  ·La web permitirá al usuario buscar entre los diferentes productos ya sea de manera explícita o a través de filtros de texto.
 
-Keep these excerpts as short as possible. Balance readability of this document with potential redundancy w.r.t to requirements documents.
+  ·El administrador del sistema podrá añadir en cualquier momento nuevos productos así como consultar la información de los clientes.
+
+  ·Cada usuario podrá tener su propia cesta personal la cual solo podrá ser consultada por el usuario en cuestión y que perdurará en sesiones posteriores.
+
+  ·Los usuarios tendrán la opción de registrarse dando sus datos personales.
+
+  ·Solo los usuarios registrados tendrán acceso a una cesta personal.
+
+  ·Todos los usuarios tendrán la opción de realizar la devolución de cualquier producto solo con proporcionar el código de la compra. 
+
 ****
 
-=== Quality Goals
+=== Metas de calidad
 
 [role="arc42help"]
 ****
-.Contents
-The top three (max five) quality goals for the architecture whose fulfillment is of highest importance to the major stakeholders. We really mean quality goals for the architecture. Don't confuse them with project goals. They are not necessarily identical.
+Dado que quienes usarán habitualmente la web serán los usuarios y el administrador las metas principales serian:
 
-.Motivation
-You should know the quality goals of your most important stakeholders, since they will influence fundamental architectural decisions. Make sure to be very concrete about these qualities, avoid buzzwords.
-If you as an architect do not know how the quality of your work will be judged …
+  ·Usabilidad intuitiva tanto en el caso del administrador como del usuario
 
-.Form
-A table with quality goals and concrete scenarios, ordered by priorities
+  ·Los productos de la tienda han de estar constantemente actualizados (nuevos productos y nuevo stock).
+
+  ·Toda información respecto a los datos de los usuarios como de sus cestas ha de ser privada.
+
 ****
 
 === Stakeholders
 
 [role="arc42help"]
 ****
-.Contents
-Explicit overview of stakeholders of the system, i.e. all person, roles or organizations that
-
-* should know the architecture
-* have to be convinced of the architecture
-* have to work with the architecture or with code
-* need the documentation of the architecture for their work
-* have to come up with decisions about the system or its development
-
-.Motivation
-You should know all parties involved in development of the system or affected by the system.
-Otherwise, you may get nasty surprises later in the development process.
-These stakeholders determine the extent and the level of detail of your work and its results.
-
-.Form
-Table with role names, person names, and their expectations with respect to the architecture and its documentation.
+Los stakeholders seran los desarrolladores, los usuarios y el profesor
 ****
 
 [options="header",cols="1,2,2"]
 |===
 |Role/Name|Contact|Expectations
-| _<Role-1>_ | _<Contact-1>_ | _<Expectation-1>_
-| _<Role-2>_ | _<Contact-2>_ | _<Expectation-2>_
+| Desarrollador | Sergio Murillo | Trabajar con la arquitectura y el código asi como la documentacion y ayudar en la toma de decisiones
+| Desarrollador | Pablo Alonso | Trabajar con la arquitectura y el código asi como la documentacion y ayudar en la toma de decisiones
+| Desarrollador | Pablo Fernández| Trabajar con la arquitectura y el código asi como la documentacion y ayudar en la toma de decisiones
+| Desarrollador | Iker Jiménez | Trabajar con la arquitectura y el código asi como la documentacion y ayudar en la toma de decisiones
+| Profesor | Hugo Lebredo | Supervisar el proyecto
+| Usuarios || Usuarios que podran usar libremente la tienda bien sea para realizar una compra o una devolucion o simplemente consultar
 |===

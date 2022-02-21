@@ -1,67 +1,21 @@
 [[section-concepts]]
 == Cross-cutting Concepts
 
+=== User interface
 
-[role="arc42help"]
-****
-.Content
-This section describes overall, principal regulations and solution ideas that are
-relevant in multiple parts (= cross-cutting) of your system.
-Such concepts are often related to multiple building blocks.
-They can include many different topics, such as
+To create the user interface we will use the React library together with Typescript. React provides a great
+great help when creating interfaces, as it is based on components, which are logical
+and self-contained pieces of code. By putting several components together, a user interface can be obtained.
 
-* domain models
-* architecture patterns or design patterns
-* rules for using specific technology
-* principal, often technical decisions of overall decisions
-* implementation rules
+=== Security
 
-.Motivation
-Concepts form the basis for _conceptual integrity_ (consistency, homogeneity)
-of the architecture. Thus, they are an important contribution to achieve inner qualities of your system.
+In terms of security, our application will follow SOLID principles and our users will use their own PODS to access it.
 
-Some of these concepts cannot be assigned to individual building blocks
-(e.g. security or safety). This is the place in the template that we provided for a
-cohesive specification of such concepts.
+=== Persistence
 
-.Form
-The form can be varied:
+For persistence we will use the MongoDB database together with the Mongoose ODM (Object Document Mapping),
+since it provides a lot of functionalities to work with MongoDB. We decided to use MongoDB
+as it is recommended for projects such as ours where we are developing an online store
+and it is very easy to integrate with Node.js, and since we are going to use the MERN stack (MongoDB, Express, React, Node),
+this comes in very handy when it comes to work.
 
-* concept papers with any kind of structure
-* cross-cutting model excerpts or scenarios using notations of the architecture views
-* sample implementations, especially for technical concepts
-* reference to typical usage of standard frameworks (e.g. using Hibernate for object/relational mapping)
-
-.Structure
-A potential (but not mandatory) structure for this section could be:
-
-* Domain concepts
-* User Experience concepts (UX)
-* Safety and security concepts
-* Architecture and design patterns
-* "Under-the-hood"
-* development concepts
-* operational concepts
-
-Note: it might be difficult to assign individual concepts to one specific topic
-on this list.
-
-image:08-Crosscutting-Concepts-Structure-EN.png["Possible topics for crosscutting concepts"]
-****
-
-
-=== Domain model
-
-image:UmlDiagram.png["Example UML Diagram"]
-
-
-
-=== _<Concept 2>_
-
-_<explanation>_
-
-...
-
-=== _<Concept n>_
-
-_<explanation>_

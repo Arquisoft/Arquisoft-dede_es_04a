@@ -1,19 +1,39 @@
 [[section-architecture-constraints]]
-== Architecture Constraints
+== Architectural constraints
 
 
 [role="arc42help"]
 ****
 .Contents
-Any requirement that constrains software architects in their freedom of design and implementation decisions or decision about the development process. These constraints sometimes go beyond individual systems and are valid for whole organizations and companies.
+This section shows the different restrictions on the DeDe project classified into technical, organizational and convective restrictions.
 
-.Motivation
-Architects should know exactly where they are free in their design decisions and where they must adhere to constraints.
-Constraints must always be dealt with; they may be negotiable, though.
+Technical restrictions::
+[options="header",cols="1,2"]
+|===
+|Requirement|Explanation
+|React|Framework oriented to the Frontend of the application.
+|Typescript|Programming language for business logic.
+|Solid|Solid Pods will be used to obtain customers' personal information.
+|MongoDb|NoSql database where the information about the store will be stored.
+|Hosting|The application must be continuously accessible.
+|Testing|Automatic and manual tests on the code.
+|===
 
-.Form
-Simple tables of constraints with explanations.
-If needed you can subdivide them into
-technical constraints, organizational and political constraints and
-conventions (e.g. programming or versioning guidelines, documentation or naming conventions)
-****
+Organizational restrictions::
+[options="header",cols="1,2"]
+|===
+|Requirement|Explanation
+|GitHub|Git version control system with additional tools.
+|Working group|The group is made up of 4 people.
+|Meetings|At least one team meeting per week will be held and recorded.
+|Deliveries|There must be continuous deliveries that add value to the application.
+|===
+
+Convections::
+[options="header",cols="1,2"]
+|===
+|Requirement|Explanation
+|Internationalization|Both the application and the documentation will be implemented in English in order to reach more people.
+|Arc42|To develop the documentation we will follow the Arc42 model.
+|SOLID|SOLID principles will be followed with respect to customer privacy.
+|Interface|The interface must be intuitive for non-technical people.
