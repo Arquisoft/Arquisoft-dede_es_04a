@@ -1,39 +1,84 @@
 [[section-runtime-view]]
-== Vista en tiempo de ejecucion
+
+== Runtime View
+ 
+.Contents
+
+This section shows the main sequence diagrams between the users and the application.
+
+[plantuml,"PresentationOfTheProductCatalog",png]
+----
+@startuml
+actor Client
+participant DeDe
+database MongoDb
+Client -> DeDe: Request product catalog
+DeDe -> MongoDb: Ask for the list of products
+MongoDb --> DeDe: Get the list of products
+DeDe --> Client: Get the catalog
+@enduml
+----
 
 
-[role="arc42help"]
-****
-Una vez inicies la aplicacion veras un ventana de registro, en la cual podras registrarte o no. Si decides registrarte y tus credenciales son correctas podras, ademas de 
-realizar busquedas, realizar compras y devoluciones, en el caso de que seas administrador ademas podras realizar labores de gestión. 
+This view shows a request from a customer to view the product catalog. The web receives the request where it will access the database to get the list of products. Once obtained, it returns them to the customer.
 
-En la ventana principal de la pagina encontraras:
+[plantuml,"AdminView",png]
+----
+@startuml
+actor Admin
+participant DeDe
+database MongoDb
+Admin -> DeDe: Enter credentials
+DeDe -> MongoDb: Verify the information entered
+DeDe --> Admin: Successful login
+Admin -> DeDe: Add, remove or update products
+DeDe -> MongoDb: Changes on the database
+DeDe --> Admin: Notification of changes
+@enduml
+----
 
-·Una caja de busqueda textual para poder buscar los productos asi como unas pestañas con filtros
-
-·Un icono para poder consultar tu carrito actual
-
-·Una label que te permita acceder a un apartado de devoluciones para poder devolver productos
-
-·Un icono para poder cerrar la sesión del usuario
-
-Algunos escenarios posibles:
-
-Escenario 1: Un usuario quiere acceder a la pagina solo para realizar una consulta rapida para saber si cierto producto esta disponible.
-
-image:Caso1.jpg[escenario1]
-
-Escenario 2: Un usuario quiere realizar la compra de un producto en especifico y quiere dos unidadaes, por lo que lo busca y lleva a cabo la compra.
-
-image:Caso2.jpg[escenario2]
-
-Escenario 3: Un usuario no estuvo contento con una de sus compras por lo que se registra y realiza la devolucion.
-
-image:Escenario3.jpg[escenario3]
+This view shows the administrator login. The website receives the admin's credentials, and after verification of the information allows the admin to add, delete and update the desired products.
 
 
+[plantuml,"BuyingProcess",png]
+----
+@startuml
+actor Client
+participant DeDe
+database MongoDb
+database Solid
+Client -> DeDe: Add products to cart
+DeDe -> MongoDb: Save the products of client
+Client -> DeDe: Delete products of the cart
+DeDe -> MongoDb: Restore products
+Client -> DeDe: Checkout the products in the cart
+DeDe -> Solid: Ask for the data of client
+Solid --> DeDe: Personal data of client
+DeDe -> MongoDb: Save purchase data
+DeDe --> Client: Inform the customer of his purchase
+@enduml
+----
+
+This view shows a request from a customer to buy a product from the catalog.
 
 
-=== ...
 
-=== <Runtime Scenario n>
+[plantuml,"SignUpProcess",png]
+----
+@startuml
+actor Client
+participant DeDe
+database MongoDb
+database Solid
+Client -> DeDe: Request store registration
+DeDe -> Client: Request for Pod access
+DeDe -> Solid: Pod Access
+Solid --> DeDe: Return of personal information
+DeDe -> Client: User and password request
+Client --> DeDe: User and password return
+DeDe -> MongoDb: Save credentials
+DeDe --> Client: Successful registration
+@enduml
+----
+
+This view shows the sign up process by a customer.

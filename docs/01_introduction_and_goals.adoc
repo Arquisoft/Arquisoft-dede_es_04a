@@ -1,61 +1,61 @@
 [[section-introduction-and-goals]]
-== Introduccion y metas
+== Introduccion and goals
 
-[role="arc42help"]
-****
-Se pretende desarrollar una tienda online utilizando las tecnologías de SOLID y REACT. La tienda permitirá al usuario realizar la compra de cualquiera de los productos disponibles, así como realizar búsquedas entre estos y poder añadirlos a una cesta personal.
-****
 
-=== Requisitos generales
+We intend to develop an online store using SOLID and REACT technologies. The store will allow the user to purchase any of the available products, as well as to search through them and add them to a personal shopping cart.
 
-[role="arc42help"]
-****
-La web deberá de cumplir principalmente los siguientes requisitos:
 
-  ·El almacenamiento de los datos deberá de estar separado de la aplicación en si.
+=== General requirements
 
-  ·La web permitirá al usuario buscar entre los diferentes productos ya sea de manera explícita o a través de filtros de texto.
 
-  ·El administrador del sistema podrá añadir en cualquier momento nuevos productos así como consultar la información de los clientes.
 
-  ·Cada usuario podrá tener su propia cesta personal la cual solo podrá ser consultada por el usuario en cuestión y que perdurará en sesiones posteriores.
+The website must mainly meet the following requirements:
 
-  ·Los usuarios tendrán la opción de registrarse dando sus datos personales.
+  -The data storage shall be separated from the application itself.
 
-  ·Solo los usuarios registrados tendrán acceso a una cesta personal.
+  -The web will allow the user to search among the different products either explicitly or through text filters.
 
-  ·Todos los usuarios tendrán la opción de realizar la devolución de cualquier producto solo con proporcionar el código de la compra. 
+  -The system administrator will be able to add new products at any time as well as to consult the information of the clients.
 
-****
+  -Each user will be able to have his own personal basket which can only be consulted by the user in question and which will last in subsequent sessions.
 
-=== Metas de calidad
+  -Users will have the option to register by giving their personal data.
 
-[role="arc42help"]
-****
-Dado que quienes usarán habitualmente la web serán los usuarios y el administrador las metas principales serian:
+  -Only registered users will have access to a personal shopping cart.
 
-  ·Usabilidad intuitiva tanto en el caso del administrador como del usuario
+  -All users will have the option to return any product just by providing the purchase code. 
 
-  ·Los productos de la tienda han de estar constantemente actualizados (nuevos productos y nuevo stock).
 
-  ·Toda información respecto a los datos de los usuarios como de sus cestas ha de ser privada.
 
-****
+
+
+=== Quality goals
+
+
+Given that those who will habitually use the web will be the users and the administrator, the main goals would be:
+
+  -Intuitive usability in the case of both the administrator and the user.
+
+  -The products of the store must be constantly updated (new products and new stock).
+
+  -All information regarding the data of users and their baskets must be private.
+
+
 
 === Stakeholders
 
-[role="arc42help"]
-****
-Los stakeholders seran los desarrolladores, los usuarios y el profesor
-****
+The stakeholders will be the developers, the users and the teacher.
+
 
 [options="header",cols="1,2,2"]
 |===
 |Role/Name|Contact|Expectations
-| Desarrollador | Sergio Murillo | Trabajar con la arquitectura y el código asi como la documentacion y ayudar en la toma de decisiones
-| Desarrollador | Pablo Alonso | Trabajar con la arquitectura y el código asi como la documentacion y ayudar en la toma de decisiones
-| Desarrollador | Pablo Fernández| Trabajar con la arquitectura y el código asi como la documentacion y ayudar en la toma de decisiones
-| Desarrollador | Iker Jiménez | Trabajar con la arquitectura y el código asi como la documentacion y ayudar en la toma de decisiones
-| Profesor | Hugo Lebredo | Supervisar el proyecto
-| Usuarios || Usuarios que podran usar libremente la tienda bien sea para realizar una compra o una devolucion o simplemente consultar
+| Developer | Sergio Murillo | Work with the architecture and code as well as the documentation and help in decision making.
+| Developer | Pablo Alonso | Work with architecture and code as well as documentation and help in decision making.
+| Developer | Pablo Fernández| Work with the architecture and code as well as the documentation and help in the decision making process.
+| Developer | Iker Jiménez | Work with the architecture and code as well as the documentation and help in decision making.
+| Teachers || Overseeing the project
+| Users || Users who will be able to freely use the store either to make a purchase or a return or simply to consult the store.
+
+
 |===
