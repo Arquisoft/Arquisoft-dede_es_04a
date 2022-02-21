@@ -15,6 +15,7 @@ DeDe --> Client: Get the catalog
 @enduml
 ----
 
+
 This view shows a request from a customer to view the product catalog. The web receives the request where it will access the database to get the list of products. Once obtained, it returns them to the customer.
 
 [plantuml,"BuyingProcess",png]
@@ -37,4 +38,7 @@ DeDe --> Client: Inform the customer of his purchase
 ----
 
 This view shows a request from a customer to buy a product from the catalog.
+
+=======
+This view shows a request from a customer to view the product catalog. The web receives the request where it will access the database to get the list of products. Once obtained, it returns them to the customer.
 
