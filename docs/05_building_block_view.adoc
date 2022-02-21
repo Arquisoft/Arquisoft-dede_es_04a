@@ -4,7 +4,7 @@
 === Whitebox Overall System
 
 :imagesdir: ./images
-image:level1.png[]
+image:05_level1.png[]
 
 Motivation::
 
@@ -24,7 +24,7 @@ Contained Building Blocks::
 
 === Level 2
 
-image:level2.png[]
+image:05_level2.png[]
 
 Motivation::
 

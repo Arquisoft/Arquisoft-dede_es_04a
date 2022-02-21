@@ -2,10 +2,10 @@
 
 == Runtime View
  
- .Contents
+.Contents
 
- This section shows the main sequence diagrams between the users and the application.
- 
+This section shows the main sequence diagrams between the users and the application.
+
 [plantuml,"PresentationOfTheProductCatalog",png]
 ----
 @startuml
