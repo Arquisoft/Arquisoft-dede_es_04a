@@ -12,7 +12,6 @@ These products will be grouped by sections within the page itself, and each prod
 
 === Business Context
 
-.Contents
 The home page will show all the products available in the shop. The customer will be able to search for the desired technology by category, then the list of products corresponding to the selected category will be displayed, the user will choose the products and the quantity of products he wants. These products will be added to the shopping basket, a list made up of all the products chosen by the customer to be purchased.
 
 The customer will have access to his shopping basket where he will be able to delete products, modify their quantity or finalise his purchase.

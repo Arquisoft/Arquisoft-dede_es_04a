@@ -5,15 +5,15 @@
 Necessary infrastructure::
 To use our online shop you only need a mobile device (mobile phone, tablet...) or a computer and Internet connection.
 
-:imagesdir: images/
+:imagesdir: ./images
 image::infraestructure_level1.png[]
 
 Mapping of Building Blocks to Infrastructure::
 [options="header",cols="1,2"]
 |===
 |Elements|Description
-| _Mobile or cumputer_ |  _Are the devices from which users can access our application using a web browser_
-| _Server_ |  _Is in charge of storing and supporting our application_
-| _MongoDB_ |  _Is the database in which we will store the data of our application_
-| _PODs_ |  _Each user will have ono of this and personal data will be stored in it_
+| Mobile or cumputer |  Are the devices from which users can access our application using a web browser
+| Server |  Is in charge of storing and supporting our application
+| MongoDB |  Is the database in which we will store the data of our application
+| PODs |  Each user will have ono of this and personal data will be stored in it
 |===
