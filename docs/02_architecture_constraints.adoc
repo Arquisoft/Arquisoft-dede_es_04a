@@ -1,10 +1,7 @@
 [[section-architecture-constraints]]
 == Architectural constraints
 
-
-[role="arc42help"]
-****
-.Contents
+=== Contents
 This section shows the different restrictions on the DeDe project classified into technical, organizational and convective restrictions.
 
 Technical restrictions::
@@ -37,3 +34,4 @@ Convections::
 |Arc42|To develop the documentation we will follow the Arc42 model.
 |SOLID|SOLID principles will be followed with respect to customer privacy.
 |Interface|The interface must be intuitive for non-technical people.
+|===
