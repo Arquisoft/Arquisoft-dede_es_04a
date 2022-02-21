@@ -1,42 +1,19 @@
 [[section-runtime-view]]
-== Vista en tiempo de ejecucion
+== Runtime View
 
 
 [role="arc42help"]
-****
-Una vez inicies la aplicacion veras un ventana de registro, en la cual podras registrarte o no. Si decides registrarte y tus credenciales son correctas podras, ademas de 
-realizar busquedas, realizar compras y devoluciones, en el caso de que seas administrador ademas podras realizar labores de gestión. 
+----
+[plantuml,"PresentationOfTheProductCatalog",png]
+@startuml
+actor Client
+participant DeDe
+database MongoDb
+Client -> DeDe: Request product catalog
+DeDe -> MongoDb: Ask for the list of products
+MongoDb --> DeDe: Get the list of products
+DeDe --> Client: Get the catalog
+@enduml
+----
 
-En la ventana principal de la pagina encontraras:
-
-·Una caja de busqueda textual para poder buscar los productos asi como unas pestañas con filtros
-
-·Un icono para poder consultar tu carrito actual
-
-·Una label que te permita acceder a un apartado de devoluciones para poder devolver productos
-
-·Un icono para poder cerrar la sesión del usuario
-
-Algunos escenarios posibles:
-
-Escenario 1: Un usuario quiere acceder a la pagina solo para realizar una consulta rapida para saber si cierto producto esta disponible.
-
-:imagesdir: images/
-image::CAso 1.drawio.png[]
-
-Escenario 2: Un usuario quiere realizar la compra de un producto en especifico y quiere dos unidadaes, por lo que lo busca y lleva a cabo la compra.
-
-:imagesdir: images/
-image::caso 2.png[]
-
-Escenario 3: Un usuario no estuvo contento con una de sus compras por lo que se registra y realiza la devolucion.
-
-:imagesdir: images/
-image::Caso 3.drawio.png[]
-
-
-
-
-=== ...
-
-=== <Runtime Scenario n>
+This view shows a request from a customer to view the product catalog. The web receives the request where it will access the database to get the list of products. Once obtained, it returns them to the customer.
