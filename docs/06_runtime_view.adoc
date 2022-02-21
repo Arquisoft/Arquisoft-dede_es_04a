@@ -60,6 +60,7 @@ This view shows a request from a customer to buy a product from the catalog.
 =======
 
 [plantuml,"SignUpProcess",png]
+----
 @startuml
 actor Client
 participant DeDe
@@ -74,5 +75,6 @@ Client --> DeDe: User and password return
 DeDe -> MongoDb: Save credentials
 DeDe --> Client: Successful registration
 @enduml
+----
 
 This view shows the sign up process by a customer.
