@@ -1,10 +1,7 @@
 [[section-deployment-view]]
 
-
 == Deployment View
 
-[role="arc42help"]
-****
 Necessary infrastructure::
 To use our online shop you only need a mobile device (mobile phone, tablet...) or a computer and Internet connection.
 
@@ -20,4 +17,3 @@ Mapping of Building Blocks to Infrastructure::
 | _MongoDB_ |  _Is the database in which we will store the data of our application_
 | _PODs_ |  _Each user will have ono of this and personal data will be stored in it_
 |===
-****
