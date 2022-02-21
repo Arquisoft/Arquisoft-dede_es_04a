@@ -18,6 +18,24 @@ DeDe --> Client: Get the catalog
 
 This view shows a request from a customer to view the product catalog. The web receives the request where it will access the database to get the list of products. Once obtained, it returns them to the customer.
 
+[plantuml,"AdminView",png]
+----
+@startuml
+actor Admin
+participant DeDe
+database MongoDb
+Admin -> DeDe: Enter credentials
+DeDe -> MongoDb: Verify the information entered
+DeDe --> Admin: Successful login
+Admin -> DeDe: Add, remove or update products
+DeDe -> MongoDb: Changes on the database
+DeDe --> Admin: Notification of changes
+@enduml
+----
+
+This view shows the administrator login. The website receives the admin's credentials, and after verification of the information allows the admin to add, delete and update the desired products.
+=======
+
 [plantuml,"BuyingProcess",png]
 ----
 @startuml
@@ -40,5 +58,6 @@ DeDe --> Client: Inform the customer of his purchase
 This view shows a request from a customer to buy a product from the catalog.
 
 =======
-This view shows a request from a customer to view the product catalog. The web receives the request where it will access the database to get the list of products. Once obtained, it returns them to the customer.
+
+
 
