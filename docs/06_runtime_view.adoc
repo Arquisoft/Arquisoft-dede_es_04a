@@ -1,4 +1,5 @@
 [[section-runtime-view]]
+
 == Runtime View
 
 [plantuml,"PresentationOfTheProductCatalog",png]
@@ -13,6 +14,7 @@ MongoDb --> DeDe: Get the list of products
 DeDe --> Client: Get the catalog
 @enduml
 ----
+
 
 This view shows a request from a customer to view the product catalog. The web receives the request where it will access the database to get the list of products. Once obtained, it returns them to the customer.
 
@@ -32,3 +34,30 @@ DeDe --> Admin: Notification of changes
 ----
 
 This view shows the administrator login. The website receives the admin's credentials, and after verification of the information allows the admin to add, delete and update the desired products.
+=======
+
+[plantuml,"BuyingProcess",png]
+----
+@startuml
+actor Client
+participant DeDe
+database MongoDb
+database Solid
+Client -> DeDe: Add products to cart
+DeDe -> MongoDb: Save the products of client
+Client -> DeDe: Delete products of the cart
+DeDe -> MongoDb: Restore products
+Client -> DeDe: Checkout the products in the cart
+DeDe -> Solid: Ask for the data of client
+Solid --> DeDe: Personal data of client
+DeDe -> MongoDb: Save purchase data
+DeDe --> Client: Inform the customer of his purchase
+@enduml
+----
+
+This view shows a request from a customer to buy a product from the catalog.
+
+=======
+
+
+
