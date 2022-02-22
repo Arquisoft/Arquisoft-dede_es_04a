@@ -44,18 +44,16 @@ Given that those who will habitually use the web will be the users and the admin
 
 === Stakeholders
 
-The stakeholders will be the developers, the users and the teacher.
+The stakeholders will be the developers, the users and the teachers.
 
 
-[options="header",cols="1,2,2"]
+[options="header",cols="1,2"]
 |===
-|Role/Name|Contact|Expectations
-| Developer | Sergio Murillo | Work with the architecture and code as well as the documentation and help in decision making.
-| Developer | Pablo Alonso | Work with architecture and code as well as documentation and help in decision making.
-| Developer | Pablo Fernández| Work with the architecture and code as well as the documentation and help in the decision making process.
-| Developer | Iker Jiménez | Work with the architecture and code as well as the documentation and help in decision making.
-| Teachers || Overseeing the project
-| Users || Users who will be able to freely use the store either to make a purchase or a return or simply to consult the store.
+| Role | Expectations
+| Developers | Work with the architecture and code as well as the documentation and help in decision making.
+| Teachers | Overseeing the project
+| Clients | Users who will be able to freely use the store either to make a purchase or a return or simply to consult the store.
+| Administrator | A special user who will be able to manage the products and client information from the app
 
 
 |===
