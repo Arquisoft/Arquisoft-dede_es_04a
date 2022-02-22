@@ -7,10 +7,18 @@ To use our online shop you only need a mobile device (mobile phone, tablet...) o
 
 ----
 @startuml
-Mobile --> dede
-Computer --> dede
-dede <..> MongoDB
-dede <..> PODs
+node "Server" {
+    [dede]
+ }
+database MongoDB
+rectangle Mobile
+rectangle Computer
+rectangle PODs
+
+Mobile --> Server
+Computer --> Server
+[dede] <..> MongoDB
+[dede] <..> PODs
 @enduml
 ----
 
