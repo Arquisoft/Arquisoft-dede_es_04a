@@ -11,19 +11,19 @@ We intend to develop an online store using SOLID and REACT technologies. The sto
 
 The website must mainly meet the following requirements:
 
-  -The data storage shall be separated from the application itself.
+* The data storage shall be separated from the application itself.
 
-  -The web will allow the user to search among the different products either explicitly or through text filters.
+* The web will allow the user to search among the different products either explicitly or through text filters.
 
-  -The system administrator will be able to add new products at any time as well as to consult the information of the clients.
+* The system administrator will be able to add new products at any time as well as to consult the information of the clients.
 
-  -Each user will be able to have his own personal basket which can only be consulted by the user in question and which will last in subsequent sessions.
+* Each user will be able to have his own personal basket which can only be consulted by the user in question and which will last in subsequent sessions.
 
-  -Users will have the option to register by giving their personal data.
+* Users will have the option to register by giving their personal data.
 
-  -Only registered users will have access to a personal shopping cart.
+* Only registered users will have access to a personal shopping cart.
 
-  -All users will have the option to return any product just by providing the purchase code. 
+* All users will have the option to return any product just by providing the purchase code. 
 
 
 
@@ -34,11 +34,11 @@ The website must mainly meet the following requirements:
 
 Given that those who will habitually use the web will be the users and the administrator, the main goals would be:
 
-  -Intuitive usability in the case of both the administrator and the user.
+* Intuitive usability in the case of both the administrator and the user.
 
-  -The products of the store must be constantly updated (new products and new stock).
+* The products of the store must be constantly updated (new products and new stock).
 
-  -All information regarding the data of users and their baskets must be private.
+* All information regarding the data of users and their baskets must be private.
 
 
 

@@ -6,6 +6,11 @@
 
 This section shows the main sequence diagrams between the users and the application.
 
+
+=== Request
+
+This view shows a request from a customer to view the product catalog. The web receives the request where it will access the database to get the list of products. Once obtained, it returns them to the customer.
+
 [plantuml,"PresentationOfTheProductCatalog",png]
 ----
 @startuml
@@ -20,7 +25,9 @@ DeDe --> Client: Get the catalog
 ----
 
 
-This view shows a request from a customer to view the product catalog. The web receives the request where it will access the database to get the list of products. Once obtained, it returns them to the customer.
+=== Login
+
+This view shows the administrator login. The website receives the admin's credentials, and after verification of the information allows the admin to add, delete and update the desired products.
 
 [plantuml,"AdminView",png]
 ----
@@ -37,8 +44,10 @@ DeDe --> Admin: Notification of changes
 @enduml
 ----
 
-This view shows the administrator login. The website receives the admin's credentials, and after verification of the information allows the admin to add, delete and update the desired products.
 
+=== Buy process
+
+This view shows a request from a customer to buy a product from the catalog.
 
 [plantuml,"BuyingProcess",png]
 ----
@@ -59,9 +68,10 @@ DeDe --> Client: Inform the customer of his purchase
 @enduml
 ----
 
-This view shows a request from a customer to buy a product from the catalog.
 
+=== Sign up
 
+This view shows the sign up process by a customer.
 
 [plantuml,"SignUpProcess",png]
 ----
@@ -81,4 +91,3 @@ DeDe --> Client: Successful registration
 @enduml
 ----
 
-This view shows the sign up process by a customer.
