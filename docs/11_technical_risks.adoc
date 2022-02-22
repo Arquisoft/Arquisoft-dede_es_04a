@@ -3,7 +3,8 @@
 
 [options="header",cols="1,2"]
 |===
-|Risk|Solutions 
+| Risk | Solutions 
+| First time working with certain tecnologies | Research on such technologies
 | Lack of time regarding deliveries | Set guidelines for a regular and stable progress
 | Misunderstanding of the application requirements | Clarify the requirements with the teacher
 | Merge problems in git | Set guidelines for a stable merge
