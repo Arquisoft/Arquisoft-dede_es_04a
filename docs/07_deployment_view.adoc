@@ -5,8 +5,14 @@
 Necessary infrastructure::
 To use our online shop you only need a mobile device (mobile phone, tablet...) or a computer and Internet connection.
 
-:imagesdir: ./images
-image::infraestructure_level1.png[]
+----
+@startuml
+Mobile --> dede
+Computer --> dede
+dede <..> MongoDB
+dede <..> PODs
+@enduml
+----
 
 Mapping of Building Blocks to Infrastructure::
 [options="header",cols="1,2"]
