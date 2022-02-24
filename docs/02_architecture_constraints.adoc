@@ -11,7 +11,6 @@
 |Hosting|The application must be continuously accessible.
 |Testing|Automatic and manual tests on the code.
 |===
-****
 
 === Organizational restrictions
 
@@ -22,7 +21,6 @@
 |Meetings|At least one team meeting per week will be held and recorded.
 |Delivery times|Approximately every 3 weeks there will be deliveries to know the status of the application and its documentation.
 |===
-****
 
 === Convections
 
@@ -32,4 +30,3 @@
 |SOLID|SOLID principles will be followed with respect to customer privacy.
 |Interface|The interface must be intuitive for non-technical people.
 |===
-****
