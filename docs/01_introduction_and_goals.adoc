@@ -1,65 +1,59 @@
 [[section-introduction-and-goals]]
-== Introduccion y metas
+== Introduccion and goals
 
-[role="arc42help"]
-****
+
 We intend to develop an online store using SOLID and REACT technologies. The store will allow the user to purchase any of the available products, as well as to search through them and add them to a personal shopping cart.
-****
 
-=== Requisitos generales
 
-[role="arc42help"]
-****
+=== General requirements
+
+
+
 The website must mainly meet the following requirements:
 
-  -The data storage shall be separated from the application itself.
+* The data storage shall be separated from the application itself.
 
-  -The web will allow the user to search among the different products either explicitly or through text filters.
+* The web will allow the user to search among the different products either explicitly or through text filters.
 
-  -The system administrator will be able to add new products at any time as well as to consult the information of the clients.
+* The system administrator will be able to add new products at any time as well as to consult the information of the clients.
 
-  -Each user will be able to have his own personal basket which can only be consulted by the user in question and which will last in subsequent sessions.
+* Each user will be able to have his own personal basket which can only be consulted by the user in question and which will last in subsequent sessions.
 
-  -Users will have the option to register by giving their personal data.
+* Users will have the option to register by giving their personal data.
 
-  -Only registered users will have access to a personal shopping cart.
+* Only registered users will have access to a personal shopping cart.
 
-  -All users will have the option to return any product just by providing the purchase code. 
+* All users will have the option to return any product just by providing the purchase code. 
 
 
 
-****
+
 
 === Quality goals
 
-[role="arc42help"]
-****
+
 Given that those who will habitually use the web will be the users and the administrator, the main goals would be:
 
-  -Intuitive usability in the case of both the administrator and the user.
+* Intuitive usability in the case of both the administrator and the user.
 
-  -The products of the store must be constantly updated (new products and new stock).
+* The products of the store must be constantly updated (new products and new stock).
 
-  -All information regarding the data of users and their baskets must be private.
+* All information regarding the data of users and their baskets must be private.
 
-****
+
 
 === Stakeholders
 
-[role="arc42help"]
-****
-The stakeholders will be the developers, the users and the teacher.
-****
+The stakeholders will be the developers, the users and the teachers.
 
-[options="header",cols="1,2,2"]
+
+[options="header",cols="1,2"]
 |===
-|Role/Name|Contact|Expectations
-| Developer | Sergio Murillo | Work with the architecture and code as well as the documentation and help in decision making.
-| Developer | Pablo Alonso | Work with architecture and code as well as documentation and help in decision making.
-| Developer | Pablo Fernández| Work with the architecture and code as well as the documentation and help in the decision making process.
-| Developer | Iker Jiménez | Work with the architecture and code as well as the documentation and help in decision making.
-| Teacher | Hugo Lebredo | Overseeing the project
-| Users || Users who will be able to freely use the store either to make a purchase or a return or simply to consult the store.
+| Role | Expectations
+| Developers | Work with the architecture and code as well as the documentation and help in decision making.
+| Teachers | Overseeing the project
+| Clients | Users who will be able to freely use the store either to make a purchase or a return or simply to consult the store.
+| Administrator | A special user who will be able to manage the products and client information from the app
 
 
 |===

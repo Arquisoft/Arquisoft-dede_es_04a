@@ -28,7 +28,6 @@ We have taken this decision since all the technologies to be used are new for al
 and we believe that it will be easier to achieve the objectives if we focus mostly on one part
 
 === Organizational decisions
-
 In order to work in an organized way and try to minimize errors, we have decided to organize ourselves as follows:
 
 * Creation of three automated dashboards (GitHub Projects), one for each part in which the project is divided.
@@ -45,4 +44,10 @@ In order to work in an organized way and try to minimize errors, we have decided
 *** pabloa
 *** pablof
 *** sergio
+=======
 
+To communicate we will use:
+
+* Microsoft Teams: We will meet weekly to make decisions.
+* WhatsApp: We will use it to make a quick comment, such as to warn of a sudden problem or things that come up.
+* GitHub: Here we will communicate through issues and the project board, where we will share tasks.

@@ -4,7 +4,7 @@
 === Whitebox Overall System
 
 :imagesdir: ./images
-image:level1.PNG[]
+image:05_level1.png[]
 
 Motivation::
 
@@ -24,9 +24,9 @@ Contained Building Blocks::
 
 === Level 2
 
-image:level2.PNG[]
+image:05_level2.png[]
 
-Motication::
+Motivation::
 
 Description showing how our application will communicate with the database and the users' PODS.
 
