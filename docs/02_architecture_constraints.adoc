@@ -1,8 +1,8 @@
 [[section-architecture-constraints]]
 == Architectural constraints
 
-=== Technical restrictions::
-****
+=== Technical restrictions
+
 |===
 |Requirement|Explanation
 |React|Framework oriented to the Frontend of the application.
@@ -13,8 +13,8 @@
 |===
 ****
 
-=== Organizational restrictions::
-****
+=== Organizational restrictions
+
 |===
 |Requirement|Explanation
 |GitHub|Git version control system with additional tools.
@@ -24,8 +24,8 @@
 |===
 ****
 
-=== Convections::
-****
+=== Convections
+
 |===
 |Requirement|Explanation
 |Arc42|To develop the documentation we will follow the Arc42 model.
