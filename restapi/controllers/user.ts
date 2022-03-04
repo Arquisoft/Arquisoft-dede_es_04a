@@ -24,7 +24,7 @@ export const login = async (req: Request, res: Response): Promise<Response> => {
 
     const user = await User.findOne({ username: req.body.username });
     if (!user)
-        return res.status(400).json({ msg: "The email or password are incorrect" });
+        return res.status(400).json({ msg: "The username or password are incorrect" });
 
     const isMatch = await user.comparePassword(req.body.password);
     if (isMatch) {
