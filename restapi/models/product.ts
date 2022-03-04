@@ -1,4 +1,13 @@
-import { model, Schema } from 'mongoose'
+import { model, Schema, Document } from 'mongoose'
+
+export interface IProduct extends Document {
+    name: string,
+    description: string,
+    price: number,
+    units: number,
+    categories: [string],
+    onSale: boolean
+}
 
 const productSchema = new Schema ({
     name: {
@@ -21,13 +30,14 @@ const productSchema = new Schema ({
     },
     categories:{
         type: [String],
-        required : [true, 'Product must have one categories at least']
+        required: [true, 'Product must have one categories at least']
     },
     onSale:{
         type: Boolean,
-        required : true
+        required: true
     }
 })
 
-const Product = model('Product', productSchema)
-module.exports = Product
+const Product = model<IProduct>("Product", productSchema)
+
+export default Product
