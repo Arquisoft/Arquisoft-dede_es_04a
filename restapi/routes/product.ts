@@ -3,10 +3,10 @@ import { findAll, productCreate, updateProduct, deleteProduct, findByCategory } 
 
 const router = Router();
 
-router.post("/product/list", findAll);
+router.get("/product/list", findAll);
 router.post("/product/add", productCreate);
 router.post("/product/update/:id", updateProduct);
 router.get("/product/delete/:id", deleteProduct);
-router.post("/product/findByCategory/:category", findByCategory);
+router.get("/product/filter/:categories", findByCategory);
 
 export default router;

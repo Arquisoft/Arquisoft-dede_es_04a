@@ -2,12 +2,12 @@ import { model, Schema, Document } from 'mongoose'
 import Category, { ICategory } from './category'
 
 export interface IProduct extends Document {
-    name: string,
-    description: string,
-    price: number,
-    units: number,
-    categories: [ICategory],
-    onSale: boolean
+    name: string;
+    description: string;
+    price: number;
+    units: number;
+    categories: [String];
+    onSale: boolean;
 }
 
 const productSchema = new Schema ({
@@ -30,7 +30,7 @@ const productSchema = new Schema ({
         min: 0
     },
     categories:{
-        type: [Category],
+        type: [String],
         required: [true, 'Product must have one categories at least']
     },
     onSale:{
