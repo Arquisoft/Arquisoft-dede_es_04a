@@ -1,11 +1,9 @@
-import express, { Request, Response, Router } from 'express';
-import './database';
-import { signUp, login } from './controllers/user';
+import { Router } from "express";
+import "./database";
+import user from "./routes/user";
 
-const api:Router = express.Router()
+const api: Router = Router();
 
-api.post("/signup", signUp);
-
-api.post("/login", login);
+api.use(user);
 
 export default api;

@@ -18,7 +18,7 @@ app.use(metricsMiddleware);
 app.use(cors(options));
 app.use(bp.json());
 
-app.use("/api", api)
+app.use("/api", api);
 
 app.listen(port, (): void => {
     console.log('Restapi listening on '+ port);
