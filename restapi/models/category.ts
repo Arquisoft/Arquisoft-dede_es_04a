@@ -1,6 +1,6 @@
 import { model, Schema, Document } from 'mongoose'
 
-export interface IProduct extends Document {
+export interface ICategory extends Document {
     categoryName: string
 }
 
@@ -11,6 +11,6 @@ const categorySchema = new Schema({
     }
 })
 
-const Category = model<IProduct>("Category", categorySchema)
+const Category = model<ICategory>("Category", categorySchema)
 
 export default Category
