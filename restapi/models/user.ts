@@ -2,11 +2,12 @@ import { model, Schema, Document } from "mongoose"
 import bcrypt from "bcrypt"
 
 export interface IUser extends Document {
-    dni: string,
-    username: string
+    dni: string;
+    username: string;
     email: string;
     password: string;
-    comparePassword: (password: string) => Promise<Boolean>
+    rol: number;
+    comparePassword: (password: string) => Promise<Boolean>;
 }
 
 const userSchema = new Schema({
@@ -31,7 +32,7 @@ const userSchema = new Schema({
     },
     rol: {
         type: Number,
-        required: [true, "Rol is mandatory"]
+        default: 0
     }
 })
 

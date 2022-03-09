@@ -7,7 +7,7 @@ router.post("/signup", signUp);
 router.post("/login", login);
 router.get("/user/list", findAll);
 router.get("/user/:username", findByUsername);
-router.get("/user/delete/:id", deleteUser);
+router.get("/user/delete/:username", deleteUser);
 router.post("/user/update/:id", updateUser);
 
 export default router;

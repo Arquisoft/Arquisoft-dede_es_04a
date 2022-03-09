@@ -30,7 +30,7 @@ export const login = async (req: Request, res: Response): Promise<Response> => {
     if (isMatch) 
         return res.status(200).json({ msg: "Logged in" });
 
-    return res.status(400).json({ msg: "The email or password are incorrect" });
+    return res.status(400).json({ msg: "The username or password are incorrect" });
 };
 
 export const findAll = async (req: Request, res: Response): Promise<Response> => {
@@ -40,19 +40,19 @@ export const findAll = async (req: Request, res: Response): Promise<Response> =>
 };
 
 export const findByUsername = async (req: Request, res: Response): Promise<Response> => {
-    if(!req.body.username)
+    if(!req.params.username)
         return res.status(400).json({ msg: "Please. Send any username." });
 
-    const user = await User.find({ username: req.body.username });
+    const user = await User.find({ username: req.params.username });
 
     return res.status(200).json({ user });
 };
 
 export const deleteUser = async (req: Request, res: Response): Promise<Response> => {
-    if(!req.body.username)
+    if(!req.params.username)
         return res.status(400).json({ msg: "Please. Send any username." });
     
-    const user = await User.findOneAndDelete({ username: req.body.username });
+    const user = await User.findOneAndDelete({ username: req.params.username });
 
     return res.status(200).json({ user });
 };
