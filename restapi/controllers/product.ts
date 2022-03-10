@@ -22,7 +22,7 @@ export const productCreate = async (req: Request, res: Response): Promise<Respon
 export const updateProduct = async (req: Request, res: Response): Promise<Response> => {
     const { ...product} = req.body;
     const updatedProduct = await Product.findByIdAndUpdate(req.params.id, product);
-    return res.status(200).json({updateProduct});
+    return res.status(200).json({updatedProduct});
 };
 
 // Delete product
@@ -31,7 +31,7 @@ export const deleteProduct = async (req: Request, res: Response): Promise<Respon
 
     const deletedProduct = await Product.findByIdAndDelete( id );
 
-    return res.status(200).json({deleteProduct});
+    return res.status(200).json({deletedProduct});
 }
 
 // Find by category
