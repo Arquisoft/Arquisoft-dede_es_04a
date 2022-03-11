@@ -1,5 +1,7 @@
+import cloudinary, { UploadApiResponse } from "cloudinary";
 import { Request, Response } from "express";
 import Product from "../models/product";
+
 
 // Find all the products
 export const findAll = async (req: Request, res: Response): Promise<Response> => {
@@ -12,9 +14,13 @@ export const findAll = async (req: Request, res: Response): Promise<Response> =>
 export const productCreate = async (req: Request, res: Response): Promise<Response> => {
     // if (!req.body.name || !req.body.description || !req.body.price || !req.body.units || !req.body.categories)
     //     return res.status(400).json({ msg: "Please, complete all the fields" })
-    
+
     const newProduct = new Product(req.body);
-    await newProduct.save();
+    // Upload images to cloudinary
+    await cloudinary.v2.uploader.upload(newProduct.urlImage).then((image: UploadApiResponse) => {
+        newProduct.urlImage = image.secure_url;
+        newProduct.save();
+    });
     return res.status(200).json({newProduct});
 };
 
