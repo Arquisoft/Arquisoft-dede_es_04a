@@ -1,9 +1,7 @@
-import { UploadApiErrorResponse, UploadApiResponse } from "cloudinary";
+import cloudinary, { UploadApiResponse } from "cloudinary";
 import { Request, Response } from "express";
-import { Result } from "express-validator";
 import Product from "../models/product";
-const cloudinary = require('cloudinary').v2;
-require("dotenv").config();
+
 
 // Find all the products
 export const findAll = async (req: Request, res: Response): Promise<Response> => {
@@ -19,7 +17,7 @@ export const productCreate = async (req: Request, res: Response): Promise<Respon
 
     const newProduct = new Product(req.body);
     // Upload images to cloudinary
-    await cloudinary.uploader.upload(newProduct.urlImage).then((image: UploadApiResponse) => {
+    await cloudinary.v2.uploader.upload(newProduct.urlImage).then((image: UploadApiResponse) => {
         newProduct.urlImage = image.secure_url;
         newProduct.save();
     });
