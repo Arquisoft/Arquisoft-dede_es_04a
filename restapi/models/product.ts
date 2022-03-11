@@ -8,6 +8,7 @@ export interface IProduct extends Document {
     units: number;
     categories: [String];
     onSale: boolean;
+    urlImage: string;
 }
 
 const productSchema = new Schema ({
@@ -35,6 +36,10 @@ const productSchema = new Schema ({
     },
     onSale:{
         type: Boolean,
+    },
+    urlImage:{
+        type: String,
+        //required: [true, 'Product must have a photo']
     }
 })
 
