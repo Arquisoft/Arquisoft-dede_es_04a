@@ -6,6 +6,7 @@ export interface IUser extends Document {
     username: string;
     email: string;
     password: string;
+    confirmPassword: string;
     rol: number;
     comparePassword: (password: string) => Promise<Boolean>;
 }
@@ -29,6 +30,10 @@ const userSchema = new Schema({
     password: {
         type: String,
         require: [true, "Password is mandatory"]
+    },
+    confirmPassword: {
+        type : String,
+        require: [true, "We need confirm the password"]
     },
     rol: {
         type: Number,

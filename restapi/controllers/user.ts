@@ -2,8 +2,11 @@ import { Request, Response } from "express";
 import User from "../models/user";
 
 export const signUp = async (req: Request, res: Response): Promise<Response> => {
-    if (!req.body.username || !req.body.email || !req.body.password)
-        return res.status(400).json({ msg: "Please. Send your username, email and password" });
+    if (!req.body.username || !req.body.email || !req.body.password || !req.body.dni || !req.body.confirmPassword)
+        return res.status(400).json({ msg: "Please. Send your username, email, dni and password" });
+
+    if (req.body.password !== req.body.confirmPassword)
+        return res.status(400).json({ msg: "Password and confirm password don't match" });
 
     let user = await User.findOne({ username: req.body.username });
     if (user)
