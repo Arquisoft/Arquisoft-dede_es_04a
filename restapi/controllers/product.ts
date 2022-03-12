@@ -34,11 +34,13 @@ export const updateProduct = async (req: Request, res: Response): Promise<Respon
 // Delete product
 export const deleteProduct = async (req: Request, res: Response): Promise<Response> => {
     const { id } = req.params;
-
-    const deletedProduct = await Product.findByIdAndDelete( id );
-
+    const deletedProduct = await Product.findByIdAndDelete( id ).then((product) => {
+        var url = product?.urlImage.split("/");
+        var publicId = url?.at(url?.length - 1)?.split(".").at(0);
+        cloudinary.v2.uploader.destroy(publicId!);
+    });
     return res.status(200).json({deletedProduct});
-}
+};
 
 // Find by category
 export const findByCategory = async (req: Request, res: Response): Promise<Response> => {
