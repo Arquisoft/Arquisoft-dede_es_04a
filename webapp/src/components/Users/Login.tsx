@@ -2,6 +2,7 @@ import React, { ChangeEvent, FormEvent, useState } from "react";
 import { User } from "./User";
 import * as userService from './UserService';
 import { useNavigate } from 'react-router-dom';
+import { toast } from "react-toastify";
 
 const Login = () => {
 
@@ -22,9 +23,14 @@ const Login = () => {
 
     const submit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        await userService.login(user);
-        setUser(initialState);
-        navigate('/');
+        const result = await userService.login(user);
+        if(result.status===200){
+            navigate('/');
+        }
+        else{
+            setUser(initialState);
+            toast.error("Username or password dont exist");
+        }
     }
 
     return (

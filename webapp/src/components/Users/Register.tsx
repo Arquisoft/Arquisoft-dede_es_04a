@@ -26,13 +26,12 @@ const Register = () => {
         e.preventDefault();
         if(user.confirmPassword===user.password){
             await userService.createNewUser(user);
-            toast.success("Succesfully registered")
+            toast.success("Succesfully registered");
             navigate('/');
         }
         else{
             setUser(initialState);
-            toast.error("The passwords dont match")
-            navigate('/register');
+            toast.error("The passwords dont match");
         }
     }
 
