@@ -1,16 +1,39 @@
 import React, { ChangeEvent, FormEvent, useState } from "react";
 import { User } from "./User";
+import * as userService from './UserService';
+import { useNavigate } from 'react-router-dom';
+import { toast } from "react-toastify";
 
 const Register = () => {
 
-    const [user, setUser] = useState<User>({username:'', password:''})
+    const navigate = useNavigate();
+
+    const initialState = {
+        username: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+        dni:"",
+      };
+
+    const [user, setUser] = useState<User>(initialState);
 
     const inputChange = (e: ChangeEvent<HTMLInputElement>) => {
         setUser({...user, [e.target.name]: e.target.value})
     }
 
-    const submit = (e: FormEvent<HTMLFormElement>) => {
-
+    const submit = async (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        if(user.confirmPassword===user.password){
+            await userService.createNewUser(user);
+            toast.success("Succesfully registered")
+            navigate('/');
+        }
+        else{
+            setUser(initialState);
+            toast.error("The passwords dont match")
+            navigate('/register');
+        }
     }
 
     return (
@@ -23,22 +46,24 @@ const Register = () => {
                             <div className="form-group">
                                 <input
                                     type="text"
-                                    name="name"
-                                    placeholder="Name"
-                                    className="form-control"
-                                    onChange={inputChange}
-                                    autoFocus
-                                />
-                            </div>
-
-                            <div className="form-group">
-                                <input
-                                    type="text"
                                     name="username"
                                     placeholder="Username"
                                     className="form-control"
                                     onChange={inputChange}
+                                    value={user.username}
                                     autoFocus
+                                />
+                            </div>
+
+
+                            <div className="form-group">
+                                <input
+                                    type="text"
+                                    name="email"
+                                    placeholder="Email"
+                                    className="form-control"
+                                    onChange={inputChange}
+                                    value={user.email}
                                 />
                             </div>
 
@@ -49,6 +74,30 @@ const Register = () => {
                                     placeholder="Password"
                                     className="form-control"
                                     onChange={inputChange}
+                                    value={user.password}
+                                />
+                            </div>
+
+                            <div className="form-group">
+                                <input
+                                    type="password"
+                                    name="confirmPassword"
+                                    placeholder="Repeat password"
+                                    className="form-control"
+                                    onChange={inputChange}
+                                    value={user.confirmPassword}
+                                />
+                            </div>
+
+                            
+                            <div className="form-group">
+                                <input
+                                    type="text"
+                                    name="dni"
+                                    placeholder="DNI"
+                                    className="form-control"
+                                    onChange={inputChange}
+                                    value={user.dni}
                                 />
                             </div>
 
