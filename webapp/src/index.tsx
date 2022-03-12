@@ -1,13 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Welcome from './components/Welcome';
-import Login from './components/Login';
+import Login from './components/Users/Login';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 
 import 'bootswatch/dist/pulse/bootstrap.min.css';
 import './index.css';
+import Register from './components/Users/Register';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -17,6 +18,7 @@ ReactDOM.render(
     <Routes>
       <Route path="/" element={<Welcome message=""/>}></Route>
       <Route path="/login" element={<Login/>}></Route>
+      <Route path="/register" element={<Register/>}></Route>
     </Routes>
     </div>
     </BrowserRouter>
