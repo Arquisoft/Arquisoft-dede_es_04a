@@ -12,9 +12,9 @@ export const findAll = async (req: Request, res: Response): Promise<Response> =>
 
 // Create a new product
 export const productCreate = async (req: Request, res: Response): Promise<Response> => {
-    // if (!req.body.name || !req.body.description || !req.body.price || !req.body.units || !req.body.categories)
-    //     return res.status(400).json({ msg: "Please, complete all the fields" })
-
+    if (!req.body.name || !req.body.description || !req.body.price || !req.body.units || !req.body.categories || !req.body.urlImage)
+        return res.status(400).json({ msg: "Please, complete all the fields" })
+ 
     const newProduct = new Product(req.body);
     // Upload images to cloudinary
     await cloudinary.v2.uploader.upload(newProduct.urlImage).then((image: UploadApiResponse) => {
