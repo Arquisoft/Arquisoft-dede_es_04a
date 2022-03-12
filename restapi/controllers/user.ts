@@ -2,8 +2,8 @@ import { Request, Response } from "express";
 import User from "../models/user";
 
 export const signUp = async (req: Request, res: Response): Promise<Response> => {
-    if (!req.body.username || !req.body.email || !req.body.password || !req.body.email)
-        return res.status(400).json({ msg: "Please. Send your username, email and password" });
+    if (!req.body.username || !req.body.email || !req.body.password || !req.body.dni)
+        return res.status(400).json({ msg: "Please. Send your username, email, dni and password" });
 
     let user = await User.findOne({ username: req.body.username });
     if (user)
