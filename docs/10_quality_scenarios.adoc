@@ -1,11 +1,7 @@
 [[section-quality-scenarios]]
 == Quality Requirements
 
-
-[role="arc42help"]
-****
-
-.Content
+=== Contents
 This section shows the quality requirements tree with the description of each of them.
 
 Quality Tree::
