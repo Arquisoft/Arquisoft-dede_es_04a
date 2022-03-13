@@ -4,6 +4,7 @@ import { ToastContainer } from 'react-toastify';
 
 import Welcome from './components/Welcome';
 import Login from './components/Users/Login';
+import Productos from './components/Productos/Productos';
 import Register from './components/Users/Register';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
@@ -22,6 +23,7 @@ ReactDOM.render(
           <Route path="/" element={<Welcome message="" />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/register" element={<Register />}></Route>
+          <Route path="/products" element={<Productos />}></Route>
         </Routes>
         <ToastContainer />
       </div>
