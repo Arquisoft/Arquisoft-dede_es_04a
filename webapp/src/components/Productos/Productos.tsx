@@ -13,7 +13,9 @@ const Productos = () => {
     const loadProductos = async ()=>{
         const res = await productoService.getProductos()
         console.log(res)
-        setProductos(res.data)
+        let datos = res.data
+        console.log(datos)
+        setProductos(datos.products)
     }
 
     useEffect(()=>{
