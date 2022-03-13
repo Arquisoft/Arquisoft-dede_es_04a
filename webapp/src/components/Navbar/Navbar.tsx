@@ -9,6 +9,7 @@ const Navbar = () => {
                 <form className="d-flex">
                     <Link className="navbar-brand" to="/login">Login</Link>
                     <Link className="navbar-brand" to="/register">Register</Link>
+                    <Link className="navbar-brand" to="/products">Productos</Link>
                 </form>
             </div>
         </nav>

@@ -12,6 +12,7 @@ const Productos = () => {
 
     const loadProductos = async ()=>{
         const res = await productoService.getProductos()
+        console.log(res)
         setProductos(res.data)
     }
 
@@ -21,7 +22,9 @@ const Productos = () => {
 
 
     return (
+        
         <div>
+            <div>PRODUCTOS</div>
             {productos.map((producto) => {
                 return <ProductoItem producto={producto}/>
             })}
