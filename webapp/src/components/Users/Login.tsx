@@ -1,16 +1,36 @@
 import React, { ChangeEvent, FormEvent, useState } from "react";
 import { User } from "./User";
+import * as userService from './UserService';
+import { useNavigate } from 'react-router-dom';
+import { toast } from "react-toastify";
 
 const Login = () => {
 
+    const navigate = useNavigate();
+
+    const initialState = {
+        username: "",
+        email: "",
+        password: "",
+        dni:"",
+      };
+    
     const [user, setUser] = useState<User>({username:'', password:''})
 
     const inputChange = (e: ChangeEvent<HTMLInputElement>) => {
         setUser({...user, [e.target.name]: e.target.value})
     }
 
-    const submit = (e: FormEvent<HTMLFormElement>) => {
-
+    const submit = async (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        const result = await userService.login(user);
+        if(result.status===200){
+            navigate('/');
+        }
+        else{
+            setUser(initialState);
+            toast.error("Username or password dont exist");
+        }
     }
 
     return (
