@@ -32,12 +32,8 @@ const ProductoItem = ({producto}: Props) => {
         }
     }); 
 
-    var url = producto?.urlImage.split("/");
-
-    var publicId = url?.at(url?.length - 1)?.split(".").at(0);
-
-    console.log(publicId)
-    const myImage = cld.image(publicId);
+    const url = producto.urlImage
+    const myImage = cld.image(url);
 
     
     
