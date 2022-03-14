@@ -8,10 +8,10 @@ export const signUp = async (req: Request, res: Response): Promise<Response> => 
     if (req.body.password !== req.body.confirmPassword)
         return res.status(400).json({ msg: "Password and confirm password don't match" });
 
-    let user = await User.findOne({ username: req.body.username });
+    let user = await User.findOne({ username: req.body.username.toString() });
     if (user)
         return res.status(400).json({ msg: "The username already exists" });
-    user = await User.findOne({ email: req.body.email });
+    user = await User.findOne({ email: req.body.email.toString() });
     if (user)
         return res.status(400).json({ msg: "The email already exists" });
 
@@ -25,7 +25,7 @@ export const login = async (req: Request, res: Response): Promise<Response> => {
     if (!req.body.username || !req.body.password)
         return res.status(400).json({ msg: "Please. Send your username and password" });
 
-    const user = await User.findOne({ username: req.body.username });
+    const user = await User.findOne({ username: req.body.username.toString() });
     if (!user)
         return res.status(400).json({ msg: "The username or password are incorrect" });
 
