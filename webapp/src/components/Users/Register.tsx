@@ -13,26 +13,55 @@ const Register = () => {
         email: "",
         password: "",
         confirmPassword: "",
-        dni:"",
-      };
+        dni: "",
+    };
 
     const [user, setUser] = useState<User>(initialState);
 
     const inputChange = (e: ChangeEvent<HTMLInputElement>) => {
-        setUser({...user, [e.target.name]: e.target.value})
+        setUser({ ...user, [e.target.name]: e.target.value })
     }
 
     const submit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        if(user.confirmPassword===user.password){
-            await userService.createNewUser(user);
-            toast.success("Succesfully registered");
-            navigate('/');
+        if (!checkEmpty()) {
+            setUser(initialState);
+            toast.error("There is any field empty");
         }
-        else{
+        else if (!checkPasswords()) {
             setUser(initialState);
             toast.error("The passwords dont match");
         }
+        else {
+            try {
+                await userService.createNewUser(user);
+                toast.success("Succesfully registered");
+                navigate('/');
+            } catch (error) {
+                setUser(initialState);
+                toast.error("Username or email are already used");
+            }
+        }
+    }
+
+    const checkPasswords = (): boolean => {
+        if (user.confirmPassword === user.password)
+            return true;
+        return false;
+    }
+
+    const checkEmpty = (): boolean => {
+        if (user.username === initialState.username)
+            return false;
+        if (user.password === initialState.password)
+            return false;
+        if (user.confirmPassword === initialState.confirmPassword)
+            return false;
+        if (user.dni === initialState.dni)
+            return false;
+        if (user.email === initialState.email)
+            return false;
+        return true;
     }
 
     return (
@@ -88,7 +117,7 @@ const Register = () => {
                                 />
                             </div>
 
-                            
+
                             <div className="form-group">
                                 <input
                                     type="text"
