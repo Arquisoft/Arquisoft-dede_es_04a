@@ -25,6 +25,7 @@ const Login = () => {
         e.preventDefault();
         const result = await userService.login(user);
         if(result.status===200){
+            toast.success("Welcome back " + user.username);
             navigate('/');
         }
         else{

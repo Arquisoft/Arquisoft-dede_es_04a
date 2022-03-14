@@ -20,10 +20,9 @@ ReactDOM.render(
       <Navbar />
       <div className='container'>
         <Routes>
-          <Route path="/" element={<Welcome message="" />}></Route>
+          <Route path="/" element={<Productos />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/register" element={<Register />}></Route>
-          <Route path="/products" element={<Productos />}></Route>
         </Routes>
         <ToastContainer />
       </div>

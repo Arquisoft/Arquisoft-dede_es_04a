@@ -11,10 +11,19 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-.productos{
+.title{
   font-size: 2.4rem;
   padding: 1rem 0 0 0;
   color: #08a05c;
+}
+
+.productos{
+  padding: 5rem 2rem;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(25rem, 30fr));
+  gap: 8rem 1rem;
+  box-sizing: border-box;
 }
 .producto{
   display: flex;
@@ -26,8 +35,14 @@ code {
   border-radius: 5px;
 }
 
+.imagen_producto{
+  min-width: 150px;
+  max-width: 150px;
+  min-height: 200px;
+  max-height: 200px;
+}
 .producto:hover{
-  border: 6px solid #a82bce63;
+  border: 6px solid #4e2bce63;
 }
 
 .producto__img img{
@@ -35,7 +50,7 @@ code {
 }
 
 .producto__footer{
-padding: 1rem;
+  padding: 1rem;
 }
 
 .producto__footer h1{

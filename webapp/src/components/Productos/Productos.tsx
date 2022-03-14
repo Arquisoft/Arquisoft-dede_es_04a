@@ -26,10 +26,12 @@ const Productos = () => {
     return (
         
         <div>
-            <div className='productos'>PRODUCTOS</div>
+            <h1 className='title'>PRODUCTOS</h1>
+            <div className='productos'>
             {productos.map((producto) => {
                 return <ProductoItem producto={producto} key={producto.name}/>
             })}
+            </div>
         </div>
 
     )
