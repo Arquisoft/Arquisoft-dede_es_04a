@@ -18,7 +18,7 @@ export const productCreate = async (req: Request, res: Response): Promise<Respon
     const newProduct = new Product(req.body);
     // Upload images to cloudinary
     await cloudinary.v2.uploader.upload(newProduct.urlImage).then((image: UploadApiResponse) => {
-        newProduct.urlImage = image.secure_url;
+        newProduct.urlImage = image.public_id;
         newProduct.save();
     });
     return res.status(200).json({newProduct});
@@ -35,9 +35,7 @@ export const updateProduct = async (req: Request, res: Response): Promise<Respon
 export const deleteProduct = async (req: Request, res: Response): Promise<Response> => {
     const { id } = req.params;
     const deletedProduct = await Product.findByIdAndDelete( id ).then((product) => {
-        var url = product?.urlImage.split("/");
-        var publicId = url?.at(url?.length - 1)?.split(".").at(0);
-        cloudinary.v2.uploader.destroy(publicId!);
+        cloudinary.v2.uploader.destroy(product?.urlImage!);
     });
     return res.status(200).json({deletedProduct});
 };
