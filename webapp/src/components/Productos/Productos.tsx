@@ -26,9 +26,9 @@ const Productos = () => {
     return (
         
         <div>
-            <div>PRODUCTOS</div>
+            <div className='productos'>PRODUCTOS</div>
             {productos.map((producto) => {
-                return <ProductoItem producto={producto}/>
+                return <ProductoItem producto={producto} key={producto.name}/>
             })}
         </div>
 
