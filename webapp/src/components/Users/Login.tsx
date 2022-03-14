@@ -12,25 +12,41 @@ const Login = () => {
         username: "",
         email: "",
         password: "",
-        dni:"",
-      };
-    
-    const [user, setUser] = useState<User>({username:'', password:''})
+        dni: "",
+    };
+
+    const [user, setUser] = useState<User>({ username: '', password: '' })
 
     const inputChange = (e: ChangeEvent<HTMLInputElement>) => {
-        setUser({...user, [e.target.name]: e.target.value})
+        setUser({ ...user, [e.target.name]: e.target.value })
     }
 
     const submit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        const result = await userService.login(user);
-        if(result.status===200){
-            navigate('/');
-        }
-        else{
+        if (!checkEmpty()) {
             setUser(initialState);
-            toast.error("Username or password dont exist");
+            toast.error("There is any field empty");
         }
+        else {
+            try {
+                const result = await userService.login(user);
+                if (result.status === 200) {
+                    toast.success("Welcome back " + user.username);
+                    navigate('/');
+                }
+            } catch (error) {
+                setUser(initialState);
+                toast.error("Username or password dont exist");
+            }
+        }
+    }
+
+    const checkEmpty = (): boolean => {
+        if (user.username === initialState.username)
+            return false;
+        if (user.password === initialState.password)
+            return false;
+        return true;
     }
 
     return (
@@ -47,6 +63,7 @@ const Login = () => {
                                     placeholder="Username"
                                     className="form-control"
                                     onChange={inputChange}
+                                    value={user.username}
                                     autoFocus
                                 />
                             </div>
@@ -58,6 +75,7 @@ const Login = () => {
                                     placeholder="Password"
                                     className="form-control"
                                     onChange={inputChange}
+                                    value={user.password}
                                 />
                             </div>
 
