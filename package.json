@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "axios": "^0.26.1",
-    "react-toastify": "^8.2.0"
-  }
-}
