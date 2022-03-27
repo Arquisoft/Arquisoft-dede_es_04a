@@ -9,7 +9,15 @@ export interface IUser extends Document {
     confirmPassword: string;
     rol: number;
     comparePassword: (password: string) => Promise<Boolean>;
-}
+};
+
+export interface IAddress extends Document{
+    country_name: string;
+    locality: string;
+    postal_code: string;
+    region: string;
+    street_address: string; 
+};
 
 const userSchema = new Schema({
     dni: {
