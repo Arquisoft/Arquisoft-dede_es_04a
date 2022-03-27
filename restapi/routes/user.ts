@@ -1,9 +1,10 @@
 import { Router } from "express";
 import { signUp, login, findAll, findByUsername, deleteUser, updateUser } from "../controllers/user";
+import { validateSignUp } from "../middlewares/validators";
 
 const router = Router();
 
-router.post("/signup", signUp);
+router.post("/signup", validateSignUp, signUp);
 router.post("/login", login);
 router.get("/user/list", findAll);
 router.get("/user/:username", findByUsername);
