@@ -1,10 +1,6 @@
 import { Request, Response } from "express";
 import User, { IAddress } from "../models/user";
-import {
-    getSolidDataset,
-    getThing,
-    getStringNoLocale,
-  } from "@inrupt/solid-client";
+import { getSolidDataset, getThing, getStringNoLocale } from "@inrupt/solid-client";
   
 import { VCARD } from "@inrupt/vocab-common-rdf";
 
