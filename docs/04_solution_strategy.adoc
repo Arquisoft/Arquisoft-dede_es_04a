@@ -11,7 +11,7 @@ These are the technologies we have decided to use:
 * Node.js: Allows to execute TypeScript on the server side.
 * TypeScript: JavaScript superset, which mainly adds static typing to JavaScript.
 * GitHub: Allows to host Git-based projects.
-* VisualStudio Code: Code editor that thanks to its large number of extensions will facilitate our work.
+* Visual Studio Code: Code editor that thanks to its large number of extensions will facilitate our work.
 * SOLID: Project that aims to allow users to decide where their data is stored, 
 in order to improve privacy.
 
@@ -28,10 +28,26 @@ We have taken this decision since all the technologies to be used are new for al
 and we believe that it will be easier to achieve the objectives if we focus mostly on one part
 
 === Organizational decisions
+In order to work in an organized way and try to minimize errors, we have decided to organize ourselves as follows:
+
+* Creation of three automated dashboards (GitHub Projects), one for each part in which the project is divided.
+** Frontend
+** Backend
+** Documentation
+* Creation of several branches:
+** master: main branch of the project where stable versions of the project will be uploaded.
+** develop: development branch to which the changes made in both frontend and backend will be uploaded by pull request.
+** frontend: branch where frontend changes will be uploaded.
+** backend: branch where backend changes will be uploaded.
+** An individual branch for each developer to work on:
+*** iker
+*** pabloa
+*** pablof
+*** sergio
+=======
 
 To communicate we will use:
 
 * Microsoft Teams: We will meet weekly to make decisions.
 * WhatsApp: We will use it to make a quick comment, such as to warn of a sudden problem or things that come up.
 * GitHub: Here we will communicate through issues and the project board, where we will share tasks.
-

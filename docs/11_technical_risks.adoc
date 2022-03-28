@@ -3,12 +3,9 @@
 
 [options="header",cols="1,2"]
 |===
-|Risk|Solutions
-| Lack of knowledge of react | Consult the react forums
-| Lack of knowledge of solid | Consult the solid forums | Lack of knowledge of solid | Consult the solid forums
-| Lack of knowledge of react | Lack of knowledge of react | Lack of knowledge of react | Lack of knowledge of solid | Consult the solid forums | Consult the solid forums
+| Risk | Solutions 
+| First time working with certain tecnologies | Research on such technologies
 | Lack of time regarding deliveries | Set guidelines for a regular and stable progress
-| Misunderstanding of the application requirements | Clarify the requirements with the teacher | Problems with merge in the german version of the application | Problems with the merge in the german version
-| Clarify the requirements with the teacher | Merge problems in git | Set guidelines for a stable merge
-
+| Misunderstanding of the application requirements | Clarify the requirements with the teacher
+| Merge problems in git | Set guidelines for a stable merge
 |===
