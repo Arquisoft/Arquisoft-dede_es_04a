@@ -6,7 +6,7 @@ This section shows the different design decisions presented in a table sorted by
 
 |===
 |Decision|Pros|Cons
-|SOLID|Respect for the privacy of user data|Technology unknown to the group
+|Internationalization|By internationalizing the application, we can reach a larger number of people|Increased difficulty in documentation and implementation
 |NoSql|Versatile and well-integrated databases for this project|They do not have atomicity and do not allow transactions
 |GitHub|Allows version control with utility tools|Some functions are subject to a fee
 |===
