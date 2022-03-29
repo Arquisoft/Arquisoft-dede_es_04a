@@ -1,10 +1,7 @@
 import { Request, Response } from "express";
 import User, { IAddress } from "../models/user";
-import {
-    getSolidDataset,
-    getThing,
-    getStringNoLocale,
-  } from "@inrupt/solid-client";
+import { getSolidDataset, getThing, getStringNoLocale } from "@inrupt/solid-client";
+import jwt from 'jsonwebtoken';
   
 import { VCARD } from "@inrupt/vocab-common-rdf";
 
@@ -37,9 +34,27 @@ export const login = async (req: Request, res: Response): Promise<Response> => {
         return res.status(400).json({ msg: "The username or password are incorrect" });
 
     const isMatch = await user.comparePassword(req.body.password);
-    if (isMatch) 
-        return res.status(200).json({ msg: "Logged in" });
+    if (isMatch){
+        const tokenSecret = process.env.SECRET_TOKEN;
 
+        const userForToken = {
+            id: user._id,
+            name: user.username,
+            email : user.email
+        }
+
+        const token = jwt.sign(userForToken, tokenSecret!, {
+            expiresIn : '10m'
+        });
+
+        const userResult = {
+            username : user.username,
+            userEmail: user.email
+        }
+
+        return res.status(200).json({token, userResult});
+
+    }
     return res.status(400).json({ msg: "The username or password are incorrect" });
 };
 
