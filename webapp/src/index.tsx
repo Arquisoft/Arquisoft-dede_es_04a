@@ -9,10 +9,13 @@ import Register from './components/Users/Register';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
+import {ReactSession} from 'react-client-session';
 
 import 'react-toastify/dist/ReactToastify.css'
 import 'bootswatch/dist/pulse/bootstrap.min.css';
 import './index.css';
+
+ReactSession.setStoreType("localStorage");
 
 ReactDOM.render(
   <React.StrictMode>
