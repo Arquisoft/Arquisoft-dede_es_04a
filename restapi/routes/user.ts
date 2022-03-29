@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { signUp, login, findAll, findByUsername, deleteUser, updateUser, readAddress } from "../controllers/user";
-import { validateSignUp } from "../middlewares/validators";
+import { validateSignUp, validateToken } from "../middlewares/validators";
 
 const router = Router();
 
