@@ -13,6 +13,7 @@ import Navbar from './components/Navbar/Navbar';
 import 'react-toastify/dist/ReactToastify.css'
 import 'bootswatch/dist/pulse/bootstrap.min.css';
 import './index.css';
+import AniadirProducto from './components/Productos/AniadirProducto';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -23,6 +24,7 @@ ReactDOM.render(
           <Route path="/" element={<Productos />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/register" element={<Register />}></Route>
+          <Route path="/aniadirProducto" element={<AniadirProducto />}></Route>
         </Routes>
         <ToastContainer />
       </div>

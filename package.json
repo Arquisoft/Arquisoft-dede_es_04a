@@ -1,6 +1,8 @@
 {
   "dependencies": {
     "axios": "^0.26.1",
+    "boxicons": "^2.1.2",
+    "react-icons": "^4.3.1",
     "react-toastify": "^8.2.0"
   }
 }
