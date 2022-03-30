@@ -1,5 +1,4 @@
 import { model, Schema, Document } from 'mongoose'
-import Category, { ICategory } from './category'
 
 export interface IProduct extends Document {
     name: string;
@@ -39,7 +38,7 @@ const productSchema = new Schema ({
     },
     urlImage:{
         type: String,
-        //required: [true, 'Product must have a photo']
+        required: [true, 'Product must have a photo']
     }
 })
 
