@@ -6,10 +6,10 @@ const router = Router();
 
 router.post("/signup", validateSignUp, signUp);
 router.post("/login", login);
-router.get("/user/list", findAll);
-router.get("/user/:username", findByUsername);
-router.get("/user/delete/:username", deleteUser);
-router.post("/user/update/:id", updateUser);
-router.post("/user/pod", readAddress);
+router.get("/user/list", validateToken, findAll);
+router.get("/user/:username", validateToken, findByUsername);
+router.get("/user/delete/:username", validateToken, deleteUser);
+router.post("/user/update/:id", validateToken, updateUser);
+router.post("/user/pod", validateToken, readAddress);
 
 export default router;
