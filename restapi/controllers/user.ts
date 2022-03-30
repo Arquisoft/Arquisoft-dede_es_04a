@@ -52,7 +52,9 @@ export const login = async (req: Request, res: Response): Promise<Response> => {
             userEmail: user.email
         }
 
-        return res.status(200).json({token, userResult});
+        return res.header('authorization', token).json({
+            token, userResult
+        });
 
     }
     return res.status(400).json({ msg: "The username or password are incorrect" });

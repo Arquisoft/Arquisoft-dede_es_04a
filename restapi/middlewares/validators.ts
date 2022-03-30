@@ -1,8 +1,6 @@
 import { Request, Response, NextFunction } from "express";
-import { body, validationResult } from "express-validator";
+import { body, ErrorFormatter, validationResult } from "express-validator";
 import jwt from 'jsonwebtoken';
-import User from '../models/user';
-import moment from 'moment';
 
 export const validateSignUp = [
     body("username")
@@ -35,7 +33,7 @@ export const validateSignUp = [
         }),
     body("dni")
         .isLength({min: 9, max: 9}),
-    (req: Request, res: Response, next : () => void) => {
+    (req: Request, res: Response, next : NextFunction) => {
         const errors = validationResult(req);
         if(!errors.isEmpty())
             return res.status(400).json({ errors: errors.array() });
@@ -43,3 +41,18 @@ export const validateSignUp = [
         next();
     }
 ];
+
+export const validateToken = (req : Request, res: Response, next : NextFunction) => {
+    const accessToken = req.headers.authorization;
+    if (!accessToken){
+        res.send('Access denied');
+    } else {
+        jwt.verify(accessToken, process.env.SECRET_TOKEN!, (err, user) => {
+            if(err){
+                res.send('Access denied, token expired or incorrect');
+            } else {
+                next();
+            }
+        });
+    }
+};
