@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import { ToastContainer } from 'react-toastify';
 
@@ -14,24 +14,20 @@ import 'react-toastify/dist/ReactToastify.css'
 import 'bootswatch/dist/pulse/bootstrap.min.css';
 import './index.css';
 import AniadirProducto from './components/Productos/AniadirProducto';
+import Carrito  from './components/Carrito/Carrito';
+import Sidebar from './components/SideBar/Sidebar';
+import  App  from "./App";
+
+
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <Navbar />
-      <div className='container'>
-        <Routes>
-          <Route path="/" element={<Productos />}></Route>
-          <Route path="/login" element={<Login />}></Route>
-          <Route path="/register" element={<Register />}></Route>
-          <Route path="/aniadirProducto" element={<AniadirProducto />}></Route>
-        </Routes>
-        <ToastContainer />
-      </div>
-    </BrowserRouter>
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );
+
+
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
