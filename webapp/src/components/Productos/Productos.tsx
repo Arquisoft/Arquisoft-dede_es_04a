@@ -8,8 +8,9 @@ import ProductoItem from './ProductoItem'
 
 const Productos = () => {
 
+    
     const[productos, setProductos] = useState<Producto[]>([])
-
+    
     const loadProductos = async ()=>{
         const res = await productoService.getProductos()
         console.log(res)
