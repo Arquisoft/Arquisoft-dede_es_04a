@@ -3,10 +3,13 @@ import express, { Application } from 'express';
 import * as http from 'http';
 import bp from 'body-parser';
 import cors from 'cors';
-import api from '../api';
+import user from "../routes/user";
+import mongoose from 'mongoose';
 
 let app:Application;
 let server:http.Server;
+
+const mongodb = 'mongodb+srv://test:test@test.tgpeg.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 
 beforeAll(async () => {
     app = express();
@@ -14,9 +17,12 @@ beforeAll(async () => {
     const options: cors.CorsOptions = {
         origin: ['http://localhost:3000']
     };
+
+    await mongoose.connect(mongodb);
+
     app.use(cors(options));
     app.use(bp.json());
-    app.use("/api", api)
+    app.use(user);
 
     server = app.listen(port, ():void => {
         console.log('Restapi server for testing listening on '+ port);
@@ -26,25 +32,39 @@ beforeAll(async () => {
 });
 
 afterAll(async () => {
+    await mongoose.connection.collections['users'].drop();
+    await mongoose.connection.close();
     server.close() //close the server
-})
+});
 
 describe('user ', () => {
     /**
-     * Test that we can list users without any error.
-     */
-    it('can be listed',async () => {
-        const response:Response = await request(app).get("/api/users/list");
-        expect(response.statusCode).toBe(200);
-    });
-
-    /**
-     * Tests that a user can be created through the productService without throwing any errors.
+     * Tests that a user can be created.
      */
     it('can be created correctly', async () => {
-        let username:string = 'Pablo'
-        let email:string = 'gonzalezgpablo@uniovi.es'
-        const response:Response = await request(app).post('/api/users/add').send({name: username,email: email}).set('Accept', 'application/json')
+        const user = {
+            username: 'Pablo12',
+            email: 'pablo12@email.com',
+            password: 'Pabloalonso1?',
+            confirmPassword: 'Pabloalonso1?',
+            dni: '12345678A'
+        }
+        const response:Response = await request(app).post('/signup').send(user).set('Accept', 'application/json');
         expect(response.statusCode).toBe(200);
+    });
+    
+    /**
+     * Tests that a user can't be duplicated.
+     */
+    it('can\'t be created correctly', async () => {
+        const user = {
+            username: 'Pablo12',
+            email: 'pablo12@email.com',
+            password: 'Pabloalonso1?',
+            confirmPassword: 'Pabloalonso1?',
+            dni: '12345678A'
+        }
+        const response:Response = await request(app).post('/signup').send(user).set('Accept', 'application/json');
+        expect(response.statusCode).toBe(400);
     });
 });

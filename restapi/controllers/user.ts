@@ -52,7 +52,7 @@ export const login = async (req: Request, res: Response): Promise<Response> => {
             userEmail: user.email
         }
 
-        return res.header('authorization', token).json({
+        return res.status(200).header('authorization', token).json({
             token, userResult
         });
 
