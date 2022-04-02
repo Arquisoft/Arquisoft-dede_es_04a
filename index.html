@@ -451,7 +451,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="#section-architecture-constraints">2. Architectural constraints</a>
 <ul class="sectlevel2">
-<li><a href="#_contents">2.1. Contents</a></li>
+<li><a href="#_technical_restrictions">2.1. Technical restrictions</a></li>
+<li><a href="#_organizational_restrictions">2.2. Organizational restrictions</a></li>
+<li><a href="#_convections">2.3. Convections</a></li>
 </ul>
 </li>
 <li><a href="#section-system-scope-and-context">3. System Scope and Context</a>
@@ -468,33 +470,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_organizational_decisions">4.4. Organizational decisions</a></li>
 </ul>
 </li>
-<li><a href="#section-building-block-view">5. Building Block View</a>
-<ul class="sectlevel2">
-<li><a href="#_whitebox_overall_system">5.1. Whitebox Overall System</a></li>
-<li><a href="#_level_2">5.2. Level 2</a></li>
-</ul>
-</li>
-<li><a href="#section-runtime-view">6. Runtime View</a></li>
-<li><a href="#section-deployment-view">7. Deployment View</a></li>
-<li><a href="#section-concepts">8. Cross-cutting Concepts</a>
-<ul class="sectlevel2">
-<li><a href="#_user_interface">8.1. User interface</a></li>
-<li><a href="#_security">8.2. Security</a></li>
-<li><a href="#_persistence">8.3. Persistence</a></li>
-</ul>
-</li>
-<li><a href="#section-design-decisions">9. Design Decisions</a>
-<ul class="sectlevel2">
-<li><a href="#_contents_2">9.1. Contents</a></li>
-</ul>
-</li>
-<li><a href="#section-quality-scenarios">10. Quality Requirements</a>
-<ul class="sectlevel2">
-<li><a href="#_contents_3">10.1. Contents</a></li>
-</ul>
-</li>
-<li><a href="#section-technical-risks">11. Risks and Technical Debts</a></li>
-<li><a href="#section-glossary">12. Glossary</a></li>
 </ul>
 </div>
 </div>
@@ -545,40 +520,30 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <div class="paragraph">
 <p>The website must mainly meet the following requirements:</p>
 </div>
-<div class="literalblock">
-<div class="content">
-<pre>-The data storage shall be separated from the application itself.</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>-The web will allow the user to search among the different products either explicitly or through text filters.</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>-The system administrator will be able to add new products at any time as well as to consult the information of the clients.</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>-Each user will be able to have his own personal basket which can only be consulted by the user in question and which will last in subsequent sessions.</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>-Users will have the option to register by giving their personal data.</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>-Only registered users will have access to a personal shopping cart.</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>-All users will have the option to return any product just by providing the purchase code.</pre>
-</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The data storage shall be separated from the application itself.</p>
+</li>
+<li>
+<p>The web will allow the user to search among the different products either explicitly or through text filters.</p>
+</li>
+<li>
+<p>The system administrator will be able to add new products at any time as well as to consult the information of the clients.</p>
+</li>
+<li>
+<p>Each user will be able to have his own personal basket which can only be consulted by the user in question and which will last in subsequent sessions.</p>
+</li>
+<li>
+<p>Users will have the option to register by giving their personal data.</p>
+</li>
+<li>
+<p>Only registered users will have access to a personal shopping cart.</p>
+</li>
+<li>
+<p>All users will have the option to return any product just by providing the purchase code.</p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect2">
@@ -586,70 +551,52 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <div class="paragraph">
 <p>Given that those who will habitually use the web will be the users and the administrator, the main goals would be:</p>
 </div>
-<div class="literalblock">
-<div class="content">
-<pre>-Intuitive usability in the case of both the administrator and the user.</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>-The products of the store must be constantly updated (new products and new stock).</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>-All information regarding the data of users and their baskets must be private.</pre>
-</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Intuitive usability in the case of both the administrator and the user.</p>
+</li>
+<li>
+<p>The products of the store must be constantly updated (new products and new stock).</p>
+</li>
+<li>
+<p>All information regarding the data of users and their baskets must be private.</p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_stakeholders">1.3. Stakeholders</h3>
 <div class="paragraph">
-<p>The stakeholders will be the developers, the users and the teacher.</p>
+<p>The stakeholders will be the developers, the users and the teachers.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 20%;">
-<col style="width: 40%;">
-<col style="width: 40%;">
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">Role/Name</th>
-<th class="tableblock halign-left valign-top">Contact</th>
+<th class="tableblock halign-left valign-top">Role</th>
 <th class="tableblock halign-left valign-top">Expectations</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Developer</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Sergio Murillo</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Work with the architecture and code as well as the documentation and help in decision making.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Developer</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Pablo Alonso</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Work with architecture and code as well as documentation and help in decision making.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Developer</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Pablo Fernández</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Work with the architecture and code as well as the documentation and help in the decision making process.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Developer</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Iker Jiménez</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Developers</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Work with the architecture and code as well as the documentation and help in decision making.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Teachers</p></td>
-<td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Overseeing the project</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Users</p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Clients</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Users who will be able to freely use the store either to make a purchase or a return or simply to consult the store.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Administrator</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A special user who will be able to manage the products and client information from the app</p></td>
 </tr>
 </tbody>
 </table>
@@ -661,27 +608,17 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <h2 id="section-architecture-constraints">2. Architectural constraints</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_contents">2.1. Contents</h3>
-<div class="paragraph">
-<p>This section shows the different restrictions on the DeDe project classified into technical, organizational and convective restrictions.</p>
-</div>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">Technical restrictions</dt>
-</dl>
-</div>
+<h3 id="_technical_restrictions">2.1. Technical restrictions</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 66.6667%;">
+<col style="width: 50%;">
+<col style="width: 50%;">
 </colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Requirement</th>
-<th class="tableblock halign-left valign-top">Explanation</th>
-</tr>
-</thead>
 <tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Requirement</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Explanation</p></td>
+</tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">React</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Framework oriented to the Frontend of the application.</p></td>
@@ -695,10 +632,6 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <td class="tableblock halign-left valign-top"><p class="tableblock">Solid Pods will be used to obtain customers' personal information.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MongoDb</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">NoSql database where the information about the store will be stored.</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Hosting</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The application must be continuously accessible.</p></td>
 </tr>
@@ -708,23 +641,19 @@ For documentation of your own system you use better the <em>plain</em> version.<
 </tr>
 </tbody>
 </table>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">Organizational restrictions</dt>
-</dl>
 </div>
+<div class="sect2">
+<h3 id="_organizational_restrictions">2.2. Organizational restrictions</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 66.6667%;">
+<col style="width: 50%;">
+<col style="width: 50%;">
 </colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Requirement</th>
-<th class="tableblock halign-left valign-top">Explanation</th>
-</tr>
-</thead>
 <tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Requirement</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Explanation</p></td>
+</tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">GitHub</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Git version control system with additional tools.</p></td>
@@ -738,31 +667,23 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <td class="tableblock halign-left valign-top"><p class="tableblock">At least one team meeting per week will be held and recorded.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Deliveries</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">There must be continuous deliveries that add value to the application.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Delivery times</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Approximately every 3 weeks there will be deliveries to know the status of the application and its documentation.</p></td>
 </tr>
 </tbody>
 </table>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">Convections</dt>
-</dl>
 </div>
+<div class="sect2">
+<h3 id="_convections">2.3. Convections</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 66.6667%;">
+<col style="width: 50%;">
+<col style="width: 50%;">
 </colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Requirement</th>
-<th class="tableblock halign-left valign-top">Explanation</th>
-</tr>
-</thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Internationalization</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Both the application and the documentation will be implemented in English in order to reach more people.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Requirement</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Explanation</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Arc42</p></td>
@@ -815,6 +736,24 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <div class="paragraph">
 <p>The customer will have access to his shopping basket where he will be able to delete products, modify their quantity or finalise his purchase.</p>
 </div>
+<div class="listingblock">
+<div class="content">
+<pre>@startuml
+node "Server" {
+    [dede]
+ }
+database MongoDB
+Actor usuario
+rectangle PODs
+
+usuario --&gt; [dede]: log in
+[dede] --&gt; usuario: show products
+[dede] ..&gt; MongoDB : save products
+[dede] &lt;.. MongoDB : get products
+[dede] &lt;..&gt; PODs : personal information
+@enduml</pre>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_technical_context">3.2. Technical Context</h3>
@@ -851,7 +790,7 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <p>GitHub: Allows to host Git-based projects.</p>
 </li>
 <li>
-<p>VisualStudio Code: Code editor that thanks to its large number of extensions will facilitate our work.</p>
+<p>Visual Studio Code: Code editor that thanks to its large number of extensions will facilitate our work.</p>
 </li>
 <li>
 <p>SOLID: Project that aims to allow users to decide where their data is stored,
@@ -879,6 +818,69 @@ and we believe that it will be easier to achieve the objectives if we focus most
 <div class="sect2">
 <h3 id="_organizational_decisions">4.4. Organizational decisions</h3>
 <div class="paragraph">
+<p>In order to work in an organized way and try to minimize errors, we have decided to organize ourselves as follows:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Creation of three automated dashboards (GitHub Projects), one for each part in which the project is divided.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Frontend</p>
+</li>
+<li>
+<p>Backend</p>
+</li>
+<li>
+<p>Documentation</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Creation of several branches:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>master: main branch of the project where stable versions of the project will be uploaded.</p>
+</li>
+<li>
+<p>develop: development branch to which the changes made in both frontend and backend will be uploaded by pull request.</p>
+</li>
+<li>
+<p>frontend: branch where frontend changes will be uploaded.</p>
+</li>
+<li>
+<p>backend: branch where backend changes will be uploaded.</p>
+</li>
+<li>
+<p>An individual branch for each developer to work on:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>iker</p>
+</li>
+<li>
+<p>pabloa</p>
+</li>
+<li>
+<p>pablof</p>
+</li>
+<li>
+<p>sergio</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
 <p>To communicate we will use:</p>
 </div>
 <div class="ulist">
@@ -895,14 +897,12 @@ and we believe that it will be easier to achieve the objectives if we focus most
 </ul>
 </div>
 <div style="page-break-after: always;"></div>
+<div id="section-building-block-view" class="paragraph">
+<p>== Building Block View</p>
 </div>
+<div class="paragraph">
+<p>=== Whitebox Overall System</p>
 </div>
-</div>
-<div class="sect1">
-<h2 id="section-building-block-view">5. Building Block View</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="_whitebox_overall_system">5.1. Whitebox Overall System</h3>
 <div class="paragraph">
 <p><span class="image"><img src="./images/05_level1.png" alt="05 level1"></span></p>
 </div>
@@ -945,9 +945,9 @@ and we believe that it will be easier to achieve the objectives if we focus most
 </tr>
 </tbody>
 </table>
+<div class="paragraph">
+<p>=== Level 2</p>
 </div>
-<div class="sect2">
-<h3 id="_level_2">5.2. Level 2</h3>
 <div class="paragraph">
 <p><span class="image"><img src="./images/05_level2.png" alt="05 level2"></span></p>
 </div>
@@ -987,15 +987,18 @@ and we believe that it will be easier to achieve the objectives if we focus most
 </tbody>
 </table>
 <div style="page-break-after: always;"></div>
+<div id="section-runtime-view" class="paragraph">
+<p>== Runtime View</p>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="section-runtime-view">6. Runtime View</h2>
-<div class="sectionbody">
 <div class="paragraph">
 <div class="title">Contents</div>
 <p>This section shows the main sequence diagrams between the users and the application.</p>
+</div>
+<div class="paragraph">
+<p>=== Request</p>
+</div>
+<div class="paragraph">
+<p>This view shows a request from a customer to view the product catalog. The web receives the request where it will access the database to get the list of products. Once obtained, it returns them to the customer.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1003,7 +1006,10 @@ and we believe that it will be easier to achieve the objectives if we focus most
 </div>
 </div>
 <div class="paragraph">
-<p>This view shows a request from a customer to view the product catalog. The web receives the request where it will access the database to get the list of products. Once obtained, it returns them to the customer.</p>
+<p>=== Login</p>
+</div>
+<div class="paragraph">
+<p>This view shows the administrator login. The website receives the admin&#8217;s credentials, and after verification of the information allows the admin to add, delete and update the desired products.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1011,7 +1017,10 @@ and we believe that it will be easier to achieve the objectives if we focus most
 </div>
 </div>
 <div class="paragraph">
-<p>This view shows the administrator login. The website receives the admin&#8217;s credentials, and after verification of the information allows the admin to add, delete and update the desired products.</p>
+<p>=== Buy process</p>
+</div>
+<div class="paragraph">
+<p>This view shows a request from a customer to buy a product from the catalog.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1019,22 +1028,20 @@ and we believe that it will be easier to achieve the objectives if we focus most
 </div>
 </div>
 <div class="paragraph">
-<p>This view shows a request from a customer to buy a product from the catalog.</p>
+<p>=== Sign up</p>
+</div>
+<div class="paragraph">
+<p>This view shows the sign up process by a customer.</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="./images/SignUpProcess.png" alt="SignUpProcess" width="428" height="435">
 </div>
 </div>
-<div class="paragraph">
-<p>This view shows the sign up process by a customer.</p>
-</div>
 <div style="page-break-after: always;"></div>
+<div id="section-deployment-view" class="paragraph">
+<p>== Deployment View</p>
 </div>
-</div>
-<div class="sect1">
-<h2 id="section-deployment-view">7. Deployment View</h2>
-<div class="sectionbody">
 <div class="dlist">
 <dl>
 <dt class="hdlist1">Necessary infrastructure</dt>
@@ -1043,9 +1050,22 @@ and we believe that it will be easier to achieve the objectives if we focus most
 </dd>
 </dl>
 </div>
-<div class="imageblock">
+<div class="listingblock">
 <div class="content">
-<img src="./images/infraestructure_level1.png" alt="infraestructure level1">
+<pre>@startuml
+node "Server" {
+    [dede]
+ }
+database MongoDB
+rectangle Mobile
+rectangle Computer
+rectangle PODs
+
+Mobile --&gt; Server
+Computer --&gt; Server
+[dede] &lt;..&gt; MongoDB
+[dede] &lt;..&gt; PODs
+@enduml</pre>
 </div>
 </div>
 <div class="dlist">
@@ -1084,27 +1104,26 @@ and we believe that it will be easier to achieve the objectives if we focus most
 </tbody>
 </table>
 <div style="page-break-after: always;"></div>
+<div id="section-concepts" class="paragraph">
+<p>== Cross-cutting Concepts</p>
 </div>
+<div class="paragraph">
+<p>=== User interface</p>
 </div>
-<div class="sect1">
-<h2 id="section-concepts">8. Cross-cutting Concepts</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="_user_interface">8.1. User interface</h3>
 <div class="paragraph">
 <p>To create the user interface we will use the React library together with Typescript. React provides a great
 great help when creating interfaces, as it is based on components, which are logical
 and self-contained pieces of code. By putting several components together, a user interface can be obtained.</p>
 </div>
+<div class="paragraph">
+<p>=== Security</p>
 </div>
-<div class="sect2">
-<h3 id="_security">8.2. Security</h3>
 <div class="paragraph">
 <p>In terms of security, our application will follow SOLID principles and our users will use their own PODS to access it.</p>
 </div>
+<div class="paragraph">
+<p>=== Persistence</p>
 </div>
-<div class="sect2">
-<h3 id="_persistence">8.3. Persistence</h3>
 <div class="paragraph">
 <p>For persistence we will use the MongoDB database together with the Mongoose ODM (Object Document Mapping),
 since it provides a lot of functionalities to work with MongoDB. We decided to use MongoDB
@@ -1113,16 +1132,12 @@ and it is very easy to integrate with Node.js, and since we are going to use the
 this comes in very handy when it comes to work.</p>
 </div>
 <div style="page-break-after: always;"></div>
+<div id="section-design-decisions" class="paragraph">
+<p>== Design Decisions</p>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="section-design-decisions">9. Design Decisions</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="_contents_2">9.1. Contents</h3>
 <div class="paragraph">
-<p>This section shows the different design decisions presented in a table sorted by importance with their pros and cons.</p>
+<p>=== Contents
+This section shows the different design decisions presented in a table sorted by importance with their pros and cons.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -1137,9 +1152,9 @@ this comes in very handy when it comes to work.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Cons</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">SOLID</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Respect for the privacy of user data</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Technology unknown to the group</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Internationalization</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">By internationalizing the application, we can reach a larger number of people</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Increased difficulty in documentation and implementation</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">NoSql</p></td>
@@ -1157,16 +1172,12 @@ this comes in very handy when it comes to work.</p>
 <p>For the rest of the technological decisions on how DeDe will be implemented, see section 4.</p>
 </div>
 <div style="page-break-after: always;"></div>
+<div id="section-quality-scenarios" class="paragraph">
+<p>== Quality Requirements</p>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="section-quality-scenarios">10. Quality Requirements</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="_contents_3">10.1. Contents</h3>
 <div class="paragraph">
-<p>This section shows the quality requirements tree with the description of each of them.</p>
+<p>=== Contents
+This section shows the quality requirements tree with the description of each of them.</p>
 </div>
 <div class="dlist">
 <dl>
@@ -1232,12 +1243,9 @@ this comes in very handy when it comes to work.</p>
 </ul>
 </div>
 <div style="page-break-after: always;"></div>
+<div id="section-technical-risks" class="paragraph">
+<p>== Risks and Technical Debts</p>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="section-technical-risks">11. Risks and Technical Debts</h2>
-<div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1251,28 +1259,8 @@ this comes in very handy when it comes to work.</p>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Lack of knowledge of react</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Consult the react forums</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Lack of knowledge of solid</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Consult the solid forums</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Lack of knowledge of solid</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Consult the solid forums</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Lack of knowledge of react</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Lack of knowledge of react</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Lack of knowledge of react</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Lack of knowledge of solid</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Consult the solid forums</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Consult the solid forums</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">First time working with certain tecnologies</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Research on such technologies</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Lack of time regarding deliveries</p></td>
@@ -1283,21 +1271,15 @@ this comes in very handy when it comes to work.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Clarify the requirements with the teacher</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Problems with merge in the german version of the application</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Problems with the merge in the german version</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Clarify the requirements with the teacher</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Merge problems in git</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Set guidelines for a stable merge</p></td>
 </tr>
 </tbody>
 </table>
 <div style="page-break-after: always;"></div>
+<div id="section-glossary" class="paragraph">
+<p>== Glossary</p>
 </div>
-</div>
-<div class="sect1">
-<h2 id="section-glossary">12. Glossary</h2>
-<div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
@@ -1347,9 +1329,12 @@ Created by Dr. Peter Hruschka &amp; Dr. Gernot Starke.</p>
 </div>
 </div>
 </div>
+</div>
+</div>
+</div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-02-21 20:29:13 +0100
+Last updated 2022-03-25 18:37:24 +0100
 </div>
 </div>
 </body>
