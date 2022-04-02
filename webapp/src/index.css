@@ -173,9 +173,7 @@ code {
   margin: 3rem 0 0 2rem;
 }
 
-.carrito_close Icon.x{
-  fill: crimson;
-}
+
 
 .carrito_center{
   width: 90%;
@@ -217,9 +215,7 @@ code {
   margin-top: .3rem;
 }
 
-.carrito_item button Icon{
-  color: plum;
-}
+
 
 .carrito_item .cantidad{
   font-size: 2rem;
