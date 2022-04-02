@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { ToastContainer } from 'react-toastify';
 
-import Welcome from './components/Welcome';
+import Logout from './components/Users/Logout';
 import Login from './components/Users/Login';
 import Productos from './components/Productos/Productos';
 import Register from './components/Users/Register';
