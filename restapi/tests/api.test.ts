@@ -10,6 +10,7 @@ let app:Application;
 let server:http.Server;
 
 const mongodb = 'mongodb+srv://test:test@test.tgpeg.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+let token = '';
 
 beforeAll(async () => {
     app = express();
@@ -43,13 +44,13 @@ describe('user ', () => {
      */
     it('can be created correctly', async () => {
         const user = {
-            username: 'Pablo12',
-            email: 'pablo12@email.com',
+            username: 'Pablo1',
+            email: 'pablo1@email.com',
             password: 'Pabloalonso1?',
             confirmPassword: 'Pabloalonso1?',
             dni: '12345678A'
         }
-        const response:Response = await request(app).post('/signup').send(user).set('Accept', 'application/json');
+        const response: Response = await request(app).post('/signup').send(user).set('Accept', 'application/json');
         expect(response.statusCode).toBe(200);
     });
     
@@ -58,13 +59,88 @@ describe('user ', () => {
      */
     it('can\'t be created correctly', async () => {
         const user = {
-            username: 'Pablo12',
-            email: 'pablo12@email.com',
+            username: 'Pablo1',
+            email: 'pablo1@email.com',
             password: 'Pabloalonso1?',
             confirmPassword: 'Pabloalonso1?',
             dni: '12345678A'
         }
-        const response:Response = await request(app).post('/signup').send(user).set('Accept', 'application/json');
+        const response: Response = await request(app).post('/signup').send(user).set('Accept', 'application/json');
         expect(response.statusCode).toBe(400);
     });
+
+    /**
+     * Tests that a user can login.
+     */
+     it('can login correctly', async () => {
+        const user = {
+            username: 'Pablo1',
+            password: 'Pabloalonso1?'
+        }
+        const response: Response = await request(app).post('/login').send(user).set('Accept', 'application/json');
+        
+        token = response.header['authorization'];
+
+        expect(response.statusCode).toBe(200);
+    });
+
+    /**
+     * Tests that can find all the users
+     */
+    it('can find all the users',async () => {
+        const user = {
+            username: 'Pablo2',
+            email: 'pablo2@email.com',
+            password: 'Pabloalonso2?',
+            confirmPassword: 'Pabloalonso2?',
+            dni: '12345678B'
+        }
+        await request(app).post('/signup').send(user).set('Accept', 'application/json');
+        const users = await (await request(app).get('/user/list').set('Authorization', token).set('Accept', 'application/json')).body.users;
+
+        expect(users.length).toBe(2);
+    });
+
+    /**
+     * Tests find user by username.
+     */
+     it('can find user by username', async () => {
+        const username = 'Pablo1';
+        
+        const user = await (await request(app).get(`/user/${username}`).set('Authorization', token).set('Accept', 'application/json')).body.user[0];
+
+        expect(user.username).toBe(username);
+    });
+
+    /**
+     * Tests delete user by username.
+     */
+     it('can delete user by username', async () => {
+        const username = 'Pablo2';
+
+        (await request(app).get(`/user/delete/${username}`).set('Authorization', token).set('Accept', 'application/json'));
+
+        const users = await (await request(app).get('/user/list').set('Authorization', token).set('Accept', 'application/json')).body.users;
+
+        expect(users.length).toBe(1);
+    });
+
+    /**
+     * Tests update user by id.
+     */
+     it('can update user', async () => {
+        const user = {
+            username: 'Pablo1',
+            email: 'pablo123@email.com'
+        }
+
+        const userid = await (await request(app).get(`/user/${user.username}`).set('Authorization', token).set('Accept', 'application/json')).body.user[0];
+        
+        (await request(app).post(`/user/update/${userid._id}`).set('Authorization', token).send(user).set('Accept', 'application/json'));
+
+        const updatedUser = await (await request(app).get(`/user/${user.username}`).set('Authorization', token).set('Accept', 'application/json')).body.user[0];
+
+        expect(user!.email).toBe(updatedUser!.email);
+    });
+
 });
