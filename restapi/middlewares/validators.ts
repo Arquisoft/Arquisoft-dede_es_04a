@@ -45,11 +45,11 @@ export const validateSignUp = [
 export const validateToken = (req : Request, res: Response, next : NextFunction) => {
     const accessToken = req.headers.authorization;
     if (!accessToken){
-        res.send('Access denied');
+        res.status(400).send('Access denied');
     } else {
         jwt.verify(accessToken, process.env.SECRET_TOKEN!, (err, user) => {
             if(err){
-                res.send('Access denied, token expired or incorrect');
+                res.status(400).send('Access denied, token expired or incorrect');
             } else {
                 next();
             }
