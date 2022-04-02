@@ -3,12 +3,13 @@ import express, { Application } from 'express';
 import * as http from 'http';
 import bp from 'body-parser';
 import cors from 'cors';
-import api from '../api';
+import user from "../routes/user";
 import mongoose from 'mongoose';
-require('dotenv').config()
 
 let app:Application;
 let server:http.Server;
+
+const mongodb = 'mongodb+srv://test:test@test.tgpeg.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 
 beforeAll(async () => {
     app = express();
@@ -16,11 +17,12 @@ beforeAll(async () => {
     const options: cors.CorsOptions = {
         origin: ['http://localhost:3000']
     };
+
+    await mongoose.connect(mongodb);
+
     app.use(cors(options));
     app.use(bp.json());
-    app.use("/api", api)
-
-    await mongoose.connect('');
+    app.use(user);
 
     server = app.listen(port, ():void => {
         console.log('Restapi server for testing listening on '+ port);
@@ -32,7 +34,7 @@ beforeAll(async () => {
 afterAll(async () => {
     await mongoose.connection.close();
     server.close() //close the server
-})
+});
 
 describe('user ', () => {
     /**
@@ -40,13 +42,13 @@ describe('user ', () => {
      */
     it('can be created correctly', async () => {
         const user = {
-            username: '',
-            email: '',
-            password: '',
-            confirmPassword: '',
-            dni: ''
+            username: 'Pablo12',
+            email: 'pablo12@email.com',
+            password: 'Pabloalonso1?',
+            confirmPassword: 'Pabloalonso1?',
+            dni: '12345678A'
         }
-        const response:Response = await request(app).post('/api/signup').send(user).set('Accept', 'application/json')
+        const response:Response = await request(app).post('/signup').send(user).set('Accept', 'application/json')
         expect(response.statusCode).toBe(200);
     });
 });
