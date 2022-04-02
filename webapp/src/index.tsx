@@ -26,6 +26,11 @@ ReactDOM.render(
           <Route path="/" element={<Productos />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/register" element={<Register />}></Route>
+          <Route path="/logout" element={<Logout />}></Route>
+          <Route path="*" element={
+            <main style={{ padding: "1rem" }}>
+              <h1>This URL dont exist</h1>
+            </main>}></Route>
         </Routes>
         <ToastContainer />
       </div>
