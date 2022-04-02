@@ -10,6 +10,7 @@ let app:Application;
 let server:http.Server;
 
 const mongodb = 'mongodb+srv://test:test@test.tgpeg.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+const db = mongoose.connection;
 
 beforeAll(async () => {
     app = express();
@@ -43,13 +44,13 @@ describe('user ', () => {
      */
     it('can be created correctly', async () => {
         const user = {
-            username: 'Pablo12',
-            email: 'pablo12@email.com',
+            username: 'Pablo1',
+            email: 'pablo1@email.com',
             password: 'Pabloalonso1?',
             confirmPassword: 'Pabloalonso1?',
             dni: '12345678A'
         }
-        const response:Response = await request(app).post('/signup').send(user).set('Accept', 'application/json');
+        const response: Response = await request(app).post('/signup').send(user).set('Accept', 'application/json');
         expect(response.statusCode).toBe(200);
     });
     
@@ -58,13 +59,73 @@ describe('user ', () => {
      */
     it('can\'t be created correctly', async () => {
         const user = {
-            username: 'Pablo12',
-            email: 'pablo12@email.com',
+            username: 'Pablo1',
+            email: 'pablo1@email.com',
             password: 'Pabloalonso1?',
             confirmPassword: 'Pabloalonso1?',
             dni: '12345678A'
         }
-        const response:Response = await request(app).post('/signup').send(user).set('Accept', 'application/json');
+        const response: Response = await request(app).post('/signup').send(user).set('Accept', 'application/json');
         expect(response.statusCode).toBe(400);
     });
+
+    /**
+     * Tests that can find all the users
+     */
+    it('can find all the users',async () => {
+        const user = {
+            username: 'Pablo2',
+            email: 'pablo2@email.com',
+            password: 'Pabloalonso2?',
+            confirmPassword: 'Pabloalonso2?',
+            dni: '12345678B'
+        }
+        await request(app).post('/signup').send(user).set('Accept', 'application/json');
+        const findAll = await db.collections['users'].find().count();
+
+        expect(findAll).toBe(2);
+    });
+
+    /**
+     * Tests find user by username.
+     */
+     it('can find user by username', async () => {
+        const username = 'Pablo1';
+        
+        const user = await db.collections['users'].findOne({ username: username });
+
+        expect(user!.username).toBe(username);
+    });
+
+    /**
+     * Tests delete user by username.
+     */
+     it('can find user by username', async () => {
+        const username = 'Pablo2';
+        
+        const user = await db.collections['users'].deleteOne({ username: username });
+
+        const findAll = await db.collections['users'].find().count();
+
+        expect(findAll).toBe(1);
+    });
+
+    /**
+     * Tests update user by id.
+     */
+     it('can find user by username', async () => {
+        const user = {
+            username: 'Pablo1',
+            email: 'pablo123@email.com',
+        }
+        
+        const findByUsername = await db.collections['users'].findOne({ username: user.username });
+
+        await db.collections['users'].findOneAndUpdate({_id: findByUsername!._id}, {$set: user});
+
+        const findUpdatedUser = await db.collections['users'].findOne({ username: user.username });
+
+        expect(user!.email).toBe(findUpdatedUser!.email);
+    });
+
 });
