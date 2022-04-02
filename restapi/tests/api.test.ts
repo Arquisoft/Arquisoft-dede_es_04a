@@ -32,13 +32,14 @@ beforeAll(async () => {
 });
 
 afterAll(async () => {
+    await mongoose.connection.collections['users'].drop();
     await mongoose.connection.close();
     server.close() //close the server
 });
 
 describe('user ', () => {
     /**
-     * Tests that a user can be created through the productService without throwing any errors.
+     * Tests that a user can be created.
      */
     it('can be created correctly', async () => {
         const user = {
@@ -48,7 +49,22 @@ describe('user ', () => {
             confirmPassword: 'Pabloalonso1?',
             dni: '12345678A'
         }
-        const response:Response = await request(app).post('/signup').send(user).set('Accept', 'application/json')
+        const response:Response = await request(app).post('/signup').send(user).set('Accept', 'application/json');
         expect(response.statusCode).toBe(200);
+    });
+    
+    /**
+     * Tests that a user can't be duplicated.
+     */
+    it('can\'t be created correctly', async () => {
+        const user = {
+            username: 'Pablo12',
+            email: 'pablo12@email.com',
+            password: 'Pabloalonso1?',
+            confirmPassword: 'Pabloalonso1?',
+            dni: '12345678A'
+        }
+        const response:Response = await request(app).post('/signup').send(user).set('Accept', 'application/json');
+        expect(response.statusCode).toBe(400);
     });
 });
