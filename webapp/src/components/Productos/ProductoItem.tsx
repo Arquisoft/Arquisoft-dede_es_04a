@@ -33,21 +33,20 @@ const ProductoItem = ({producto}: Props) => {
     }
     
     useEffect(() => {
-        localStorage.setItem("cart", JSON.stringify(map));
+        ReactSession.set("cart", JSON.stringify(map));
     }, [map]);
       
     const addToCart = () =>{
         if(localStorage.getItem("cart")===undefined)
-        localStorage.setItem("cart", JSON.stringify(map));
+            ReactSession.set("cart", JSON.stringify(map));
 
-        setMap(JSON.parse(localStorage.getItem("cart") || '{}'));
+        setMap(JSON.parse(ReactSession.get("cart") || '{}'));
         if(map.has(producto)){
             updateMap(producto,map.get(producto)+1);
         }
         else
             updateMap(producto,1);
-
-        console.log(JSON.parse(localStorage.getItem("cart") || '{h}'));
+        console.log(JSON.parse(ReactSession.get("cart") || '{h}'));
     }
 
     const cld = new Cloudinary({

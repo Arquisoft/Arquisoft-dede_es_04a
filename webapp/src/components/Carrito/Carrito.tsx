@@ -17,7 +17,7 @@ const Carrito = () => {
   const [map, setMap] = useState(new Map());
 
   const loadProductos = async () => {
-    setMap(JSON.parse(localStorage.getItem("cart") || '{}'));
+    setMap(JSON.parse(ReactSession.get("cart") || '{}'));
     console.log(map);
     setProductos(Array.from(map.values()));
   }
