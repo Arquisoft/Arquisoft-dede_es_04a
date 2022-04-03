@@ -17,6 +17,7 @@ These are the technologies we have decided to use:
 * Docker: Project that automates deployment of applications inside containers. We will create containers for both restapi and webapp to deloy them on AWS.
 * Postman: Software to test APIs.
 * Supertest and Jest: Modules to test our application.
+* Cloudinary: Service that provides an API to upload and download the images of the products.
 
 === Architectural and design patterns
 
