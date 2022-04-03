@@ -9,7 +9,15 @@ export interface IUser extends Document {
     confirmPassword: string;
     rol: number;
     comparePassword: (password: string) => Promise<Boolean>;
-}
+};
+
+export interface IAddress extends Document{
+    country_name: string;
+    locality: string;
+    postal_code: string;
+    region: string;
+    street_address: string; 
+};
 
 const userSchema = new Schema({
     dni: {
@@ -43,16 +51,17 @@ const userSchema = new Schema({
 
 // Encrypt the password
 userSchema.pre<IUser>("save", async function (next) {
-    const user = this
+    const user = this;
 
-    if (!user.isModified("password")) return next()
+    if (!user.isModified("password")) return next();
 
-    const salt = await bcrypt.genSalt(10)
-    const hash = await bcrypt.hash(user.password, salt)
-    user.password = hash
+    const salt = await bcrypt.genSalt(10);
+    const hash = await bcrypt.hash(user.password, salt);
+    user.password = hash;
+    user.confirmPassword = hash;
 
-    next()
-})
+    next();
+});
 
 // Compares the entered password with the one in the database
 userSchema.methods.comparePassword = async function (

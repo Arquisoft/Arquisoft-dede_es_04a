@@ -1,5 +1,9 @@
 import { Request, Response } from "express";
-import User from "../models/user";
+import User, { IAddress } from "../models/user";
+import { getSolidDataset, getThing, getStringNoLocale } from "@inrupt/solid-client";
+import jwt from 'jsonwebtoken';
+  
+import { VCARD } from "@inrupt/vocab-common-rdf";
 
 export const signUp = async (req: Request, res: Response): Promise<Response> => {
     if (!req.body.username || !req.body.email || !req.body.password || !req.body.dni || !req.body.confirmPassword)
@@ -30,9 +34,29 @@ export const login = async (req: Request, res: Response): Promise<Response> => {
         return res.status(400).json({ msg: "The username or password are incorrect" });
 
     const isMatch = await user.comparePassword(req.body.password);
-    if (isMatch) 
-        return res.status(200).json({ msg: "Logged in" });
+    if (isMatch){
+        const tokenSecret = process.env.SECRET_TOKEN;
 
+        const userForToken = {
+            id: user._id,
+            name: user.username,
+            email : user.email
+        }
+
+        const token = jwt.sign(userForToken, tokenSecret!, {
+            expiresIn : '10m'
+        });
+
+        const userResult = {
+            username : user.username,
+            userEmail: user.email
+        }
+
+        return res.status(200).header('authorization', token).json({
+            token, userResult
+        });
+
+    }
     return res.status(400).json({ msg: "The username or password are incorrect" });
 };
 
@@ -67,3 +91,65 @@ export const updateUser = async (req: Request, res: Response): Promise<Response>
 
     return res.status(200).json({ updatedUser });
 };
+
+export const readAddress = async (req: Request, res : Response): Promise<Response> => {
+    const name = req.body.pod;
+
+    try {
+        const myDataset = await getSolidDataset(
+            "https://" + name  + ".inrupt.net/profile/card", {
+            fetch: fetch
+        });
+        
+        const profile = getThing(myDataset, "https://" + name + ".inrupt.net/profile/card#me")
+        const addressWebID = profile!.predicates["http://www.w3.org/2006/vcard/ns#hasAddress"]["namedNodes"]
+        const idAddress = addressWebID![0].split('#')[1]
+        
+        if (idAddress == null){
+            return res.status(400).json({msg: "We can't find an address"});
+        }
+        
+        let result = {} as IAddress;
+
+        const getAddress = getThing(myDataset, "https://" + name + ".inrupt.net/profile/card#" + idAddress);
+
+        const country = getStringNoLocale(getAddress!, VCARD.country_name);
+        if (country == null){
+            return res.status(400).json({msg: "We can't find the country."});
+        } else {
+            result.country_name = country;
+        }
+
+        const region = getStringNoLocale(getAddress!, VCARD.region);
+        if (region == null){
+            return res.status(400).json({msg: "We can't find the region."});
+        } else {
+            result.region = region;
+        }
+
+        const locality = getStringNoLocale(getAddress!, VCARD.locality);
+        if (locality == null){
+            return res.status(400).json({msg: "We can't find the locality."});
+        } else {
+            result.locality = locality;
+        }
+
+        const streetAddress = getStringNoLocale(getAddress!, VCARD.street_address);
+        if (streetAddress == null){
+            return res.status(400).json({msg: "We can't find the street of this address."});
+        } else {
+            result.street_address = streetAddress;
+        }
+
+        const postalCode = getStringNoLocale(getAddress!, VCARD.postal_code);
+        if (postalCode == null){
+            return res.status(400).json({msg: "We can't find the postal code."})
+        } else {
+            result.postal_code = postalCode;
+        }
+
+        return res.status(200).json({ result });
+    } catch (error) {
+        return res.status(400).json({msg: "We can't find a POD with this username."})
+    }
+}

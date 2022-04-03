@@ -1,10 +1,11 @@
 import { model, Schema, Document } from 'mongoose'
-import Category, { ICategory } from './category'
 
 export interface IProduct extends Document {
     name: string;
     description: string;
-    price: number;
+    basePrice: number;
+    IVA:number;
+    oldPrice: number;
     units: number;
     categories: [String];
     onSale: boolean;
@@ -20,10 +21,18 @@ const productSchema = new Schema ({
         type: String,
         required: [true, 'Product must have a description']
     },
-    price:{
+    basePrice:{
         type: Number,
         required: [true, 'Product must have a price'],
         min: 0.01
+    },
+    IVA:{
+        type: Number,
+        required: [true, 'Product must have an IVA'],
+    },
+    oldPrice:{
+        type: Number,
+        required: false   
     },
     units:{
         type: Number,
@@ -39,7 +48,7 @@ const productSchema = new Schema ({
     },
     urlImage:{
         type: String,
-        //required: [true, 'Product must have a photo']
+        required: [true, 'Product must have a photo']
     }
 })
 

@@ -4,5 +4,6 @@ export default {
         "^.+\\.tsx?$": "ts-jest"
     },
     collectCoverage: true,
-    collectCoverageFrom:["api.ts"]
+    collectCoverageFrom:["**/controllers/user.ts", "**/controllers/product.ts"],
+    setupFiles: ['<rootDir>/vars.ts']
 }
