@@ -176,7 +176,7 @@ describe('user ', () => {
             pod: 'NOsergiomalv'
         }
 
-        const response:Response = await (await request(app).post('/user/pod').send().set('Authorization', token).set('Accept', 'application/json'));  
+        const response:Response = await (await request(app).post('/user/pod').send(name).set('Authorization', token).set('Accept', 'application/json'));  
         expect(response.statusCode).toBe(400);
     });
 });
