@@ -4,10 +4,7 @@ import * as productoService from './ProductosService'
 import {Producto} from './Producto'
 import ProductoItem from './ProductoItem'
 
-
-
 const Productos = () => {
-
     
     const[productos, setProductos] = useState<Producto[]>([])
     
@@ -25,7 +22,6 @@ const Productos = () => {
 
 
     return (
-        
         <div>
             <h1 className='title'>PRODUCTOS</h1>
             <div className='productos'>

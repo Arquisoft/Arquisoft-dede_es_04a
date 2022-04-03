@@ -14,6 +14,7 @@ import AniadirProducto from './components/Productos/AniadirProducto';
 import 'react-toastify/dist/ReactToastify.css'
 import 'bootswatch/dist/pulse/bootstrap.min.css';
 import './index.css';
+import Carrito from './components/Carrito/Carrito';
 
 ReactSession.setStoreType("localStorage");
 ReactSession.set("username",undefined)
@@ -28,6 +29,7 @@ const App = ():JSX.Element => {
           <Route path="/login" element={<Login />}></Route>
           <Route path="/register" element={<Register />}></Route>
           <Route path="/addProduct" element={<AniadirProducto />}></Route>
+          <Route path="/cart" element={<Carrito />}></Route>
           <Route path="*" element={
             <main style={{ padding: "1rem" }}>
               <h1>This URL dont exist</h1>

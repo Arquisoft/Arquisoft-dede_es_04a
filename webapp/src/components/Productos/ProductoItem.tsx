@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import {Producto} from './Producto'
 import {AdvancedImage} from '@cloudinary/react';
 import {Cloudinary} from "@cloudinary/url-gen";
-
+import {ReactSession} from 'react-client-session';
 
 import {thumbnail, scale, pad} from "@cloudinary/url-gen/actions/resize";
 import {byRadius} from "@cloudinary/url-gen/actions/roundCorners";
@@ -25,6 +25,30 @@ interface Props{
 
 const ProductoItem = ({producto}: Props) => {
 
+    //var map = new Map<Producto,number>();
+    const [map, setMap] = useState(new Map());
+
+    const updateMap = (k:Producto,v:number) => {
+        setMap(map.set(k,v));
+    }
+    
+    useEffect(() => {
+        localStorage.setItem("cart", JSON.stringify(map));
+    }, [map]);
+      
+    const addToCart = () =>{
+        if(localStorage.getItem("cart")===undefined)
+        localStorage.setItem("cart", JSON.stringify(map));
+
+        setMap(JSON.parse(localStorage.getItem("cart") || '{}'));
+        if(map.has(producto)){
+            updateMap(producto,map.get(producto)+1);
+        }
+        else
+            updateMap(producto,1);
+
+        console.log(JSON.parse(localStorage.getItem("cart") || '{h}'));
+    }
 
     const cld = new Cloudinary({
         cloud: {
@@ -53,7 +77,7 @@ const ProductoItem = ({producto}: Props) => {
                 <p className="price">{producto.price}€</p>
             </div>
             <div className="buttom">
-                <button className="btn">
+                <button className="btn" onClick={addToCart}>
                     Añadir al carrito
                 </button>
                 <div>

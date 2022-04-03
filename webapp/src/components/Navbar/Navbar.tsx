@@ -28,7 +28,7 @@ const Navbar = () => {
                     </LoggedIn>
                     <form className="d-flex">
                         <LoggedIn>    
-                            <Link className="navbar-brand" type="button" to="/carrito"><a href="" className="CarritoImg"><img className='CarritoImg' src={CarritoImg} alt="" width="45" height="40"/></a></Link> 
+                            <Link className="navbar-brand" type="button" to="/cart"><img className='CarritoImg' src={CarritoImg} alt="" width="45" height="40"/></Link> 
                             <Link className="navbar-brand" type="button" to="" onClick={logout}>Logout</Link> 
                         </LoggedIn>
                         <LoggedOut>
