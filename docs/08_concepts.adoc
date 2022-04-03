@@ -4,12 +4,34 @@
 === User interface
 
 To create the user interface we will use the React library together with Typescript. React provides a great
-great help when creating interfaces, as it is based on components, which are logical
-and self-contained pieces of code. By putting several components together, a user interface can be obtained.
+help when creating interfaces, as it is based on components, which are logical and self-contained pieces of code.
+By putting several components together, a user interface can be obtained.
+
+=== Internationalization
+
+We have decided that both the application and the documentation will be developed in English. This is because
+we consider that it can have a wider reach, since our application will not be exclusive to Spain,
+as it will be available to purchase from anywhere in the world.
 
 === Security
 
 In terms of security, our application will follow SOLID principles and our users will use their own PODS to access it.
+The users will have a profile on our application where we will store only the needed information about them. The address
+is not going to be stored, every time the user orders a product we will ask him for his POD to get the address.
+
+=== Build, Test, Deploy
+
+We will follow a continuous integration process, in which after the creation of a new release using the GitHub Actions
+the application will be deployed.
+
+The process to be followed will be:
+
+* Creation of a release (at stable points of the application).
+* When the release is generated, the GitHub Action will be executed doing the following:
+** First, the tests previously developed in restapi and webapp will be executed.
+** Once these tests are executed without any error, the acceptance tests will begin.
+** Once the acceptance tests are passed, the creation and uploading of the restapi and webapp docker images will begin.
+** At the end of the creation and uploading of the images, the application deployment on AWS will begin.
 
 === Persistence
 
@@ -19,3 +41,23 @@ as it is recommended for projects such as ours where we are developing an online
 and it is very easy to integrate with Node.js, and since we are going to use the MERN stack (MongoDB, Express, React, Node),
 this comes in very handy when it comes to work.
 
+=== Session handling
+
+=== Exception and error handling
+
+For exception and error handling we will include several controls in the code. All user input will be validated to avoid
+errors because of what they may send us. In case an error is found, the user will be sent an error message that he can
+interpret, the error generated will not be sent directly to him.
+
+=== Administration
+
+To manage the application we will have at least one user with administrator role. This administrator will have
+different functionalities from those of a standard user.
+
+Its functionalities will include the following:
+* Users management.
+** The administrator can delete users.
+* Products management.
+** Add new products.
+** Modify existing ones.
+** Delete products.
