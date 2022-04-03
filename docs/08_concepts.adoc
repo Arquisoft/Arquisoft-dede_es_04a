@@ -55,6 +55,7 @@ To manage the application we will have at least one user with administrator role
 different functionalities from those of a standard user.
 
 Its functionalities will include the following:
+
 * Users management.
 ** The administrator can delete users.
 * Products management.
