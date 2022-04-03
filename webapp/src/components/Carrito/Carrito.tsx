@@ -20,7 +20,7 @@ const Carrito = () => {
   }
 
   useEffect(() => {
-    loadProductos()
+    loadProductos();
   }, [])
 
   return (

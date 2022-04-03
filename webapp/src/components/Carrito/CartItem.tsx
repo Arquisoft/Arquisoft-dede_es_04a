@@ -3,15 +3,6 @@ import { Producto } from "../Productos/Producto";
 import { pad } from "@cloudinary/url-gen/actions/resize";
 import { AdvancedImage } from "@cloudinary/react";
 
-export type CartItem = {
-    id: number;
-    name: string;
-    urlImage: string;
-    price: number;
-    onSale: boolean;
-    amount: number;
-}
-
 interface Props{
     producto: Producto;
     num: number;

@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 import { Producto } from "./Producto";
 import * as productosService from './ProductosService';
 import { useNavigate } from 'react-router-dom';
@@ -47,7 +47,7 @@ const AniadirProducto = () => {
     }
 
     const checkPrice = (): boolean => {
-        if (producto.price != 0)
+        if (producto.price !== 0)
             return true;
         return false;
     }

@@ -1,5 +1,4 @@
-import { LineAxisOutlined, VideoSettings } from '@mui/icons-material'
-import React, { useEffect, useState} from 'react'
+import { useEffect, useState} from 'react'
 import * as productoService from './ProductosService'
 import {Producto} from './Producto'
 import ProductoItem from './ProductoItem'
