@@ -12,8 +12,11 @@ These are the technologies we have decided to use:
 * TypeScript: JavaScript superset, which mainly adds static typing to JavaScript.
 * GitHub: Allows to host Git-based projects.
 * Visual Studio Code: Code editor that thanks to its large number of extensions will facilitate our work.
-* SOLID: Project that aims to allow users to decide where their data is stored, 
-in order to improve privacy.
+* SOLID: Project that aims to allow users to decide where their data is stored, in order to improve privacy.
+* Amazon Web Services: Web server provider where we will deploy our application.
+* Docker: Project that automates deployment of applications inside containers. We will create containers for both restapi and webapp to deloy them on AWS.
+* Postman: Software to test APIs.
+* Supertest and Jest: Modules to test our application.
 
 === Architectural and design patterns
 
@@ -28,6 +31,7 @@ We have taken this decision since all the technologies to be used are new for al
 and we believe that it will be easier to achieve the objectives if we focus mostly on one part
 
 === Organizational decisions
+
 In order to work in an organized way and try to minimize errors, we have decided to organize ourselves as follows:
 
 * Creation of three automated dashboards (GitHub Projects), one for each part in which the project is divided.
@@ -39,15 +43,13 @@ In order to work in an organized way and try to minimize errors, we have decided
 ** develop: development branch to which the changes made in both frontend and backend will be uploaded by pull request.
 ** frontend: branch where frontend changes will be uploaded.
 ** backend: branch where backend changes will be uploaded.
+** We will create branches to try things like deploying the application or adding risky features.
 ** An individual branch for each developer to work on:
 *** iker
 *** pabloa
 *** pablof
 *** sergio
-=======
-
-To communicate we will use:
-
-* Microsoft Teams: We will meet weekly to make decisions.
-* WhatsApp: We will use it to make a quick comment, such as to warn of a sudden problem or things that come up.
-* GitHub: Here we will communicate through issues and the project board, where we will share tasks.
+* To communicate and make easier the organization we will use:
+** Microsoft Teams: We will meet weekly to make decisions.
+** WhatsApp: We will use it to make a quick comment, such as to warn of a sudden problem or things that come up.
+** GitHub: Here we will communicate through issues and the project board, where we will share tasks.
