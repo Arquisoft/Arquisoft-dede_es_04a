@@ -1,4 +1,4 @@
-import request, {Response} from 'supertest';
+import request, { Response } from 'supertest';
 import express, { Application, response } from 'express';
 import * as http from 'http';
 import bp from 'body-parser';
@@ -7,8 +7,8 @@ import user from "../routes/user";
 import product from '../routes/product';
 import mongoose from 'mongoose';
 
-let app:Application;
-let server:http.Server;
+let app: Application;
+let server: http.Server;
 
 const mongodb = 'mongodb+srv://test:test@test.tgpeg.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 let token = '';
@@ -27,9 +27,9 @@ beforeAll(async () => {
     app.use(user);
     app.use(product);
 
-    server = app.listen(port, ():void => {
-        console.log('Restapi server for testing listening on '+ port);
-    }).on("error",(error:Error)=>{
+    server = app.listen(port, (): void => {
+        console.log('Restapi server for testing listening on ' + port);
+    }).on("error", (error: Error) => {
         console.error('Error occured: ' + error.message);
     });
 });
@@ -58,7 +58,7 @@ describe('user ', () => {
         const response: Response = await request(app).post('/signup').send(user).set('Accept', 'application/json');
         expect(response.statusCode).toBe(200);
     });
-    
+
     /**
      * Tests that a user can't be duplicated.
      */
@@ -77,13 +77,13 @@ describe('user ', () => {
     /**
      * Tests that a user can login.
      */
-     it('can login correctly', async () => {
+    it('can login correctly', async () => {
         const user = {
             username: 'Pablo1',
             password: 'Pabloalonso1?'
         }
         const response: Response = await request(app).post('/login').send(user).set('Accept', 'application/json');
-        
+
         token = response.header['authorization'];
 
         expect(response.statusCode).toBe(200);
@@ -92,7 +92,7 @@ describe('user ', () => {
     /**
      * Tests that can find all the users
      */
-    it('can find all the users',async () => {
+    it('can find all the users', async () => {
         const user = {
             username: 'Pablo2',
             email: 'pablo2@email.com',
@@ -109,9 +109,9 @@ describe('user ', () => {
     /**
      * Tests find user by username.
      */
-     it('can find user by username', async () => {
+    it('can find user by username', async () => {
         const username = 'Pablo1';
-        
+
         const user = await (await request(app).get(`/user/${username}`).set('Authorization', token).set('Accept', 'application/json')).body.user[0];
 
         expect(user.username).toBe(username);
@@ -120,7 +120,7 @@ describe('user ', () => {
     /**
      * Tests delete user by username.
      */
-     it('can delete user by username', async () => {
+    it('can delete user by username', async () => {
         const username = 'Pablo2';
 
         (await request(app).get(`/user/delete/${username}`).set('Authorization', token).set('Accept', 'application/json'));
@@ -133,14 +133,14 @@ describe('user ', () => {
     /**
      * Tests update user by id.
      */
-     it('can update user', async () => {
+    it('can update user', async () => {
         const user = {
             username: 'Pablo1',
             email: 'pablo123@email.com'
         }
 
         const userid = await (await request(app).get(`/user/${user.username}`).set('Authorization', token).set('Accept', 'application/json')).body.user[0];
-        
+
         (await request(app).post(`/user/update/${userid._id}`).set('Authorization', token).send(user).set('Accept', 'application/json'));
 
         const updatedUser = await (await request(app).get(`/user/${user.username}`).set('Authorization', token).set('Accept', 'application/json')).body.user[0];
@@ -176,7 +176,7 @@ describe('user ', () => {
             pod: 'NOsergiomalv'
         }
 
-        const response:Response = await (await request(app).post('/user/pod').send().set('Authorization', token).set('Accept', 'application/json'));  
+        const response: Response = await (await request(app).post('/user/pod').send(name).set('Authorization', token).set('Accept', 'application/json'));
         expect(response.statusCode).toBe(400);
     });
 });
@@ -197,7 +197,7 @@ describe('products ', () => {
             categories: ["laptop", "celullar"],
             urlImage: "https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RE4LqQX?ver=1f00"
         }
-        const response:Response = await request(app).post('/product/add').set('Authorization', token).send(product).set('Accept', 'application/json');
+        const response: Response = await request(app).post('/product/add').set('Authorization', token).send(product).set('Accept', 'application/json');
         expect(response.statusCode).toBe(200);
     });
 
@@ -213,7 +213,7 @@ describe('products ', () => {
             categories: ["laptop", "celullar"],
             urlImage: "https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RE4LqQX?ver=1f00"
         }
-        const response:Response = await request(app).post('/product/add').set('Authorization', token).send(product).set('Accept', 'application/json');
+        const response: Response = await request(app).post('/product/add').set('Authorization', token).send(product).set('Accept', 'application/json');
         expect(response.statusCode).toBe(400);
     });
 
@@ -230,14 +230,25 @@ describe('products ', () => {
      */
     it('can be updated', async () => {
         const productToUpdate = {
-            units : 20,
-            description : 'Simple test'
+            units: 20,
+            description: 'Simple test'
         }
 
         const product = await (await request(app).get('/product/list').set('Accept', 'application/json')).body.products[0]['_id'];
         await request(app).post('/product/update/' + product).set('Authorization', token).send(productToUpdate).set('Accept', 'application/json');
         const updatedProduct = await (await request(app).get('/product/list').set('Accept', 'application/json')).body.products[0];
         expect(updatedProduct.units).toBe(20);
+    });
+
+    /**
+     * Test that a product can be filtered by its category
+     */
+    it('can be filtered', async () => {
+        const category = 'laptop';
+
+        const product = await (await request(app).get(`/product/filter/${category}`).set('Accept', 'application/json')).body.products;
+
+        expect(product.length).toBe(1);
     });
 
     /**
@@ -249,4 +260,5 @@ describe('products ', () => {
         const units = await (await request(app).get('/product/list').set('Accept', 'application/json')).body.products;
         expect(units.length).toBe(0);
     });
+
 });
