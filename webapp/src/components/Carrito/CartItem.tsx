@@ -1,4 +1,3 @@
-import React from "react";
 import {Cloudinary} from "@cloudinary/url-gen";
 import { Producto } from "../Productos/Producto";
 import { pad } from "@cloudinary/url-gen/actions/resize";

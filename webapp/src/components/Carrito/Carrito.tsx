@@ -1,7 +1,4 @@
-import * as Icon from "react-bootstrap-icons"
-import React, { useState, useContext, useEffect, ReactNode } from 'react'
-import Image from "../../images/sergio.webp"
-import DataContext from "./DataProvider"
+import{ useState, useEffect} from 'react'
 import { Producto } from "../Productos/Producto"
 import { ReactSession } from 'react-client-session';
 import CartItem from "./CartItem";
