@@ -1,27 +1,11 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
-import { ToastContainer } from 'react-toastify';
-
-import Logout from './components/Users/Logout';
-import Login from './components/Users/Login';
-import Productos from './components/Productos/Productos';
-import Register from './components/Users/Register';
 import reportWebVitals from './reportWebVitals';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Navbar from './components/Navbar/Navbar';
-import {ReactSession} from 'react-client-session';
 
 import 'react-toastify/dist/ReactToastify.css'
 import 'bootswatch/dist/pulse/bootstrap.min.css';
 import './index.css';
-import AniadirProducto from './components/Productos/AniadirProducto';
-import Carrito  from './components/Carrito/Carrito';
-import Sidebar from './components/SideBar/Sidebar';
 import  App  from "./App";
-
-
-
-ReactSession.setStoreType("localStorage");
 
 ReactDOM.render(
   <React.StrictMode>
