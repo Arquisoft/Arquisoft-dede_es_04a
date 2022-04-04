@@ -2,7 +2,7 @@
 == Quality Requirements
 
 === Contents
-This section shows the quality requirements tree with the description of each of them.
+This section shows the quality requirements tree with the description of each of them and the priority.
 
 Quality Tree::
 [plantuml, "Quality tree",png]
@@ -27,9 +27,9 @@ QT --> Pr
 QT --> U
 QT --> Se
 QT --> In
-PR --> ResponseTime
-PR --> LowLatency
-PR --> Efficiency
+Pr --> ResponseTime
+Pr --> LowLatency
+Pr --> Efficiency
 U --> GoodInterface
 U --> Inter
 U --> Interaction
