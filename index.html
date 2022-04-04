@@ -470,6 +470,44 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_organizational_decisions">4.4. Organizational decisions</a></li>
 </ul>
 </li>
+<li><a href="#section-building-block-view">5. Building Block View</a>
+<ul class="sectlevel2">
+<li><a href="#_whitebox_overall_system">5.1. Whitebox Overall System</a></li>
+<li><a href="#_level_2">5.2. Level 2</a></li>
+<li><a href="#_level_3">5.3. Level 3</a></li>
+</ul>
+</li>
+<li><a href="#section-runtime-view">6. Runtime View</a>
+<ul class="sectlevel2">
+<li><a href="#_request">6.1. Request</a></li>
+<li><a href="#_login">6.2. Login</a></li>
+<li><a href="#_buy_process">6.3. Buy process</a></li>
+<li><a href="#_sign_up">6.4. Sign up</a></li>
+<li><a href="#_modify_products">6.5. Modify products</a></li>
+<li><a href="#_view_orders">6.6. View orders</a></li>
+</ul>
+</li>
+<li><a href="#section-deployment-view">7. Deployment View</a></li>
+<li><a href="#section-concepts">8. Cross-cutting Concepts</a>
+<ul class="sectlevel2">
+<li><a href="#_user_interface">8.1. User interface</a></li>
+<li><a href="#_internationalization">8.2. Internationalization</a></li>
+<li><a href="#_security">8.3. Security</a></li>
+<li><a href="#_build_test_deploy">8.4. Build, Test, Deploy</a></li>
+<li><a href="#_persistence">8.5. Persistence</a></li>
+<li><a href="#_session_handling">8.6. Session handling</a></li>
+<li><a href="#_exception_and_error_handling">8.7. Exception and error handling</a></li>
+<li><a href="#_administration">8.8. Administration</a></li>
+</ul>
+</li>
+<li><a href="#section-design-decisions">9. Design Decisions</a></li>
+<li><a href="#section-quality-scenarios">10. Quality Requirements</a>
+<ul class="sectlevel2">
+<li><a href="#_contents">10.1. Contents</a></li>
+</ul>
+</li>
+<li><a href="#section-technical-risks">11. Risks and Technical Debts</a></li>
+<li><a href="#section-glossary">12. Glossary</a></li>
 </ul>
 </div>
 </div>
@@ -726,6 +764,9 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <li>
 <p>Image.</p>
 </li>
+<li>
+<p>Sale.</p>
+</li>
 </ul>
 </div>
 <div class="sect2">
@@ -757,6 +798,37 @@ usuario --&gt; [dede]: log in
 </div>
 <div class="sect2">
 <h3 id="_technical_context">3.2. Technical Context</h3>
+<div class="paragraph">
+<p>The system has SOLID architecture in order to respect the privacy of each user&#8217;s data, this is achieved through the use of PODS to store the user&#8217;s personal data. The programming language used in the application is Typescript and React is used as the main library to facilitate the development of the application.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Technology</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Definition</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SOLID</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Architecture to facilitate code cleanliness and maintainability</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PODS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Personal data storage units</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TYPESCRIPT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Language used for the development of the application</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">REACT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Main library to facilitate the development of the GUI</p></td>
+</tr>
+</tbody>
+</table>
 <div style="page-break-after: always;"></div>
 </div>
 </div>
@@ -793,8 +865,22 @@ usuario --&gt; [dede]: log in
 <p>Visual Studio Code: Code editor that thanks to its large number of extensions will facilitate our work.</p>
 </li>
 <li>
-<p>SOLID: Project that aims to allow users to decide where their data is stored,
-in order to improve privacy.</p>
+<p>SOLID: Project that aims to allow users to decide where their data is stored, in order to improve privacy.</p>
+</li>
+<li>
+<p>Amazon Web Services: Web server provider where we will deploy our application.</p>
+</li>
+<li>
+<p>Docker: Project that automates deployment of applications inside containers. We will create containers for both restapi and webapp to deloy them on AWS.</p>
+</li>
+<li>
+<p>Postman: Software to test APIs.</p>
+</li>
+<li>
+<p>Supertest and Jest: Modules to test our application.</p>
+</li>
+<li>
+<p>Cloudinary: Service that provides an API to upload and download the images of the products.</p>
 </li>
 </ul>
 </div>
@@ -855,6 +941,9 @@ and we believe that it will be easier to achieve the objectives if we focus most
 <p>backend: branch where backend changes will be uploaded.</p>
 </li>
 <li>
+<p>We will create branches to try things like deploying the application or adding risky features.</p>
+</li>
+<li>
 <p>An individual branch for each developer to work on:</p>
 <div class="ulist">
 <ul>
@@ -876,13 +965,8 @@ and we believe that it will be easier to achieve the objectives if we focus most
 </ul>
 </div>
 </li>
-</ul>
-</div>
-<div class="exampleblock">
-<div class="content">
-<div class="paragraph">
-<p>To communicate we will use:</p>
-</div>
+<li>
+<p>To communicate and make easier the organization we will use:</p>
 <div class="ulist">
 <ul>
 <li>
@@ -896,13 +980,18 @@ and we believe that it will be easier to achieve the objectives if we focus most
 </li>
 </ul>
 </div>
+</li>
+</ul>
+</div>
 <div style="page-break-after: always;"></div>
-<div id="section-building-block-view" class="paragraph">
-<p>== Building Block View</p>
 </div>
-<div class="paragraph">
-<p>=== Whitebox Overall System</p>
 </div>
+</div>
+<div class="sect1">
+<h2 id="section-building-block-view">5. Building Block View</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_whitebox_overall_system">5.1. Whitebox Overall System</h3>
 <div class="paragraph">
 <p><span class="image"><img src="./images/05_level1.png" alt="05 level1"></span></p>
 </div>
@@ -945,9 +1034,9 @@ and we believe that it will be easier to achieve the objectives if we focus most
 </tr>
 </tbody>
 </table>
-<div class="paragraph">
-<p>=== Level 2</p>
 </div>
+<div class="sect2">
+<h3 id="_level_2">5.2. Level 2</h3>
 <div class="paragraph">
 <p><span class="image"><img src="./images/05_level2.png" alt="05 level2"></span></p>
 </div>
@@ -986,17 +1075,52 @@ and we believe that it will be easier to achieve the objectives if we focus most
 </tr>
 </tbody>
 </table>
-<div style="page-break-after: always;"></div>
-<div id="section-runtime-view" class="paragraph">
-<p>== Runtime View</p>
 </div>
+<div class="sect2">
+<h3 id="_level_3">5.3. Level 3</h3>
+<div class="paragraph">
+<p><span class="image"><img src="./images/05_level3.png" alt="05 level3"></span></p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Contained Building Blocks</dt>
+</dl>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Webapp</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Part of the application that the user will see and interact with.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Restapi</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Part of the application responsible for persistence.</p></td>
+</tr>
+</tbody>
+</table>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="section-runtime-view">6. Runtime View</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <div class="title">Contents</div>
 <p>This section shows the main sequence diagrams between the users and the application.</p>
 </div>
-<div class="paragraph">
-<p>=== Request</p>
-</div>
+<div class="sect2">
+<h3 id="_request">6.1. Request</h3>
 <div class="paragraph">
 <p>This view shows a request from a customer to view the product catalog. The web receives the request where it will access the database to get the list of products. Once obtained, it returns them to the customer.</p>
 </div>
@@ -1005,20 +1129,20 @@ and we believe that it will be easier to achieve the objectives if we focus most
 <img src="./images/PresentationOfTheProductCatalog.png" alt="PresentationOfTheProductCatalog" width="400" height="313">
 </div>
 </div>
-<div class="paragraph">
-<p>=== Login</p>
 </div>
+<div class="sect2">
+<h3 id="_login">6.2. Login</h3>
 <div class="paragraph">
 <p>This view shows the administrator login. The website receives the admin&#8217;s credentials, and after verification of the information allows the admin to add, delete and update the desired products.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="./images/AdminView.png" alt="AdminView" width="462" height="374">
+<img src="./images/AdminView.png" alt="AdminView" width="376" height="283">
 </div>
 </div>
-<div class="paragraph">
-<p>=== Buy process</p>
 </div>
+<div class="sect2">
+<h3 id="_buy_process">6.3. Buy process</h3>
 <div class="paragraph">
 <p>This view shows a request from a customer to buy a product from the catalog.</p>
 </div>
@@ -1027,9 +1151,9 @@ and we believe that it will be easier to achieve the objectives if we focus most
 <img src="./images/BuyingProcess.png" alt="BuyingProcess" width="520" height="465">
 </div>
 </div>
-<div class="paragraph">
-<p>=== Sign up</p>
 </div>
+<div class="sect2">
+<h3 id="_sign_up">6.4. Sign up</h3>
 <div class="paragraph">
 <p>This view shows the sign up process by a customer.</p>
 </div>
@@ -1038,10 +1162,35 @@ and we believe that it will be easier to achieve the objectives if we focus most
 <img src="./images/SignUpProcess.png" alt="SignUpProcess" width="428" height="435">
 </div>
 </div>
-<div style="page-break-after: always;"></div>
-<div id="section-deployment-view" class="paragraph">
-<p>== Deployment View</p>
 </div>
+<div class="sect2">
+<h3 id="_modify_products">6.5. Modify products</h3>
+<div class="paragraph">
+<p>This view shows how the administrator will modify the catalog.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./images/AdminModify.png" alt="AdminModify" width="999" height="283">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_view_orders">6.6. View orders</h3>
+<div class="paragraph">
+<p>This view shows how a client will obtain a list of all his orders.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./images/ClientOrders.png" alt="ClientOrders" width="436" height="313">
+</div>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="section-deployment-view">7. Deployment View</h2>
+<div class="sectionbody">
 <div class="dlist">
 <dl>
 <dt class="hdlist1">Necessary infrastructure</dt>
@@ -1104,26 +1253,73 @@ Computer --&gt; Server
 </tbody>
 </table>
 <div style="page-break-after: always;"></div>
-<div id="section-concepts" class="paragraph">
-<p>== Cross-cutting Concepts</p>
 </div>
-<div class="paragraph">
-<p>=== User interface</p>
 </div>
+<div class="sect1">
+<h2 id="section-concepts">8. Cross-cutting Concepts</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_user_interface">8.1. User interface</h3>
 <div class="paragraph">
 <p>To create the user interface we will use the React library together with Typescript. React provides a great
-great help when creating interfaces, as it is based on components, which are logical
-and self-contained pieces of code. By putting several components together, a user interface can be obtained.</p>
+help when creating interfaces, as it is based on components, which are logical and self-contained pieces of code.
+By putting several components together, a user interface can be obtained.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_internationalization">8.2. Internationalization</h3>
+<div class="paragraph">
+<p>We have decided that both the application and the documentation will be developed in English. This is because
+we consider that it can have a wider reach, since our application will not be exclusive to Spain,
+as it will be available to purchase from anywhere in the world.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_security">8.3. Security</h3>
+<div class="paragraph">
+<p>In terms of security, our application will follow SOLID principles and our users will use their own PODS to access it.
+The users will have a profile on our application where we will store only the needed information about them. The address
+is not going to be stored, every time the user orders a product we will ask him for his POD to get the address.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_build_test_deploy">8.4. Build, Test, Deploy</h3>
+<div class="paragraph">
+<p>We will follow a continuous integration process, in which after the creation of a new release using the GitHub Actions
+the application will be deployed.</p>
 </div>
 <div class="paragraph">
-<p>=== Security</p>
+<p>The process to be followed will be:</p>
 </div>
-<div class="paragraph">
-<p>In terms of security, our application will follow SOLID principles and our users will use their own PODS to access it.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Creation of a release (at stable points of the application).</p>
+</li>
+<li>
+<p>When the release is generated, the GitHub Action will be executed doing the following:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>First, the tests previously developed in restapi and webapp will be executed.</p>
+</li>
+<li>
+<p>Once these tests are executed without any error, the acceptance tests will begin.</p>
+</li>
+<li>
+<p>Once the acceptance tests are passed, the creation and uploading of the restapi and webapp docker images will begin.</p>
+</li>
+<li>
+<p>At the end of the creation and uploading of the images, the application deployment on AWS will begin.</p>
+</li>
+</ul>
 </div>
-<div class="paragraph">
-<p>=== Persistence</p>
+</li>
+</ul>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_persistence">8.5. Persistence</h3>
 <div class="paragraph">
 <p>For persistence we will use the MongoDB database together with the Mongoose ODM (Object Document Mapping),
 since it provides a lot of functionalities to work with MongoDB. We decided to use MongoDB
@@ -1131,53 +1327,163 @@ as it is recommended for projects such as ours where we are developing an online
 and it is very easy to integrate with Node.js, and since we are going to use the MERN stack (MongoDB, Express, React, Node),
 this comes in very handy when it comes to work.</p>
 </div>
-<div style="page-break-after: always;"></div>
-<div id="section-design-decisions" class="paragraph">
-<p>== Design Decisions</p>
+</div>
+<div class="sect2">
+<h3 id="_session_handling">8.6. Session handling</h3>
+<div class="paragraph">
+<p>For the session we use inside the frontend the 'ReactSession' library to store the username and the token provided by our restapi api to identify it. This user information will be stored after a successful login.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_exception_and_error_handling">8.7. Exception and error handling</h3>
+<div class="paragraph">
+<p>For exception and error handling we will include several controls in the code. All user input will be validated to avoid
+errors because of what they may send us. In case an error is found, the user will be sent an error message that he can
+interpret, the error generated will not be sent directly to him.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_administration">8.8. Administration</h3>
+<div class="paragraph">
+<p>To manage the application we will have at least one user with administrator role. This administrator will have
+different functionalities from those of a standard user.</p>
 </div>
 <div class="paragraph">
-<p>=== Contents
-This section shows the different design decisions presented in a table sorted by importance with their pros and cons.</p>
+<p>Its functionalities will include the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Users management.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The administrator can delete users.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Products management.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Add new products.</p>
+</li>
+<li>
+<p>Modify existing ones.</p>
+</li>
+<li>
+<p>Delete products.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div style="page-break-after: always;"></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="section-design-decisions">9. Design Decisions</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This section shows the different design decisions presented in a table sorted by importance with their pros and cons.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
 </colgroup>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Decision</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pros</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Cons</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Link</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Internationalization</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">By internationalizing the application, we can reach a larger number of people</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Increased difficulty in documentation and implementation</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MongoDB</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Database that allows to modify data in a more flexible way</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No transactions and no atomicity</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/Arquisoft/dede_es4a/wiki/Decisiones-arquitect%C3%B3nicas">DA #01</a></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">NoSql</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Versatile and well-integrated databases for this project</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">They do not have atomicity and do not allow transactions</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MERN</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Allows the parts of the project to be unified in a simpler way</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Uses new technologies for team members</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/Arquisoft/dede_es4a/wiki/Decisiones-arquitect%C3%B3nicas">DA #02</a></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">GitHub</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Allows version control with utility tools</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Some functions are subject to a fee</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">mongoose</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">API that facilitates the connection to MongoDB</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Never used</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/Arquisoft/dede_es4a/wiki/Decisiones-arquitect%C3%B3nicas">DA #03</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AWS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Platform that enables deployment of Docker images</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Problems related to downloading images from the virtual machine</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/Arquisoft/dede_es4a/wiki/Decisiones-arquitect%C3%B3nicas">DA #07</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">axios</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">API allowing requests to be made to back-end from front-end</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Different response times for requests depending on the amount of data to be processed</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/Arquisoft/dede_es4a/wiki/Decisiones-arquitect%C3%B3nicas">DA #04</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">cloudinary</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Host that stores the product images for free</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">We have never worked with an image processing API.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/Arquisoft/dede_es4a/wiki/Decisiones-arquitect%C3%B3nicas">DA #06</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cluster for tests</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Allows testing to be performed in a more secure manner as no application data is being worked on</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Increased number of connections and keys</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/Arquisoft/dede_es4a/wiki/Decisiones-arquitect%C3%B3nicas">DA #08</a></p></td>
 </tr>
 </tbody>
 </table>
 <div class="paragraph">
-<p>For the rest of the technological decisions on how DeDe will be implemented, see section 4.</p>
+<p>The rejected decisions are shown below.</p>
 </div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Decision</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pros</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cons</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Link</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Heroku</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Allows projects to be deployed free of charge</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Difficulties in deploying multi-repository and Docker images</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/Arquisoft/dede_es4a/wiki/Decisiones-arquitect%C3%B3nicas">DA #05</a></p></td>
+</tr>
+</tbody>
+</table>
 <div style="page-break-after: always;"></div>
-<div id="section-quality-scenarios" class="paragraph">
-<p>== Quality Requirements</p>
 </div>
+</div>
+<div class="sect1">
+<h2 id="section-quality-scenarios">10. Quality Requirements</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_contents">10.1. Contents</h3>
 <div class="paragraph">
-<p>=== Contents
-This section shows the quality requirements tree with the description of each of them.</p>
+<p>This section shows the quality requirements tree with the description of each of them and the priority.</p>
 </div>
 <div class="dlist">
 <dl>
@@ -1186,7 +1492,7 @@ This section shows the quality requirements tree with the description of each of
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="./images/requisitos.drawio.png" alt="Quality tree">
+<img src="./images/Quality%20tree.png" alt="Quality tree" width="570" height="657">
 </div>
 </div>
 <div class="dlist">
@@ -1194,58 +1500,49 @@ This section shows the quality requirements tree with the description of each of
 <dt class="hdlist1">Quality Scenarios</dt>
 </dl>
 </div>
-<div class="ulist">
-<div class="title">Security</div>
-<ul>
-<li>
-<p>SOLID: The use of Solid PODs helps each client to own their data and avoid data loss.</p>
-</li>
-<li>
-<p>Privacy: Each user will only be able to know his data as well as the products in the basket.</p>
-</li>
-</ul>
-</div>
-<div class="ulist">
-<div class="title">Usability</div>
-<ul>
-<li>
-<p>Good interface: The application should have a good interface for all customers, whether or not they have experience in online stores. In addition, the interface should also facilitate the work of administrators.</p>
-</li>
-<li>
-<p>Internationalization: The application will be implemented in English so that it can be used by more people.</p>
-</li>
-<li>
-<p>Interaction: The interface should make the customer feel comfortable through a readable and functional presentation of the products.</p>
-</li>
-</ul>
-</div>
-<div class="ulist">
-<div class="title">Integrity</div>
-<ul>
-<li>
-<p>User - Admin: Users (clients and administrators), will have different options within the application depending on their role.</p>
-</li>
-<li>
-<p>Products: The products in the store must be constantly updated (new products and new stock) and never with inconsistent values.</p>
-</li>
-</ul>
-</div>
-<div class="ulist">
-<div class="title">Performance</div>
-<ul>
-<li>
-<p>Response time: Response times should be as short as possible so as not to make the user impatient.
-*Low latency: This requirement will help meet low response times.</p>
-</li>
-<li>
-<p>Efficiency: The code should be as optimal as possible for the application to run efficiently.</p>
-</li>
-</ul>
-</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 33.3333%;">
+<col style="width: 50.0001%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Quality objectives</th>
+<th class="tableblock halign-left valign-top">Motivation</th>
+<th class="tableblock halign-left valign-top">Priority</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Security</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The use of Solid PODs helps each customer to own their data and prevent data loss. In addition, each customer should be the only one who knows what products they have in their cart.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Hard</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Usability</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The application should have a good interface for all customers, whether or not they have experience in online stores. In addition, the interface should also facilitate the work of administrators. The application will be implemented in English so that it can be used by more people and the interface should make the customer feel comfortable through a readable and functional presentation of the products.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Medium</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Integrity</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Users (clients and administrators), will have different options within the application depending on their role. The products in the store must be constantly updated (new products and new stock) and never with inconsistent values.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Hard</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Performance</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Response times should be as short as possible so as not to make the user impatient with a low latency and the code should be as optimal as possible for the application to run efficiently.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Medium- Low</p></td>
+</tr>
+</tbody>
+</table>
 <div style="page-break-after: always;"></div>
-<div id="section-technical-risks" class="paragraph">
-<p>== Risks and Technical Debts</p>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="section-technical-risks">11. Risks and Technical Debts</h2>
+<div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1277,9 +1574,11 @@ This section shows the quality requirements tree with the description of each of
 </tbody>
 </table>
 <div style="page-break-after: always;"></div>
-<div id="section-glossary" class="paragraph">
-<p>== Glossary</p>
 </div>
+</div>
+<div class="sect1">
+<h2 id="section-glossary">12. Glossary</h2>
+<div class="sectionbody">
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
@@ -1304,6 +1603,54 @@ This section shows the quality requirements tree with the description of each of
 <td class="tableblock halign-left valign-top"><p class="tableblock">MERN</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Is a set of frameworks/technologies used for web application development consisting of MongoDB, React JS, Express JS and Node JS as its components</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MongoDB</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MongoDB is a document-oriented NoSQL database system</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">mongoose</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An api that allows the connection between MongoDB and the application</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">axios</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Simple HTTP client based on promises for the browser and node.js</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">cloudinary</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Host for storing images in the cloud</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AWS - Amazon Web Services</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Collection of public cloud computing services that together form a cloud computing platform</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Heroku</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Platform that enables the deployment of applications</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">API</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">An API or application programming interface is a set of definitions and protocols used to design and integrate application software.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Release</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Platform that enables the deployment of applications</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Continuous integration</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Continuous integration is a software engineering practice that consists of making automatic integrations of a project as often as possible in order to detect faults as soon as possible.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Acceptance testing</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Acceptance testing is a test conducted to determine if the requirements of a specification or contract are met.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ReactSession</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Store the data throughout the session and move the data between components.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">react-toastify</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Allows the creation of notifications for the application.</p></td>
+</tr>
 </tbody>
 </table>
 <div style="page-break-after: always;"></div>
@@ -1325,9 +1672,6 @@ software and system architecture.</p>
 We acknowledge that this document uses material from the
 arc 42 architecture template, <a href="http://www.arc42.de" class="bare">http://www.arc42.de</a>.
 Created by Dr. Peter Hruschka &amp; Dr. Gernot Starke.</p>
-</div>
-</div>
-</div>
 </div>
 </div>
 </div>
