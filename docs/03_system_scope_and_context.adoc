@@ -9,6 +9,7 @@ These products will be grouped by sections within the page itself, and each prod
 * Price.
 * Description.
 * Image.
+* Sale.
 
 === Business Context
 
@@ -32,4 +33,15 @@ usuario --> [dede]: log in
 [dede] <..> PODs : personal information
 @enduml
 ----
+
 === Technical Context
+
+The system has SOLID architecture in order to respect the privacy of each user's data, this is achieved through the use of PODS to store the user's personal data. The programming language used in the application is Typescript and React is used as the main library to facilitate the development of the application.
+
+|===
+| Technology         | Definition
+| SOLID    | Architecture to facilitate code cleanliness and maintainability
+| PODS    | Personal data storage units
+| TYPESCRIPT     | Language used for the development of the application
+| REACT     | Main library to facilitate the development of the GUI
+|===
