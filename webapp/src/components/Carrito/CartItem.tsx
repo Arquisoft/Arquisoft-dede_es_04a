@@ -3,15 +3,6 @@ import { Producto } from "../Productos/Producto";
 import { pad } from "@cloudinary/url-gen/actions/resize";
 import { AdvancedImage } from "@cloudinary/react";
 
-export type CartItem = {
-    id: number;
-    name: string;
-    urlImage: string;
-    price: number;
-    onSale: boolean;
-    amount: number;
-}
-
 interface Props{
     producto: Producto;
     num: number;
@@ -41,13 +32,13 @@ const CartItem = (producto: Props) => {
                 </div>
             </a>
             <div className="producto__footer">
-                <h1>{producto.producto.name}</h1>
+                <h1>{producto.producto.name} - Uds:{producto.num}</h1>
                 
                 <p className="price">{producto.producto.price}€</p>
             </div>
             <div className="buttom">
-                <div>
-                    <a href="#" className="btn">Vista</a>
+                <div> 
+                    <a href="#" className="btn">Eliminar</a>
                 </div>
             </div>
         </div>
