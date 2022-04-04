@@ -1,14 +1,21 @@
 [[section-design-decisions]]
 == Design Decisions
 
-=== Contents
 This section shows the different design decisions presented in a table sorted by importance with their pros and cons.
 
 |===
-|Decision|Pros|Cons
-|Internationalization|By internationalizing the application, we can reach a larger number of people|Increased difficulty in documentation and implementation
-|NoSql|Versatile and well-integrated databases for this project|They do not have atomicity and do not allow transactions
-|GitHub|Allows version control with utility tools|Some functions are subject to a fee
+|Decision|Pros|Cons|Link
+|MongoDB|Database that allows to modify data in a more flexible way|No transactions and no atomicity|https://github.com/Arquisoft/dede_es4a/wiki/Decisiones-arquitect%C3%B3nicas[DA #01]
+|MERN|Allows the parts of the project to be unified in a simpler way|Uses new technologies for team members|https://github.com/Arquisoft/dede_es4a/wiki/Decisiones-arquitect%C3%B3nicas[DA #02]
+|mongoose|API that facilitates the connection to MongoDB|Never used|https://github.com/Arquisoft/dede_es4a/wiki/Decisiones-arquitect%C3%B3nicas[DA #03]
+|AWS|Platform that enables deployment of Docker images|Problems related to downloading images from the virtual machine|https://github.com/Arquisoft/dede_es4a/wiki/Decisiones-arquitect%C3%B3nicas[DA #07]
+|axios|API allowing requests to be made to back-end from front-end|Different response times for requests depending on the amount of data to be processed|https://github.com/Arquisoft/dede_es4a/wiki/Decisiones-arquitect%C3%B3nicas[DA #04]
+|cloudinary|Host that stores the product images for free|We have never worked with an image processing API.|https://github.com/Arquisoft/dede_es4a/wiki/Decisiones-arquitect%C3%B3nicas[DA #06]
+|Cluster for tests|Allows testing to be performed in a more secure manner as no application data is being worked on|Increased number of connections and keys|https://github.com/Arquisoft/dede_es4a/wiki/Decisiones-arquitect%C3%B3nicas[DA #08]
 |===
 
-For the rest of the technological decisions on how DeDe will be implemented, see section 4.
+The rejected decisions are shown below.
+|===
+|Decision|Pros|Cons|Link
+|Heroku|Allows projects to be deployed free of charge|Difficulties in deploying multi-repository and Docker images|https://github.com/Arquisoft/dede_es4a/wiki/Decisiones-arquitect%C3%B3nicas[DA #05]
+|===
