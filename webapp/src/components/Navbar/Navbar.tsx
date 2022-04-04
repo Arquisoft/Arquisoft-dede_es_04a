@@ -4,11 +4,6 @@ import LoggedIn from '../AuthentificationComponents/LoggedIn';
 import LoggedOut from '../AuthentificationComponents/LoggedOut';
 import CarritoImg from '../../images/carrito.png'
 
-
-type Props = {
-    handleOpen: (state: boolean) => void;
-}
-
 const Navbar = () => {
     const navigate = useNavigate();
 
