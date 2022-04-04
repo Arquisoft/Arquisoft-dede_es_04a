@@ -12,7 +12,8 @@ export const findAll = async (req: Request, res: Response): Promise<Response> =>
 
 // Create a new product
 export const productCreate = async (req: Request, res: Response): Promise<Response> => {
-    if (!req.body.name || !req.body.description || !req.body.price || !req.body.units || !req.body.categories || !req.body.urlImage)
+    if (!req.body.name || !req.body.description || !req.body.basePrice || !req.body.units || !req.body.categories || !req.body.urlImage
+        || !req.body.IVA)
         return res.status(400).json({ msg: "Please, complete all the fields" })
  
     const newProduct = new Product(req.body);
@@ -27,8 +28,15 @@ export const productCreate = async (req: Request, res: Response): Promise<Respon
 // Update a product.
 export const updateProduct = async (req: Request, res: Response): Promise<Response> => {
     const { ...product} = req.body;
+
+    const oldProduct = await Product.findById(req.params.id);
+    // If new price != old price, we update the base price and old price
+    if (oldProduct!.basePrice != req.body.basePrice){
+        
+        product.oldPrice = oldProduct!.basePrice;
+    }
     const updatedProduct = await Product.findByIdAndUpdate(req.params.id, product);
-    return res.status(200).json({updatedProduct});
+    return res.status(200).json({product});
 };
 
 // Delete product

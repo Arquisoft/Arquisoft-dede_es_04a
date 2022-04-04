@@ -5,6 +5,7 @@
 Necessary infrastructure::
 To use our online shop you only need a mobile device (mobile phone, tablet...) or a computer and Internet connection.
 
+[plantuml,"DeploymentView",png]
 ----
 @startuml
 node "Server" {

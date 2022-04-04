@@ -7,4 +7,16 @@
 | SOLID    | Is a set of principles that make it easy for the developer to create a system that is easy to maintain and expand over time
 | POD     | Are personal containers for data storage
 | MERN     | Is a set of frameworks/technologies used for web application development consisting of MongoDB, React JS, Express JS and Node JS as its components
+|MongoDB|MongoDB is a document-oriented NoSQL database system
+|mongoose|An api that allows the connection between MongoDB and the application
+|axios|Simple HTTP client based on promises for the browser and node.js
+|cloudinary|Host for storing images in the cloud
+|AWS - Amazon Web Services|Collection of public cloud computing services that together form a cloud computing platform
+|Heroku|Platform that enables the deployment of applications
+|API|An API or application programming interface is a set of definitions and protocols used to design and integrate application software.
+|Release|Platform that enables the deployment of applications
+|Continuous integration|Continuous integration is a software engineering practice that consists of making automatic integrations of a project as often as possible in order to detect faults as soon as possible.
+|Acceptance testing|Acceptance testing is a test conducted to determine if the requirements of a specification or contract are met.
+|ReactSession| Store the data throughout the session and move the data between components.
+|react-toastify| Allows the creation of notifications for the application.
 |===

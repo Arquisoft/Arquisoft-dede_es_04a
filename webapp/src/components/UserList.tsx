@@ -1,4 +1,4 @@
-import {User} from '../shared/shareddtypes';
+import {User} from '../shared/sharedtypes';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';

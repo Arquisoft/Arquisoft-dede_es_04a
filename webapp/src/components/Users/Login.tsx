@@ -1,8 +1,9 @@
-import React, { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 import { User } from "./User";
 import * as userService from './UserService';
 import { useNavigate } from 'react-router-dom';
 import { toast } from "react-toastify";
+import {ReactSession} from 'react-client-session';
 
 const Login = () => {
 
@@ -31,7 +32,8 @@ const Login = () => {
             try {
                 const result = await userService.login(user);
                 if (result.status === 200) {
-                    toast.success("Welcome back " + user.username);
+                    ReactSession.set("username", user.username);
+                    toast.success("Welcome back " + ReactSession.get("username"));
                     navigate('/');
                 }
             } catch (error) {

@@ -1,6 +1,6 @@
 import { render, fireEvent, act } from "@testing-library/react";
 import EmailForm from "./EmailForm";
-import {User} from './../shared/shareddtypes';
+import {User} from '../shared/sharedtypes';
 import * as api from './../api/api'
 
 jest.mock('../api/api');

@@ -1,30 +1,35 @@
-import React from 'react'
+import { useEffect, useState } from 'react'
 import {Producto} from './Producto'
 import {AdvancedImage} from '@cloudinary/react';
 import {Cloudinary} from "@cloudinary/url-gen";
+import {ReactSession} from 'react-client-session';
 
-
-import {thumbnail, scale, pad} from "@cloudinary/url-gen/actions/resize";
-import {byRadius} from "@cloudinary/url-gen/actions/roundCorners";
-import {sepia} from "@cloudinary/url-gen/actions/effect";
-import {source} from "@cloudinary/url-gen/actions/overlay";
-import {opacity,brightness} from "@cloudinary/url-gen/actions/adjust";
-import {byAngle} from "@cloudinary/url-gen/actions/rotate"
-
-// Import required qualifiers.
-import {image} from "@cloudinary/url-gen/qualifiers/source";
-import {Position} from "@cloudinary/url-gen/qualifiers/position";
-import {compass} from "@cloudinary/url-gen/qualifiers/gravity";
-import {focusOn} from "@cloudinary/url-gen/qualifiers/gravity";
-import {FocusOn} from "@cloudinary/url-gen/qualifiers/focusOn";
-import {fill} from "@cloudinary/url-gen/actions/resize";
+import {pad} from "@cloudinary/url-gen/actions/resize";
+import { Item } from '../Carrito/Carrito';
 
 interface Props{
-  producto: Producto
+  producto: Producto;
+  cart: Item[];
 }
 
-const ProductoItem = ({producto}: Props) => {
+const ProductoItem = ({producto, cart}: Props) => {
 
+    //var map = new Map<Producto,number>();
+    //const [carr, setCart] = useState(cart);
+      
+    const addToCart = () =>{
+        var contains = false;
+        cart.forEach( item => {
+            if(item.producto.name==producto.name){
+                item.num+=1;
+                contains = true;
+            }
+        });
+        let num = 1;
+        if(contains===false)
+            cart.push({producto,num});
+        console.log(cart);
+    }
 
     const cld = new Cloudinary({
         cloud: {
@@ -53,7 +58,7 @@ const ProductoItem = ({producto}: Props) => {
                 <p className="price">{producto.price}€</p>
             </div>
             <div className="buttom">
-                <button className="btn">
+                <button className="btn" onClick={addToCart}>
                     Añadir al carrito
                 </button>
                 <div>
