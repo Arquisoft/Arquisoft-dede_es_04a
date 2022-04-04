@@ -32,13 +32,13 @@ const CartItem = (producto: Props) => {
                 </div>
             </a>
             <div className="producto__footer">
-                <h1>{producto.producto.name}</h1>
+                <h1>{producto.producto.name} - Uds:{producto.num}</h1>
                 
                 <p className="price">{producto.producto.price}€</p>
             </div>
             <div className="buttom">
-                <div>
-                    <a href="#" className="btn">Vista</a>
+                <div> 
+                    <a href="#" className="btn">Eliminar</a>
                 </div>
             </div>
         </div>

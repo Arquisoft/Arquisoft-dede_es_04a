@@ -5,35 +5,30 @@ import {Cloudinary} from "@cloudinary/url-gen";
 import {ReactSession} from 'react-client-session';
 
 import {pad} from "@cloudinary/url-gen/actions/resize";
+import { Item } from '../Carrito/Carrito';
 
 interface Props{
-  producto: Producto
+  producto: Producto;
+  cart: Item[];
 }
 
-const ProductoItem = ({producto}: Props) => {
+const ProductoItem = ({producto, cart}: Props) => {
 
     //var map = new Map<Producto,number>();
-    const [map, setMap] = useState(new Map());
-
-    const updateMap = (k:Producto,v:number) => {
-        setMap(map.set(k,v));
-    }
-    
-    useEffect(() => {
-        ReactSession.set("cart", JSON.stringify(map));
-    }, [map]);
+    //const [carr, setCart] = useState(cart);
       
     const addToCart = () =>{
-        if(localStorage.getItem("cart")===undefined)
-            ReactSession.set("cart", JSON.stringify(map));
-
-        setMap(JSON.parse(ReactSession.get("cart") || '{}'));
-        if(map.has(producto)){
-            updateMap(producto,map.get(producto)+1);
-        }
-        else
-            updateMap(producto,1);
-        console.log(JSON.parse(ReactSession.get("cart") || '{h}'));
+        var contains = false;
+        cart.forEach( item => {
+            if(item.producto.name==producto.name){
+                item.num+=1;
+                contains = true;
+            }
+        });
+        let num = 1;
+        if(contains===false)
+            cart.push({producto,num});
+        console.log(cart);
     }
 
     const cld = new Cloudinary({
