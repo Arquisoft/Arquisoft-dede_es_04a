@@ -38,9 +38,6 @@ database MongoDb
 Admin -> DeDe: Enter credentials
 DeDe -> MongoDb: Verify the information entered
 DeDe --> Admin: Successful login
-Admin -> DeDe: Add, remove or update products
-DeDe -> MongoDb: Changes on the database
-DeDe --> Admin: Notification of changes
 @enduml
 ----
 
@@ -91,3 +88,36 @@ DeDe --> Client: Successful registration
 @enduml
 ----
 
+=== Add products
+
+This view shows how the administrator will add a product to the catalog.
+
+[plantuml,"AdminAdd",png]
+----
+@startuml
+actor Admin
+participant DeDe
+database MongoDb
+Admin -> DeDe: Enters all the data from the new product
+DeDe -> MongoDb: Verifies that the user is an administrator, validates the data and chages the database
+DeDe --> Admin: Successful addition of the product
+@enduml
+----
+
+
+=== View orders
+
+This view shows how a client will obtain a list of all his orders.
+
+[plantuml,"ClientOrders",png]
+----
+@startuml
+actor Client
+participant DeDe
+database MongoDb
+Client -> DeDe: Request his orders
+DeDe -> MongoDb: Ask for the list of orders of the client
+MongoDb --> DeDe: Get the list of orders
+DeDe --> Client: Gets all of his orders
+@enduml
+----
