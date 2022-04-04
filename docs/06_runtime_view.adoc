@@ -88,19 +88,19 @@ DeDe --> Client: Successful registration
 @enduml
 ----
 
-=== Add products
+=== Modify products
 
-This view shows how the administrator will add a product to the catalog.
+This view shows how the administrator will modify the catalog.
 
-[plantuml,"AdminAdd",png]
+[plantuml,"AdminModify",png]
 ----
 @startuml
 actor Admin
 participant DeDe
 database MongoDb
-Admin -> DeDe: Enters all the data from the new product
+Admin -> DeDe: Enters all the data from the product he wants to add, modify or delete
 DeDe -> MongoDb: Verifies that the user is an administrator, validates the data and chages the database
-DeDe --> Admin: Successful addition of the product
+DeDe --> Admin: Successful modification of the catalog
 @enduml
 ----
 
