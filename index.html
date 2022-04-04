@@ -777,22 +777,9 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <div class="paragraph">
 <p>The customer will have access to his shopping basket where he will be able to delete products, modify their quantity or finalise his purchase.</p>
 </div>
-<div class="listingblock">
+<div class="imageblock">
 <div class="content">
-<pre>@startuml
-node "Server" {
-    [dede]
- }
-database MongoDB
-Actor usuario
-rectangle PODs
-
-usuario --&gt; [dede]: log in
-[dede] --&gt; usuario: show products
-[dede] ..&gt; MongoDB : save products
-[dede] &lt;.. MongoDB : get products
-[dede] &lt;..&gt; PODs : personal information
-@enduml</pre>
+<img src="./images/Context.png" alt="Context" width="335" height="373">
 </div>
 </div>
 </div>
@@ -1199,22 +1186,9 @@ and we believe that it will be easier to achieve the objectives if we focus most
 </dd>
 </dl>
 </div>
-<div class="listingblock">
+<div class="imageblock">
 <div class="content">
-<pre>@startuml
-node "Server" {
-    [dede]
- }
-database MongoDB
-rectangle Mobile
-rectangle Computer
-rectangle PODs
-
-Mobile --&gt; Server
-Computer --&gt; Server
-[dede] &lt;..&gt; MongoDB
-[dede] &lt;..&gt; PODs
-@enduml</pre>
+<img src="./images/DeploymentView.png" alt="DeploymentView" width="254" height="279">
 </div>
 </div>
 <div class="dlist">
