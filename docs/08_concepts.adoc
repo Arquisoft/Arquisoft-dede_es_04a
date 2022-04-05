@@ -42,6 +42,7 @@ and it is very easy to integrate with Node.js, and since we are going to use the
 this comes in very handy when it comes to work.
 
 === Session handling
+For the session we use inside the frontend the 'ReactSession' library to store the username and the token provided by our restapi api to identify it. This user information will be stored after a successful login.
 
 === Exception and error handling
 

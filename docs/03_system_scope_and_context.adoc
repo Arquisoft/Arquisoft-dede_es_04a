@@ -17,6 +17,7 @@ The home page will show all the products available in the shop. The customer wil
 
 The customer will have access to his shopping basket where he will be able to delete products, modify their quantity or finalise his purchase.
 
+[plantuml,"Context",png]
 ----
 @startuml
 node "Server" {
