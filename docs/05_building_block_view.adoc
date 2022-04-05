@@ -39,3 +39,16 @@ Contained Building Blocks::
 |Solid auth client | Client with which we can manage the information of our users' PODS.
 |Mongoose | It will allow us to manage the database
 |===
+
+=== Level 3
+
+image:05_level3.png[]
+
+Contained Building Blocks::
+
+[options="header",cols="1,3"]
+|===
+|Name| Description
+|Webapp | Part of the application that the user will see and interact with.
+|Restapi | Part of the application responsible for persistence.
+|===
