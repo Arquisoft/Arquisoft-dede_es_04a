@@ -70,7 +70,7 @@ const Register = () => {
                 <div className="card">
                     <div className="card-body">
                         <h3>Register</h3>
-                        <form onSubmit={submit}>
+                        <form name = "register" onSubmit={submit}>
                             <div className="form-group">
                                 <input
                                     type="text"
