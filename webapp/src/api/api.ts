@@ -1,4 +1,4 @@
-import {User} from '../shared/shareddtypes';
+import {User} from '../shared/sharedtypes';
 
 export async function addUser(user:User):Promise<boolean>{
     const apiEndPoint= process.env.REACT_APP_API_URI || 'http://localhost:5000/api'
