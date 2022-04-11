@@ -61,8 +61,6 @@ export const validateToken = (req : Request, res: Response, next : NextFunction)
 export const validateRol = (req: Request, res: Response, next: NextFunction) => {
     const username = req.headers.username;
 
-    console.log(username)
-
     if (!username)
         res.status(400).send('Access denied');
     else {

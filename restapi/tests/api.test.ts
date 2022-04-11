@@ -6,9 +6,19 @@ import cors from 'cors';
 import user from "../routes/user";
 import product from '../routes/product';
 import mongoose from 'mongoose';
+import { IUser } from '../models/user';
 
 let app: Application;
 let server: http.Server;
+const admin = {
+    username: 'admin',
+        email: 'admin@admin.com',
+        password: 'Admin1Admin2?',
+        confirmPassword: 'Admin1Admin2?',
+        dni: '12345675A',
+        rol: 1,
+        status: true
+}
 
 const mongodb = 'mongodb+srv://test:test@test.tgpeg.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 let token = '';
@@ -32,6 +42,9 @@ beforeAll(async () => {
     }).on("error", (error: Error) => {
         console.error('Error occured: ' + error.message);
     });
+
+    await mongoose.connection.collections['users'].insertOne(admin)
+
 });
 
 afterAll(async () => {
@@ -71,7 +84,7 @@ describe('user ', () => {
             dni: '12345678A'
         }
         const response: Response = await request(app).post('/signup').send(user).set('Accept', 'application/json');
-        expect(response.statusCode).toBe(400);
+        expect(response.statusCode).toBe(412);
     });
 
     /**
@@ -101,9 +114,10 @@ describe('user ', () => {
             dni: '12345678B'
         }
         await request(app).post('/signup').send(user).set('Accept', 'application/json');
-        const users = await (await request(app).get('/user/list').set('Authorization', token).set('Accept', 'application/json')).body.users;
+        const users = await (await (await request(app).get('/user/list').set('Authorization', token).set('Username', admin.username)
+            .set('Accept', 'application/json'))).body.users;
 
-        expect(users.length).toBe(2);
+        expect(users.length).toBe(3);
     });
 
     /**
@@ -112,22 +126,31 @@ describe('user ', () => {
     it('can find user by username', async () => {
         const username = 'Pablo1';
 
-        const user = await (await request(app).get(`/user/${username}`).set('Authorization', token).set('Accept', 'application/json')).body.user[0];
+        const user = await (await request(app).get(`/user/${username}`).set('Authorization', token).set('Username', admin.username)
+        .set('Accept', 'application/json')).body.user[0];
 
         expect(user.username).toBe(username);
     });
 
     /**
-     * Tests delete user by username.
+     * Tests ban user by username
      */
     it('can delete user by username', async () => {
         const username = 'Pablo2';
 
-        (await request(app).get(`/user/delete/${username}`).set('Authorization', token).set('Accept', 'application/json'));
+        (await request(app).get(`/user/delete/${username}`).set('Authorization', token).set('Username', admin.username).set('Accept', 'application/json'));
 
-        const users = await (await request(app).get('/user/list').set('Authorization', token).set('Accept', 'application/json')).body.users;
+        const users = await (await request(app).get('/user/list').set('Authorization', token).set('Username', admin.username).set('Accept', 'application/json')).body.users;
 
-        expect(users.length).toBe(1);
+        console.log(users);
+        let count = 0;
+         users.forEach((user: IUser)  => {
+             if (!user.status){
+                count++;
+            }
+        });
+
+        expect(count).toBe(1);
     });
 
     /**
@@ -139,11 +162,14 @@ describe('user ', () => {
             email: 'pablo123@email.com'
         }
 
-        const userid = await (await request(app).get(`/user/${user.username}`).set('Authorization', token).set('Accept', 'application/json')).body.user[0];
+        const userid = await (await request(app).get(`/user/${user.username}`).set('Authorization', token).set('Username', admin.username)
+        .set('Accept', 'application/json')).body.user[0];
 
-        (await request(app).post(`/user/update/${userid._id}`).set('Authorization', token).send(user).set('Accept', 'application/json'));
+        (await request(app).post(`/user/update/${userid._id}`).set('Authorization', token).set('Username', admin.username)
+        .send(user).set('Accept', 'application/json'));
 
-        const updatedUser = await (await request(app).get(`/user/${user.username}`).set('Authorization', token).set('Accept', 'application/json')).body.user[0];
+        const updatedUser = await (await request(app).get(`/user/${user.username}`).set('Authorization', token).set('Username', admin.username)
+        .set('Accept', 'application/json')).body.user[0];
 
         expect(user!.email).toBe(updatedUser!.email);
     });
@@ -177,7 +203,7 @@ describe('user ', () => {
         }
 
         const response: Response = await (await request(app).post('/user/pod').send(name).set('Authorization', token).set('Accept', 'application/json'));
-        expect(response.statusCode).toBe(400);
+        expect(response.statusCode).toBe(404);
     });
 });
 
@@ -197,7 +223,8 @@ describe('products ', () => {
             categories: ["laptop", "celullar"],
             urlImage: "https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RE4LqQX?ver=1f00"
         }
-        const response: Response = await request(app).post('/product/add').set('Authorization', token).send(product).set('Accept', 'application/json');
+        const response: Response = await request(app).post('/product/add').set('Authorization', token).set('Username', admin.username)
+        .send(product).set('Accept', 'application/json');
         expect(response.statusCode).toBe(200);
     });
 
@@ -213,7 +240,8 @@ describe('products ', () => {
             categories: ["laptop", "celullar"],
             urlImage: "https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RE4LqQX?ver=1f00"
         }
-        const response: Response = await request(app).post('/product/add').set('Authorization', token).send(product).set('Accept', 'application/json');
+        const response: Response = await request(app).post('/product/add').set('Authorization', token).set('Username', admin.username)
+        .send(product).set('Accept', 'application/json');
         expect(response.statusCode).toBe(400);
     });
 
@@ -235,7 +263,8 @@ describe('products ', () => {
         }
 
         const product = await (await request(app).get('/product/list').set('Accept', 'application/json')).body.products[0]['_id'];
-        await request(app).post('/product/update/' + product).set('Authorization', token).send(productToUpdate).set('Accept', 'application/json');
+        await request(app).post('/product/update/' + product).set('Authorization', token).set('Username', admin.username)
+            .send(productToUpdate).set('Accept', 'application/json');
         const updatedProduct = await (await request(app).get('/product/list').set('Accept', 'application/json')).body.products[0];
         expect(updatedProduct.units).toBe(20);
     });
@@ -253,10 +282,11 @@ describe('products ', () => {
 
     /**
      * Test that a product can be deleted
-     */
+    */
     it('can be deleted', async () => {
         const product = await (await request(app).get('/product/list').set('Accept', 'application/json')).body.products[0]['_id'];
-        await (await request(app).get('/product/delete/' + product).set('Authorization', token).set('Accept', 'application/json')).body.products;
+        await (await request(app).get('/product/delete/' + product).set('Authorization', token).set('Username', admin.username)
+            .set('Accept', 'application/json')).body.products;
         const units = await (await request(app).get('/product/list').set('Accept', 'application/json')).body.products;
         expect(units.length).toBe(0);
     });
