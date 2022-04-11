@@ -83,7 +83,7 @@ export const deleteUser = async (req: Request, res: Response): Promise<Response>
     if(!req.params.username)
         return res.status(400).json({ msg: "Please. Send any username." });
     
-    const user = await User.findOneAndDelete({ username: req.params.username });
+    const user = await User.findOneAndUpdate({ username: req.params.username }, { status: false });
 
     return res.status(200).json({ user });
 };
