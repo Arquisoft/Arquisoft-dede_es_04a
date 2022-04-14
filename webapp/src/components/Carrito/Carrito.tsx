@@ -2,6 +2,7 @@ import{ useState, useEffect} from 'react'
 import { Producto } from "../Productos/Producto"
 import { ReactSession } from 'react-client-session';
 import CartItem from "./CartItem";
+import Productos from '../Productos/Productos';
 
 export type Item = {
   producto: Producto;
@@ -23,6 +24,20 @@ const Carrito = (props: Products) => {
     setProductos(Array.from(map.values()));
   }
 
+  const removeFromCart = (producto: Item)=>{
+    productos.forEach( item => {
+        if(item.producto.name==producto.producto.name){
+            var pos = productos.indexOf(item)
+            if(item.num-1 == 0){
+                productos.splice(pos, 1)
+            }else{
+                item.num-=1;
+            }
+        }
+    });
+    console.log(productos);
+  }
+
   useEffect(() => {
     loadProductos();
   }, [])
@@ -31,12 +46,18 @@ const Carrito = (props: Products) => {
     <div>
       <h1 className='title'>Mi carrito</h1>
       <div className='productos'>
-        {props.products.map(item => {
-          return <CartItem producto={item.producto} num={item.num}/>
-        })}
+        {props.products.map(item => 
+          {return (<div>
+                    <CartItem producto={item.producto} num={item.num}/>
+                    <div className="buttom">
+                      <div> 
+                        <a href="#" className="btn" onClick={() => removeFromCart(item)}>Eliminar</a>
+                      </div>
+                    </div>
+                  </div>
+        )})}
       </div>
     </div>
-
   )
 }
 

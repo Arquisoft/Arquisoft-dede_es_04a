@@ -2,13 +2,17 @@ import {Cloudinary} from "@cloudinary/url-gen";
 import { Producto } from "../Productos/Producto";
 import { pad } from "@cloudinary/url-gen/actions/resize";
 import { AdvancedImage } from "@cloudinary/react";
+import { Item } from '../Carrito/Carrito';
 
 interface Props{
     producto: Producto;
     num: number;
+    
 }
 
-const CartItem = (producto: Props) => {
+const CartItem = ({producto, num}: Props) => {
+
+    
 
     const cld = new Cloudinary({
         cloud: {
@@ -16,9 +20,11 @@ const CartItem = (producto: Props) => {
         }
     }); 
 
-    const url = producto.producto.urlImage
+    const url = producto.urlImage
     const myImage = cld.image(url);
 
+
+    
     
     
     myImage
@@ -32,15 +38,11 @@ const CartItem = (producto: Props) => {
                 </div>
             </a>
             <div className="producto__footer">
-                <h1>{producto.producto.name} - Uds:{producto.num}</h1>
+                <h1>{producto.name} - Uds:{num}</h1>
                 
-                <p className="price">{producto.producto.price}€</p>
+                <p className="price">{producto.price}€</p>
             </div>
-            <div className="buttom">
-                <div> 
-                    <a href="#" className="btn">Eliminar</a>
-                </div>
-            </div>
+            
         </div>
   );
 }

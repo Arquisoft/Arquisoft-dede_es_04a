@@ -15,7 +15,7 @@ defineFeature(feature, test => {
     page = await browser.newPage();
 
     await page
-      .goto("http://localhost:3000", {
+      .goto("http://localhost:3000/register", {
         waitUntil: "networkidle0",
       })
       .catch(() => {});
@@ -25,17 +25,26 @@ defineFeature(feature, test => {
     
     let email:string;
     let username:string;
+    let password:string;
+    let confirmPassword:string;
+    let dni:string;
 
     given('An unregistered user', () => {
       email = "newuser@test.com"
       username = "newuser"
+      password = "pass"
+      confirmPassword = "pass"
+      dni = "0000"
     });
 
     when('I fill the data in the form and press submit', async () => {
-      await expect(page).toMatch('Hi, ASW students')
+      await expect(page).toMatch('Register')
       await expect(page).toFillForm('form[name="register"]', {
         username: username,
         email: email,
+        dni: dni,
+        password: password,
+        confirmPassword: confirmPassword
       })
       await expect(page).toClick('button', { text: 'Accept' })
     });
