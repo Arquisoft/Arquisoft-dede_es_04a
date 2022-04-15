@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { Shipment } from "shippo";
 import Order from "../models/order";
 
-const shippo = require('shippo')('shippo_test_ddb6bf7b099769646168069499c3de5fd5e85507')
+const shippo = require('shippo')('shippo_test_e569cbc523acb20b5a6c3b22788bfc0898cda51b')
 
 export const findAll = async (req: Request, res: Response): Promise<Response> => {
     const orders = await Order.find();
@@ -18,6 +18,15 @@ export const createOrder = async (req: Request, res: Response): Promise<Response
 
     return res.status(200).json({ newOrder });
 };
+
+export const updateStatus = async (req: Request, res: Response): Promise<Response> => {
+    if (!req.body.orderId || !req.body.status)
+        return res.status(400).json({ msg: 'Please, complete all the fields' });
+
+    await Order.findByIdAndUpdate(req.body.orderId, { status: req.body.status });
+
+    return res.status(200).json({ msg: 'Status updated' });
+}
 
 export const getShippingDetails = async (req: Request, res: Response)  => {
     const addressFrom = {
