@@ -14,6 +14,7 @@ const Register = () => {
         password: "",
         confirmPassword: "",
         dni: "",
+        token: ""
     };
 
     const [user, setUser] = useState<User>(initialState);

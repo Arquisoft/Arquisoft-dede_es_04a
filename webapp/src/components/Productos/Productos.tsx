@@ -13,11 +13,9 @@ const Productos = (props: Products) => {
     const[productos, setProductos] = useState<Producto[]>([])
     
     const loadProductos = async ()=>{
-        const res = await productoService.getProductos()
-        console.log(res)
-        let datos = res.data
-        console.log(datos)
-        setProductos(datos.products)
+        const res = await productoService.getProductos();
+        let datos = res.data;
+        setProductos(datos.products);
     }
 
     useEffect(()=>{

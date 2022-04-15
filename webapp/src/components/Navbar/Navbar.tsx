@@ -9,10 +9,10 @@ const Navbar = () => {
 
     function logout(){
         ReactSession.set("username",undefined);
+        ReactSession.set("user",undefined);
         navigate("/");
     }
 
-    console.log(ReactSession.get("username"));
     if(true){
         return (
             <nav className="navbar navbar-light bg-light">
