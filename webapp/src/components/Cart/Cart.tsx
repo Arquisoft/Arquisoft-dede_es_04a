@@ -39,7 +39,8 @@ const Carrito = (props: Products) => {
   }, [])
 
   const createOrder = ()=>{
-    let order : OrderType = {id:'', owner: ReactSession.get("user"), products: productos, price: 0};
+    let id = Math.random()*10000;
+    let order : OrderType = {id:String(id) , owner: ReactSession.get("user"), products: productos, price: 0};
     orderService.createNewOrder(order);
   }
 
@@ -63,5 +64,4 @@ const Carrito = (props: Products) => {
   )
 }
 
-//return <CartItem producto={producto} key={producto.name} />
 export default Carrito

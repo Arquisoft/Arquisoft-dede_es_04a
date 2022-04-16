@@ -7,7 +7,7 @@ import { ToastContainer } from 'react-toastify';
 import Login from './components/Users/Login';
 import Productos from './components/Productos/Productos';
 import Register from './components/Users/Register';
-import { BrowserRouter, Routes, Route, useParams } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 import AniadirProducto from './components/Productos/AniadirProducto';
 
@@ -24,11 +24,7 @@ ReactSession.set("username",undefined)
 
 const App = ():JSX.Element => {
   const [cart,setCart] = useState<Item[]>([]);
-  const [id, setId] = useState<string>("");
 
-  let {params} = useParams();
-  let aux = params as string;
-  setId(aux);
   return (
   <BrowserRouter>
       <Navbar/> 
@@ -40,7 +36,7 @@ const App = ():JSX.Element => {
           <Route path="/addProduct" element={<AniadirProducto />}></Route>
           <Route path="/cart" element={<Carrito products={cart}/>}></Route>
           <Route path="/order/list" element={<Orders/>}></Route>
-          <Route path="/order/details/:id" element={<Order id = {id}/>}></Route>
+          <Route path="/order/details/:id" element={<Order/>}></Route>
           <Route path="*" element={
             <main style={{ padding: "1rem" }}>
               <h1>This URL dont exist</h1>

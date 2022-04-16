@@ -1,18 +1,17 @@
 import{ useState, useEffect} from 'react'
+import { useSearchParams } from 'react-router-dom';
 import { Item, OrderType } from "../../shared/sharedtypes"
 import OrderItem  from './OrderItem';
 import * as orderService from './OrderService';
 
-type Id = {
-    id: string;  
-}
-
-const Order = ({id}: Id) => {
+const Order = () => {
   const [productos, setProductos] = useState<Item[]>([]);
   const [order, setOrder] = useState<OrderType>();
 
+  const [searchParams, setSearchParams] = useSearchParams();
+
   const loadOrder = async () => {
-    let res = await orderService.getOrder(id);
+    let res = await orderService.getOrder(searchParams.get("id") as string); //this.props.match.params.id
     setOrder(res.data.order)
     setProductos(order?.products as Item[]);
   }
