@@ -1,5 +1,5 @@
 import { ChangeEvent, FormEvent, useState } from "react";
-import { Producto } from "./Producto";
+import { Producto } from "../../shared/sharedtypes";
 import * as productosService from './ProductosService';
 import { useNavigate } from 'react-router-dom';
 import { toast } from "react-toastify";

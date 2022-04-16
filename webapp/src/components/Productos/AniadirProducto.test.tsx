@@ -1,9 +1,5 @@
 import { render, fireEvent, act } from "@testing-library/react";
 import Productos from "./AniadirProducto";
-import {User} from '../../shared/sharedtypes';
-import * as api from '../../api/api'
-import { Item } from '../Carrito/Carrito'
-import * as productoService from './ProductosService'
 
 
 jest.mock('../../api/api');

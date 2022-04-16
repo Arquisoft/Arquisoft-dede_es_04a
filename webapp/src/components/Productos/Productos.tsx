@@ -1,8 +1,7 @@
 import { useEffect, useState} from 'react'
 import * as productoService from './ProductosService'
-import {Producto} from './Producto'
+import {Producto, Item} from '../../shared/sharedtypes'
 import ProductoItem from './ProductoItem'
-import { Item } from '../Carrito/Carrito'
 
 type Products = {
     products: Item[];

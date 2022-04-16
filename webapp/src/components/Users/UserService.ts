@@ -1,5 +1,5 @@
 import axios from "axios";
-import {User} from "./User";
+import {User} from "../../shared/sharedtypes";
 
 const API = process.env.REACT_APP_API_URI || 'http://localhost:5000/api';
 

@@ -1,13 +1,9 @@
-import{ useState, useEffect} from 'react'
-import { Producto } from "../Productos/Producto"
+import{ useState, useEffect} from 'react';
 import { ReactSession } from 'react-client-session';
 import CartItem from "./CartItem";
-import Productos from '../Productos/Productos';
+import { OrderType, Item} from "../../shared/sharedtypes";
+import * as orderService from '../Order/OrderService';
 
-export type Item = {
-  producto: Producto;
-  num: number;
-}
 
 type Products = {
   products: Item[];
@@ -42,6 +38,11 @@ const Carrito = (props: Products) => {
     loadProductos();
   }, [])
 
+  const createOrder = ()=>{
+    let order : OrderType = {id:'', owner: ReactSession.get("user"), products: productos, price: 0};
+    orderService.createNewOrder(order);
+  }
+
   return (
     <div>
       <h1 className='title'>Mi carrito</h1>
@@ -57,6 +58,7 @@ const Carrito = (props: Products) => {
                   </div>
         )})}
       </div>
+      <button onClick={()=>createOrder()}>Finalizar pedido</button>
     </div>
   )
 }

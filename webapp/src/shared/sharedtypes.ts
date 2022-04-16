@@ -1,4 +1,30 @@
+export type Producto = {
+  categoria: string;
+  name: string;
+  description: string;
+  urlImage: string;
+  price: number;
+  units: number;
+  onSale: boolean;
+}
+
 export type User = {
-    name:string;
-    email:string;
-  }
+  email?:string;
+  dni?:string;
+  username:string;
+  password:string;
+  confirmPassword?:string;
+  token:string;
+}
+
+export type Item = {
+  producto: Producto;
+  num: number;
+}
+
+export type OrderType = {
+    id: string;
+    owner: User;
+    products: Item[];
+    price: number;
+}
