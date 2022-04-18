@@ -1,5 +1,5 @@
 import { ChangeEvent, FormEvent, useState } from "react";
-import { User } from "./User";
+import { User } from "../../shared/sharedtypes";
 import * as userService from './UserService';
 import { useNavigate } from 'react-router-dom';
 import { toast } from "react-toastify";
@@ -11,12 +11,11 @@ const Login = () => {
 
     const initialState = {
         username: "",
-        email: "",
         password: "",
-        dni: "",
+        token: "",
     };
 
-    const [user, setUser] = useState<User>({ username: '', password: '' })
+    const [user, setUser] = useState<User>({ username: '', password: '', token: '' })
 
     const inputChange = (e: ChangeEvent<HTMLInputElement>) => {
         setUser({ ...user, [e.target.name]: e.target.value })
@@ -32,7 +31,9 @@ const Login = () => {
             try {
                 const result = await userService.login(user);
                 if (result.status === 200) {
+                    user.token = result.data.token;
                     ReactSession.set("username", user.username);
+                    ReactSession.set("user", user);
                     toast.success("Welcome back " + ReactSession.get("username"));
                     navigate('/');
                 }

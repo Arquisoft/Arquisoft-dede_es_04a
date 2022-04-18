@@ -1,7 +1,5 @@
 import { render, fireEvent, act } from "@testing-library/react";
 import Login from "./Login";
-import {User} from '../../shared/sharedtypes';
-import * as api from '../../api/api'
 
 test('check login ok', async () => {
     await act(async () => {    

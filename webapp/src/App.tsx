@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import {ReactSession} from 'react-client-session';
 import './App.css';
 
@@ -14,7 +14,10 @@ import AniadirProducto from './components/Productos/AniadirProducto';
 import 'react-toastify/dist/ReactToastify.css'
 import 'bootswatch/dist/pulse/bootstrap.min.css';
 import './index.css';
-import Carrito, { Item } from './components/Carrito/Carrito';
+import Carrito from './components/Cart/Cart';
+import { Item } from './shared/sharedtypes';
+import Orders from './components/Order/Orders';
+import Order from './components/Order/Order';
 
 ReactSession.setStoreType("localStorage");
 ReactSession.set("username",undefined)
@@ -32,6 +35,8 @@ const App = ():JSX.Element => {
           <Route path="/register" element={<Register />}></Route>
           <Route path="/addProduct" element={<AniadirProducto />}></Route>
           <Route path="/cart" element={<Carrito products={cart}/>}></Route>
+          <Route path="/order/list" element={<Orders/>}></Route>
+          <Route path="/order/details/:id" element={<Order/>}></Route>
           <Route path="*" element={
             <main style={{ padding: "1rem" }}>
               <h1>This URL dont exist</h1>

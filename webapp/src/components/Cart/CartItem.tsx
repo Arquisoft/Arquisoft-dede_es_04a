@@ -1,5 +1,5 @@
 import {Cloudinary} from "@cloudinary/url-gen";
-import { Producto } from "../Productos/Producto";
+import { Producto } from "../../shared/sharedtypes";
 import { pad } from "@cloudinary/url-gen/actions/resize";
 import { AdvancedImage } from "@cloudinary/react";
 

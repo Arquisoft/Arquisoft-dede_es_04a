@@ -1,9 +1,7 @@
-import {Producto} from './Producto'
+import {Producto, Item} from '../../shared/sharedtypes'
 import {AdvancedImage} from '@cloudinary/react';
 import {Cloudinary} from "@cloudinary/url-gen";
-
 import {pad} from "@cloudinary/url-gen/actions/resize";
-import { Item } from '../Carrito/Carrito';
 
 interface Props{
   producto: Producto;
@@ -11,9 +9,6 @@ interface Props{
 }
 
 const ProductoItem = ({producto, cart}: Props) => {
-
-    //var map = new Map<Producto,number>();
-    //const [carr, setCart] = useState(cart);
       
     const addToCart = () =>{
         var contains = false;
