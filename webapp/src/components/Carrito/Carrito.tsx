@@ -2,7 +2,6 @@ import{ useState, useEffect} from 'react'
 import { Producto } from "../Productos/Producto"
 import { ReactSession } from 'react-client-session';
 import CartItem from "./CartItem";
-import Productos from '../Productos/Productos';
 
 export type Item = {
   producto: Producto;
@@ -26,9 +25,9 @@ const Carrito = (props: Products) => {
 
   const removeFromCart = (producto: Item)=>{
     productos.forEach( item => {
-        if(item.producto.name==producto.producto.name){
+        if(item.producto.name===producto.producto.name){
             var pos = productos.indexOf(item)
-            if(item.num-1 == 0){
+            if(item.num-1 === 0){
                 productos.splice(pos, 1)
             }else{
                 item.num-=1;

@@ -1,8 +1,6 @@
-import { useEffect, useState } from 'react'
 import {Producto} from './Producto'
 import {AdvancedImage} from '@cloudinary/react';
 import {Cloudinary} from "@cloudinary/url-gen";
-import {ReactSession} from 'react-client-session';
 
 import {pad} from "@cloudinary/url-gen/actions/resize";
 import { Item } from '../Carrito/Carrito';
@@ -20,7 +18,7 @@ const ProductoItem = ({producto, cart}: Props) => {
     const addToCart = () =>{
         var contains = false;
         cart.forEach( item => {
-            if(item.producto.name==producto.name){
+            if(item.producto.name===producto.name){
                 item.num+=1;
                 contains = true;
             }
