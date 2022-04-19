@@ -2,8 +2,7 @@ import{ useState, useEffect} from 'react';
 import { ReactSession } from 'react-client-session';
 import CartItem from "./CartItem";
 import { OrderType, Item} from "../../shared/sharedtypes";
-import * as orderService from '../Order/OrderService';
-
+import { useNavigate } from 'react-router-dom';
 
 type Products = {
   products: Item[];
@@ -13,6 +12,8 @@ const Carrito = (props: Products) => {
   const [productos, setProductos] = useState<Item[]>([]);
 
   const [map, setMap] = useState(new Map());
+
+  const navigate = useNavigate();
 
   const loadProductos = async () => {
     setMap(JSON.parse(ReactSession.get("cart") || '{}'));
@@ -41,7 +42,8 @@ const Carrito = (props: Products) => {
   const createOrder = ()=>{
     let id = Math.random()*10000;
     let order : OrderType = {id:String(id) , owner: ReactSession.get("user"), products: productos, price: 0};
-    orderService.createNewOrder(order);
+    ReactSession.set("order",order);
+    navigate("/cart/payment");
   }
 
   return (

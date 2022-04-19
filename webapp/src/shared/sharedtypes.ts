@@ -28,3 +28,11 @@ export type OrderType = {
     products: Item[];
     price: number;
 }
+
+export type PaymentMean = {
+  name: string;
+  surname: string;
+  code: string;
+  date: string;
+  cvv: string;
+}
