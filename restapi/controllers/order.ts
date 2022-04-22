@@ -6,6 +6,18 @@ const shippo = require('shippo')('shippo_test_e569cbc523acb20b5a6c3b22788bfc0898
 
 export const findAll = async (req: Request, res: Response): Promise<Response> => {
     const orders = await Order.find();
+    const today = new Date()
+
+    orders.forEach(order => {
+        if (order.status != "RECIBIDO") {
+            if (order.receptionDate <= today) {
+                order.status = "RECIBIDO"
+            } else if (order.orderDate < today) {
+                order.status = "ON DELIVERY"
+            }
+            order.save();
+        }
+    });
     return res.status(200).json({ orders });
 };
 
@@ -28,7 +40,7 @@ export const updateStatus = async (req: Request, res: Response): Promise<Respons
     return res.status(200).json({ msg: 'Status updated' });
 }
 
-export const getShippingDetails = async (req: Request, res: Response)  => {
+export const getShippingDetails = async (req: Request, res: Response) => {
     const addressFrom = {
         "name": "Tech Zone",
         "street1": "145 W 9th St, Azusa",
