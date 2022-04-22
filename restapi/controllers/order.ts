@@ -21,6 +21,24 @@ export const findAll = async (req: Request, res: Response): Promise<Response> =>
     return res.status(200).json({ orders });
 };
 
+export const findById = async (req: Request, res: Response): Promise<Response> => {
+    if(!req.params.id){
+        return res.status(400).json({ msg: "Please. Send an ID" });
+    }
+    const order = await Order.findById(req.params.id);
+
+    return res.status(200).json({ order });
+};
+
+export const findByUsername = async (req: Request, res: Response): Promise<Response> => {
+    if(!req.params.email){
+        return res.status(400).json({ msg: "Please. Send an ID" });
+    }
+    const orders = await Order.find({ user: req.params.email });
+
+    return res.status(200).json({ orders });
+};
+
 export const createOrder = async (req: Request, res: Response): Promise<Response> => {
     if (!req.body.products || !req.body.address || !req.body.user || !req.body.shippingCost || !req.body.totalPrice)
         return res.status(400).json({ msg: "Please, complete all the fields" });
