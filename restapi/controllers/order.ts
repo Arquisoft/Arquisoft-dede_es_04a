@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { Shipment } from "shippo";
 import Order from "../models/order";
 
-const shippo = require('shippo')('shippo_test_e569cbc523acb20b5a6c3b22788bfc0898cda51b')
+const shippo = require('shippo')('shippo_test_e569cbc523acb20b5a6c3b22788bfc0898cda51b');
 
 export const findAll = async (req: Request, res: Response): Promise<Response> => {
     const orders = await Order.find();
@@ -12,6 +12,10 @@ export const findAll = async (req: Request, res: Response): Promise<Response> =>
 export const createOrder = async (req: Request, res: Response): Promise<Response> => {
     if (!req.body.products || !req.body.address || !req.body.user || !req.body.shippingCost || !req.body.totalPrice)
         return res.status(400).json({ msg: "Please, complete all the fields" });
+
+    const address = `${req.body.address.street_address}, ${req.body.address.locality}, ${req.body.address.region}, ${req.body.address.postal_code}, ${req.body.address.country_name}`;
+
+    req.body.address = address;
 
     const newOrder = new Order(req.body);
     newOrder.save();
