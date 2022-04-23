@@ -1,6 +1,6 @@
 import { ChangeEvent, FormEvent, useState } from "react";
 import { User } from "../../shared/sharedtypes";
-import * as userService from './UserService';
+import * as userService from '../Services/UserService';
 import { useNavigate } from 'react-router-dom';
 import { toast } from "react-toastify";
 import {ReactSession} from 'react-client-session';
@@ -12,10 +12,9 @@ const Login = () => {
     const initialState = {
         username: "",
         password: "",
-        token: "",
     };
 
-    const [user, setUser] = useState<User>({ username: '', password: '', token: '' })
+    const [user, setUser] = useState<User>({ username: '', password: '' })
 
     const inputChange = (e: ChangeEvent<HTMLInputElement>) => {
         setUser({ ...user, [e.target.name]: e.target.value })
@@ -29,12 +28,14 @@ const Login = () => {
         }
         else {
             try {
+                console.log(user);
                 const result = await userService.login(user);
                 if (result.status === 200) {
-                    user.token = result.data.token;
-                    ReactSession.set("username", user.username);
-                    ReactSession.set("user", user);
-                    toast.success("Welcome back " + ReactSession.get("username"));
+                    //user.token = result.data.token;
+                    //ReactSession.set("username", user.username);
+                    //ReactSession.set("user", user);
+                    //toast.success("Welcome back " + ReactSession.get("username"));
+                    toast.success("Welcome back " + localStorage.get("user").username);
                     navigate('/');
                 }
             } catch (error) {

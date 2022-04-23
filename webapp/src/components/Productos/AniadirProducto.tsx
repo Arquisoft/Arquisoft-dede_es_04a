@@ -1,6 +1,6 @@
 import { ChangeEvent, FormEvent, useState } from "react";
 import { Producto } from "../../shared/sharedtypes";
-import * as productosService from './ProductosService';
+import * as productsService from '../Services/ProductsService';
 import { useNavigate } from 'react-router-dom';
 import { toast } from "react-toastify";
 
@@ -36,7 +36,7 @@ const AniadirProducto = () => {
         }
         else {
             try {
-                await productosService.addProducto(producto);
+                await productsService.addProducto(producto);
                 toast.success("Succesfully registered");
                 navigate('/');
             } catch (error) {

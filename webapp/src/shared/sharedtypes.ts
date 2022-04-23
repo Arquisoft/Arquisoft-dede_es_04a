@@ -8,13 +8,16 @@ export type Producto = {
   onSale: boolean;
 }
 
+enum Roles {ROLE_USER,ROLE_ADMIN}
+
 export type User = {
   email?:string;
   dni?:string;
   username:string;
   password:string;
   confirmPassword?:string;
-  token:string;
+  token?:string;
+  role?:Roles;
 }
 
 export type Item = {

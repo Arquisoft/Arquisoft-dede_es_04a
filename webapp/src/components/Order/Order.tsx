@@ -2,7 +2,7 @@ import{ useState, useEffect} from 'react'
 import { useSearchParams } from 'react-router-dom';
 import { Item, OrderType } from "../../shared/sharedtypes"
 import OrderItem  from './OrderItem';
-import * as orderService from './OrderService';
+import * as orderService from '../Services/OrderService';
 
 const Order = () => {
   const [productos, setProductos] = useState<Item[]>([]);

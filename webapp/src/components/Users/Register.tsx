@@ -1,6 +1,6 @@
 import { ChangeEvent, FormEvent, useState } from "react";
 import { User } from "../../shared/sharedtypes";
-import * as userService from './UserService';
+import * as userService from '../Services/UserService';
 import { useNavigate } from 'react-router-dom';
 import { toast } from "react-toastify";
 

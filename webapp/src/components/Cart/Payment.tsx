@@ -3,7 +3,7 @@ import { PaymentMean } from "../../shared/sharedtypes";
 import { useNavigate } from 'react-router-dom';
 import { toast } from "react-toastify";
 import {ReactSession} from 'react-client-session';
-import * as orderService from '../Order/OrderService';
+import * as orderService from '../Services/OrderService';
 
 const Payment = () => {
 
