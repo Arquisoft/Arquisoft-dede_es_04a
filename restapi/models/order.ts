@@ -2,13 +2,14 @@ import { model, Schema, Document } from 'mongoose'
 import { IAddress } from './user';
 
 export interface IOrder extends Document {
-    products: Map<String, Number>, 
-    user: string,
-    address: IAddress,
-    shippingCost: number,
-    totalPrice: number
-    orderDate: Date,
-    receptionDate: Date
+    products: Map<String, Number>; 
+    user: string;
+    address: IAddress;
+    shippingCost: number;
+    totalPrice: number;
+    orderDate: Date;
+    receptionDate: Date;
+    status: string;
 }
 
 const orderSchema = new Schema ({
@@ -41,8 +42,13 @@ const orderSchema = new Schema ({
     receptionDate: {
         type: Date,
         required: [true, 'Order must have a reception date ']
+    },
+    status: {
+        type: String,
+        required: [true, 'Order must have a status'],
+        default: 'Preparing'
     }
-})
+});
 
 const Order = model<IOrder>("Order", orderSchema);
 

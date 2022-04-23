@@ -2,10 +2,40 @@ import { Request, Response } from "express";
 import { Shipment } from "shippo";
 import Order from "../models/order";
 
-const shippo = require('shippo')('shippo_test_ddb6bf7b099769646168069499c3de5fd5e85507')
+const shippo = require('shippo')('shippo_test_e569cbc523acb20b5a6c3b22788bfc0898cda51b');
 
 export const findAll = async (req: Request, res: Response): Promise<Response> => {
     const orders = await Order.find();
+    const today = new Date()
+
+    orders.forEach(order => {
+        if (order.status != "RECIBIDO") {
+            if (order.receptionDate <= today) {
+                order.status = "RECIBIDO"
+            } else if (order.orderDate < today) {
+                order.status = "ON DELIVERY"
+            }
+            order.save();
+        }
+    });
+    return res.status(200).json({ orders });
+};
+
+export const findById = async (req: Request, res: Response): Promise<Response> => {
+    if(!req.params.id){
+        return res.status(400).json({ msg: "Please. Send an ID" });
+    }
+    const order = await Order.findById(req.params.id);
+
+    return res.status(200).json({ order });
+};
+
+export const findByUsername = async (req: Request, res: Response): Promise<Response> => {
+    if(!req.params.email){
+        return res.status(400).json({ msg: "Please. Send an ID" });
+    }
+    const orders = await Order.find({ user: req.params.email });
+
     return res.status(200).json({ orders });
 };
 
@@ -13,13 +43,26 @@ export const createOrder = async (req: Request, res: Response): Promise<Response
     if (!req.body.products || !req.body.address || !req.body.user || !req.body.shippingCost || !req.body.totalPrice)
         return res.status(400).json({ msg: "Please, complete all the fields" });
 
+    const address = `${req.body.address.street_address}, ${req.body.address.locality}, ${req.body.address.region}, ${req.body.address.postal_code}, ${req.body.address.country_name}`;
+
+    req.body.address = address;
+
     const newOrder = new Order(req.body);
     newOrder.save();
 
     return res.status(200).json({ newOrder });
 };
 
-export const getShippingDetails = async (req: Request, res: Response)  => {
+export const updateStatus = async (req: Request, res: Response): Promise<Response> => {
+    if (!req.body.orderId || !req.body.status)
+        return res.status(400).json({ msg: 'Please, complete all the fields' });
+
+    await Order.findByIdAndUpdate(req.body.orderId, { status: req.body.status });
+
+    return res.status(200).json({ msg: 'Status updated' });
+}
+
+export const getShippingDetails = async (req: Request, res: Response) => {
     const addressFrom = {
         "name": "Tech Zone",
         "street1": "145 W 9th St, Azusa",
