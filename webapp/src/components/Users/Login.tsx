@@ -28,14 +28,11 @@ const Login = () => {
         }
         else {
             try {
-                console.log(user);
                 const result = await userService.login(user);
                 if (result.status === 200) {
-                    //user.token = result.data.token;
-                    //ReactSession.set("username", user.username);
-                    //ReactSession.set("user", user);
-                    //toast.success("Welcome back " + ReactSession.get("username"));
-                    toast.success("Welcome back " + localStorage.get("user").username);
+                    user.token = result.data.token;
+                    ReactSession.set("user", user);
+                    toast.success("Welcome back " + ReactSession.get("user").username);
                     navigate('/');
                 }
             } catch (error) {

@@ -37,7 +37,7 @@ const Register = () => {
             try {
                 await userService.createNewUser(user);
                 toast.success("Succesfully registered");
-                navigate('/');
+                navigate('/login');
             } catch (error) {
                 setUser(initialState);
                 toast.error("Username or email are already used");

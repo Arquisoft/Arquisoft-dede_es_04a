@@ -2,6 +2,8 @@ import {Producto, Item} from '../../shared/sharedtypes'
 import {AdvancedImage} from '@cloudinary/react';
 import {Cloudinary} from "@cloudinary/url-gen";
 import {pad} from "@cloudinary/url-gen/actions/resize";
+import {ReactSession} from 'react-client-session';
+import { useNavigate } from 'react-router-dom';
 
 interface Props{
   producto: Producto;
@@ -10,7 +12,14 @@ interface Props{
 
 const ProductoItem = ({producto, cart}: Props) => {
       
+    const navigate = useNavigate();
+
     const addToCart = () =>{
+        if(ReactSession.get("user")===undefined){
+            navigate("/login");
+            return;
+        }
+
         var contains = false;
         cart.forEach( item => {
             if(item.producto.name===producto.name){
@@ -21,7 +30,6 @@ const ProductoItem = ({producto, cart}: Props) => {
         let num = 1;
         if(contains===false)
             cart.push({producto,num});
-        console.log(cart);
     }
 
     const cld = new Cloudinary({

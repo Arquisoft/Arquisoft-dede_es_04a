@@ -3,13 +3,18 @@ import {ReactSession} from 'react-client-session';
 import LoggedIn from '../AuthentificationComponents/LoggedIn';
 import LoggedOut from '../AuthentificationComponents/LoggedOut';
 import CarritoImg from '../../images/carrito.png'
+import { Item } from '../../shared/sharedtypes';
 
-const Navbar = () => {
+type Products = {
+    products: Item[];
+}
+
+const Navbar = (props: Products) => {
     const navigate = useNavigate();
 
     function logout(){
-        ReactSession.set("username",undefined);
         ReactSession.set("user",undefined);
+        props.products = [];
         navigate("/");
     }
 

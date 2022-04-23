@@ -11,14 +11,10 @@ type Products = {
 const Carrito = (props: Products) => {
   const [productos, setProductos] = useState<Item[]>([]);
 
-  const [map, setMap] = useState(new Map());
-
   const navigate = useNavigate();
 
   const loadProductos = async () => {
-    setMap(JSON.parse(ReactSession.get("cart") || '{}'));
-    console.log(map);
-    setProductos(Array.from(map.values()));
+    setProductos(ReactSession.get("cart"));
   }
 
   const removeFromCart = (producto: Item)=>{
@@ -32,7 +28,6 @@ const Carrito = (props: Products) => {
             }
         }
     });
-    console.log(productos);
   }
 
   useEffect(() => {
