@@ -12,23 +12,43 @@ const Navbar = () => {
         navigate("/");
     }
 
+    function toProductos(){
+        navigate("/");
+    }
+
+    function toAdd(){
+        navigate("/addProduct");
+    }
+
+    function toCart(){
+        navigate("/cart");
+    }
+
+    function toLogin(){
+        navigate("/login");
+    }
+
+    function toRegister(){
+        navigate("/register");
+    }
+
     console.log(ReactSession.get("username"));
     if(true){
         return (
             <nav className="navbar navbar-light bg-light">
                 <div className="container-fluid">
-                    <Link className="navbar-brand" to="/">Productos</Link>
+                    <Link className="navbar-brand" type="button" to="" onClick={toProductos}>Productos</Link>
                     <LoggedIn>
-                        <Link className="navbar-brand" to="/addProduct">Añadir Producto</Link>
+                        <button onClick={toAdd}>Añadir Producto</button>
                     </LoggedIn>
                     <form className="d-flex">
                         <LoggedIn>    
-                            <Link className="navbar-brand" type="button" to="/cart"><img className='CarritoImg' src={CarritoImg} alt="" width="45" height="40"/></Link> 
+                            <Link className="navbar-brand" type= "button" to="/cart" onClick={toCart}><img className='CarritoImg' src={CarritoImg} alt="" width="45" height="40"/></Link> 
                             <Link className="navbar-brand" type="button" to="" onClick={logout}>Logout</Link> 
                         </LoggedIn>
                         <LoggedOut>
-                            <Link className="navbar-brand" to="/login">Login</Link>
-                            <Link className="navbar-brand" to="/register">Register</Link>  
+                            <button onClick={toLogin}>Login</button>
+                            <button onClick={toRegister}>Register</button>  
                         </LoggedOut>    
                     </form>
                 </div>

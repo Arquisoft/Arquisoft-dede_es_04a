@@ -20,6 +20,7 @@ const Carrito = (props: Products) => {
 
   const loadProductos = async () => {
     setMap(JSON.parse(ReactSession.get("cart") || '{}'));
+    console.log("lo que llega");
     console.log(map);
     setProductos(Array.from(map.values()));
   }
@@ -29,9 +30,10 @@ const Carrito = (props: Products) => {
         if(item.producto.name==producto.producto.name){
             var pos = productos.indexOf(item)
             if(item.num-1 == 0){
-                productos.splice(pos, 1)
+                setProductos(Array.from(productos.splice(pos,0)))
             }else{
-                item.num-=1;
+                productos[pos].num-=1;
+                
             }
         }
     });
@@ -47,7 +49,7 @@ const Carrito = (props: Products) => {
       <h1 className='title'>Mi carrito</h1>
       <div className='productos'>
         {props.products.map(item => 
-          {return (<div>
+          {return (<div key={item.producto.name}>
                     <CartItem producto={item.producto} num={item.num}/>
                     <div className="buttom">
                       <div> 
