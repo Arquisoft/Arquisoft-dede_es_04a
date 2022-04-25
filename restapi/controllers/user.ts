@@ -10,14 +10,14 @@ export const signUp = async (req: Request, res: Response): Promise<Response> => 
         return res.status(400).json({ msg: "Please. Send your username, email, dni and password" });
 
     if (req.body.password !== req.body.confirmPassword)
-        return res.status(400).json({ msg: "Password and confirm password don't match" });
+        return res.status(412).json({ msg: "Password and confirm password don't match" });
 
     let user = await User.findOne({ username: req.body.username.toString() });
     if (user)
-        return res.status(400).json({ msg: "The username already exists" });
+        return res.status(412).json({ msg: "The username already exists" });
     user = await User.findOne({ email: req.body.email.toString() });
     if (user)
-        return res.status(400).json({ msg: "The email already exists" });
+        return res.status(412).json({ msg: "The email already exists" });
 
 
     const newUser = new User(req.body);
@@ -31,7 +31,11 @@ export const login = async (req: Request, res: Response): Promise<Response> => {
 
     const user = await User.findOne({ username: req.body.username.toString() });
     if (!user)
-        return res.status(400).json({ msg: "The username or password are incorrect" });
+        return res.status(401).json({ msg: "The username or password are incorrect" });
+    
+    if (!user.status){
+        return res.status(403).json({ msg: "This user is banned" });
+    }
 
     const isMatch = await user.comparePassword(req.body.password);
     if (isMatch){
@@ -57,7 +61,7 @@ export const login = async (req: Request, res: Response): Promise<Response> => {
         });
 
     }
-    return res.status(400).json({ msg: "The username or password are incorrect" });
+    return res.status(401).json({ msg: "The username or password are incorrect" });
 };
 
 export const findAll = async (req: Request, res: Response): Promise<Response> => {
@@ -79,7 +83,7 @@ export const deleteUser = async (req: Request, res: Response): Promise<Response>
     if(!req.params.username)
         return res.status(400).json({ msg: "Please. Send any username." });
     
-    const user = await User.findOneAndDelete({ username: req.params.username });
+    const user = await User.findOneAndUpdate({ username: req.params.username }, { status: false });
 
     return res.status(200).json({ user });
 };
@@ -150,6 +154,6 @@ export const readAddress = async (req: Request, res : Response): Promise<Respons
 
         return res.status(200).json({ result });
     } catch (error) {
-        return res.status(400).json({msg: "We can't find a POD with this username."})
+        return res.status(404).json({msg: "We can't find a POD with this username."})
     }
 }

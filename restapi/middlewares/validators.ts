@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from "express";
-import { body, ErrorFormatter, validationResult } from "express-validator";
+import { body, validationResult } from "express-validator";
 import jwt from 'jsonwebtoken';
+import User, {IUser} from "../models/user";
 
 export const validateSignUp = [
     body("username")
@@ -56,3 +57,25 @@ export const validateToken = (req : Request, res: Response, next : NextFunction)
         });
     }
 };
+
+export const validateRol = (req: Request, res: Response, next: NextFunction) => {
+    const username = req.headers.username;
+
+    if (!username)
+        res.status(400).send('Access denied');
+    else {
+        User.findOne({ username: username }, (error: Error, user: IUser) => {
+            if (error)
+                res.status(400).send('Error finding the user');
+            else {
+                if (user) {
+                    if (user.rol === 1)
+                        next();
+                    else
+                        res.status(400).send('Current user is not an admin');     
+                } else
+                    res.status(400).send('User not found')
+            }
+        });
+    }
+}
