@@ -35,8 +35,7 @@ const Carrito = (props: Products) => {
   }, [])
 
   const createOrder = ()=>{
-    let id = Math.random()*10000;
-    let order : OrderType = {id:String(id) , owner: ReactSession.get("user"), products: productos, price: 0};
+    let order : OrderType = {id:"" , user: ReactSession.get("user"), products: productos, price: 0};
     ReactSession.set("order",order);
     navigate("/cart/payment");
   }

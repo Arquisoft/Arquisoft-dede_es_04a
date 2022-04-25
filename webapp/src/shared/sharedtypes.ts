@@ -27,7 +27,7 @@ export type Item = {
 
 export type OrderType = {
     id: string;
-    owner: User;
+    user: User;
     products: Item[];
     price: number;
 }
