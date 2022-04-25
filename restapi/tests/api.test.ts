@@ -142,7 +142,6 @@ describe('user ', () => {
 
         const users = await (await request(app).get('/user/list').set('Authorization', token).set('Username', admin.username).set('Accept', 'application/json')).body.users;
 
-        console.log(users);
         let count = 0;
          users.forEach((user: IUser)  => {
              if (!user.status){
