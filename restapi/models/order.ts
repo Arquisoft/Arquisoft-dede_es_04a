@@ -46,7 +46,7 @@ const orderSchema = new Schema ({
     status: {
         type: String,
         required: [true, 'Order must have a status'],
-        default: 'Preparing'
+        default: 'PREPARING'
     }
 });
 

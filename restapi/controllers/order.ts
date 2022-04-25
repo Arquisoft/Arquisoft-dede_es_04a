@@ -9,9 +9,9 @@ export const findAll = async (req: Request, res: Response): Promise<Response> =>
     const today = new Date()
 
     orders.forEach(order => {
-        if (order.status != "RECIBIDO") {
+        if (order.status != "RECEIVED") {
             if (order.receptionDate <= today) {
-                order.status = "RECIBIDO"
+                order.status = "RECEIVED"
             } else if (order.orderDate < today) {
                 order.status = "ON DELIVERY"
             }
@@ -92,12 +92,15 @@ export const getShippingDetails = async (req: Request, res: Response) => {
         "address_to": addressTo,
         "parcels": [parcel],
         "async": false
-    }, function (err: Error, shipment: Shipment) {
+    }, function (err: Error, shipment: { rates: { amount: number, estimated_days: number; }[]; }) {
         if (err) {
             return res.status(400).send(err);
         } else {
-            return res.status(200).send(shipment);
+            const shippingDetails = {
+                amount: shipment.rates[0].amount,
+                estimated_days: shipment.rates[0].estimated_days
+            }
+            return res.status(200).send(shippingDetails);
         }
     });
-    //return res.status(400).send({msg: 'An unnexpected error has ocurreded'});
 }
