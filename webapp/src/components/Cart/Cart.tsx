@@ -10,7 +10,7 @@ type Products = {
 
 const Carrito = (props: Products) => {
   const [productos, setProductos] = useState<Item[]>([]);
-
+  const [price, setPrice] = useState<number>(0);
   const navigate = useNavigate();
 
   const loadProductos = async () => {
@@ -35,9 +35,9 @@ const Carrito = (props: Products) => {
   }, [])
 
   const createOrder = ()=>{
-    let order : OrderType = {id:"" , user: ReactSession.get("user"), products: productos, price: 0};
+    let order : OrderType = {id:"" , user: ReactSession.get("user"), products: productos, price: price};
     ReactSession.set("order",order);
-    navigate("/cart/payment");
+    navigate("/cart/address");
   }
 
   return (
@@ -45,8 +45,10 @@ const Carrito = (props: Products) => {
       <h1 className='title'>Mi carrito</h1>
       <div className='productos'>
         {props.products.map(item => 
-          {return (<div>
-                    <CartItem producto={item.producto} num={item.num}/>
+          {
+            setPrice(price+ item.producto.price*item.num);
+            return (<div>
+                    <CartItem producto={item.producto} key={item.producto.name} num={item.num}/>
                     <div className="buttom">
                       <div> 
                         <a href="#" className="btn" onClick={() => removeFromCart(item)}>Eliminar</a>

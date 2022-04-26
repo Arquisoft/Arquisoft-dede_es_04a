@@ -19,6 +19,7 @@ import { Item } from './shared/sharedtypes';
 import Orders from './components/Order/Orders';
 import Order from './components/Order/Order';
 import Payment from './components/Cart/Payment';
+import Address from './components/Cart/Address';
 
 ReactSession.setStoreType("localStorage");
 ReactSession.set("username",undefined)
@@ -36,6 +37,7 @@ const App = ():JSX.Element => {
           <Route path="/register" element={<Register />}></Route>
           <Route path="/addProduct" element={<AniadirProducto />}></Route>
           <Route path="/cart" element={<Cart products={cart}/>}></Route>
+          <Route path="/cart/address" element={<Address/>}></Route>
           <Route path="/cart/payment" element={<Payment/>}></Route>
           <Route path="/order/list" element={<Orders/>}></Route>
           <Route path="/order/details/:id" element={<Order/>}></Route>

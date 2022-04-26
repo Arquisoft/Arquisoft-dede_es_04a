@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from "react-toastify";
 import {ReactSession} from 'react-client-session';
 import * as orderService from '../Services/OrderService';
+import {OrderType} from '../../shared/sharedtypes';
 
 const Payment = () => {
 
@@ -19,16 +20,17 @@ const Payment = () => {
 
     const [payment, setPayment] = useState<PaymentMean>({ name: '', surname: '', code: '', date: '', cvv: '' });
 
-    const [pod, setPod] = useState<string>();
+    const [order] = useState<OrderType>(ReactSession.get("order"));
 
     const inputChange = (e: ChangeEvent<HTMLInputElement>) => {
         setPayment({ ...payment, [e.target.name]: e.target.value })
     }
 
     const pay = async (e: FormEvent<HTMLFormElement>) => {
-        let order = ReactSession.get("order");
         if(checkPaymentMean()){
-            orderService.createNewOrder(order);
+            let products = new Map<string,number>();
+            order.products.map(i => products.set(i.producto.name,i.num));
+            orderService.createNewOrder(products,order.address!,order.user.username,0,order.price);
             ReactSession.set("order",undefined);
             toast.success("Payment accepted");
             navigate("/");
@@ -118,17 +120,6 @@ const Payment = () => {
                                     className="form-control"
                                     onChange={inputChange}
                                     value={payment.date}
-                                />
-                            </div>
-
-                            <div className="form-group">
-                                <input
-                                    type="text"
-                                    name="pod"
-                                    placeholder="Pod"
-                                    className="form-control"
-                                    onChange={inputChange}
-                                    value={pod}
                                 />
                             </div>
                             <button className="btn btn-primary">

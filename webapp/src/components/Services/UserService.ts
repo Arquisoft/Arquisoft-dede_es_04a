@@ -10,3 +10,7 @@ export const createNewUser = async (user: User) => {
 export const login = async (user: User) => {
     return await axios.post(`${API}/login`, user);
 };
+
+export const getAddress = async (token:string,pod: string) => {
+    return await axios.post(`${API}/user/pod`, {token, pod});
+};

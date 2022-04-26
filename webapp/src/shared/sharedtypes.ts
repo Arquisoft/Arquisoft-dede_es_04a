@@ -25,11 +25,22 @@ export type Item = {
   num: number;
 }
 
+export type AddressType = {
+  street_address: string;
+  locality: string;
+  region: string;
+  postal_code: string;
+  country_name: string;
+}
+
 export type OrderType = {
     id: string;
     user: User;
     products: Item[];
     price: number;
+    address?: AddressType;
+    status?: string;
+    receptionDate?: Date;
 }
 
 export type PaymentMean = {
