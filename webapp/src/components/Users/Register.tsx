@@ -1,6 +1,6 @@
-import React, { ChangeEvent, FormEvent, useState } from "react";
-import { User } from "./User";
-import * as userService from './UserService';
+import { ChangeEvent, FormEvent, useState } from "react";
+import { User } from "../../shared/sharedtypes";
+import * as userService from '../Services/UserService';
 import { useNavigate } from 'react-router-dom';
 import { toast } from "react-toastify";
 
@@ -14,6 +14,7 @@ const Register = () => {
         password: "",
         confirmPassword: "",
         dni: "",
+        token: ""
     };
 
     const [user, setUser] = useState<User>(initialState);
@@ -36,7 +37,7 @@ const Register = () => {
             try {
                 await userService.createNewUser(user);
                 toast.success("Succesfully registered");
-                navigate('/');
+                navigate('/login');
             } catch (error) {
                 setUser(initialState);
                 toast.error("Username or email are already used");

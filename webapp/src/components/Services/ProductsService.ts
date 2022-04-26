@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {Producto} from "./Producto"
+import {Producto} from "../../shared/sharedtypes"
 
 export const getProductos = async() => {
    return await axios.get((process.env.REACT_APP_API_URI ||'http://localhost:5000/api') + "/product/list")

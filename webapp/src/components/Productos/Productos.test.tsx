@@ -1,14 +1,13 @@
-import { render, fireEvent, act } from "@testing-library/react";
+import { render, act } from "@testing-library/react";
 import Productos from "./Productos";
 import {User} from '../../shared/sharedtypes';
-import * as api from '../../api/api'
-import { Item } from '../Carrito/Carrito'
-import * as productoService from './ProductosService'
+import * as api from '../../api/api';
+import * as productService from '../Services/ProductsService';
 
 jest.mock('../../api/api');
 
 test('check register fail', async () => {
-  const res = await productoService.getProductos()
+  const res = await productService.getProductos()
    
   let datos = res.data
 
@@ -20,7 +19,7 @@ test('check register fail', async () => {
 })
 
 test('check productos ok', async () => {
-    const res = await productoService.getProductos()
+    const res = await productService.getProductos()
    
     let datos = res.data
 
