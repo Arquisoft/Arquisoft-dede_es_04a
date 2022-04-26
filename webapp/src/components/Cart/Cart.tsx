@@ -18,13 +18,13 @@ const Carrito = (props: Products) => {
   }, [])
 
   const removeFromCart = (producto: Item)=>{
-    productos.forEach( item => {
+    props.products.forEach( item => {
         if(item.producto.name===producto.producto.name){
-            var pos = productos.indexOf(item)
+            var pos = props.products.indexOf(item);
             if(item.num-1 === 0){
-                productos.splice(pos, 1);
+              props.products.splice(pos, 1);
             }else{
-                item.num-=1;
+              item.num-=1;
             }
         }
     });
@@ -42,8 +42,8 @@ const Carrito = (props: Products) => {
       <div className='productos'>
         {props.products.map(item => 
           {
-            return (<div>
-                    <CartItem producto={item.producto} key={item.producto.name} num={item.num}/>
+            return (<div key={item.producto.name}>
+                    <CartItem producto={item.producto} num={item.num}/>
                     <div className="buttom">
                       <div> 
                         <a href="#" className="btn" onClick={() => removeFromCart(item)}>Eliminar</a>
