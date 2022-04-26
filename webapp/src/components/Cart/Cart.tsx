@@ -9,30 +9,26 @@ type Products = {
 }
 
 const Carrito = (props: Products) => {
-  const [productos, setProductos] = useState<Item[]>([]);
+  const [productos] = useState<Item[]>([]);
   const [price, setPrice] = useState<number>(0);
   const navigate = useNavigate();
 
-  const loadProductos = async () => {
-    setProductos(ReactSession.get("cart"));
-  }
+  useEffect(()=>{
+    props.products.forEach(item => setPrice(price+ item.producto.price*item.num));
+  }, [])
 
   const removeFromCart = (producto: Item)=>{
     productos.forEach( item => {
         if(item.producto.name===producto.producto.name){
             var pos = productos.indexOf(item)
             if(item.num-1 === 0){
-                productos.splice(pos, 1)
+                productos.splice(pos, 1);
             }else{
                 item.num-=1;
             }
         }
     });
   }
-
-  useEffect(() => {
-    loadProductos();
-  }, [])
 
   const createOrder = ()=>{
     let order : OrderType = {id:"" , user: ReactSession.get("user"), products: productos, price: price};
@@ -46,7 +42,6 @@ const Carrito = (props: Products) => {
       <div className='productos'>
         {props.products.map(item => 
           {
-            setPrice(price+ item.producto.price*item.num);
             return (<div>
                     <CartItem producto={item.producto} key={item.producto.name} num={item.num}/>
                     <div className="buttom">
@@ -57,7 +52,8 @@ const Carrito = (props: Products) => {
                   </div>
         )})}
       </div>
-      <button onClick={()=>createOrder()}>Finalizar pedido</button>
+      <h2>Total: {price}</h2>
+      <button onClick={()=>createOrder()} disabled={props.products.length==0}>Finalizar pedido</button>
     </div>
   )
 }
