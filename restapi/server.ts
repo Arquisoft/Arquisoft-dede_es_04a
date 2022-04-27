@@ -9,7 +9,7 @@ const port: number = 5000;
 
 
 const options: cors.CorsOptions = {
-  origin: ['http://localhost:3000', /[ec2].+\.compute-1.amazonaws\.com:3000./]
+  origin: "*"
 }; 
 
 const metricsMiddleware:RequestHandler = promBundle({includeMethod: true});
