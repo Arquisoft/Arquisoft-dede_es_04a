@@ -1,18 +1,23 @@
 import {Link, useNavigate} from 'react-router-dom';
 import {ReactSession} from 'react-client-session';
-import LoggedIn from '../AuthentificationComponents/LoggedIn';
-import LoggedOut from '../AuthentificationComponents/LoggedOut';
+import LoggedIn from '../Authentification/LoggedIn';
+import LoggedOut from '../Authentification/LoggedOut';
 import CarritoImg from '../../images/carrito.png'
+import { Item } from '../../shared/sharedtypes';
 
-const Navbar = () => {
+type Products = {
+    products: Item[];
+}
+
+const Navbar = (props: Products) => {
     const navigate = useNavigate();
 
     function logout(){
-        ReactSession.set("username",undefined);
+        ReactSession.set("user",undefined);
+        props.products = [];
         navigate("/");
     }
 
-    console.log(ReactSession.get("username"));
     if(true){
         return (
             <nav className="navbar navbar-light bg-light">
@@ -27,8 +32,8 @@ const Navbar = () => {
                             <Link className="navbar-brand" type="button" to="" onClick={logout}>Logout</Link> 
                         </LoggedIn>
                         <LoggedOut>
-                            <Link className="navbar-brand" to="/login">Login</Link>
-                            <Link className="navbar-brand" to="/register">Register</Link>  
+                            <Link className="navbar-brand" type="button" to="/login">Login</Link>
+                            <Link className="navbar-brand" type="button" to="/register">Register</Link>  
                         </LoggedOut>    
                     </form>
                 </div>

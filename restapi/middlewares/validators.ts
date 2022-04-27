@@ -48,7 +48,7 @@ export const validateToken = (req : Request, res: Response, next : NextFunction)
     if (!accessToken){
         res.status(400).send('Access denied');
     } else {
-        jwt.verify(accessToken, process.env.SECRET_TOKEN!, (err, user) => {
+        jwt.verify(accessToken, process.env.SECRET!, (err, user) => {
             if(err){
                 res.status(400).send('Access denied, token expired or incorrect');
             } else {

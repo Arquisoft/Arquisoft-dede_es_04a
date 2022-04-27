@@ -1,8 +1,7 @@
 import { useEffect, useState} from 'react'
-import * as productoService from './ProductosService'
-import {Producto} from './Producto'
+import * as productService from '../Services/ProductsService'
+import {Producto, Item} from '../../shared/sharedtypes'
 import ProductoItem from './ProductoItem'
-import { Item } from '../Carrito/Carrito'
 
 type Products = {
     products: Item[];
@@ -13,11 +12,9 @@ const Productos = (props: Products) => {
     const[productos, setProductos] = useState<Producto[]>([])
     
     const loadProductos = async ()=>{
-        const res = await productoService.getProductos()
-        console.log(res)
-        let datos = res.data
-        console.log(datos)
-        setProductos(datos.products)
+        const res = await productService.getProductos();
+        let datos = res.data;
+        setProductos(datos.products);
     }
 
     useEffect(()=>{
