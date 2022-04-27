@@ -13,8 +13,8 @@ let server: http.Server;
 const admin = {
     username: 'admin',
         email: 'admin@admin.com',
-        password: 'Admin1Admin2?',
-        confirmPassword: 'Admin1Admin2?',
+        password: process.env.PASS,
+        confirmPassword: process.env.PASS,
         dni: '12345675A',
         rol: 1,
         status: true
@@ -64,8 +64,8 @@ describe('user ', () => {
         const user = {
             username: 'Pablo1',
             email: 'pablo1@email.com',
-            password: 'Pabloalonso1?',
-            confirmPassword: 'Pabloalonso1?',
+            password: process.env.PASS,
+            confirmPassword: process.env.PASS,
             dni: '12345678A'
         }
         const response: Response = await request(app).post('/signup').send(user).set('Accept', 'application/json');
@@ -79,8 +79,8 @@ describe('user ', () => {
         const user = {
             username: 'Pablo1',
             email: 'pablo1@email.com',
-            password: 'Pabloalonso1?',
-            confirmPassword: 'Pabloalonso1?',
+            password: process.env.PASS,
+            confirmPassword: process.env.PASS,
             dni: '12345678A'
         }
         const response: Response = await request(app).post('/signup').send(user).set('Accept', 'application/json');
@@ -93,7 +93,7 @@ describe('user ', () => {
     it('can login correctly', async () => {
         const user = {
             username: 'Pablo1',
-            password: 'Pabloalonso1?'
+            password: process.env.PASS
         }
         const response: Response = await request(app).post('/login').send(user).set('Accept', 'application/json');
 
@@ -109,12 +109,12 @@ describe('user ', () => {
         const user = {
             username: 'Pablo2',
             email: 'pablo2@email.com',
-            password: 'Pabloalonso2?',
-            confirmPassword: 'Pabloalonso2?',
+            password: process.env.PASS,
+            confirmPassword: process.env.PASS,
             dni: '12345678B'
         }
         await request(app).post('/signup').send(user).set('Accept', 'application/json');
-        const users = await (await (await request(app).get('/user/list').set('Authorization', token).set('Username', admin.username)
+        const users = await ((await request(app).get('/user/list').set('Authorization', token).set('Username', admin.username)
             .set('Accept', 'application/json'))).body.users;
 
         expect(users.length).toBe(3);
@@ -142,7 +142,6 @@ describe('user ', () => {
 
         const users = await (await request(app).get('/user/list').set('Authorization', token).set('Username', admin.username).set('Accept', 'application/json')).body.users;
 
-        console.log(users);
         let count = 0;
          users.forEach((user: IUser)  => {
              if (!user.status){
@@ -202,7 +201,7 @@ describe('user ', () => {
             pod: 'NOsergiomalv'
         }
 
-        const response: Response = await (await request(app).post('/user/pod').send(name).set('Authorization', token).set('Accept', 'application/json'));
+        const response: Response = await request(app).post('/user/pod').send(name).set('Authorization', token).set('Accept', 'application/json');
         expect(response.statusCode).toBe(404);
     });
 });
