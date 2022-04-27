@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import {ReactSession} from 'react-client-session';
+import { ReactSession } from 'react-client-session';
 import './App.css';
 
 import { ToastContainer } from 'react-toastify';
@@ -17,21 +17,33 @@ import './index.css';
 import Carrito, { Item } from './components/Carrito/Carrito';
 
 ReactSession.setStoreType("localStorage");
-ReactSession.set("username",undefined)
+ReactSession.set("username", undefined)
 
-const App = ():JSX.Element => {
-  const [cart,setCart] = useState<Item[]>([]);
+const App = (): JSX.Element => {
+  const [cart, setCart] = useState<Item[]>([]);
+
+  useEffect(() => {
+    const cart = ReactSession.get("cart") || [];
+    //const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+    setCart(cart);
+  }, []);
+
+  const handleUpdateCart = (cart: Item[]) => {
+    setCart(cart);
+    console.log('handleUpdateCart', cart);
+    ReactSession.set('cart', cart);
+  }
 
   return (
-  <BrowserRouter>
-      <Navbar/> 
+    <BrowserRouter>
+      <Navbar />
       <div className='container'>
         <Routes>
-          <Route path="/" element={<Productos products={cart}/>}></Route>
+          <Route path="/" element={<Productos products={cart} onCartUpdate={handleUpdateCart} />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/register" element={<Register />}></Route>
           <Route path="/addProduct" element={<AniadirProducto />}></Route>
-          <Route path="/cart" element={<Carrito products={cart}/>}></Route>
+          <Route path="/cart" element={<Carrito items={cart} onCartUpdate={handleUpdateCart} />}></Route>
           <Route path="*" element={
             <main style={{ padding: "1rem" }}>
               <h1>This URL dont exist</h1>

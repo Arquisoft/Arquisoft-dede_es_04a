@@ -1,4 +1,4 @@
-import{ useState, useEffect} from 'react'
+import { useState, useEffect } from 'react'
 import { Producto } from "../Productos/Producto"
 import { ReactSession } from 'react-client-session';
 import CartItem from "./CartItem";
@@ -9,55 +9,74 @@ export type Item = {
   num: number;
 }
 
-type Products = {
-  products: Item[];
+type CarritoProps = {
+  items: Item[];
+  onCartUpdate: (items: Item[]) => void;
 }
 
-const Carrito = (props: Products) => {
-  const [productos, setProductos] = useState<Item[]>([]);
+const Carrito = ({ items, onCartUpdate }: CarritoProps) => {
 
-  const [map, setMap] = useState(new Map());
+  // const [items, setItems] = useState<Item[]>([]);
 
-  const loadProductos = async () => {
-    setMap(JSON.parse(ReactSession.get("cart") || '{}'));
-    console.log("lo que llega");
-    console.log(map);
-    setProductos(Array.from(map.values()));
+  // const loadProductos = () => {
+  //   // const map = JSON.parse(ReactSession.get("cart") || '{}');
+  //   // console.log("lo que llega");
+  //   // console.log(map);
+  //   setItems(ReactSession.get("cart") || '[]');
+  // }
+
+  const removeFromCart = (item: Item) => {
+    const newCart = [...items];
+
+    const cartItem = newCart.find(item => item.producto._id === item.producto._id);
+
+    if (item) {
+      item.num -= 1;
+
+      if (item.num === 0) {
+        newCart.splice(newCart.indexOf(item), 1);
+      }
+
+      onCartUpdate(newCart);
+    }
   }
 
-  const removeFromCart = (producto: Item)=>{
-    productos.forEach( item => {
-        if(item.producto.name==producto.producto.name){
-            var pos = productos.indexOf(item)
-            if(item.num-1 == 0){
-                setProductos(Array.from(productos.splice(pos,0)))
-            }else{
-                productos[pos].num-=1;
-                
-            }
-        }
-    });
-    console.log(productos);
+  const increaseItemUnits = (item: Item) => {
+    const newCart = [...items];
+
+    const cartItem = newCart.find(item => item.producto._id === item.producto._id);
+
+    if (item) {
+      item.num += 1;
+
+      onCartUpdate(newCart);
+    }
   }
 
-  useEffect(() => {
-    loadProductos();
-  }, [])
+  // useEffect(() => {
+  //   loadProductos();
+  // }, [])
 
   return (
     <div>
       <h1 className='title'>Mi carrito</h1>
       <div className='productos'>
-        {props.products.map(item => 
-          {return (<div key={item.producto.name}>
-                    <CartItem producto={item.producto} num={item.num}/>
-                    <div className="buttom">
-                      <div> 
-                        <a href="#" className="btn" onClick={() => removeFromCart(item)}>Eliminar</a>
-                      </div>
-                    </div>
-                  </div>
-        )})}
+        {items && items.map(item => {
+          return (<div key={item.producto.name}>
+            <CartItem producto={item.producto} num={item.num} />
+            <div className="buttom">
+              <div>
+                <a href="#" className="btn" onClick={() => removeFromCart(item)}>Eliminar</a>
+              </div>
+            </div>
+            <div className="buttom">
+              <div>
+                <a href="#" className="btn" onClick={() => increaseItemUnits(item)}>Añadir</a>
+              </div>
+            </div>
+          </div>
+          )
+        })}
       </div>
     </div>
   )
