@@ -22,10 +22,10 @@ import Payment from './components/Cart/Payment';
 import Address from './components/Cart/Address';
 
 ReactSession.setStoreType("localStorage");
-ReactSession.set("username",undefined)
+ReactSession.set("username",undefined);
 
 const App = ():JSX.Element => {
-  const [cart,setCart] = useState<Item[]>([]);
+  const [cart] = useState<Item[]>([]);
 
   return (
   <BrowserRouter>
