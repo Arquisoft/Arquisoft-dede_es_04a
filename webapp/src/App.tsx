@@ -22,6 +22,7 @@ import Payment from './components/Cart/Payment';
 import Address from './components/Cart/Address';
 import LoggedOut from './components/Authentification/LoggedOut';
 import LoggedIn from './components/Authentification/LoggedIn';
+import { VistaProducto } from './components/Productos/VistaProducto';
 
 ReactSession.setStoreType("localStorage");
 
@@ -40,8 +41,9 @@ const App = ():JSX.Element => {
             <Route path="/cart/address" element={<LoggedIn><Address/></LoggedIn>}></Route>
             <Route path="/cart/payment" element={<LoggedIn><Payment/></LoggedIn>}></Route>
             <Route path="/order/list" element={<LoggedIn><Orders/></LoggedIn>}></Route>
+            <Route path="/producto/:_id" element={<VistaProducto cart={cart}/>}></Route>
             <Route path="/order/details/:id" element={<LoggedIn><Order/></LoggedIn>}></Route>
-          
+
           <Route path="*" element={
             <main style={{ padding: "1rem" }}>
               <h1>Wrong URL</h1>
