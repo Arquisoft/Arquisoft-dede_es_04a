@@ -24,7 +24,7 @@ const ProductoItem = ({producto, cart}: Props) => {
         cart.forEach( item => {
             if(item.producto.name===producto.name){
                 item.num+=1;
-                contains = true;
+                contains = true;    
             }
         });
         let num = 1;

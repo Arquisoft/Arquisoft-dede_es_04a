@@ -39,7 +39,7 @@ export const login = async (req: Request, res: Response): Promise<Response> => {
 
     const isMatch = await user.comparePassword(req.body.password);
     if (isMatch){
-        const tokenSecret = process.env.SECRET_TOKEN;
+        const tokenSecret = process.env.SECRET;
 
         const userForToken = {
             id: user._id,
