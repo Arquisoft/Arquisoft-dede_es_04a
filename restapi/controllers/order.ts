@@ -4,8 +4,7 @@ import Order from "../models/order";
 import {IProduct} from "../models/product"
 
 const shippo = require('shippo')('shippo_test_e569cbc523acb20b5a6c3b22788bfc0898cda51b');
-// import nodeMailer from 'nodemailer';
-// import { hostname } from "os";
+import nodeMailer from 'nodemailer';
 
 export const findAll = async (req: Request, res: Response): Promise<Response> => {
     const orders = await Order.find();
@@ -51,52 +50,56 @@ export const createOrder = async (req: Request, res: Response): Promise<Response
     req.body.address = address;
 
     const newOrder = new Order(req.body);
-    newOrder.save();
-
+    await newOrder.save();
+    
     const info = {
         email: req.body.user,
         id : newOrder.id,
         products : req.body.products
     }
-    //sendMailToClient(info);
-
+    
+    sendMailToClient(info);
+    
     return res.status(200).json({ newOrder });
 };
 
-// const sendMailToClient =async (req: any) => {
-//     let body = req
-//     let config = nodeMailer.createTransport({
-//         host: "smpt.gmail.com",
-//         port: 587,
-//         auth: {
-//             user:"-",
-//             pass:"-"
-//         }
-//     })
+const sendMailToClient =async (req: any) => {
+    let body = req
+    let config = nodeMailer.createTransport({
+        host: "smpt.gmail.com",
+        port: 465,
+        secure:true,
+        auth: {
+            user:"dede4aes@gmail.com",
+            pass:"-"
+        }
+    })
 
-//     let message = "Dear buyer, below you will find the products of your last purchase." + 
-//             "The identifier is " + body.id + " in case you wish to review it on our website\n"
+    let message = "Dear buyer, below you will find the products of your last purchase." + 
+            "The identifier is " + body.id + " in case you wish to review it on our website\n"
     
-//     body.products.forEach((product: IProduct) => {
-//         message += product.name
-//     });
+    // body.products.forEach((product : any) => {
+    //     message += "\t" + product +"\n";
+    // });
 
-//     const options = {
-//         from: "Order",
-//         subject: "Order summary",
-//         to: body.user,
-//         text: message
-//     }
+    message += body.products;
 
-//     config.sendMail(options, function(error, result){
-//         if(error){
-//             console.log(error)
-//         } else {
-//             console.log("hecho")
-//         }
+    const options = {
+        from: "Order",
+        subject: "Order summary",
+        to: body.user,
+        text: message
+    }
+
+    config.sendMail(options, function(error, result){
+        if(error){
+            console.log(error)
+        } else {
+            console.log(result)
+        }
         
-//     })
-// }
+    })
+}
 
 export const updateStatus = async (req: Request, res: Response): Promise<Response> => {
     if (!req.body.orderId || !req.body.status)
