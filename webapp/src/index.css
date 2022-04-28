@@ -252,6 +252,27 @@ code {
   color: white;
 }
 
+/*-----------------Filtros------------------*/
+
+.filtros .barra_busqueda{
+  margin-bottom: 0.5rem;
+  margin-left: 16rem;
+  width: 60%;
+}
+.filtros .barra_busqueda:focus{
+  border: 2px solid black;
+}
+
+.filtros .barra_precio_min{
+  margin-left: 23rem;
+}
+
+.filtros .barra_precio_max{
+  margin-left: 10rem;
+}
+
+
+
 @media only screen and (max-width: 1000px){
   .carrito_item{
     width: 92%;

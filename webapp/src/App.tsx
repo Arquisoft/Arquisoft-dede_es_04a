@@ -15,6 +15,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import 'bootswatch/dist/pulse/bootstrap.min.css';
 import './index.css';
 import Carrito, { Item } from './components/Carrito/Carrito';
+import { VistaProducto } from './components/Productos/VistaProducto';
 
 ReactSession.setStoreType("localStorage");
 ReactSession.set("username", undefined)
