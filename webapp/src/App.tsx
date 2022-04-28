@@ -20,30 +20,31 @@ import Orders from './components/Order/Orders';
 import Order from './components/Order/Order';
 import Payment from './components/Cart/Payment';
 import Address from './components/Cart/Address';
+import LoggedOut from './components/Authentification/LoggedOut';
+import LoggedIn from './components/Authentification/LoggedIn';
 
 ReactSession.setStoreType("localStorage");
-ReactSession.set("username",undefined);
 
 const App = ():JSX.Element => {
   const [cart] = useState<Item[]>([]);
-
   return (
   <BrowserRouter>
       <Navbar products={cart}/> 
       <div className='container'>
         <Routes>
           <Route path="/" element={<Productos products={cart}/>}></Route>
-          <Route path="/login" element={<Login />}></Route>
-          <Route path="/register" element={<Register />}></Route>
-          <Route path="/addProduct" element={<AniadirProducto />}></Route>
-          <Route path="/cart" element={<Cart products={cart}/>}></Route>
-          <Route path="/cart/address" element={<Address/>}></Route>
-          <Route path="/cart/payment" element={<Payment/>}></Route>
-          <Route path="/order/list" element={<Orders/>}></Route>
-          <Route path="/order/details/:id" element={<Order/>}></Route>
+            <Route path="/login" element={<LoggedOut><Login /></LoggedOut>}></Route>
+            <Route path="/register" element={<LoggedOut><Register /></LoggedOut>}></Route>
+            <Route path="/addProduct" element={<LoggedIn><AniadirProducto /></LoggedIn>}></Route>
+            <Route path="/cart" element={<LoggedIn><Cart products={cart}/></LoggedIn>}></Route>
+            <Route path="/cart/address" element={<LoggedIn><Address/></LoggedIn>}></Route>
+            <Route path="/cart/payment" element={<LoggedIn><Payment/></LoggedIn>}></Route>
+            <Route path="/order/list" element={<LoggedIn><Orders/></LoggedIn>}></Route>
+            <Route path="/order/details/:id" element={<LoggedIn><Order/></LoggedIn>}></Route>
+          
           <Route path="*" element={
             <main style={{ padding: "1rem" }}>
-              <h1>This URL dont exist</h1>
+              <h1>Wrong URL</h1>
             </main>}></Route>
         </Routes>
         <ToastContainer />
