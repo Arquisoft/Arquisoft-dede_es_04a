@@ -8,7 +8,7 @@ export type Producto = {
   onSale: boolean;
 }
 
-enum Roles {ROLE_USER,ROLE_ADMIN}
+export enum Roles {ROLE_USER,ROLE_ADMIN}
 
 export type User = {
   email?:string;

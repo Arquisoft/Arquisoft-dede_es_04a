@@ -63,7 +63,7 @@ const Carrito = (props: Products) => {
         )})}
       </div>
       <h2>Total: {price}€</h2>
-      <button onClick={()=>createOrder()} disabled={props.products.length==0}>Finalizar pedido</button>
+      <button onClick={()=>createOrder()} disabled={props.products.length===0}>Finalizar pedido</button>
     </div>
   )
 }

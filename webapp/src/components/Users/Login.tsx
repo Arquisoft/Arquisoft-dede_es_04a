@@ -31,6 +31,7 @@ const Login = () => {
                 const result = await userService.login(user);
                 if (result.status === 200) {
                     user.token = result.data.token;
+                    user.role = result.data.userResult.userRol;
                     ReactSession.set("user", user);
                     toast.success("Welcome back " + ReactSession.get("user").username);
                     navigate('/');

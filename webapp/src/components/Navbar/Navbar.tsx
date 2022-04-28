@@ -4,6 +4,7 @@ import LoggedIn from '../Authentification/LoggedIn';
 import LoggedOut from '../Authentification/LoggedOut';
 import CarritoImg from '../../images/carrito.png'
 import { Item } from '../../shared/sharedtypes';
+import AdminRole from '../Authentification/AdminRole';
 
 type Products = {
     products: Item[];
@@ -24,7 +25,9 @@ const Navbar = (props: Products) => {
                 <div className="container-fluid">
                     <Link className="navbar-brand" to="/">Productos</Link>
                     <LoggedIn>
-                        <Link className="navbar-brand" to="/addProduct">Añadir Producto</Link>
+                        <AdminRole>
+                            <Link className="navbar-brand" to="/addProduct">Añadir Producto</Link>
+                        </AdminRole>
                     </LoggedIn>
                     <form className="d-flex">
                         <LoggedIn>    
