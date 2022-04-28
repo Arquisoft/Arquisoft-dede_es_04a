@@ -53,7 +53,8 @@ export const login = async (req: Request, res: Response): Promise<Response> => {
 
         const userResult = {
             username : user.username,
-            userEmail: user.email
+            userEmail: user.email,
+            userRol: user.rol
         }
 
         return res.status(200).header('authorization', token).json({
