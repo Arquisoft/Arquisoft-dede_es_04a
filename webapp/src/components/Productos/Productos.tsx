@@ -54,7 +54,7 @@ const Productos = ({ products, onCartUpdate }: Products) => {
         console.log({ termino });
         
         setProductosFiltrados(
-            productos.filter(({ price }) => price >= termino)
+            productos.filter(({ price }) => price = termino)
         );
         if(termino ==''){
             setProductosFiltrados(

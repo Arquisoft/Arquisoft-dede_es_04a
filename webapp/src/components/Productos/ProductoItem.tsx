@@ -60,7 +60,7 @@ const ProductoItem = ({ producto, cart, onCartUpdate }: Props) => {
                     Añadir al carrito
                 </button>
                 <div>
-                    <a href="#" className="btn">Vista</a>
+                    <a href={'/producto/' + producto._id} className="btn">Vista</a>
                 </div>
             </div>
         </div>

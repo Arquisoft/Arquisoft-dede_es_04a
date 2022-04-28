@@ -271,7 +271,31 @@ code {
   margin-left: 10rem;
 }
 
+/*-----------------Detalles------------------*/
+.detalles .separacion a{
+  font-size: 40px;
+  
+}
 
+.detalles .descripcion{
+  text-align: center;
+  font-size: 20px;
+  width: 1000px;
+}
+.detalles .separacion .imagenc{
+  margin-top: 3rem;
+  margin-left: 20rem;
+  margin-bottom: 4rem;
+  
+ 
+}
+
+.detalles .separacion .precio{
+  margin-left: 2rem;
+  color: black;
+  text-decoration: none;
+ 
+}
 
 @media only screen and (max-width: 1000px){
   .carrito_item{

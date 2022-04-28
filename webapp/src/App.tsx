@@ -44,6 +44,7 @@ const App = (): JSX.Element => {
           <Route path="/login" element={<Login />}></Route>
           <Route path="/register" element={<Register />}></Route>
           <Route path="/addProduct" element={<AniadirProducto />}></Route>
+          <Route path="/producto/:_id" element={<VistaProducto />}></Route>
           <Route path="/cart" element={<Carrito items={cart} onCartUpdate={handleUpdateCart} />}></Route>
           <Route path="*" element={
             <main style={{ padding: "1rem" }}>
