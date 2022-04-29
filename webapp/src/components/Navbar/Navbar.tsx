@@ -22,9 +22,10 @@ const Navbar = (props: Products) => {
         return (
             <nav className="navbar navbar-light bg-light">
                 <div className="container-fluid">
-                    <Link className="navbar-brand" to="/">Productos</Link>
+                    <Link className="navbar-brand" to="/">Products</Link>
                     <LoggedIn>
-                        <Link className="navbar-brand" to="/addProduct">Añadir Producto</Link>
+                        <Link className="navbar-brand" to="/addProduct">Add Product</Link>
+                        <Link className="navbar-brand" to="/deleteProduct">Delete Product</Link>
                     </LoggedIn>
                     <form className="d-flex">
                         <LoggedIn>    

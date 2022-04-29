@@ -32,6 +32,7 @@ const Login = () => {
                 if (result.status === 200) {
                     user.token = result.data.token;
                     ReactSession.set("user", user);
+                    
                     toast.success("Welcome back " + ReactSession.get("user").username);
                     navigate('/');
                 }
