@@ -41,7 +41,7 @@ export const findByUsername = async (req: Request, res: Response): Promise<Respo
 };
 
 export const createOrder = async (req: Request, res: Response): Promise<Response> => {
-    if (!req.body.products || !req.body.address || !req.body.user || !req.body.shippingCost || !req.body.totalPrice)
+    if (!req.body.products || !req.body.address || !req.body.user || !req.body.shippingCost || !req.body.totalPrice || !req.body.receptionDate)
         return res.status(400).json({ msg: "Please, complete all the fields" });
 
     const address = `${req.body.address.street_address}, ${req.body.address.locality}, ${req.body.address.region}, ${req.body.address.postal_code}, ${req.body.address.country_name}`;

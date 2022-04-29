@@ -27,7 +27,7 @@ let productLaptop = {
     basePrice: 1345,
     IVA: 0.21,
     units: 4,
-    categories: ["laptop", "computer"],
+    category: "laptop",
     urlImage: "https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RE4LqQX?ver=1f00"
 }
 
@@ -37,7 +37,7 @@ let productPhone = {
     basePrice: 135,
     IVA: 0.21,
     units: 6,
-    categories: ["celullar"],
+    category: "celullar",
     urlImage: "https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RE4LqQX?ver=1f00"
 }
 
@@ -251,7 +251,7 @@ describe('products ', () => {
             basePrice: 1345,
             IVA: 0.21,
             units: 4,
-            categories: ["laptop", "celullar"],
+            category: "laptop",
             urlImage: "https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RE4LqQX?ver=1f00"
         }
         const response: Response = await request(app).post('/product/add').set('Authorization', token).set('Username', admin.username)
