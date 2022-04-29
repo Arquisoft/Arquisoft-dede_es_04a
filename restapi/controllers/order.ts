@@ -3,7 +3,7 @@ import Order from "../models/order";
 import Product from "../models/product";
 
 const shippo = require('shippo')('shippo_test_e569cbc523acb20b5a6c3b22788bfc0898cda51b');
-import nodeMailer from 'nodemailer';
+const nodeMailer = require("nodemailer");
 
 export const findAll = async (req: Request, res: Response): Promise<Response> => {
     const orders = await Order.find();
@@ -66,6 +66,7 @@ async function sendMailToClient(info: { email: any; id: any; products: any; }){
     let body = info
 
     var transporter = nodeMailer.createTransport({
+        secure: 'true',
         service: 'gmail',
         auth: {
           user: 'dede4aes@gmail.com',
