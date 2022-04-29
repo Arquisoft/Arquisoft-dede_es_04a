@@ -21,6 +21,26 @@ const admin = {
         status: true
 }
 
+let productLaptop = {
+    name: "Laptop",
+    description: "Simple laptop",
+    basePrice: 1345,
+    IVA: 0.21,
+    units: 4,
+    categories: ["laptop", "computer"],
+    urlImage: "https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RE4LqQX?ver=1f00"
+}
+
+let productPhone = {
+    name: "Phone",
+    description: "Simple phone",
+    basePrice: 135,
+    IVA: 0.21,
+    units: 6,
+    categories: ["celullar"],
+    urlImage: "https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RE4LqQX?ver=1f00"
+}
+
 const mongodb = 'mongodb+srv://test:test@test.tgpeg.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 let token = '';
 
@@ -216,15 +236,7 @@ describe('products ', () => {
      * Tests that a product can be created.
      */
     it('can be created correctly', async () => {
-        const product = {
-            name: "Laptop",
-            description: "Simple laptop",
-            basePrice: 1345,
-            IVA: 0.21,
-            units: 4,
-            categories: ["laptop", "celullar"],
-            urlImage: "https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RE4LqQX?ver=1f00"
-        }
+        const product = productLaptop
         const response: Response = await request(app).post('/product/add').set('Authorization', token).set('Username', admin.username)
         .send(product).set('Accept', 'application/json');
         expect(response.statusCode).toBe(200);
@@ -302,10 +314,11 @@ describe('orders ', () => {
      * Test that a order can be created
      */
      it('can be created', async () => {
+        const productAdded: Response = await request(app).post('/product/add').set('Authorization', token).set('Username', admin.username)
+        .send(productPhone).set('Accept', 'application/json');
         const order = {
             products: [
-                ["id1", 2],
-                ["id2", 3]
+                [productAdded.body.newProduct._id, 2],
             ],
             address: {
                 street_address:"Calle Valdés Salas",
@@ -344,7 +357,7 @@ describe('orders ', () => {
         const result = await request(app).get(`/order/${idOrder}`).set('Authorization', token).set('Username', admin.username)
             .set('Accept', 'application/json');
         
-        expect(result.body.order.products).toStrictEqual({ id1: 2, id2: 3 });
+        expect(result.status).toBe(200);
     });
 
     /**
