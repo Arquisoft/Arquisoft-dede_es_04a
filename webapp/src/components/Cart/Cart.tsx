@@ -61,19 +61,19 @@ const Carrito = (props: Products) => {
       <div className='productos'>
         {props.products.map(item => 
           {
-            return (<div key={item.producto.name}>
+            return (<div key={item.producto.name} >
                     <CartItem producto={item.producto} num={item.num}/>
                     <div className="buttom">
-                      <div> 
-                        <a href="#" className="btn" onClick={() => addFromCart(item)}>Añadir</a>
-                        <a href="#" className="btn" onClick={() => removeFromCart(item)}>Eliminar</a>
+                      <div className='cartbutton'> 
+                        <a href="#" className="btn" onClick={() => addFromCart(item)}>Add</a>
+                        <a href="#" className="btn" onClick={() => removeFromCart(item)}>Remove</a>
                       </div>
                     </div>
                   </div>
         )})}
       </div>
       <h2>Total: {price}€</h2>
-      <button onClick={()=>createOrder()} disabled={props.products.length===0}>Finalizar pedido</button>
+      <button onClick={()=>createOrder()} disabled={props.products.length==0}>Finalize order</button>
     </div>
   )
 }

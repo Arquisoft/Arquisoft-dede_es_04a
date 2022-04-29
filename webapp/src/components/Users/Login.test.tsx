@@ -1,9 +1,10 @@
 import { render, fireEvent, act } from "@testing-library/react";
 import Login from "./Login";
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 test('check login ok', async () => {
     await act(async () => {    
-      const {container, getByText} = render(<Login />)  
+      const {container, getByText} = render(<BrowserRouter><Login /></BrowserRouter>)  
       const inputName = container.querySelector('input[name="username"]')!;
       const inputPassword = container.querySelector('input[name="password"]')!;
 
@@ -17,7 +18,7 @@ test('check login ok', async () => {
 
 test('check login fail', async () => {
     await act(async () => {    
-      const {container, getByText} = render(<Login />)  
+      const {container, getByText} = render(<BrowserRouter><Login /></BrowserRouter>)  
       const inputName = container.querySelector('input[name="username"]')!;
       const inputPassword = container.querySelector('input[name="password"]')!;
 
@@ -32,7 +33,7 @@ test('check login fail', async () => {
 
 test('check login fail no register', async () => {
     await act(async () => {    
-      const {container, getByText} = render(<Login />)  
+      const {container, getByText} = render(<BrowserRouter><Login /></BrowserRouter>)  
       const inputName = container.querySelector('input[name="username"]')!;
       const inputPassword = container.querySelector('input[name="password"]')!;
 

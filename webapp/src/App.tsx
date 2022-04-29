@@ -24,6 +24,7 @@ import LoggedOut from './components/Authentification/LoggedOut';
 import LoggedIn from './components/Authentification/LoggedIn';
 import AdminRole from './components/Authentification/AdminRole';
 import { VistaProducto } from './components/Productos/VistaProducto';
+import { DeleteProduct } from './components/Productos/DeleteProduct';
 
 ReactSession.setStoreType("localStorage");
 
@@ -37,6 +38,7 @@ const App = ():JSX.Element => {
             <Route path="/login" element={<LoggedOut><Login /></LoggedOut>}></Route>
             <Route path="/register" element={<LoggedOut><Register /></LoggedOut>}></Route>
             <Route path="/addProduct" element={<LoggedIn><AdminRole><AniadirProducto /></AdminRole></LoggedIn>}></Route>
+            <Route path="/deleteProduct" element={<LoggedIn><AdminRole><DeleteProduct /></AdminRole></LoggedIn>}></Route>
             <Route path="/cart" element={<LoggedIn><Cart products={cart}/></LoggedIn>}></Route>
             <Route path="/cart/address" element={<LoggedIn><Address/></LoggedIn>}></Route>
             <Route path="/cart/payment" element={<LoggedIn><Payment/></LoggedIn>}></Route>

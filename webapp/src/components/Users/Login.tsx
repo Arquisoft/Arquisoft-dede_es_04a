@@ -33,6 +33,7 @@ const Login = () => {
                     user.token = result.data.token;
                     user.role = result.data.userResult.userRol;
                     ReactSession.set("user", user);
+                    
                     toast.success("Welcome back " + ReactSession.get("user").username);
                     navigate('/');
                 }

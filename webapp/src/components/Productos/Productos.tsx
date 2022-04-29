@@ -16,6 +16,7 @@ const Productos = (props: Products) => {
     
     const loadProductos = async ()=>{
         const res = await productService.getProductos()
+        console.log("productos");
         console.log(res)
         let datos = res.data
         console.log(datos)
@@ -69,7 +70,7 @@ const Productos = (props: Products) => {
 
     return (
         <div>
-            <h1 className='title'>PRODUCTOS</h1>
+            <h1 className='title'>PRODUCTS</h1>
             <div className='filtros'>
                 <div>
                     <input className = 'barra_busqueda' type='text' placeholder='Buscar producto' ref={inputBusqueda} onChange={handleBusquedaChange} />

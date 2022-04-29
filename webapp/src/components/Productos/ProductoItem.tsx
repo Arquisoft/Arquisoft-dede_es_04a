@@ -63,7 +63,7 @@ const ProductoItem = ({producto, cart}: Props) => {
                     Añadir al carrito
                 </button>
                 <div>
-                    <Link className="navbar-brand" type="button" to={ruta}>Vista</Link>
+                    <Link className="btn" type="button" to={ruta}>Vista</Link>
                 </div>
             </div>
       </div>

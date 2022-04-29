@@ -1,7 +1,9 @@
 import { render, fireEvent, act } from "@testing-library/react";
+import {screen} from '@testing-library/react'
 import Register from "./Register";
 import {User} from '../../shared/sharedtypes';
 import * as api from '../../api/api'
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 jest.mock('../../api/api');
 
@@ -22,7 +24,7 @@ test('check register ok', async () => {
   
   jest.spyOn(api,'addUser').mockImplementation((user:User):Promise<boolean> => Promise.resolve(true))
   await act(async () => {    
-    const {container, getByText} = render(<Register />)  
+    const {container, getByText} = render(<BrowserRouter><Register /></BrowserRouter>)  
     const inputName = container.querySelector('input[name="username"]')!;
     const inputEmail = container.querySelector('input[name="email"]')!;
     const inputPassword = container.querySelector('input[name="password"]')!;
@@ -32,7 +34,10 @@ test('check register ok', async () => {
     fireEvent.change(inputEmail, { target: { value: "gonzalezgpablo@uniovi.es" } });
     fireEvent.change(inputPassword, { target: { value: "pass" } });
     fireEvent.change(inputConfirmPassword, { target: { value: "pass" } });
-    fireEvent.change(inputDni, { target: { value: "0000" } });
+    await fireEvent.change(inputDni, { target: { value: "0000" } });
+    
+    const a = screen.getByText("Register");
+    expect(a).toBeInTheDocument();
     const button = getByText("Submit");
     fireEvent.click(button);
   });

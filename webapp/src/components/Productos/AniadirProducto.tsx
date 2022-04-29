@@ -3,6 +3,7 @@ import { Producto } from "../../shared/sharedtypes";
 import * as productsService from '../Services/ProductsService';
 import { useNavigate } from 'react-router-dom';
 import { toast } from "react-toastify";
+import {ReactSession} from 'react-client-session';
 
 const AniadirProducto = () => {
 
@@ -36,7 +37,8 @@ const AniadirProducto = () => {
         }
         else {
             try {
-                await productsService.addProducto(producto);
+                const user = ReactSession.get("user");
+                await productsService.addProducto(user.token, producto);
                 toast.success("Succesfully added");
                 navigate('/');
             } catch (error) {
@@ -69,18 +71,7 @@ const AniadirProducto = () => {
                     <div className="card-body">
                         <h3>Nuevo Producto</h3>
                         <form onSubmit={submit}>
-                        <div className="form-group">
-                                <input
-                                    type="text"
-                                    name="categoria"
-                                    placeholder="Categoria"
-                                    className="form-control"
-                                    onChange={inputChange}
-                                    value={producto.categories}
-                                    autoFocus
-                                />
-                            </div>
-
+                    
 
                             <div className="form-group">
                                 <input
@@ -103,6 +94,17 @@ const AniadirProducto = () => {
                                     className="form-control"
                                     onChange={inputChange}
                                     value={producto.description}
+                                />
+                            </div>
+
+                            <div className="form-group">
+                                <input
+                                    type="text"
+                                    name="categories"
+                                    placeholder="Categories"
+                                    className="form-control"
+                                    onChange={inputChange}
+                                    value={producto.categories}
                                 />
                             </div>
 

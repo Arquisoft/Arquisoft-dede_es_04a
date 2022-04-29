@@ -65,6 +65,7 @@ code {
   color: rgba(0, 0, 0, .555);
   text-transform: uppercase;
   font-size: 18px;
+  max-width: 200px;
 }
 
 .producto__footer .price{
@@ -94,6 +95,8 @@ code {
   max-width: 250px;
   width: 100%;
   margin: 0 auto;
+  margin-left: 0.75rem;
+  margin-bottom: 1rem;
   font-size: 1.5rem;
   color: white;
   font-weight: 600;
@@ -106,7 +109,8 @@ code {
   align-items: center;
   text-align: center;
   margin-left: -2rem;
-  margin-right: 2rem;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
   border-radius: 5px;
 }
 
@@ -318,6 +322,14 @@ code {
   color: white;
   font-weight: 600;
   margin-bottom: 1.5rem;
+}
+
+.buttom .cartbutton{
+  max-width: 450px;
+}
+
+.objetoCart{
+  align-items: center;
 }
 @media only screen and (max-width: 1000px){
   .carrito_item{

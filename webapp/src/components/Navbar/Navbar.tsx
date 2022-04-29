@@ -28,6 +28,7 @@ const Navbar = (props: Products) => {
                         <Link className="navbar-brand" type="button" to="/order/list">My orders</Link>
                         <AdminRole>
                             <Link className="navbar-brand" type="button" to="/addProduct">Add Product</Link>
+                            <Link className="navbar-brand" type="button" to="/deleteProduct">Delete Product</Link>
                         </AdminRole>
                     </LoggedIn>
                     <form className="d-flex">
