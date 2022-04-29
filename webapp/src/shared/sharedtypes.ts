@@ -1,6 +1,6 @@
 export type Producto = {
   _id?: string;
-  categories: string[];
+  category: string;
   name: string;
   description: string;
   urlImage: string;

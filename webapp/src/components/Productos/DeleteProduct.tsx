@@ -4,11 +4,12 @@ import * as productService from '../Services/ProductsService';
 import { useNavigate } from 'react-router-dom';
 import { toast } from "react-toastify";
 import { SettingsPowerTwoTone } from "@mui/icons-material";
+import {ReactSession} from 'react-client-session';
 
 export const DeleteProduct = () => {
 
     const productInitialState = {
-        categories:[],
+        category:"",
         name: "",
         description: "",
         urlImage: "",
@@ -20,7 +21,7 @@ export const DeleteProduct = () => {
 
     const[productos, setProductos] = useState<Producto[]>([])
     const [producto, setProducto] = useState<Producto>(productInitialState);
-    const [name, setName] = useState<string>();
+    const [name, setName] = useState<string>("");
     const navigate = useNavigate();
 
     
@@ -28,11 +29,12 @@ export const DeleteProduct = () => {
     const inputChange = (e: ChangeEvent<HTMLInputElement>) => {
         setName(e.target.value )
         findProd()
-        setProducto(producto)
+        console.log("acabe el change")
     }
 
     const loadProductos = async ()=>{
         const res = await productService.getProductos()
+        console.log("carga Prods")
         console.log(res)
         let datos = res.data
         console.log(datos)
@@ -40,8 +42,11 @@ export const DeleteProduct = () => {
     }
 
     const findProd = () =>{
+        console.log("busca Prods")
         productos.forEach( item => {
             if(item.name=== name){
+                console.log("encuentra Prods")
+                console.log(item.name)
                 setProducto(item)    
             }
         });
@@ -54,13 +59,18 @@ export const DeleteProduct = () => {
 
     const submit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        console.log("paso default")
         if (!checkEmpty()) {
             setName("");
             toast.error("There is any field empty");
         }
         else {
+            console.log("paso campos")
             try {
-                await productService.deleteProducto(producto);
+                const user = ReactSession.get("user");
+                console.log("El producto que llega");
+                console.log(producto);
+                await productService.deleteProducto(user.username, user.token, producto);
                 toast.success("Succesfully added");
                 navigate('/');
             } catch (error) {

@@ -17,7 +17,7 @@ interface Props{
 export const VistaProducto = ({cart}: Props) => {
 
     const initialState = {
-        categories:[],
+        category:"",
         name: "",
         description: "",
         urlImage: "",

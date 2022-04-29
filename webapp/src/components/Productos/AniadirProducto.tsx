@@ -10,7 +10,7 @@ const AniadirProducto = () => {
     const navigate = useNavigate();
 
     const initialState = {
-        categories:[],
+        category:"",
         name: "",
         description: "",
         urlImage: "",
@@ -24,14 +24,15 @@ const AniadirProducto = () => {
 
     const inputChange = (e: ChangeEvent<HTMLInputElement>) => {
         setProducto({ ...producto, [e.target.name]: e.target.value })
-        console.log("Cambio")
+        console.log("Cambio" + e.target.name)
         console.log(producto)
     }
 
     const inputChangeCat = (e: ChangeEvent<HTMLInputElement>) => {
+        console.log("nombre")
+        console.log(e.target.value)
         setProducto({ ...producto, [e.target.name]: e.target.value })
-        console.log("Cambio")
-        console.log(producto)
+        
     }
 
     const submit = async (e: FormEvent<HTMLFormElement>) => {
@@ -79,7 +80,7 @@ const AniadirProducto = () => {
                 <div className="card">
                     <div className="card-body">
                         <h3>Nuevo Producto</h3>
-                        <form onSubmit={submit}>
+                        <form onSubmit={submit} encType="multipart/form-data">
                     
 
                             <div className="form-group">
@@ -109,23 +110,23 @@ const AniadirProducto = () => {
                             <div className="form-group">
                                 <input
                                     type="text"
-                                    name="categories"
+                                    name="category"
                                     placeholder="Categories"
                                     className="form-control"
                                     onChange={inputChangeCat}
-                                    value={producto.categories}
+                                    value={producto.category}
                                 />
                             </div>
 
                             <div className="form-group">
                                 <input
-                                    type="file"
+                                    type="text"
                                     name="urlImage"
                                     placeholder="UrlImage"
                                     className="form-control"
                                     onChange={inputChange}
                                     value={producto.urlImage}
-                                />
+                                ></input>
                             </div>
 
                            
