@@ -7,7 +7,7 @@ import { ToastContainer } from 'react-toastify';
 import Login from './components/Users/Login';
 import Productos from './components/Productos/Productos';
 import Register from './components/Users/Register';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 import AniadirProducto from './components/Productos/AniadirProducto';
 
@@ -30,9 +30,8 @@ ReactSession.setStoreType("localStorage");
 const App = ():JSX.Element => {
   const [cart] = useState<Item[]>([]);
   return (
-  <BrowserRouter>
-      <Navbar products={cart}/> 
       <div className='container'>
+        <Navbar products={cart}/> 
         <Routes>
           <Route path="/" element={<Productos products={cart}/>}></Route>
             <Route path="/login" element={<LoggedOut><Login /></LoggedOut>}></Route>
@@ -44,15 +43,13 @@ const App = ():JSX.Element => {
             <Route path="/order/list" element={<LoggedIn><Orders/></LoggedIn>}></Route>
             <Route path="/producto/:_id" element={<VistaProducto cart={cart}/>}></Route>
             <Route path="/order/details/:id" element={<LoggedIn><Order/></LoggedIn>}></Route>
-
-          <Route path="*" element={
-            <main style={{ padding: "1rem" }}>
-              <h1>Wrong URL</h1>
-            </main>}></Route>
+            <Route path="*" element={
+              <main style={{ padding: "1rem" }}>
+                <h1>Wrong URL</h1>
+              </main>}></Route>
         </Routes>
         <ToastContainer />
       </div>
-    </BrowserRouter>
   )
 }
 

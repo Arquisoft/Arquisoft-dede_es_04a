@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, MouseEventHandler, useState } from "react";
 import { AddressType, OrderType } from "../../shared/sharedtypes";
 import { useNavigate } from 'react-router-dom';
 import { toast } from "react-toastify";
@@ -21,14 +21,16 @@ const Address = () => {
         setPod( e.target.value );
     }
 
-    const getAddress = async (e: FormEvent<HTMLFormElement>) => {
+    const getAddress = async () => {
         if(checkPod()){
             let user = ReactSession.get("user");
             try{
                 const res = await userService.getAddress(user.token,pod);
-                console.log(res);
-                if (res.status === 200)
-                    setAddress({street_address: res.data.street_address, locality: res.data.locality, region: res.data.region, postal_code: res.data.postal_code, country_name: res.data.country_name});           
+                if (res.status === 200){
+                    console.log(res.data.result)
+                    setAddress({street_address: res.data.result.street_address, locality: res.data.result.locality, region: res.data.result.region, postal_code: res.data.result.postal_code, country_name: res.data.result.country_name});
+                } 
+                console.log(address);       
             }catch(error){
                 setPod(initialState.pod);
                 toast.error("Wrong pod");
@@ -40,7 +42,7 @@ const Address = () => {
     }
 
     const checkPod = (): boolean => {
-        if (pod === initialState.pod)
+        if (pod.length==0)
             return false;
         return true;
     }
@@ -57,7 +59,6 @@ const Address = () => {
                 <div className="card">
                     <div className="card-body">
                         <h3>Your address</h3>
-                        <form onSubmit={getAddress}>
                             <div className="form-group">
                                 <input
                                     type="text"
@@ -68,65 +69,9 @@ const Address = () => {
                                     value={pod}
                                 />
                             </div>
-                            <button className="btn btn-primary">
+                            <button className="btn btn-primary" onClick={() => getAddress()}>
                                 Get address
                             </button>
-                        </form>
-                        <form onSubmit={confirm}>
-                            <div className="form-group">
-                                <input
-                                    type="text"
-                                    name="country"
-                                    placeholder=""
-                                    className="form-control"
-                                    value={address.country_name}
-                                    disabled
-                                />
-                            </div>
-                            <div className="form-group">
-                                <input
-                                    type="text"
-                                    name="region"
-                                    placeholder=""
-                                    className="form-control"
-                                    value={address.region}
-                                    disabled
-                                />
-                            </div>
-                            <div className="form-group">
-                                <input
-                                    type="text"
-                                    name="locality"
-                                    placeholder=""
-                                    className="form-control"
-                                    value={address.locality}
-                                    disabled
-                                />
-                            </div>
-                            <div className="form-group">
-                                <input
-                                    type="text"
-                                    name="street"
-                                    placeholder=""
-                                    className="form-control"
-                                    value={address.street_address}
-                                    disabled
-                                />
-                            </div>
-                            <div className="form-group">
-                                <input
-                                    type="text"
-                                    name="postal_code"
-                                    placeholder=""
-                                    className="form-control"
-                                    value={address.postal_code}
-                                    disabled
-                                />
-                            </div>
-                            <button className="btn btn-primary">
-                                Confirm
-                            </button>
-                        </form>
                     </div>
                 </div>
             </div>

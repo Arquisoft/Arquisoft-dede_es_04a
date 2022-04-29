@@ -12,7 +12,6 @@ export const login = async (user: User) => {
 };
 
 export const getAddress = async (token:string,pod: string) => {
-    var response = await axios.post(`${API}/user/pod`,{pod}, {headers:{'Authorization': token}});
-    return response;
+    return await axios.post(`${API}/user/pod`,{pod}, {headers:{'Authorization': token}});
 
 };
