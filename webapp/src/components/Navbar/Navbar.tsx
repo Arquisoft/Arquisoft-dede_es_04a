@@ -20,17 +20,18 @@ const Navbar = (props: Products) => {
     }
 
     if(true){
-        return (
+        return (    
             <nav className="navbar navbar-light bg-light">
                 <div className="container-fluid">
-                    <Link className="navbar-brand" to="/">Productos</Link>
+                    <Link className="navbar-brand" type="button" to="/">TechZone</Link>
                     <LoggedIn>
+                        <Link className="navbar-brand" type="button" to="/order/list">My orders</Link>
                         <AdminRole>
-                            <Link className="navbar-brand" to="/addProduct">Añadir Producto</Link>
+                            <Link className="navbar-brand" type="button" to="/addProduct">Add Product</Link>
                         </AdminRole>
                     </LoggedIn>
                     <form className="d-flex">
-                        <LoggedIn>    
+                        <LoggedIn>  
                             <Link className="navbar-brand" type="button" to="/cart"><img className='CarritoImg' src={CarritoImg} alt="" width="45" height="40"/></Link> 
                             <Link className="navbar-brand" type="button" to="" onClick={logout}>Logout</Link> 
                         </LoggedIn>

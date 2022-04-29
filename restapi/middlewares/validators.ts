@@ -44,6 +44,7 @@ export const validateSignUp = [
 ];
 
 export const validateToken = (req : Request, res: Response, next : NextFunction) => {
+    
     const accessToken = req.headers.authorization;
     if (!accessToken){
         res.status(400).send('Access denied');

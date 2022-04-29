@@ -8,9 +8,9 @@ export const createNewOrder = async (products: Map<String,number>,address:Addres
 };
 
 export const getOrdersOf = async (user: User) => {
-    return await axios.post(`${API}/order/list`, user);
+    return await axios.post(`${API}/order/user/:email`, user);
 };
 
 export const getOrder = async (id: string) => {
-    return await axios.post(`${API}/order/details`, id);
+    return await axios.post(`${API}/order/:id`, id);
 };

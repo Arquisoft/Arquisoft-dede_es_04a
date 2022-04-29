@@ -26,9 +26,9 @@ const Address = () => {
             let user = ReactSession.get("user");
             try{
                 const res = await userService.getAddress(user.token,pod);
-                console.log(res)
+                console.log(res);
                 if (res.status === 200)
-                    setAddress({street_address: res.data.street_address, locality: res.data.locality, region: res.data.region, postal_code: res.data.postal_code, country_name: res.data.country_name});               
+                    setAddress({street_address: res.data.street_address, locality: res.data.locality, region: res.data.region, postal_code: res.data.postal_code, country_name: res.data.country_name});           
             }catch(error){
                 setPod(initialState.pod);
                 toast.error("Wrong pod");
