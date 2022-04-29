@@ -3,7 +3,7 @@ import {AdvancedImage} from '@cloudinary/react';
 import {Cloudinary} from "@cloudinary/url-gen";
 import {pad} from "@cloudinary/url-gen/actions/resize";
 import {ReactSession} from 'react-client-session';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 interface Props{
   producto: Producto;
@@ -41,7 +41,7 @@ const ProductoItem = ({producto, cart}: Props) => {
     const url = producto.urlImage
     const myImage = cld.image(url);
 
-    
+    const ruta = '/producto/' + producto._id;
     
     myImage
     .resize(pad().width(250).height(250))
@@ -63,7 +63,7 @@ const ProductoItem = ({producto, cart}: Props) => {
                     Añadir al carrito
                 </button>
                 <div>
-                    <a href="#" className="btn">Vista</a>
+                    <Link className="navbar-brand" type="button" to={ruta}>Vista</Link>
                 </div>
             </div>
       </div>

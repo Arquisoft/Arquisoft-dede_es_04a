@@ -9,7 +9,7 @@ const AniadirProducto = () => {
     const navigate = useNavigate();
 
     const initialState = {
-        categoria:"",
+        categories:"",
         name: "",
         description: "",
         urlImage: "",
@@ -37,11 +37,11 @@ const AniadirProducto = () => {
         else {
             try {
                 await productsService.addProducto(producto);
-                toast.success("Succesfully registered");
+                toast.success("Succesfully added");
                 navigate('/');
             } catch (error) {
                 setProducto(initialState);
-                toast.error("Username or email are already used");
+                toast.error("Error at adding");
             }
         }
     }
@@ -76,7 +76,7 @@ const AniadirProducto = () => {
                                     placeholder="Categoria"
                                     className="form-control"
                                     onChange={inputChange}
-                                    value={producto.categoria}
+                                    value={producto.categories}
                                     autoFocus
                                 />
                             </div>
@@ -109,13 +109,15 @@ const AniadirProducto = () => {
                             <div className="form-group">
                                 <input
                                     type="text"
-                                    name="urlImagen"
-                                    placeholder="urlImagen"
+                                    name="urlImage"
+                                    placeholder="UrlImage"
                                     className="form-control"
                                     onChange={inputChange}
                                     value={producto.urlImage}
                                 />
                             </div>
+
+                           
 
                             <div className="form-group">
                                 <input
@@ -130,7 +132,7 @@ const AniadirProducto = () => {
 
                             <div className="form-group">
                                 <input
-                                    type="number"
+                                    type= "number"
                                     name="units"
                                     placeholder="Units"
                                     className="form-control"
