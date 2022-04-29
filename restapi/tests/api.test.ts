@@ -5,6 +5,7 @@ import bp from 'body-parser';
 import cors from 'cors';
 import user from "../routes/user";
 import product from '../routes/product';
+import order from '../routes/order'
 import mongoose from 'mongoose';
 import { IUser } from '../models/user';
 
@@ -18,6 +19,26 @@ const admin = {
         dni: '12345675A',
         rol: 1,
         status: true
+}
+
+let productLaptop = {
+    name: "Laptop",
+    description: "Simple laptop",
+    basePrice: 1345,
+    IVA: 0.21,
+    units: 4,
+    categories: ["laptop", "computer"],
+    urlImage: "https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RE4LqQX?ver=1f00"
+}
+
+let productPhone = {
+    name: "Phone",
+    description: "Simple phone",
+    basePrice: 135,
+    IVA: 0.21,
+    units: 6,
+    categories: ["celullar"],
+    urlImage: "https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RE4LqQX?ver=1f00"
 }
 
 const mongodb = 'mongodb+srv://test:test@test.tgpeg.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
@@ -36,6 +57,7 @@ beforeAll(async () => {
     app.use(bp.json());
     app.use(user);
     app.use(product);
+    app.use(order);
 
     server = app.listen(port, (): void => {
         console.log('Restapi server for testing listening on ' + port);
@@ -50,6 +72,7 @@ beforeAll(async () => {
 afterAll(async () => {
     await mongoose.connection.collections['users'].drop();
     await mongoose.connection.collections['products'].drop();
+    await mongoose.connection.collections['orders'].drop();
     await mongoose.connection.close();
     server.close() //close the server
 });
@@ -213,15 +236,7 @@ describe('products ', () => {
      * Tests that a product can be created.
      */
     it('can be created correctly', async () => {
-        const product = {
-            name: "Laptop",
-            description: "Simple laptop",
-            basePrice: 1345,
-            IVA: 0.21,
-            units: 4,
-            categories: ["laptop", "celullar"],
-            urlImage: "https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RE4LqQX?ver=1f00"
-        }
+        const product = productLaptop
         const response: Response = await request(app).post('/product/add').set('Authorization', token).set('Username', admin.username)
         .send(product).set('Accept', 'application/json');
         expect(response.statusCode).toBe(200);
@@ -289,5 +304,79 @@ describe('products ', () => {
         const units = await (await request(app).get('/product/list').set('Accept', 'application/json')).body.products;
         expect(units.length).toBe(0);
     });
+});
 
+//------------------------------ORDERS------------------------------
+describe('orders ', () => {
+    let idOrder : string;
+
+    /**
+     * Test that a order can be created
+     */
+     it('can be created', async () => {
+        const productAdded: Response = await request(app).post('/product/add').set('Authorization', token).set('Username', admin.username)
+        .send(productPhone).set('Accept', 'application/json');
+        const order = {
+            products: [
+                [productAdded.body.newProduct._id, 2],
+            ],
+            address: {
+                street_address:"Calle Valdés Salas",
+                locality:"Oviedo",
+                region:"Asturias",
+                postal_code:"33001",
+                country_name:"Spain"
+            },
+            user:"sermual@gmail.com",
+            shippingCost:23,
+            totalPrice:45,
+            receptionDate: new Date()
+        }
+        
+        const result = await request(app).post('/order/add').set('Authorization', token).set('Username', admin.username)
+            .send(order).set('Accept', 'application/json');
+        
+        expect(result.status).toBe(200);
+    });
+
+     /**
+     * Test that can list product
+     */
+      it('can be listed', async () => {
+        const result = await request(app).get('/order/list').set('Authorization', token).set('Username', admin.username)
+            .set('Accept', 'application/json');
+        
+        idOrder = result.body.orders[0]._id;
+        expect(result.body.orders.length).toBe(1);
+    });
+
+    /**
+     * Test that can find a order by id
+     */
+     it('can find by id', async () => {
+        const result = await request(app).get(`/order/${idOrder}`).set('Authorization', token).set('Username', admin.username)
+            .set('Accept', 'application/json');
+        
+        expect(result.status).toBe(200);
+    });
+
+    /**
+     * Test that can find orders by username
+     */
+     it('can find by username', async () => {
+        const result = await request(app).get("/order/user/sermual@gmail.com").set('Authorization', token)
+            .set('Accept', 'application/json');
+        
+        expect(result.body.orders.length).toBe(1);
+    });
+
+    /**
+     * Test that can find orders by username
+     */
+     it('can find by username', async () => {
+        const result = await request(app).get(`/order/user/sermual@gmail.com`).set('Authorization', token)
+            .set('Accept', 'application/json');
+        
+        expect(result.body.orders.length).toBe(1);
+    });
 });

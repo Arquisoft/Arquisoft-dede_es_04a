@@ -1,8 +1,9 @@
 import { Request, Response } from "express";
-import { Shipment } from "shippo";
 import Order from "../models/order";
+import Product from "../models/product";
 
 const shippo = require('shippo')('shippo_test_e569cbc523acb20b5a6c3b22788bfc0898cda51b');
+const nodeMailer = require("nodemailer");
 
 export const findAll = async (req: Request, res: Response): Promise<Response> => {
     const orders = await Order.find();
@@ -48,10 +49,50 @@ export const createOrder = async (req: Request, res: Response): Promise<Response
     req.body.address = address;
 
     const newOrder = new Order(req.body);
-    newOrder.save();
-
+    await newOrder.save();
+    
+    const info = {
+        email: req.body.user,
+        id : newOrder.id,
+        products : req.body.products
+    }
+    
+     sendMailToClient(info);
+    
     return res.status(200).json({ newOrder });
 };
+
+async function sendMailToClient(info: { email: any; id: any; products: any; }){
+    let body = info
+
+    var transporter = nodeMailer.createTransport({
+        secure: 'true',
+        service: 'gmail',
+        auth: {
+          user: 'dede4aes@gmail.com',
+          pass: process.env.PASS1
+        }
+      });
+      
+      let message = "Dear buyer, below you will find the products of your last purchase.\n" + 
+      "The identifier is " + body.id + " in case you wish to review it on our website\nThe order summary is:\n"
+
+      for(let [key, value] of body.products){
+          let productToFind = await Product.findById(key);
+          message += "\t- Product: "+ productToFind!.name + " Units: " + value +"\n";  
+      }
+
+      message += "\nWe hope you will buy again soon!\nTech Zone"
+
+      var mailOptions = {
+        from: 'dede4aes@gmail.com',
+        to: body.email,
+        subject: 'Order summary',
+        text: message
+      };
+      
+       transporter.sendMail(mailOptions);
+}
 
 export const updateStatus = async (req: Request, res: Response): Promise<Response> => {
     if (!req.body.orderId || !req.body.status)
