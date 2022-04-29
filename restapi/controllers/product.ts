@@ -12,7 +12,7 @@ export const findAll = async (req: Request, res: Response): Promise<Response> =>
 
 // Create a new product
 export const productCreate = async (req: Request, res: Response): Promise<Response> => {
-    if (!req.body.name || !req.body.description || !req.body.basePrice || !req.body.units || !req.body.categories || !req.body.urlImage
+    if (!req.body.name || !req.body.description || !req.body.basePrice || !req.body.units || !req.body.category || !req.body.urlImage
         || !req.body.IVA)
         return res.status(400).json({ msg: "Please, complete all the fields" })
  
@@ -50,9 +50,9 @@ export const deleteProduct = async (req: Request, res: Response): Promise<Respon
 
 // Find by category
 export const findByCategory = async (req: Request, res: Response): Promise<Response> => {
-    if (!req.params.categories)
+    if (!req.params.category)
         return res.status(400).json({msg: "Please, send a category"});
         
-    const products = await Product.find({categories: req.params.categories});
+    const products = await Product.find({category: req.params.category});
     return res.status(200).json({products});
 };
