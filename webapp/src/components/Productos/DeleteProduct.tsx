@@ -8,13 +8,14 @@ import { SettingsPowerTwoTone } from "@mui/icons-material";
 export const DeleteProduct = () => {
 
     const productInitialState = {
-        categories:"",
+        categories:[],
         name: "",
         description: "",
         urlImage: "",
-        price: 0,
+        basePrice: 0,
         units: 0,
         onSale: true,
+        IVA: 0.21
     };
 
     const[productos, setProductos] = useState<Producto[]>([])

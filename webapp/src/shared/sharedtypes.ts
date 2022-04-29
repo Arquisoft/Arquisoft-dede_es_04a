@@ -1,12 +1,13 @@
 export type Producto = {
   _id?: string;
-  categories: string;
+  categories: string[];
   name: string;
   description: string;
   urlImage: string;
-  price: number;
+  basePrice: number;
   units: number;
   onSale: boolean;
+  IVA: number;
 }
 
 enum Roles {ROLE_USER,ROLE_ADMIN}

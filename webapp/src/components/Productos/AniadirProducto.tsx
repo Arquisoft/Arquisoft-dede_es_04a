@@ -10,19 +10,28 @@ const AniadirProducto = () => {
     const navigate = useNavigate();
 
     const initialState = {
-        categories:"",
+        categories:[],
         name: "",
         description: "",
         urlImage: "",
-        price: 0,
+        basePrice: 0,
         units: 0,
         onSale: true,
+        IVA: 0.21
     };
 
     const [producto, setProducto] = useState<Producto>(initialState);
 
     const inputChange = (e: ChangeEvent<HTMLInputElement>) => {
         setProducto({ ...producto, [e.target.name]: e.target.value })
+        console.log("Cambio")
+        console.log(producto)
+    }
+
+    const inputChangeCat = (e: ChangeEvent<HTMLInputElement>) => {
+        setProducto({ ...producto, [e.target.name]: e.target.value })
+        console.log("Cambio")
+        console.log(producto)
     }
 
     const submit = async (e: FormEvent<HTMLFormElement>) => {
@@ -38,7 +47,7 @@ const AniadirProducto = () => {
         else {
             try {
                 const user = ReactSession.get("user");
-                await productsService.addProducto(user.token, producto);
+                await productsService.addProducto(user.username, user.token, producto);
                 toast.success("Succesfully added");
                 navigate('/');
             } catch (error) {
@@ -49,7 +58,7 @@ const AniadirProducto = () => {
     }
 
     const checkPrice = (): boolean => {
-        if (producto.price !== 0)
+        if (producto.basePrice !== 0)
             return true;
         return false;
     }
@@ -103,14 +112,14 @@ const AniadirProducto = () => {
                                     name="categories"
                                     placeholder="Categories"
                                     className="form-control"
-                                    onChange={inputChange}
+                                    onChange={inputChangeCat}
                                     value={producto.categories}
                                 />
                             </div>
 
                             <div className="form-group">
                                 <input
-                                    type="text"
+                                    type="file"
                                     name="urlImage"
                                     placeholder="UrlImage"
                                     className="form-control"
@@ -120,15 +129,14 @@ const AniadirProducto = () => {
                             </div>
 
                            
-
                             <div className="form-group">
                                 <input
                                     type="number"
-                                    name="price"
+                                    name="basePrice"
                                     placeholder="Price"
                                     className="form-control"
                                     onChange={inputChange}
-                                    value={producto.price}
+                                    value={producto.basePrice}
                                 />
                             </div>
 

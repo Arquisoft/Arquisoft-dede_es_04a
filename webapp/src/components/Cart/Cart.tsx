@@ -17,7 +17,7 @@ const Carrito = (props: Products) => {
     setPrice(0);
     let total = 0;
     for(var i = 0;i<props.products.length;i++){
-        total += props.products[i].producto.price * props.products[i].num;
+        total += props.products[i].producto.basePrice * props.products[i].num;
     }
     setPrice(total);
   }

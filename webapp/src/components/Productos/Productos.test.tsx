@@ -9,7 +9,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 jest.mock('../../api/api');
 
 test('check register fail', async () => {
-  const product:Producto = {categories: 'cellular', name: 'IPhone', description: 'a', urlImage:'aaaaa', price: 200, units: 2, onSale: true };
+  const product:Producto = {categories: ['cellular'], name: 'IPhone', description: 'a', urlImage:'aaaaa', basePrice: 200, units: 2, onSale: true, IVA: 0.21};
   const listProd: Item[] = [{producto: product, num: 3}];
 
   const component = render(<BrowserRouter><Productos products={listProd}/></BrowserRouter>);

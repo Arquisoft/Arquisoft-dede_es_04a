@@ -28,7 +28,7 @@ const OrderItem = ({producto, num}: Item) => {
             <div className="producto__footer">
                 <h1>{producto.name} - Uds:{num}</h1>
                 
-                <p className="price">{producto.price}€</p>
+                <p className="price">{producto.basePrice}€</p>
             </div>
             
         </div>

@@ -16,10 +16,21 @@ interface Props{
 
 export const VistaProducto = ({cart}: Props) => {
 
+    const initialState = {
+        categories:[],
+        name: "",
+        description: "",
+        urlImage: "",
+        basePrice: 0,
+        units: 0,
+        onSale: true,
+        IVA: 0.21
+    };
 
     const [productos, setProductos] = useState<Producto[]>([])
-    const [detalle, setDetalle] = useState<Producto>()
+    const [detalle, setDetalle] = useState<Producto>(initialState)
     const navigate = useNavigate();
+
 
     const params = useParams();
     console.log("parametros")
@@ -85,12 +96,21 @@ export const VistaProducto = ({cart}: Props) => {
             cart.push({producto,num});
      }
     }
+    const price = detalle?.basePrice + (detalle?.basePrice * detalle?.IVA)
+
+    console.log("detalle.basePrice")
+    console.log(detalle.basePrice)
+    console.log("detalle.IVA")
+    console.log(detalle.IVA)
+    
+    
+
   return (
     <div className='detalles'>
         <h2>{detalle?.name}</h2>
         <div className='separacion'>
             <AdvancedImage className='imagenc' cldImg={myImage} />
-            <a className='precio'>Price: {detalle?.price}$</a>
+            <a className='precio'>Price: {price.toFixed(2)}$</a>
         </div>
         <p className='descripcion'>{detalle?.description}</p>
         <button className="btn" onClick={addToCart}>
