@@ -33,7 +33,7 @@ const Payment = () => {
             order.products.map(i => products.set(i.producto.name,i.num));
             var orderDate = new Date(Date.now());
             try{
-                const res = await orderService.createNewOrder(products,order.address!,order.user.email!,order.shippingCost!,String(100),orderDate,order.receptionDate!,"PREPARING",order.user.token!);
+                const res = await orderService.createNewOrder(products,order.address!,order.user.email!,order.shippingCost!,String(order.price),orderDate,order.receptionDate!,"PREPARING",order.user.token!);
                 if(res.status===200){
                     ReactSession.set("order",undefined);
                     toast.success("Payment accepted");
