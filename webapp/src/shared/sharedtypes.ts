@@ -42,6 +42,7 @@ export type OrderType = {
     address?: AddressType;
     status?: string;
     receptionDate?: Date;
+    shippingCost?: number;
 }
 
 export type PaymentMean = {

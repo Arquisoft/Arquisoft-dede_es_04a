@@ -3,13 +3,14 @@ import { ReactSession } from 'react-client-session';
 import CartItem from "./CartItem";
 import { OrderType, Item} from "../../shared/sharedtypes";
 import { useNavigate } from 'react-router-dom';
+import AddIcon from '@mui/icons-material/Add';
+import RemoveIcon from '@mui/icons-material/Remove';
 
 type Products = {
   products: Item[];
 }
 
 const Carrito = (props: Products) => {
-  const [productos] = useState<Item[]>([]);
   const [price, setPrice] = useState<number>(0);
   const navigate = useNavigate();
 
@@ -50,7 +51,7 @@ const Carrito = (props: Products) => {
   }
 
   const createOrder = ()=>{
-    let order : OrderType = {id:"" , user: ReactSession.get("user"), products: productos, price: price};
+    let order : OrderType = {id:"" , user: ReactSession.get("user"), products: props.products, price: price};
     ReactSession.set("order",order);
     navigate("/cart/address");
   }
@@ -61,21 +62,19 @@ const Carrito = (props: Products) => {
       <div className='productos'>
         {props.products.map(item => 
           {
-            return (<div key={item.producto.name} >
-                    <CartItem producto={item.producto} num={item.num}/>
-                    <div className="buttom">
-                      <div className='cartbutton'> 
-                        <a href="#" className="btn" onClick={() => addFromCart(item)}>Add</a>
-                        <a href="#" className="btn" onClick={() => removeFromCart(item)}>Remove</a>
-                      </div>
-                    </div>
+            return (
+              <div key={item.producto.name} >
+                  <CartItem producto={item.producto} num={item.num}/>
+                  <div className="buttom">
+                      <a href="#" className="btn" onClick={() => addFromCart(item)}><AddIcon fontSize='large'/></a>
+                      <a href="#" className="btn" onClick={() => removeFromCart(item)}><RemoveIcon fontSize='large'/></a>               
                   </div>
+              </div>
         )})}
       </div>
       <h2>Total: {price}€</h2>
-      <button onClick={()=>createOrder()} disabled={props.products.length==0}>Finalize order</button>
+      <button className="btn btn-primary" onClick={()=>createOrder()} disabled={props.products.length===0}>Finalize order</button>
     </div>
   )
 }
-
 export default Carrito
