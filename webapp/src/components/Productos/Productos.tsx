@@ -52,7 +52,7 @@ const Productos = (props: Products) => {
         setProductosFiltrados(
             productos.filter(({ basePrice }) => basePrice <= termino)
         );
-        if(termino ==''){
+        if(termino === ''){
             setProductosFiltrados(
                 productos.filter(({ basePrice }) => basePrice <= 9999999)
             );
@@ -67,7 +67,7 @@ const Productos = (props: Products) => {
             productos.filter(({ basePrice }) => basePrice >= termino)
         );
 
-        if(termino ==''){
+        if(termino === ''){
             setProductosFiltrados(
                 productos.filter(({ basePrice }) => basePrice > 0)
             );

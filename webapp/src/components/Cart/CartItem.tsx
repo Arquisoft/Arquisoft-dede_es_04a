@@ -31,11 +31,9 @@ const CartItem = ({producto, num}: Props) => {
 
   return (
         <div>
-          <a href="#">
-                <div className="producto__img">
-                    <AdvancedImage cldImg={myImage} />
-                </div>
-            </a>
+            <div className="producto__img">
+                <AdvancedImage cldImg={myImage} />
+            </div>
             <div className="producto__footer">
                 <h1>{producto.name} - Uds:{num}</h1>
                 
