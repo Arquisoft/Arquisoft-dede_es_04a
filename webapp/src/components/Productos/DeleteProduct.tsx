@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from "react-toastify";
 import { SettingsPowerTwoTone } from "@mui/icons-material";
 import {ReactSession} from 'react-client-session';
+import ProductoDeleteItem from "./ProductoDeleteItem";
 
 export const DeleteProduct = () => {
 
@@ -96,30 +97,11 @@ export const DeleteProduct = () => {
 
   return (
     <div className="row">
-            <div className="col-md-4 offset-md-4">
-                <div className="card">
-                    <div className="card-body">
-                        <h3>Delete Product</h3>
-                        <form onSubmit={submit}>
-                        <div className="form-group">
-                            <a>Product name:</a>
-                                <input
-                                    type="text"
-                                    name="name"
-                                    placeholder="Name"
-                                    className="form-control"
-                                    onChange={inputChange}
-                                    value={name}
-                                    autoFocus
-                                />
-                        </div>
-
-                            <button className="btn btn-primary">
-                                Submit
-                            </button>
-                        </form>
-                    </div>
-                </div>
+            <h1 className='title'>DELETE PRODUCT</h1>
+            <div className='productos'>
+            {productos.map((producto) => {
+                return <ProductoDeleteItem producto={producto} key={producto.name}/>
+            })}
             </div>
         </div>
   )
