@@ -18,9 +18,10 @@ const Carrito = (props: Products) => {
     setPrice(0);
     let total = 0;
     for(var i = 0;i<props.products.length;i++){
-        total += props.products[i].producto.basePrice * props.products[i].num;
+        var producto = props.products[i];
+        total += (producto.producto.basePrice + (producto.producto.basePrice * producto.producto.IVA)) * producto.num;
     }
-    setPrice(total);
+    setPrice(Number(total.toFixed(2)));
   }
 
   useEffect(()=>{
