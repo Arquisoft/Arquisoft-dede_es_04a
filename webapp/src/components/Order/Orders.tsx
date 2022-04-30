@@ -19,7 +19,7 @@ const Orders = () => {
   }, [])
 
   const show = (order:OrderType) => {
-    navigate('/orders/details/'+order.id);
+    navigate('/orders/details/'+order._id);
   }
 
   return (
@@ -27,12 +27,10 @@ const Orders = () => {
       <h1 className='title'>My orders</h1>
       <div className='pedidos'>
         {orders.map(order => 
-          {return (<div>
-                    <OrdersItem id={order.id} price={order.price}/>
-                    <div className="buttom">
-                      <div> 
-                        <a href="#" className="btn" onClick={() => show(order)}>Mostrar</a>
-                      </div>
+          {return (<div className="row">
+                    <div className="card">
+                      <OrdersItem order={order}/>
+                      <button className="btn btn-primary" onClick={() => show(order)}>Mostrar</button> 
                     </div>
                   </div>
         )})}

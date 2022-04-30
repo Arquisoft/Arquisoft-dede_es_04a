@@ -22,7 +22,7 @@ const Order = () => {
 
   return (
     <div>
-      <h1 className='title'>Pedido {order?.id}</h1>
+      <h1 className='title'>Pedido {order?._id}</h1>
       <div className='productos'>
         {productos.map(item => 
           {return (<div>
@@ -30,7 +30,7 @@ const Order = () => {
                   </div>
         )})}
       </div>
-      <h2>Total: {order?.price}€</h2>
+      <h2>Total: {order?.totalPrice}€</h2>
     </div>
   )
 }

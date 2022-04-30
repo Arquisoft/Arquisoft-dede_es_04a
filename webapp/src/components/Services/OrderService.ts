@@ -11,11 +11,11 @@ export const createNewOrder = async (productos: Map<String,number>,address:Addre
 export const getOrdersOf = async (u: User) => {
     let email = u.email!;
     let token = u.token!;
-    return await axios.get(`${API}/order/user/:email`, {params:{'email':email}, headers:{'Authorization': token}});
+    return await axios.get(`${API}/order/user/`+email, {headers:{'Authorization': token}});
 };
 
 export const getOrder = async (id: string) => {
-    return await axios.post(`${API}/order/:id`, id);
+    return await axios.post(`${API}/order/`+id, id);
 };
 
 export const getShippingDetails = async (user:string, address: AddressType, token:string) => {

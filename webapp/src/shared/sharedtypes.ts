@@ -36,10 +36,10 @@ export type AddressType = {
 }
 
 export type OrderType = {
-    id: string;
+    _id: string;
     user: User;
     products: Item[];
-    price: number;
+    totalPrice: number;
     address?: AddressType;
     status?: string;
     receptionDate?: Date;
