@@ -8,8 +8,10 @@ export const createNewOrder = async (productos: Map<String,number>,address:Addre
     return await axios.post(`${API}/order/add`, {products,address,user,shippingCost,totalPrice,orderDate,receptionDate,status}, {headers:{'Authorization': token}});
 };
 
-export const getOrdersOf = async (user: User) => {
-    return await axios.get(`${API}/order/user/:email`);
+export const getOrdersOf = async (u: User) => {
+    let email = u.email!;
+    let token = u.token!;
+    return await axios.get(`${API}/order/user/:email`, {params:{'email':email}, headers:{'Authorization': token}});
 };
 
 export const getOrder = async (id: string) => {
