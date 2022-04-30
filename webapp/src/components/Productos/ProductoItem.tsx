@@ -60,7 +60,7 @@ const ProductoItem = ({producto, cart}: Props) => {
                 <p className="price">{price.toFixed(2)}$</p>
             </div>
             <div className="buttom">
-                <button className="btn" onClick={addToCart}>
+                <button aria-label = "btnAñadir" className="btn" onClick={addToCart}>
                     Add to cart
                 </button>
                 <div>

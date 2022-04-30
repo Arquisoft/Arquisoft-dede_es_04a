@@ -112,6 +112,11 @@ code {
   
 }
 
+button{
+  border:none;
+  background-color: transparent;
+}
+
 .buttom div {
   background-color: #08a05c;
   display: grid;

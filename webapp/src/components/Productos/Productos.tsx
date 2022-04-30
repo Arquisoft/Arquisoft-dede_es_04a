@@ -112,7 +112,7 @@ const Productos = (props: Products) => {
             <h1 className='title'>PRODUCTS</h1>
             <div className='filtros'>
                 <div>
-                    <input className = 'barra_busqueda' type='text' placeholder='Search product' ref={inputBusqueda} onChange={handleBusquedaChange} />
+                    <input aria-label= "searchProd" className = 'barra_busqueda' type='text' placeholder='Search product' ref={inputBusqueda} onChange={handleBusquedaChange} />
                 </div>
                 <div>
                     <input className = 'barra_precio_min' type='number' placeholder='Minimum price' ref={inputPrecioMin} onChange={handlePrecioChangeMin} />
