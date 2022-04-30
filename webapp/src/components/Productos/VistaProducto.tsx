@@ -114,7 +114,7 @@ export const VistaProducto = ({cart}: Props) => {
         </div>
         <p className='descripcion'>{detalle?.description}</p>
         <button className="btn" onClick={addToCart}>
-                    Añadir al carrito
+                    Add to cart
         </button>
     </div>
     

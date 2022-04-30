@@ -57,14 +57,14 @@ const ProductoItem = ({producto, cart}: Props) => {
             <div className="producto__footer">
                 <h1>{producto.name}</h1>
                 
-                <p className="price">{price.toFixed(2)}€</p>
+                <p className="price">{price.toFixed(2)}$</p>
             </div>
             <div className="buttom">
                 <button className="btn" onClick={addToCart}>
-                    Añadir al carrito
+                    Add to cart
                 </button>
                 <div>
-                    <Link className="btn" type="button" to={ruta}>Vista</Link>
+                    <Link className="btn" type="button" to={ruta}>View</Link>
                 </div>
             </div>
       </div>

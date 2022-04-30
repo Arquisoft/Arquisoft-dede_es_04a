@@ -26,7 +26,7 @@ export const DeleteProduct = () => {
 
     
 
-    const inputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const inputChange = async (e: ChangeEvent<HTMLInputElement>) => {
         setName(e.target.value )
         findProd()
         console.log("acabe el change")
@@ -57,12 +57,21 @@ export const DeleteProduct = () => {
         return false;
     }
 
+    const checkNotFound = (): boolean => {
+        if (producto.name !== "")
+            return true;
+        return false;
+    }
+
     const submit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log("paso default")
+        console.log("nombre que llega")
+        console.log(name)
         if (!checkEmpty()) {
             setName("");
             toast.error("There is any field empty");
+        }else if(!checkNotFound()){
+            toast.error("The product does not exist");
         }
         else {
             console.log("paso campos")
@@ -71,7 +80,7 @@ export const DeleteProduct = () => {
                 console.log("El producto que llega");
                 console.log(producto);
                 await productService.deleteProducto(user.username, user.token, producto);
-                toast.success("Succesfully added");
+                toast.success("Succesfully deleted");
                 navigate('/');
             } catch (error) {
                 setProducto(productInitialState);
@@ -93,6 +102,7 @@ export const DeleteProduct = () => {
                         <h3>Delete Product</h3>
                         <form onSubmit={submit}>
                         <div className="form-group">
+                            <a>Product name:</a>
                                 <input
                                     type="text"
                                     name="name"
