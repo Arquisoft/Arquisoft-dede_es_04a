@@ -83,7 +83,7 @@ const Login = () => {
                                 />
                             </div>
 
-                            <button className="btn btn-primary">
+                            <button aria-label = "submit" className="btn btn-primary">
                                 Submit
                             </button>
                         </form>
