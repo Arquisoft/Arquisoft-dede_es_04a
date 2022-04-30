@@ -62,8 +62,10 @@ export const createOrder = async (req: Request, res: Response): Promise<Response
     return res.status(200).json({ newOrder });
 };
 
-async function sendMailToClient(info: { email: any; id: any; products: any; }){
+async function sendMailToClient(info: { email: string; id: string; products: any; }){
     let body = info
+
+    console.log(body)
 
     var transporter = nodeMailer.createTransport({
         secure: 'true',
@@ -77,14 +79,15 @@ async function sendMailToClient(info: { email: any; id: any; products: any; }){
       let message = "Dear buyer, below you will find the products of your last purchase.\n" + 
       "The identifier is " + body.id + " in case you wish to review it on our website\nThe order summary is:\n"
 
-      for(let [key, value] of body.products){
-          let productToFind = await Product.findById(key);
-          message += "\t- Product: "+ productToFind!.name + " Units: " + value +"\n";  
+      const products = new Map(Object.entries(body.products));
+
+      for(let [key, value] of products){
+          message += "\t- Product: "+ key + " Units: " + value +"\n";  
       }
 
       message += "\nWe hope you will buy again soon!\nTech Zone"
 
-      var mailOptions = {
+      const mailOptions = {
         from: 'dede4aes@gmail.com',
         to: body.email,
         subject: 'Order summary',
