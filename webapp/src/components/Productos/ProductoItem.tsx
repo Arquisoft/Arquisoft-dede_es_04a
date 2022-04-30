@@ -38,6 +38,7 @@ const ProductoItem = ({producto, cart}: Props) => {
         }
     }); 
 
+    const price = producto.basePrice + (producto.basePrice * producto.IVA)
     const url = producto.urlImage
     const myImage = cld.image(url);
 
@@ -56,7 +57,7 @@ const ProductoItem = ({producto, cart}: Props) => {
             <div className="producto__footer">
                 <h1>{producto.name}</h1>
                 
-                <p className="price">{producto.price}€</p>
+                <p className="price">{price.toFixed(2)}€</p>
             </div>
             <div className="buttom">
                 <button className="btn" onClick={addToCart}>

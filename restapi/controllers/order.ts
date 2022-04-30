@@ -1,11 +1,9 @@
 import { Request, Response } from "express";
-import { Shipment } from "shippo";
 import Order from "../models/order";
-import {IProduct} from "../models/product"
+import Product from "../models/product";
 
 const shippo = require('shippo')('shippo_test_e569cbc523acb20b5a6c3b22788bfc0898cda51b');
-// import nodeMailer from 'nodemailer';
-// import { hostname } from "os";
+const nodeMailer = require("nodemailer");
 
 export const findAll = async (req: Request, res: Response): Promise<Response> => {
     const orders = await Order.find();
@@ -43,7 +41,7 @@ export const findByUsername = async (req: Request, res: Response): Promise<Respo
 };
 
 export const createOrder = async (req: Request, res: Response): Promise<Response> => {
-    if (!req.body.products || !req.body.address || !req.body.user || !req.body.shippingCost || !req.body.totalPrice)
+    if (!req.body.products || !req.body.address || !req.body.user || !req.body.shippingCost || !req.body.totalPrice || !req.body.receptionDate)
         return res.status(400).json({ msg: "Please, complete all the fields" });
 
     const address = `${req.body.address.street_address}, ${req.body.address.locality}, ${req.body.address.region}, ${req.body.address.postal_code}, ${req.body.address.country_name}`;
@@ -51,52 +49,50 @@ export const createOrder = async (req: Request, res: Response): Promise<Response
     req.body.address = address;
 
     const newOrder = new Order(req.body);
-    newOrder.save();
-
+    await newOrder.save();
+    
     const info = {
         email: req.body.user,
         id : newOrder.id,
         products : req.body.products
     }
-    //sendMailToClient(info);
-
+    
+     sendMailToClient(info);
+    
     return res.status(200).json({ newOrder });
 };
 
-// const sendMailToClient =async (req: any) => {
-//     let body = req
-//     let config = nodeMailer.createTransport({
-//         host: "smpt.gmail.com",
-//         port: 587,
-//         auth: {
-//             user:"-",
-//             pass:"-"
-//         }
-//     })
+async function sendMailToClient(info: { email: any; id: any; products: any; }){
+    let body = info
 
-//     let message = "Dear buyer, below you will find the products of your last purchase." + 
-//             "The identifier is " + body.id + " in case you wish to review it on our website\n"
-    
-//     body.products.forEach((product: IProduct) => {
-//         message += product.name
-//     });
+    var transporter = nodeMailer.createTransport({
+        secure: 'true',
+        service: 'gmail',
+        auth: {
+          user: 'dede4aes@gmail.com',
+          pass: process.env.PASS1
+        }
+      });
+      
+      let message = "Dear buyer, below you will find the products of your last purchase.\n" + 
+      "The identifier is " + body.id + " in case you wish to review it on our website\nThe order summary is:\n"
 
-//     const options = {
-//         from: "Order",
-//         subject: "Order summary",
-//         to: body.user,
-//         text: message
-//     }
+      for(let [key, value] of body.products){
+          let productToFind = await Product.findById(key);
+          message += "\t- Product: "+ productToFind!.name + " Units: " + value +"\n";  
+      }
 
-//     config.sendMail(options, function(error, result){
-//         if(error){
-//             console.log(error)
-//         } else {
-//             console.log("hecho")
-//         }
-        
-//     })
-// }
+      message += "\nWe hope you will buy again soon!\nTech Zone"
+
+      var mailOptions = {
+        from: 'dede4aes@gmail.com',
+        to: body.email,
+        subject: 'Order summary',
+        text: message
+      };
+      
+       transporter.sendMail(mailOptions);
+}
 
 export const updateStatus = async (req: Request, res: Response): Promise<Response> => {
     if (!req.body.orderId || !req.body.status)

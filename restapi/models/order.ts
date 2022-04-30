@@ -37,7 +37,8 @@ const orderSchema = new Schema ({
     },
     orderDate: {
         type: Date,
-        required: [true, 'Order must have an order date']
+        required: [true, 'Order must have an order date'],
+        default: new Date()
     },
     receptionDate: {
         type: Date,

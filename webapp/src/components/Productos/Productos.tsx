@@ -12,7 +12,8 @@ const Productos = (props: Products) => {
     const[productos, setProductos] = useState<Producto[]>([])
     const [productosFiltrados, setProductosFiltrados] = useState<Producto[]>([])
     const inputBusqueda = useRef<HTMLInputElement>(null);
-    const inputPrecio = useRef<HTMLInputElement>(null);
+    const inputPrecioMax = useRef<HTMLInputElement>(null);
+    const inputPrecioMin = useRef<HTMLInputElement>(null);
     
     const loadProductos = async ()=>{
         const res = await productService.getProductos()
@@ -24,7 +25,6 @@ const Productos = (props: Products) => {
         setProductosFiltrados(datos.products)
     }
 
-
     const handleBusquedaChange = (e: any) => {
         const termino = e.target.value;
         console.log({ termino });
@@ -34,16 +34,27 @@ const Productos = (props: Products) => {
         );
     }
 
+    // const handleChange = () => {
+    //     const preMax = inputPrecioMax.current?.value;
+    //     const preMin = inputPrecioMin.current?.value;
+
+    //     setProductosFiltrados(
+    //         productos.filter(({ price }) => price <= )
+    //     );
+    // }
+
     const handlePrecioChangeMax = (e: any) => {
         const termino = e.target.value;
         console.log({ termino });
-        
+        console.log("Valor variable");
+        console.log(inputPrecioMax);
+
         setProductosFiltrados(
-            productos.filter(({ price }) => price <= termino)
+            productos.filter(({ basePrice }) => basePrice <= termino)
         );
         if(termino ==''){
             setProductosFiltrados(
-                productos.filter(({ price }) => price <= 9999999)
+                productos.filter(({ basePrice }) => basePrice <= 9999999)
             );
        }
     }
@@ -53,12 +64,12 @@ const Productos = (props: Products) => {
         console.log({ termino });
         
         setProductosFiltrados(
-            productos.filter(({ price }) => price >= termino)
+            productos.filter(({ basePrice }) => basePrice >= termino)
         );
 
         if(termino ==''){
             setProductosFiltrados(
-                productos.filter(({ price }) => price > 0)
+                productos.filter(({ basePrice }) => basePrice > 0)
             );
        }
     }
@@ -76,8 +87,8 @@ const Productos = (props: Products) => {
                     <input className = 'barra_busqueda' type='text' placeholder='Buscar producto' ref={inputBusqueda} onChange={handleBusquedaChange} />
                 </div>
                 <div>
-                    <input className = 'barra_precio_min' type='number' placeholder='Precio minimo' ref={inputPrecio} onChange={handlePrecioChangeMin} />
-                    <input className = 'barra_precio_max' type='number' placeholder='Precio maximo' ref={inputPrecio} onChange={handlePrecioChangeMax} />
+                    <input className = 'barra_precio_min' type='number' placeholder='Precio minimo' ref={inputPrecioMin} onChange={handlePrecioChangeMin} />
+                    <input className = 'barra_precio_max' type='number' placeholder='Precio maximo' ref={inputPrecioMax} onChange={handlePrecioChangeMax} />
                 </div>
             </div>
             <div className='productos'>

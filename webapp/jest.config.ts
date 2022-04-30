@@ -3,4 +3,5 @@ export default {
         "\\.[jt]sx?$": "babel-jest",
         "^.+\\.tsx?$": "ts-jest",
     },
+    collectCoverage: true
 }
