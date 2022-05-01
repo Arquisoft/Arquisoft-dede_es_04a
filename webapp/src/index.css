@@ -90,6 +90,15 @@ code {
 
 }
 
+.buttom .btnDelete{
+  background-color: red;
+  border: none;
+  outline: 0;
+  cursor: pointer;
+  border-radius: 5px;
+
+}
+
 .buttom button{
   background-color: #6130d3;
   max-width: 250px;
@@ -101,6 +110,11 @@ code {
   color: white;
   font-weight: 600;
   
+}
+
+button{
+  border:none;
+  background-color: transparent;
 }
 
 .buttom div {

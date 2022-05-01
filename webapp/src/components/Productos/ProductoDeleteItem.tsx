@@ -3,34 +3,48 @@ import {AdvancedImage} from '@cloudinary/react';
 import {Cloudinary} from "@cloudinary/url-gen";
 import {pad} from "@cloudinary/url-gen/actions/resize";
 import {ReactSession} from 'react-client-session';
+import * as productService from '../Services/ProductsService';
 import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 interface Props{
   producto: Producto;
-  cart: Item[];
 }
 
-const ProductoItem = ({producto, cart}: Props) => {
+const ProductoDeleteItem = ({producto}: Props) => {
       
     const navigate = useNavigate();
 
-    const addToCart = () =>{
-        if(ReactSession.get("user")===undefined){
-            navigate("/login");
-            return;
-        }
 
-        var contains = false;
-        cart.forEach( item => {
-            if(item.producto.name===producto.name){
-                item.num+=1;
-                contains = true;    
-            }
-        });
-        let num = 1;
-        if(contains===false)
-            cart.push({producto,num});
+    const checkNotFound = (): boolean => {
+        if (producto.name !== "")
+            return true;
+        return false;
     }
+
+    const deleteFromBase = async () =>{
+            console.log("nombre que llega")
+            
+            if(!checkNotFound()){
+                toast.error("The product does not exist");
+            }
+            else {
+                console.log("paso campos")
+                try {
+                    const user = ReactSession.get("user");
+                    console.log("El producto que llega");
+                    console.log(producto);
+                    await productService.deleteProducto(user.username, user.token, producto);
+                    toast.success("Succesfully deleted");
+                    navigate('/');
+                } catch (error) {
+                    toast.error("Error at deleting");
+                }
+            
+        }
+    
+    }
+
 
     const cld = new Cloudinary({
         cloud: {
@@ -42,7 +56,7 @@ const ProductoItem = ({producto, cart}: Props) => {
     const url = producto.urlImage
     const myImage = cld.image(url);
 
-    const ruta = '/producto/' + producto._id;
+    const ruta = '/productoDelete/' + producto._id;
     
     myImage
     .resize(pad().width(250).height(250))
@@ -60,8 +74,8 @@ const ProductoItem = ({producto, cart}: Props) => {
                 <p className="price">{price.toFixed(2)}$</p>
             </div>
             <div className="buttom">
-                <button aria-label = "btnAñadir" className="btn" onClick={addToCart}>
-                    Add to cart
+                <button className="btnDelete" onClick={deleteFromBase}>
+                    Delete
                 </button>
                 <div>
                     <Link className="btn" type="button" to={ruta}>View</Link>
@@ -71,4 +85,4 @@ const ProductoItem = ({producto, cart}: Props) => {
   )
 }
 
-export default ProductoItem
+export default ProductoDeleteItem
