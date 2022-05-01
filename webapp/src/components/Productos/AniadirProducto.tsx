@@ -71,6 +71,12 @@ const AniadirProducto = () => {
             return false;
         if (producto.urlImage === initialState.urlImage)
             return false;
+        if (producto.category === initialState.category)
+            return false;
+        if (producto.basePrice === initialState.basePrice)
+            return false;
+        if (producto.units === initialState.units)
+            return false
         return true;
     }
 
@@ -79,11 +85,12 @@ const AniadirProducto = () => {
             <div className="col-md-4 offset-md-4">
                 <div className="card">
                     <div className="card-body">
-                        <h3>Nuevo Producto</h3>
+                        <h3>New Product</h3>
                         <form onSubmit={submit} encType="multipart/form-data">
                     
 
                             <div className="form-group">
+                                <label htmlFor="name">Name:</label>
                                 <input
                                     type="text"
                                     name="name"
@@ -97,6 +104,7 @@ const AniadirProducto = () => {
 
 
                             <div className="form-group">
+                                <label htmlFor="description">Description:</label>
                                 <input
                                     type="text"
                                     name="description"
@@ -108,10 +116,11 @@ const AniadirProducto = () => {
                             </div>
 
                             <div className="form-group">
+                            <label htmlFor="category">Category:</label>
                                 <input
                                     type="text"
                                     name="category"
-                                    placeholder="Categories"
+                                    placeholder="Category"
                                     className="form-control"
                                     onChange={inputChangeCat}
                                     value={producto.category}
@@ -119,6 +128,7 @@ const AniadirProducto = () => {
                             </div>
 
                             <div className="form-group">
+                                <label htmlFor="urlImage">Image URL:</label>
                                 <input
                                     type="text"
                                     name="urlImage"
@@ -131,22 +141,26 @@ const AniadirProducto = () => {
 
                            
                             <div className="form-group">
+                                <label htmlFor="basePrice">Base price:</label>
                                 <input
                                     type="number"
                                     name="basePrice"
                                     placeholder="Price"
+                                    min="1"
                                     className="form-control"
                                     onChange={inputChange}
-                                    value={producto.basePrice}
+                                    value= {producto.basePrice}
                                 />
                             </div>
 
                             <div className="form-group">
+                            <label htmlFor="units">Units:</label>
                                 <input
                                     type= "number"
                                     name="units"
                                     placeholder="Units"
                                     className="form-control"
+                                    min= "1"
                                     onChange={inputChange}
                                     value={producto.units}
                                     autoFocus

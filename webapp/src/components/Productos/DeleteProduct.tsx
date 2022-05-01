@@ -3,8 +3,8 @@ import { Producto } from "../../shared/sharedtypes";
 import * as productService from '../Services/ProductsService';
 import { useNavigate } from 'react-router-dom';
 import { toast } from "react-toastify";
-import { SettingsPowerTwoTone } from "@mui/icons-material";
 import {ReactSession} from 'react-client-session';
+import ProductoDeleteItem from "./ProductoDeleteItem";
 
 export const DeleteProduct = () => {
 
@@ -26,7 +26,7 @@ export const DeleteProduct = () => {
 
     
 
-    const inputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const inputChange = async (e: ChangeEvent<HTMLInputElement>) => {
         setName(e.target.value )
         findProd()
         console.log("acabe el change")
@@ -57,12 +57,21 @@ export const DeleteProduct = () => {
         return false;
     }
 
+    const checkNotFound = (): boolean => {
+        if (producto.name !== "")
+            return true;
+        return false;
+    }
+
     const submit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log("paso default")
+        console.log("nombre que llega")
+        console.log(name)
         if (!checkEmpty()) {
             setName("");
             toast.error("There is any field empty");
+        }else if(!checkNotFound()){
+            toast.error("The product does not exist");
         }
         else {
             console.log("paso campos")
@@ -71,7 +80,7 @@ export const DeleteProduct = () => {
                 console.log("El producto que llega");
                 console.log(producto);
                 await productService.deleteProducto(user.username, user.token, producto);
-                toast.success("Succesfully added");
+                toast.success("Succesfully deleted");
                 navigate('/');
             } catch (error) {
                 setProducto(productInitialState);
@@ -87,29 +96,11 @@ export const DeleteProduct = () => {
 
   return (
     <div className="row">
-            <div className="col-md-4 offset-md-4">
-                <div className="card">
-                    <div className="card-body">
-                        <h3>Delete Product</h3>
-                        <form onSubmit={submit}>
-                        <div className="form-group">
-                                <input
-                                    type="text"
-                                    name="name"
-                                    placeholder="Name"
-                                    className="form-control"
-                                    onChange={inputChange}
-                                    value={name}
-                                    autoFocus
-                                />
-                        </div>
-
-                            <button className="btn btn-primary">
-                                Submit
-                            </button>
-                        </form>
-                    </div>
-                </div>
+            <h1 className='title'>DELETE PRODUCT</h1>
+            <div className='productos'>
+            {productos.map((producto) => {
+                return <ProductoDeleteItem producto={producto} key={producto.name}/>
+            })}
             </div>
         </div>
   )

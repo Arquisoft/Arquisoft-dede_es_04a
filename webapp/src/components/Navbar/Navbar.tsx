@@ -38,13 +38,15 @@ const Navbar = (props: Products) => {
                         <Link className="navbar-brand" type="button" to="" onClick={logout}><LogoutIcon/></Link> 
                     </LoggedIn>
                     <LoggedOut>
-                        <Link className="navbar-brand" type="button" to="/login">Login</Link>
+                        <button aria-label='btnLogin'> 
+                            <Link aria-label = "loginBtn" className="navbar-brand" type="button" to="/login">Login</Link>
+                        </button> 
                         <Link className="navbar-brand" type="button" to="/register">Register</Link>  
                     </LoggedOut>    
                 </form>
             </div>
         </nav>
-    ) 
+        )
 }
 
 export default Navbar
