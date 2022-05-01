@@ -50,10 +50,7 @@ defineFeature(feature, test => {
         await expect(page).toFill('input[name="confirmPassword"]', s4)
         await expect(page).toFill('input[name="dni"]', s5)
         await expect(page).toClick('button[aria-label="submitBtn"]')
-        // await expect(page).toClick('button[aria-label="submit"]')
 
-    //   await expect(page).toClick("button[text ='Login']")
-    //    await page.waitForNavigation();
       
     });
 
