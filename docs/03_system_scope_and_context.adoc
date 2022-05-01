@@ -7,15 +7,15 @@ These products will be grouped by sections within the page itself, and each prod
 
 * Name.
 * Price.
-* Description.
+* Add to cart option.
+* View option (to show the details).
 * Image.
-* Sale.
 
 === Business Context
 
-The home page will show all the products available in the shop. The customer will be able to search for the desired technology by category, then the list of products corresponding to the selected category will be displayed, the user will choose the products and the quantity of products he wants. These products will be added to the shopping basket, a list made up of all the products chosen by the customer to be purchased.
+The home page will show all the products available in the shop. The customer will be able to log into the service as well as to register himself, regardless of this he will be able to search for the desired technology by name or a price range, then the list of products corresponding to the selected filter will be displayed. If the usser is logged he will be able to add the products to a shopping basket, a list made up of all the products chosen by the customer to be purchased.
 
-The customer will have access to his shopping basket where he will be able to delete products, modify their quantity or finalise his purchase.
+The customer will have access to his shopping basket where he will be able to increase or reduce each product quantity as well as remove them from the basket or finalise his purchase.
 
 [plantuml,"Context",png]
 ----
@@ -26,12 +26,21 @@ node "Server" {
 database MongoDB
 Actor usuario
 rectangle PODs
+rectangle Cloudinary
+rectangle Axios
+rectangle Nodemailer
+rectangle Mongoose
 
 usuario --> [dede]: log in
 [dede] --> usuario: show products
-[dede] ..> MongoDB : save products
-[dede] <.. MongoDB : get products
+Mongoose ..> MongoDB : save products
+Mongoose <.. MongoDB : get products
 [dede] <..> PODs : personal information
+[dede] <..> Cloudinary: Upload/download product images
+[dede] <..> Axios: Async petitions to backend
+[dede] ..> Nodemailer: Send order summaries
+[dede] ..> Mongoose
+[dede] <.. Mongoose
 @enduml
 ----
 
@@ -45,4 +54,8 @@ The system has SOLID architecture in order to respect the privacy of each user's
 | PODS    | Personal data storage units
 | TYPESCRIPT     | Language used for the development of the application
 | REACT     | Main library to facilitate the development of the GUI
+| CLOUDINARY     | API used to download and upload the product images and edit their properties
+| AXIOS     | API used to make asynchronous requests to the 'back-end'.
+| NODEMAILER     | API which allows emails to be sent from different hosts (in our case Gmail).
+| MONGOOSE     | API that allows us to connect to the mongoDB cluster in a simple way.
 |===
