@@ -1,7 +1,4 @@
-import {Cloudinary} from "@cloudinary/url-gen";
 import { Producto } from "../../shared/sharedtypes";
-import { pad } from "@cloudinary/url-gen/actions/resize";
-import { AdvancedImage } from "@cloudinary/react";
 
 interface Props{
     producto: Producto;
@@ -10,33 +7,17 @@ interface Props{
 }
 
 const CartItem = ({producto, num}: Props) => {
-
-    
-
-    const cld = new Cloudinary({
-        cloud: {
-          cloudName: 'dede4a'
-        }
-    }); 
-
-    const url = producto.urlImage
-    const myImage = cld.image(url);
-
-    const price = producto.basePrice + (producto.basePrice * producto.IVA)
-    
-    
-    
-    myImage
-    .resize(pad().width(250).height(250))
+    const url = "https://res.cloudinary.com/dede4a/image/upload/"+producto.urlImage+"?_a=AJADJWI0";
+    const price = producto.basePrice + (producto.basePrice * producto.IVA);
 
   return (
         <div>
             <div className="producto__img">
-                <AdvancedImage cldImg={myImage} />
+                <img src={url}></img>
             </div>
             <div className="producto__footer">
-                <h1>{producto.name} - Uds:{num}</h1>
-                
+                <h1>{producto.name}</h1>
+                <p>Units: {num}</p>
                 <p className="price">{price.toFixed(2)}€</p>
             </div>
             

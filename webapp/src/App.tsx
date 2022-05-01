@@ -46,7 +46,7 @@ const App = ():JSX.Element => {
             <Route path="/order/list" element={<LoggedIn><Orders/></LoggedIn>}></Route>
             <Route path="/producto/:_id" element={<VistaProducto cart={cart}/>}></Route>
             <Route path="/productoDelete/:_id" element={<VistaProductoDelete />}></Route>
-            <Route path="/order/details/:id" element={<LoggedIn><Order/></LoggedIn>}></Route>
+            <Route path="/order/details/:_id" element={<LoggedIn><Order/></LoggedIn>}></Route>
             <Route path="*" element={
               <main style={{ padding: "1rem" }}>
                 <h1>Wrong URL</h1>
