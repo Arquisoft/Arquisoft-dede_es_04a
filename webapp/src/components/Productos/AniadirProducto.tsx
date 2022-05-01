@@ -90,8 +90,7 @@ const AniadirProducto = () => {
                     
 
                             <div className="form-group">
-
-                                <a>Name:</a>
+                                <label htmlFor="name">Name:</label>
                                 <input
                                     type="text"
                                     name="name"
@@ -105,7 +104,7 @@ const AniadirProducto = () => {
 
 
                             <div className="form-group">
-                                <a>Description:</a>
+                                <label htmlFor="description">Description:</label>
                                 <input
                                     type="text"
                                     name="description"
@@ -117,7 +116,7 @@ const AniadirProducto = () => {
                             </div>
 
                             <div className="form-group">
-                                <a>Category:</a>
+                            <label htmlFor="category">Category:</label>
                                 <input
                                     type="text"
                                     name="category"
@@ -129,7 +128,7 @@ const AniadirProducto = () => {
                             </div>
 
                             <div className="form-group">
-                                <a>Image URL:</a>
+                                <label htmlFor="urlImage">Image URL:</label>
                                 <input
                                     type="text"
                                     name="urlImage"
@@ -142,7 +141,7 @@ const AniadirProducto = () => {
 
                            
                             <div className="form-group">
-                                <a>Base price:</a>
+                                <label htmlFor="basePrice">Base price:</label>
                                 <input
                                     type="number"
                                     name="basePrice"
@@ -155,7 +154,7 @@ const AniadirProducto = () => {
                             </div>
 
                             <div className="form-group">
-                                <a>Units:</a>
+                            <label htmlFor="units">Units:</label>
                                 <input
                                     type= "number"
                                     name="units"

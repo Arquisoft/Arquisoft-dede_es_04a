@@ -52,7 +52,7 @@ const Carrito = (props: Products) => {
   }
 
   const createOrder = ()=>{
-    let order : OrderType = {id:"" , user: ReactSession.get("user"), products: props.products, price: price};
+    let order : OrderType = {_id:"" , user: ReactSession.get("user"), products: props.products, totalPrice: price};
     ReactSession.set("order",order);
     navigate("/cart/address");
   }

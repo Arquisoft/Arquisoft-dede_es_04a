@@ -1,15 +1,19 @@
+import { OrderType } from "../../shared/sharedtypes";
 
 interface Props{
-    id: string;
-    price: number;   
+    order: OrderType;  
 }
 
-const OrdersItem = ({id, price}: Props) => {  
+const OrdersItem = (props: Props) => {  
 
     
 
   return (
-        <h1>Id:{id}     Importe: {price}€</h1>
+        <div>
+          <h1>Id:{props.order._id}</h1>
+          <h3>{props.order.status}</h3>
+          <p>Importe: {props.order.totalPrice}€ - Reception date: {props.order.receptionDate}</p>
+        </div>
   );
 }
 
