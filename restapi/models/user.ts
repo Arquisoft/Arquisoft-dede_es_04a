@@ -7,6 +7,7 @@ export interface IUser extends Document {
     email: string;
     password: string;
     confirmPassword: string;
+    status: boolean;
     rol: number;
     comparePassword: (password: string) => Promise<Boolean>;
 };
@@ -43,11 +44,15 @@ const userSchema = new Schema({
         type : String,
         require: [true, "We need confirm the password"]
     },
+    status: {
+        type: Boolean,
+        default: true
+    },
     rol: {
         type: Number,
         default: 0
     }
-})
+});
 
 // Encrypt the password
 userSchema.pre<IUser>("save", async function (next) {

@@ -10,14 +10,14 @@ export const signUp = async (req: Request, res: Response): Promise<Response> => 
         return res.status(400).json({ msg: "Please. Send your username, email, dni and password" });
 
     if (req.body.password !== req.body.confirmPassword)
-        return res.status(400).json({ msg: "Password and confirm password don't match" });
+        return res.status(412).json({ msg: "Password and confirm password don't match" });
 
     let user = await User.findOne({ username: req.body.username.toString() });
     if (user)
-        return res.status(400).json({ msg: "The username already exists" });
+        return res.status(412).json({ msg: "The username already exists" });
     user = await User.findOne({ email: req.body.email.toString() });
     if (user)
-        return res.status(400).json({ msg: "The email already exists" });
+        return res.status(412).json({ msg: "The email already exists" });
 
 
     const newUser = new User(req.body);
@@ -31,11 +31,15 @@ export const login = async (req: Request, res: Response): Promise<Response> => {
 
     const user = await User.findOne({ username: req.body.username.toString() });
     if (!user)
-        return res.status(400).json({ msg: "The username or password are incorrect" });
+        return res.status(401).json({ msg: "The username or password are incorrect" });
+    
+    if (!user.status){
+        return res.status(403).json({ msg: "This user is banned" });
+    }
 
     const isMatch = await user.comparePassword(req.body.password);
     if (isMatch){
-        const tokenSecret = process.env.SECRET_TOKEN;
+        const tokenSecret = process.env.SECRET;
 
         const userForToken = {
             id: user._id,
@@ -49,7 +53,8 @@ export const login = async (req: Request, res: Response): Promise<Response> => {
 
         const userResult = {
             username : user.username,
-            userEmail: user.email
+            userEmail: user.email,
+            userRol: user.rol
         }
 
         return res.status(200).header('authorization', token).json({
@@ -57,7 +62,7 @@ export const login = async (req: Request, res: Response): Promise<Response> => {
         });
 
     }
-    return res.status(400).json({ msg: "The username or password are incorrect" });
+    return res.status(401).json({ msg: "The username or password are incorrect" });
 };
 
 export const findAll = async (req: Request, res: Response): Promise<Response> => {
@@ -79,7 +84,7 @@ export const deleteUser = async (req: Request, res: Response): Promise<Response>
     if(!req.params.username)
         return res.status(400).json({ msg: "Please. Send any username." });
     
-    const user = await User.findOneAndDelete({ username: req.params.username });
+    const user = await User.findOneAndUpdate({ username: req.params.username }, { status: false });
 
     return res.status(200).json({ user });
 };
@@ -93,15 +98,19 @@ export const updateUser = async (req: Request, res: Response): Promise<Response>
 };
 
 export const readAddress = async (req: Request, res : Response): Promise<Response> => {
+    
     const name = req.body.pod;
-
+    
     try {
+        var url = "https://" + name  + ".inrupt.net/profile/card";
+        
         const myDataset = await getSolidDataset(
-            "https://" + name  + ".inrupt.net/profile/card", {
+            url, {
             fetch: fetch
         });
         
         const profile = getThing(myDataset, "https://" + name + ".inrupt.net/profile/card#me")
+        
         const addressWebID = profile!.predicates["http://www.w3.org/2006/vcard/ns#hasAddress"]["namedNodes"]
         const idAddress = addressWebID![0].split('#')[1]
         
@@ -112,21 +121,18 @@ export const readAddress = async (req: Request, res : Response): Promise<Respons
         let result = {} as IAddress;
 
         const getAddress = getThing(myDataset, "https://" + name + ".inrupt.net/profile/card#" + idAddress);
-
         const country = getStringNoLocale(getAddress!, VCARD.country_name);
         if (country == null){
             return res.status(400).json({msg: "We can't find the country."});
         } else {
             result.country_name = country;
         }
-
         const region = getStringNoLocale(getAddress!, VCARD.region);
         if (region == null){
             return res.status(400).json({msg: "We can't find the region."});
         } else {
             result.region = region;
         }
-
         const locality = getStringNoLocale(getAddress!, VCARD.locality);
         if (locality == null){
             return res.status(400).json({msg: "We can't find the locality."});
@@ -147,9 +153,9 @@ export const readAddress = async (req: Request, res : Response): Promise<Respons
         } else {
             result.postal_code = postalCode;
         }
-
+        
         return res.status(200).json({ result });
     } catch (error) {
-        return res.status(400).json({msg: "We can't find a POD with this username."})
+        return res.status(404).json({msg: "We can't find a POD with this username."})
     }
 }

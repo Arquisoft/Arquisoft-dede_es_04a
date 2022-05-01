@@ -5,10 +5,41 @@ import bp from 'body-parser';
 import cors from 'cors';
 import user from "../routes/user";
 import product from '../routes/product';
+import order from '../routes/order'
 import mongoose from 'mongoose';
+import { IUser } from '../models/user';
 
 let app: Application;
 let server: http.Server;
+const admin = {
+    username: 'admin',
+        email: 'admin@admin.com',
+        password: process.env.PASS,
+        confirmPassword: process.env.PASS,
+        dni: '12345675A',
+        rol: 1,
+        status: true
+}
+
+let productLaptop = {
+    name: "Laptop",
+    description: "Simple laptop",
+    basePrice: 1345,
+    IVA: 0.21,
+    units: 4,
+    category: "laptop",
+    urlImage: "https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RE4LqQX?ver=1f00"
+}
+
+let productPhone = {
+    name: "Phone",
+    description: "Simple phone",
+    basePrice: 135,
+    IVA: 0.21,
+    units: 6,
+    category: "celullar",
+    urlImage: "https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RE4LqQX?ver=1f00"
+}
 
 const mongodb = 'mongodb+srv://test:test@test.tgpeg.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 let token = '';
@@ -26,17 +57,22 @@ beforeAll(async () => {
     app.use(bp.json());
     app.use(user);
     app.use(product);
+    app.use(order);
 
     server = app.listen(port, (): void => {
         console.log('Restapi server for testing listening on ' + port);
     }).on("error", (error: Error) => {
         console.error('Error occured: ' + error.message);
     });
+
+    await mongoose.connection.collections['users'].insertOne(admin)
+
 });
 
 afterAll(async () => {
     await mongoose.connection.collections['users'].drop();
     await mongoose.connection.collections['products'].drop();
+    await mongoose.connection.collections['orders'].drop();
     await mongoose.connection.close();
     server.close() //close the server
 });
@@ -51,8 +87,8 @@ describe('user ', () => {
         const user = {
             username: 'Pablo1',
             email: 'pablo1@email.com',
-            password: 'Pabloalonso1?',
-            confirmPassword: 'Pabloalonso1?',
+            password: process.env.PASS,
+            confirmPassword: process.env.PASS,
             dni: '12345678A'
         }
         const response: Response = await request(app).post('/signup').send(user).set('Accept', 'application/json');
@@ -66,12 +102,12 @@ describe('user ', () => {
         const user = {
             username: 'Pablo1',
             email: 'pablo1@email.com',
-            password: 'Pabloalonso1?',
-            confirmPassword: 'Pabloalonso1?',
+            password: process.env.PASS,
+            confirmPassword: process.env.PASS,
             dni: '12345678A'
         }
         const response: Response = await request(app).post('/signup').send(user).set('Accept', 'application/json');
-        expect(response.statusCode).toBe(400);
+        expect(response.statusCode).toBe(412);
     });
 
     /**
@@ -80,7 +116,7 @@ describe('user ', () => {
     it('can login correctly', async () => {
         const user = {
             username: 'Pablo1',
-            password: 'Pabloalonso1?'
+            password: process.env.PASS
         }
         const response: Response = await request(app).post('/login').send(user).set('Accept', 'application/json');
 
@@ -96,14 +132,15 @@ describe('user ', () => {
         const user = {
             username: 'Pablo2',
             email: 'pablo2@email.com',
-            password: 'Pabloalonso2?',
-            confirmPassword: 'Pabloalonso2?',
+            password: process.env.PASS,
+            confirmPassword: process.env.PASS,
             dni: '12345678B'
         }
         await request(app).post('/signup').send(user).set('Accept', 'application/json');
-        const users = await (await request(app).get('/user/list').set('Authorization', token).set('Accept', 'application/json')).body.users;
+        const users = await ((await request(app).get('/user/list').set('Authorization', token).set('Username', admin.username)
+            .set('Accept', 'application/json'))).body.users;
 
-        expect(users.length).toBe(2);
+        expect(users.length).toBe(3);
     });
 
     /**
@@ -112,22 +149,30 @@ describe('user ', () => {
     it('can find user by username', async () => {
         const username = 'Pablo1';
 
-        const user = await (await request(app).get(`/user/${username}`).set('Authorization', token).set('Accept', 'application/json')).body.user[0];
+        const user = await (await request(app).get(`/user/${username}`).set('Authorization', token).set('Username', admin.username)
+        .set('Accept', 'application/json')).body.user[0];
 
         expect(user.username).toBe(username);
     });
 
     /**
-     * Tests delete user by username.
+     * Tests ban user by username
      */
     it('can delete user by username', async () => {
         const username = 'Pablo2';
 
-        (await request(app).get(`/user/delete/${username}`).set('Authorization', token).set('Accept', 'application/json'));
+        (await request(app).get(`/user/delete/${username}`).set('Authorization', token).set('Username', admin.username).set('Accept', 'application/json'));
 
-        const users = await (await request(app).get('/user/list').set('Authorization', token).set('Accept', 'application/json')).body.users;
+        const users = await (await request(app).get('/user/list').set('Authorization', token).set('Username', admin.username).set('Accept', 'application/json')).body.users;
 
-        expect(users.length).toBe(1);
+        let count = 0;
+         users.forEach((user: IUser)  => {
+             if (!user.status){
+                count++;
+            }
+        });
+
+        expect(count).toBe(1);
     });
 
     /**
@@ -139,11 +184,14 @@ describe('user ', () => {
             email: 'pablo123@email.com'
         }
 
-        const userid = await (await request(app).get(`/user/${user.username}`).set('Authorization', token).set('Accept', 'application/json')).body.user[0];
+        const userid = await (await request(app).get(`/user/${user.username}`).set('Authorization', token).set('Username', admin.username)
+        .set('Accept', 'application/json')).body.user[0];
 
-        (await request(app).post(`/user/update/${userid._id}`).set('Authorization', token).send(user).set('Accept', 'application/json'));
+        (await request(app).post(`/user/update/${userid._id}`).set('Authorization', token).set('Username', admin.username)
+        .send(user).set('Accept', 'application/json'));
 
-        const updatedUser = await (await request(app).get(`/user/${user.username}`).set('Authorization', token).set('Accept', 'application/json')).body.user[0];
+        const updatedUser = await (await request(app).get(`/user/${user.username}`).set('Authorization', token).set('Username', admin.username)
+        .set('Accept', 'application/json')).body.user[0];
 
         expect(user!.email).toBe(updatedUser!.email);
     });
@@ -176,8 +224,8 @@ describe('user ', () => {
             pod: 'NOsergiomalv'
         }
 
-        const response: Response = await (await request(app).post('/user/pod').send(name).set('Authorization', token).set('Accept', 'application/json'));
-        expect(response.statusCode).toBe(400);
+        const response: Response = await request(app).post('/user/pod').send(name).set('Authorization', token).set('Accept', 'application/json');
+        expect(response.statusCode).toBe(404);
     });
 });
 
@@ -188,16 +236,9 @@ describe('products ', () => {
      * Tests that a product can be created.
      */
     it('can be created correctly', async () => {
-        const product = {
-            name: "Laptop",
-            description: "Simple laptop",
-            basePrice: 1345,
-            IVA: 0.21,
-            units: 4,
-            categories: ["laptop", "celullar"],
-            urlImage: "https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RE4LqQX?ver=1f00"
-        }
-        const response: Response = await request(app).post('/product/add').set('Authorization', token).send(product).set('Accept', 'application/json');
+        const product = productLaptop
+        const response: Response = await request(app).post('/product/add').set('Authorization', token).set('Username', admin.username)
+        .send(product).set('Accept', 'application/json');
         expect(response.statusCode).toBe(200);
     });
 
@@ -210,10 +251,11 @@ describe('products ', () => {
             basePrice: 1345,
             IVA: 0.21,
             units: 4,
-            categories: ["laptop", "celullar"],
+            category: "laptop",
             urlImage: "https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RE4LqQX?ver=1f00"
         }
-        const response: Response = await request(app).post('/product/add').set('Authorization', token).send(product).set('Accept', 'application/json');
+        const response: Response = await request(app).post('/product/add').set('Authorization', token).set('Username', admin.username)
+        .send(product).set('Accept', 'application/json');
         expect(response.statusCode).toBe(400);
     });
 
@@ -235,7 +277,8 @@ describe('products ', () => {
         }
 
         const product = await (await request(app).get('/product/list').set('Accept', 'application/json')).body.products[0]['_id'];
-        await request(app).post('/product/update/' + product).set('Authorization', token).send(productToUpdate).set('Accept', 'application/json');
+        await request(app).post('/product/update/' + product).set('Authorization', token).set('Username', admin.username)
+            .send(productToUpdate).set('Accept', 'application/json');
         const updatedProduct = await (await request(app).get('/product/list').set('Accept', 'application/json')).body.products[0];
         expect(updatedProduct.units).toBe(20);
     });
@@ -253,12 +296,87 @@ describe('products ', () => {
 
     /**
      * Test that a product can be deleted
-     */
+    */
     it('can be deleted', async () => {
         const product = await (await request(app).get('/product/list').set('Accept', 'application/json')).body.products[0]['_id'];
-        await (await request(app).get('/product/delete/' + product).set('Authorization', token).set('Accept', 'application/json')).body.products;
+        await (await request(app).get('/product/delete/' + product).set('Authorization', token).set('Username', admin.username)
+            .set('Accept', 'application/json')).body.products;
         const units = await (await request(app).get('/product/list').set('Accept', 'application/json')).body.products;
         expect(units.length).toBe(0);
     });
+});
 
+//------------------------------ORDERS------------------------------
+describe('orders ', () => {
+    let idOrder : string;
+
+    /**
+     * Test that a order can be created
+     */
+     it('can be created', async () => {
+        const productAdded: Response = await request(app).post('/product/add').set('Authorization', token).set('Username', admin.username)
+        .send(productPhone).set('Accept', 'application/json');
+        const order = {
+            products: [
+                [productAdded.body.newProduct._id, 2],
+            ],
+            address: {
+                street_address:"Calle Valdés Salas",
+                locality:"Oviedo",
+                region:"Asturias",
+                postal_code:"33001",
+                country_name:"Spain"
+            },
+            user:"sermual@gmail.com",
+            shippingCost:23,
+            totalPrice:45,
+            receptionDate: new Date()
+        }
+        
+        const result = await request(app).post('/order/add').set('Authorization', token).set('Username', admin.username)
+            .send(order).set('Accept', 'application/json');
+        
+        expect(result.status).toBe(200);
+    });
+
+     /**
+     * Test that can list product
+     */
+      it('can be listed', async () => {
+        const result = await request(app).get('/order/list').set('Authorization', token).set('Username', admin.username)
+            .set('Accept', 'application/json');
+        
+        idOrder = result.body.orders[0]._id;
+        expect(result.body.orders.length).toBe(1);
+    });
+
+    /**
+     * Test that can find a order by id
+     */
+     it('can find by id', async () => {
+        const result = await request(app).get(`/order/${idOrder}`).set('Authorization', token).set('Username', admin.username)
+            .set('Accept', 'application/json');
+        
+        expect(result.status).toBe(200);
+    });
+
+    /**
+     * Test that can find orders by username
+     */
+     it('can find by username', async () => {
+        const result = await request(app).get("/order/user/sermual@gmail.com").set('Authorization', token)
+            .set('Accept', 'application/json');
+        
+        expect(result.body.orders.length).toBe(1);
+    });
+
+    /**
+     * Test that can find orders by username
+     */
+     it('can find by username', async () => {
+        const result = await request(app).get(`/order/user/sermual@gmail.com`).set('Authorization', token)
+            .set('Accept', 'application/json');
+        
+        expect(result.body.orders.length).toBe(1);
+    });
 });

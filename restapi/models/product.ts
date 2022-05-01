@@ -7,7 +7,7 @@ export interface IProduct extends Document {
     IVA:number;
     oldPrice: number;
     units: number;
-    categories: [String];
+    category: string;
     onSale: boolean;
     urlImage: string;
 }
@@ -39,9 +39,9 @@ const productSchema = new Schema ({
         required: [true, 'Product must have units'],
         min: 0
     },
-    categories:{
-        type: [String],
-        required: [true, 'Product must have one categories at least']
+    category:{
+        type: String,
+        required: [true, 'Product must have a category']
     },
     onSale:{
         type: Boolean,

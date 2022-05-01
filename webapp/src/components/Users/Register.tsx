@@ -1,6 +1,6 @@
-import React, { ChangeEvent, FormEvent, useState } from "react";
-import { User } from "./User";
-import * as userService from './UserService';
+import { ChangeEvent, FormEvent, useState } from "react";
+import { User } from "../../shared/sharedtypes";
+import * as userService from '../Services/UserService';
 import { useNavigate } from 'react-router-dom';
 import { toast } from "react-toastify";
 
@@ -14,6 +14,7 @@ const Register = () => {
         password: "",
         confirmPassword: "",
         dni: "",
+        token: ""
     };
 
     const [user, setUser] = useState<User>(initialState);
@@ -36,7 +37,7 @@ const Register = () => {
             try {
                 await userService.createNewUser(user);
                 toast.success("Succesfully registered");
-                navigate('/');
+                navigate('/login');
             } catch (error) {
                 setUser(initialState);
                 toast.error("Username or email are already used");
@@ -70,12 +71,12 @@ const Register = () => {
                 <div className="card">
                     <div className="card-body">
                         <h3>Register</h3>
-                        <form onSubmit={submit}>
+                        <form name = "register" onSubmit={submit}>
                             <div className="form-group">
+                                <label htmlFor="username">Username:</label>
                                 <input
                                     type="text"
                                     name="username"
-                                    placeholder="Username"
                                     className="form-control"
                                     onChange={inputChange}
                                     value={user.username}
@@ -85,10 +86,10 @@ const Register = () => {
 
 
                             <div className="form-group">
+                            <   label htmlFor="email">Email:</label>
                                 <input
                                     type="text"
                                     name="email"
-                                    placeholder="Email"
                                     className="form-control"
                                     onChange={inputChange}
                                     value={user.email}
@@ -96,10 +97,10 @@ const Register = () => {
                             </div>
 
                             <div className="form-group">
+                                <label htmlFor="password">Password:</label>
                                 <input
                                     type="password"
                                     name="password"
-                                    placeholder="Password"
                                     className="form-control"
                                     onChange={inputChange}
                                     value={user.password}
@@ -107,10 +108,10 @@ const Register = () => {
                             </div>
 
                             <div className="form-group">
+                                <label htmlFor="confirmPassword">Confirm password:</label>
                                 <input
                                     type="password"
                                     name="confirmPassword"
-                                    placeholder="Repeat password"
                                     className="form-control"
                                     onChange={inputChange}
                                     value={user.confirmPassword}
@@ -119,17 +120,17 @@ const Register = () => {
 
 
                             <div className="form-group">
+                                <label htmlFor="dni">DNI:</label>
                                 <input
                                     type="text"
                                     name="dni"
-                                    placeholder="DNI"
                                     className="form-control"
                                     onChange={inputChange}
                                     value={user.dni}
                                 />
                             </div>
 
-                            <button className="btn btn-primary">
+                            <button aria-label = "submitBtn" className="btn btn-primary">
                                 Submit
                             </button>
                         </form>
