@@ -16,7 +16,8 @@ const CartItem = ({producto, num}: Props) => {
                 <img src={url}></img>
             </div>
             <div className="producto__footer">
-                <h1>{producto.name} - Uds:{num}</h1>
+                <h1>{producto.name}</h1>
+                <p>Units: {num}</p>
                 
                 <p className="price">{price.toFixed(2)}$</p>
             </div>
