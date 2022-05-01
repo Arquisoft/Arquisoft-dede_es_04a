@@ -46,7 +46,7 @@ Mongoose <.. MongoDB : get products
 
 === Technical Context
 
-The system has SOLID architecture in order to respect the privacy of each user's data, this is achieved through the use of PODS to store the user's personal data. The programming language used in the application is Typescript and React is used as the main library to facilitate the development of the application.
+The system has SOLID architecture in order to respect the privacy of each user's data, this is achieved through the use of PODS to store the user's personal data. The programming language used in the application is Typescript and React is used as the main library to facilitate the development of the application.A certain number of apis were also used to access certain resources.
 
 |===
 | Technology         | Definition
