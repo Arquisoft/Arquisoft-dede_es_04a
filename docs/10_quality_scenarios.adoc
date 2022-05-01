@@ -13,39 +13,19 @@ left to right direction
 (Usability) as (U)
 (Security) as (Se)
 (Integrity) as (In)
-(Response Time) as (ResponseTime)
-(Low latency) as (LowLatency)
-(Efficiency) as (Efficiency)
-(Good interface) as (GoodInterface)
-(Internationalization) as (Inter)
-(Interaction) as (Interaction)
-(SOLID) as (SOLID)
-(Privacy) as (Privacy)
-(User / Admin) as (UserAdmin)
-(Products) as (Products)
 QT --> Pr
 QT --> U
 QT --> Se
 QT --> In
-Pr --> ResponseTime
-Pr --> LowLatency
-Pr --> Efficiency
-U --> GoodInterface
-U --> Inter
-U --> Interaction
-Se --> SOLID
-Se --> Privacy
-In --> UserAdmin
-In --> Products
 ----
 
 Quality Scenarios::
-[options="header",cols="1,2,3"]
+[options="header",cols="1,2,3,4"]
 
 |===
-|Quality objectives|Motivation|Priority
-|Security|The use of Solid PODs helps each customer to own their data and prevent data loss. In addition, each customer should be the only one who knows what products they have in their cart.|Hard
-|Usability|The application should have a good interface for all customers, whether or not they have experience in online stores. In addition, the interface should also facilitate the work of administrators. The application will be implemented in English so that it can be used by more people and the interface should make the customer feel comfortable through a readable and functional presentation of the products.|Medium
-|Integrity|Users (clients and administrators), will have different options within the application depending on their role. The products in the store must be constantly updated (new products and new stock) and never with inconsistent values.|Hard
-|Performance|Response times should be as short as possible so as not to make the user impatient with a low latency and the code should be as optimal as possible for the application to run efficiently.| Medium- Low
+|Quality objectives|Motivation|Scenarios|Priority
+|Security|The use of Solid PODs helps each customer to own their data and prevent data loss. In addition, each customer should be the only one who knows what products they have in their cart.|In Tech Zone the shipping address is obtained through the customer's POD, which is the only one who knows what products are in the cart.|Hard
+|Usability|The application should have a good interface for all customers, whether or not they have experience in online stores.the interface should make the customer feel comfortable through a readable and functional presentation of the products.|Tech Zone has a simple catalog where products can be viewed and added to the cart in an intuitive way. During the login, registration and purchase process, notifications appear to help the customer in case of mistakes. The application is implemented in English so that it can be used by more people.|Hard
+|Integrity|Users (clients and administrators), will have different options within the application depending on their role. Products added to the store should not have inconsistent values.|Whenever a product is added, it is verified that its price and stock is greater than 0. On the other hand, administrators have an additional role that prevents normal customers from accessing their options.|Medium
+|Performance|Response times should be as short as possible so as not to make the user impatient with a low latency.|We must optimize the code as much as possible in order to give the fastest possible response.| Medium- Low
 |===
