@@ -3,11 +3,8 @@ import { AdvancedImage } from '@cloudinary/react';
 import { Cloudinary } from "@cloudinary/url-gen";
 import { pad } from "@cloudinary/url-gen/actions/resize";
 import {Producto} from '../../shared/sharedtypes';
-import {useNavigate, useParams} from "react-router-dom";
+import { useParams} from "react-router-dom";
 import * as productoService from '../Services/ProductsService';
-
-
-
 
 export const VistaProductoDelete = () => {
 
@@ -24,7 +21,6 @@ export const VistaProductoDelete = () => {
 
     const [productos, setProductos] = useState<Producto[]>([])
     const [detalle, setDetalle] = useState<Producto>(initialState)
-    const navigate = useNavigate();
 
 
     const params = useParams();

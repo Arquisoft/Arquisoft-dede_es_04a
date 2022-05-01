@@ -1,9 +1,8 @@
 import{ useState, useEffect} from 'react';
 import { useParams } from 'react-router-dom';
-import { Item, OrderType } from "../../shared/sharedtypes";
+import { OrderType } from "../../shared/sharedtypes";
 import * as orderService from '../Services/OrderService';
 import {ReactSession} from 'react-client-session';
-import { getProductos } from '../Services/ProductsService';
 
 type Product = {
     name:string,

@@ -61,10 +61,10 @@ const Login = () => {
                         <h3>Login</h3>
                         <form onSubmit={submit}>
                             <div className="form-group">
+                                <label htmlFor="username">Username:</label>
                                 <input
                                     type="text"
                                     name="username"
-                                    placeholder="Username"
                                     className="form-control"
                                     onChange={inputChange}
                                     value={user.username}
@@ -73,10 +73,10 @@ const Login = () => {
                             </div>
 
                             <div className="form-group">
+                                <label htmlFor="password">Password:</label>
                                 <input
                                     type="password"
                                     name="password"
-                                    placeholder="Password"
                                     className="form-control"
                                     onChange={inputChange}
                                     value={user.password}

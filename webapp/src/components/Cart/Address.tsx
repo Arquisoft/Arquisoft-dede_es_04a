@@ -95,6 +95,7 @@ const Address = () => {
                                 className="form-control"
                                 onChange={inputChange}
                                 value={pod}
+                                autoFocus
                             />
                             <button className="btn btn-primary" onClick={() => getAddress()}>
                                 Get address

@@ -3,7 +3,6 @@ import { Producto } from "../../shared/sharedtypes";
 import * as productService from '../Services/ProductsService';
 import { useNavigate } from 'react-router-dom';
 import { toast } from "react-toastify";
-import { SettingsPowerTwoTone } from "@mui/icons-material";
 import {ReactSession} from 'react-client-session';
 import ProductoDeleteItem from "./ProductoDeleteItem";
 

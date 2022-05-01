@@ -3,7 +3,6 @@ import { OrderType } from "../../shared/sharedtypes"
 import { ReactSession } from 'react-client-session';
 import * as orderService from '../Services/OrderService';
 import OrdersItem from './OrdersItem';
-import { useNavigate } from 'react-router';
 import { Link } from 'react-router-dom';
 
 const Orders = () => {
