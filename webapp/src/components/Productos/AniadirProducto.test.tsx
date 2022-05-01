@@ -9,11 +9,11 @@ test('check add ok', async () => {
   await act(async () => {    
     const {container, getByText} = render(<BrowserRouter><Productos  /></BrowserRouter>)  
     
-    const inputCategoria = container.querySelector('input[name="categories"]')!;
+    const inputCategoria = container.querySelector('input[name="category"]')!;
     const inputName = container.querySelector('input[name="name"]')!;
     const inputDescription = container.querySelector('input[name="description"]')!;
     const inputURL = container.querySelector('input[name="urlImage"]')!;
-    const inputPrice = container.querySelector('input[name="price"]')!;
+    const inputPrice = container.querySelector('input[name="basePrice"]')!;
     const inputUnits = container.querySelector('input[name="units"]')!;
     fireEvent.change(inputName, { target: { value: "Graph" } });
     fireEvent.change(inputCategoria, { target: { value: "categoria" } });
@@ -30,11 +30,11 @@ test('check add ok', async () => {
     await act(async () => {    
       const {container, getByText} = render(<BrowserRouter><Productos  /></BrowserRouter>)  
       
-      const inputCategoria = container.querySelector('input[name="categories"]')!;
+      const inputCategoria = container.querySelector('input[name="category"]')!;
       const inputName = container.querySelector('input[name="name"]')!;
       const inputDescription = container.querySelector('input[name="description"]')!;
       const inputURL = container.querySelector('input[name="urlImage"]')!;
-      const inputPrice = container.querySelector('input[name="price"]')!;
+      const inputPrice = container.querySelector('input[name="basePrice"]')!;
       const inputUnits = container.querySelector('input[name="units"]')!;
       fireEvent.change(inputName, { target: { value: "" } });
       fireEvent.change(inputCategoria, { target: { value: "" } });
