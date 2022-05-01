@@ -2,7 +2,6 @@ import { useEffect, useRef, useState} from 'react'
 import * as productService from '../Services/ProductsService'
 import {Producto, Item} from '../../shared/sharedtypes'
 import ProductoItem from './ProductoItem'
-import { Console } from 'console'
 
 type Products = {
     products: Item[];

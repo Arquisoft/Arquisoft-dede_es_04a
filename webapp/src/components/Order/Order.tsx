@@ -1,19 +1,33 @@
-import{ useState, useEffect} from 'react'
-import { useSearchParams } from 'react-router-dom';
-import { Item, OrderType } from "../../shared/sharedtypes"
-import OrderItem  from './OrderItem';
+import{ useState, useEffect} from 'react';
+import { useParams } from 'react-router-dom';
+import { Item, OrderType } from "../../shared/sharedtypes";
 import * as orderService from '../Services/OrderService';
+import {ReactSession} from 'react-client-session';
+import { getProductos } from '../Services/ProductsService';
+
+type Product = {
+    name:string,
+    num:number
+}
 
 const Order = () => {
-  const [productos, setProductos] = useState<Item[]>([]);
+  const [productos,setProductos] = useState<Product[]>([]);
   const [order, setOrder] = useState<OrderType>();
 
-  const [searchParams] = useSearchParams();
+  const params = useParams();
 
   const loadOrder = async () => {
-    let res = await orderService.getOrder(searchParams.get("id") as string); //this.props.match.params.id
-    setOrder(res.data.order)
-    setProductos(order?.products as Item[]);
+    let user = ReactSession.get("user");
+    let res = await orderService.getOrder(params._id as string,user.token);
+    if(res.data.order){
+      setOrder(res.data.order)
+      let prods:Product[] = [];
+      for(var p in res.data.order.products){
+        var product = {name:p,num:res.data.order.products[p]};
+        prods.push(product);
+      }
+      setProductos(prods); 
+    }
   }
 
   useEffect(() => {
@@ -22,13 +36,17 @@ const Order = () => {
 
   return (
     <div>
-      <h1 className='title'>Pedido {order?._id}</h1>
-      <div className='productos'>
+      <h1 className='title'>Order {order?._id}</h1>
+      <div className='row'>
+        <ol>
         {productos.map(item => 
-          {return (<div>
-                    <OrderItem producto={item.producto} num={item.num}/>
-                  </div>
+          {
+            return (
+                  <li key={item.name}>
+                    <h2>{item.name} x {item.num}</h2>
+                  </li>
         )})}
+        </ol>
       </div>
       <h2>Total: {order?.totalPrice}€</h2>
     </div>

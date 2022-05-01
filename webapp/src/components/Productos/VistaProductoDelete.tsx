@@ -1,13 +1,10 @@
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState } from 'react';
 import { AdvancedImage } from '@cloudinary/react';
 import { Cloudinary } from "@cloudinary/url-gen";
 import { pad } from "@cloudinary/url-gen/actions/resize";
-import {Producto, Item} from '../../shared/sharedtypes'
+import {Producto} from '../../shared/sharedtypes';
 import {useNavigate, useParams} from "react-router-dom";
 import * as productoService from '../Services/ProductsService';
-import { ConstructionOutlined } from '@mui/icons-material';
-import {ReactSession} from 'react-client-session';
-import { unstable_createChainedFunction } from '@mui/utils';
 
 
 

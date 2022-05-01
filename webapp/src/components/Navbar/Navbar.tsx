@@ -47,7 +47,6 @@ const Navbar = (props: Products) => {
             </div>
         </nav>
         )
-    }
 }
 
 export default Navbar
