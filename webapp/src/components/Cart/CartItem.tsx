@@ -37,7 +37,7 @@ const CartItem = ({producto, num}: Props) => {
             <div className="producto__footer">
                 <h1>{producto.name} - Uds:{num}</h1>
                 
-                <p className="price">{price.toFixed(2)}€</p>
+                <p className="price">{price.toFixed(2)}$</p>
             </div>
             
         </div>
