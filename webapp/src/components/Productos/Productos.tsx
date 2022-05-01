@@ -115,8 +115,8 @@ const Productos = (props: Products) => {
                     <input aria-label= "searchProd" className = 'barra_busqueda' type='text' placeholder='Search product' ref={inputBusqueda} onChange={handleBusquedaChange} />
                 </div>
                 <div>
-                    <input className = 'barra_precio_min' type='number' placeholder='Minimum price' ref={inputPrecioMin} onChange={handlePrecioChangeMin} />
-                    <input className = 'barra_precio_max' type='number' placeholder='Maximum price' ref={inputPrecioMax} onChange={handlePrecioChangeMax} />
+                    <input aria-label= "minPrice" className = 'barra_precio_min' type='number' placeholder='Minimum price' ref={inputPrecioMin} onChange={handlePrecioChangeMin} />
+                    <input aria-label= "maxPrice" className = 'barra_precio_max' type='number' placeholder='Maximum price' ref={inputPrecioMax} onChange={handlePrecioChangeMax} />
                 </div>
             </div>
             <div className='productos'>
