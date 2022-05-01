@@ -65,15 +65,24 @@ export const createOrder = async (req: Request, res: Response): Promise<Response
 async function sendMailToClient(info: { email: string; id: string; products: any; }){
     let body = info
 
-    console.log(body)
+    // var transporter = nodeMailer.createTransport({
+    //     host: 'smtp.zoho.com',
+    //     secure: 'true',
+    //     port:465,
+    //     auth: {
+    //       user: 'dede4aes@gmail.com',
+    //       pass: process.env.PASS1
+    //     }
+    //   });
 
-    var transporter = nodeMailer.createTransport({
-        secure: 'true',
-        service: 'gmail',
+    let transporter = nodeMailer.createTransport({
+        host: "smtp.zoho.eu",
+        secure: true,
+        port: 465,
         auth: {
-          user: 'dede4aes@gmail.com',
-          pass: process.env.PASS1
-        }
+          user: "dede4aes@zohomail.eu",
+          pass: process.env.PASS1,
+        },
       });
       
       let message = "Dear buyer, below you will find the products of your last purchase.\n" + 
