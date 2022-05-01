@@ -7,7 +7,7 @@ const nodeMailer = require("nodemailer");
 
 export const findAll = async (req: Request, res: Response): Promise<Response> => {
     const orders = await Order.find();
-    const today = new Date()
+    const today = new Date();
 
     orders.forEach(order => {
         if (order.status != "RECEIVED") {
@@ -19,23 +19,49 @@ export const findAll = async (req: Request, res: Response): Promise<Response> =>
             order.save();
         }
     });
+
     return res.status(200).json({ orders });
 };
 
 export const findById = async (req: Request, res: Response): Promise<Response> => {
-    if(!req.params.id){
+    if (!req.params.id) {
         return res.status(400).json({ msg: "Please. Send an ID" });
     }
     const order = await Order.findById(req.params.id);
+
+    if (order) {
+        const today = new Date();
+
+        if (order.status != "RECEIVED") {
+            if (order.receptionDate <= today) {
+                order.status = "RECEIVED"
+            } else if (order.orderDate < today) {
+                order.status = "ON DELIVERY"
+            }
+            order.save();
+        }
+    }
 
     return res.status(200).json({ order });
 };
 
 export const findByUsername = async (req: Request, res: Response): Promise<Response> => {
-    if(!req.params.email){
+    if (!req.params.email) {
         return res.status(400).json({ msg: "Please. Send an ID" });
     }
     const orders = await Order.find({ user: req.params.email });
+    const today = new Date();
+
+    orders.forEach(order => {
+        if (order.status != "RECEIVED") {
+            if (order.receptionDate <= today) {
+                order.status = "RECEIVED"
+            } else if (order.orderDate < today) {
+                order.status = "ON DELIVERY"
+            }
+            order.save();
+        }
+    });
 
     return res.status(200).json({ orders });
 };
@@ -50,51 +76,60 @@ export const createOrder = async (req: Request, res: Response): Promise<Response
 
     const newOrder = new Order(req.body);
     await newOrder.save();
-    
+
     const info = {
         email: req.body.user,
-        id : newOrder.id,
-        products : req.body.products
+        id: newOrder.id,
+        products: req.body.products
     }
-    
-     sendMailToClient(info);
-    
+
+    sendMailToClient(info);
+
     return res.status(200).json({ newOrder });
 };
 
-async function sendMailToClient(info: { email: string; id: string; products: any; }){
+async function sendMailToClient(info: { email: string; id: string; products: any; }) {
     let body = info
 
-    console.log(body)
+    // var transporter = nodeMailer.createTransport({
+    //     host: 'smtp.zoho.com',
+    //     secure: 'true',
+    //     port:465,
+    //     auth: {
+    //       user: 'dede4aes@gmail.com',
+    //       pass: process.env.PASS1
+    //     }
+    //   });
 
-    var transporter = nodeMailer.createTransport({
-        secure: 'true',
-        service: 'gmail',
+    let transporter = nodeMailer.createTransport({
+        host: "smtp.zoho.eu",
+        secure: true,
+        port: 465,
         auth: {
-          user: 'dede4aes@gmail.com',
-          pass: process.env.PASS1
-        }
+          user: "dede4aes@zohomail.eu",
+          pass: process.env.PASS1,
+        },
       });
       
       let message = "Dear buyer, below you will find the products of your last purchase.\n" + 
       "The identifier is " + body.id + " in case you wish to review it on our website\nThe order summary is:\n"
 
-      const products = new Map(Object.entries(body.products));
+    const products = new Map(Object.entries(body.products));
 
-      for(let [key, value] of products){
-          message += "\t- Product: "+ key + " Units: " + value +"\n";  
-      }
+    for (let [key, value] of products) {
+        message += "\t- Product: " + key + " Units: " + value + "\n";
+    }
 
-      message += "\nWe hope you will buy again soon!\nTech Zone"
+    message += "\nWe hope you will buy again soon!\nTech Zone"
 
-      const mailOptions = {
+    const mailOptions = {
         from: 'dede4aes@gmail.com',
         to: body.email,
         subject: 'Order summary',
         text: message
-      };
-      
-       transporter.sendMail(mailOptions);
+    };
+
+    transporter.sendMail(mailOptions);
 }
 
 export const updateStatus = async (req: Request, res: Response): Promise<Response> => {
