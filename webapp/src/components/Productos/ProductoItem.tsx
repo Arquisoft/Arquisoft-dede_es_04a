@@ -1,7 +1,4 @@
-import {Producto, Item} from '../../shared/sharedtypes'
-import {AdvancedImage} from '@cloudinary/react';
-import {Cloudinary} from "@cloudinary/url-gen";
-import {pad} from "@cloudinary/url-gen/actions/resize";
+import {Producto, Item} from '../../shared/sharedtypes';
 import {ReactSession} from 'react-client-session';
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -32,39 +29,29 @@ const ProductoItem = ({producto, cart}: Props) => {
             cart.push({producto,num});
     }
 
-    const cld = new Cloudinary({
-        cloud: {
-          cloudName: 'dede4a'
-        }
-    }); 
-
-    const price = producto.basePrice + (producto.basePrice * producto.IVA)
-    const url = producto.urlImage
-    const myImage = cld.image(url);
+    const price = producto.basePrice + (producto.basePrice * producto.IVA);
+    const url = "https://res.cloudinary.com/dede4a/image/upload/"+producto.urlImage+"?_a=AJADJWI0";
 
     const ruta = '/producto/' + producto._id;
     
-    myImage
-    .resize(pad().width(250).height(250))
-
   return (
     <div className="producto">
             <a href="#">
                 <div className="producto__img">
-                    <AdvancedImage cldImg={myImage} />
+                    <img src={url}></img>
                 </div>
             </a>
             <div className="producto__footer">
                 <h1>{producto.name}</h1>
                 
-                <p className="price">{price.toFixed(2)}€</p>
+                <p className="price">{price.toFixed(2)}$</p>
             </div>
             <div className="buttom">
-                <button className="btn" onClick={addToCart}>
-                    Añadir al carrito
+                <button aria-label = "btnAñadir" className="btn" onClick={addToCart}>
+                    Add to cart
                 </button>
                 <div>
-                    <Link className="btn" type="button" to={ruta}>Vista</Link>
+                    <Link className="btn" type="button" to={ruta}>View</Link>
                 </div>
             </div>
       </div>

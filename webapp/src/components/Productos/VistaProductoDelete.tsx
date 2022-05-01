@@ -1,18 +1,12 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
 import { AdvancedImage } from '@cloudinary/react';
 import { Cloudinary } from "@cloudinary/url-gen";
 import { pad } from "@cloudinary/url-gen/actions/resize";
-import {Producto, Item} from '../../shared/sharedtypes'
-import {useNavigate, useParams} from "react-router-dom";
+import {Producto} from '../../shared/sharedtypes';
+import { useParams} from "react-router-dom";
 import * as productoService from '../Services/ProductsService';
-import {ReactSession} from 'react-client-session';
 
-interface Props{
-    cart: Item[];
-}
-
-
-export const VistaProducto = ({cart}: Props) => {
+export const VistaProductoDelete = () => {
 
     const initialState = {
         category:"",
@@ -27,7 +21,6 @@ export const VistaProducto = ({cart}: Props) => {
 
     const [productos, setProductos] = useState<Producto[]>([])
     const [detalle, setDetalle] = useState<Producto>(initialState)
-    const navigate = useNavigate();
 
 
     const params = useParams();
@@ -74,26 +67,6 @@ export const VistaProducto = ({cart}: Props) => {
     myImage
         .resize(pad().width(350).height(350))
 
-    const addToCart = () =>{
-        if(ReactSession.get("user")===undefined){
-            navigate("/login");
-            return;
-        }
-
-        var contains = false;
-        if(detalle !== undefined){
-        cart.forEach( item => {
-            if(item.producto.name===detalle.name){
-                item.num+=1;
-                contains = true;    
-            }
-        });
-        let num = 1;
-        const producto = detalle;
-        if(contains===false)
-            cart.push({producto,num});
-     }
-    }
     const price = detalle?.basePrice + (detalle?.basePrice * detalle?.IVA)
 
     console.log("detalle.basePrice")
@@ -111,9 +84,6 @@ export const VistaProducto = ({cart}: Props) => {
             <a className='precio'>Price: {price.toFixed(2)}$</a>
         </div>
         <p className='descripcion'>{detalle?.description}</p>
-        <button className="btn" onClick={addToCart}>
-                    Add to cart
-        </button>
     </div>
     
   )
