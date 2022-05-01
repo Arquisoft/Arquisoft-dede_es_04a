@@ -65,8 +65,6 @@ export const createOrder = async (req: Request, res: Response): Promise<Response
 async function sendMailToClient(info: { email: string; id: string; products: any; }){
     let body = info
 
-    console.log(body)
-
     // var transporter = nodeMailer.createTransport({
     //     host: 'smtp.zoho.com',
     //     secure: 'true',
