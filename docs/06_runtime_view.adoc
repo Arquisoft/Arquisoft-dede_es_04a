@@ -27,16 +27,22 @@ DeDe --> Client: Get the catalog
 
 === Login
 
-This view shows the administrator login. The website receives the admin's credentials, and after verification of the information allows the admin to add, delete and update the desired products.
+This view shows the administrator login. The website receives the admin's credentials, and after a back-end petition through Axios and a connection to mongoDb through Mongoose the credentials will be verified and the admin will be allowed to add, delete and update the desired products.
 
 [plantuml,"AdminView",png]
 ----
 @startuml
 actor Admin
 participant DeDe
+participant Axios
+participant Mongoose
 database MongoDb
 Admin -> DeDe: Enter credentials
-DeDe -> MongoDb: Verify the information entered
+DeDe --> Axios: Sents a petition to the back-end
+DeDe -> Mongoose: Asks for connection to database
+Mongoose --> MongoDb: Verifies the credentials
+MongoDb --> Mongoose: Returns information
+Mongoose --> DeDe: Gives information
 DeDe --> Admin: Successful login
 @enduml
 ----
@@ -90,17 +96,22 @@ DeDe --> Client: Successful registration
 
 === Modify products
 
-This view shows how the administrator will modify the catalog.
+This view shows how the administrator, after having logged in, will modify the catalog. The front-end makes a petition to the back-end by a petition and then the app connects to the database by mongoose.
 
 [plantuml,"AdminModify",png]
 ----
 @startuml
 actor Admin
 participant DeDe
+participant Axios
+participant Mongoose
 database MongoDb
 Admin -> DeDe: Enters all the data from the product he wants to add, modify or delete
-DeDe -> MongoDb: Verifies that the user is an administrator, validates the data and chages the database
+DeDe --> Axios: Connects front-end to back-end by a petition
+DeDe -> Mongoose: Verifies that the user is an administrator, validates the data
+Mongoose --> MongoDb: Modifies the database
 DeDe --> Admin: Successful modification of the catalog
+
 @enduml
 ----
 

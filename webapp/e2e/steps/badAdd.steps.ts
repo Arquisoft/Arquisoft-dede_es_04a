@@ -1,7 +1,7 @@
 import { defineFeature, loadFeature } from 'jest-cucumber';
 import puppeteer from "puppeteer";
 
-const feature = loadFeature('./features/login.feature');
+const feature = loadFeature('./features/badAdd.feature');
 
 let page: puppeteer.Page;
 let browser: puppeteer.Browser;
@@ -22,33 +22,31 @@ defineFeature(feature, test => {
       .catch(() => {});
   });
 
-  test('Un usuario registrado intenta logearse', ({given,when,then}) => {
+  test('Un usuario no logeado añade un producto', ({given,when,then}) => {
     
     let s1: string;
     let s2: string;
   
-    given('An unlogged user', () => {
+    given('An logged user', () => {
         s1= "pruebaprueba"
         s2= "PruebaPrueba1+"
     });
 
-    when('I login', async () => {
+    when('I add a product to cart', async () => {
         await page.setDefaultNavigationTimeout(0);
         await page.setViewport({ width: 1200, height: 1300 });
+        
         await expect(page).toMatch('PRODUCTS')
-        await page.goto("http://localhost:3000/login")
-        await expect(page).toFill('input[name="username"]', s1)
-        await expect(page).toFill('input[name="password"]', s2)
-        await expect(page).toClick('button[aria-label="submit"]')
+
+        await expect(page).toClick('button[aria-label="btnAñadir"]')
 
     //   await expect(page).toClick("button[text ='Login']")
-    //    await page.waitForNavigation();
+    //   await page.waitForNavigation(); 
       
     });
 
-    then('I am at the main view and a welcome message is shown', async () => {
-      await expect(page).toMatch('PRODUCTS')
-      await expect(page).toMatch('Welcome back')
+    then('I am redirected to login view', async () => {
+      await expect(page).toMatch('Login')
     });
   })
 
@@ -60,4 +58,3 @@ defineFeature(feature, test => {
   })
 
 });
-
