@@ -24,7 +24,7 @@ const Orders = () => {
 
   return (
     <div>
-      <h1 className='title'>Mis pedidos</h1>
+      <h1 className='title'>My orders</h1>
       <div className='pedidos'>
         {orders.map(order => 
           {return (<div>

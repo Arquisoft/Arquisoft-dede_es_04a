@@ -80,7 +80,7 @@ const Productos = (props: Products) => {
         setProductosFiltrados(
             productos.filter(({ basePrice, IVA }) => basePrice + (basePrice * IVA) <= termino)
         );
-        if(termino ==''){
+        if(termino === ''){
             setProductosFiltrados(
                 productos.filter(({ basePrice }) => basePrice <= 9999999)
             );
@@ -95,7 +95,7 @@ const Productos = (props: Products) => {
             productos.filter(({ basePrice, IVA }) =>(basePrice + (basePrice * IVA) >= termino))
         );
 
-        if(termino ==''){
+        if(termino === ''){
             setProductosFiltrados(
                 productos.filter(({ basePrice }) => basePrice > 0)
             );

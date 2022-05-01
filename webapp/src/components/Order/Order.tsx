@@ -8,7 +8,7 @@ const Order = () => {
   const [productos, setProductos] = useState<Item[]>([]);
   const [order, setOrder] = useState<OrderType>();
 
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
 
   const loadOrder = async () => {
     let res = await orderService.getOrder(searchParams.get("id") as string); //this.props.match.params.id

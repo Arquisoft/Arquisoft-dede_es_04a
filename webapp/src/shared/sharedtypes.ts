@@ -10,7 +10,7 @@ export type Producto = {
   IVA: number;
 }
 
-enum Roles {ROLE_USER,ROLE_ADMIN}
+export enum Roles {ROLE_USER,ROLE_ADMIN}
 
 export type User = {
   email?:string;
@@ -43,6 +43,7 @@ export type OrderType = {
     address?: AddressType;
     status?: string;
     receptionDate?: Date;
+    shippingCost?: number;
 }
 
 export type PaymentMean = {
