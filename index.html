@@ -759,34 +759,34 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <p>Price.</p>
 </li>
 <li>
-<p>Description.</p>
+<p>Add to cart option.</p>
+</li>
+<li>
+<p>View option (to show the details).</p>
 </li>
 <li>
 <p>Image.</p>
-</li>
-<li>
-<p>Sale.</p>
 </li>
 </ul>
 </div>
 <div class="sect2">
 <h3 id="_business_context">3.1. Business Context</h3>
 <div class="paragraph">
-<p>The home page will show all the products available in the shop. The customer will be able to search for the desired technology by category, then the list of products corresponding to the selected category will be displayed, the user will choose the products and the quantity of products he wants. These products will be added to the shopping basket, a list made up of all the products chosen by the customer to be purchased.</p>
+<p>The home page will show all the products available in the shop. The customer will be able to log into the service as well as to register himself, regardless of this he will be able to search for the desired technology by name or a price range, then the list of products corresponding to the selected filter will be displayed. If the usser is logged he will be able to add the products to a shopping basket, a list made up of all the products chosen by the customer to be purchased.</p>
 </div>
 <div class="paragraph">
-<p>The customer will have access to his shopping basket where he will be able to delete products, modify their quantity or finalise his purchase.</p>
+<p>The customer will have access to his shopping basket where he will be able to increase or reduce each product quantity as well as remove them from the basket or finalise his purchase.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="./images/Context.png" alt="Context" width="335" height="373">
+<img src="./images/Context.png" alt="Context" width="902" height="489">
 </div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_technical_context">3.2. Technical Context</h3>
 <div class="paragraph">
-<p>The system has SOLID architecture in order to respect the privacy of each user&#8217;s data, this is achieved through the use of PODS to store the user&#8217;s personal data. The programming language used in the application is Typescript and React is used as the main library to facilitate the development of the application.</p>
+<p>The system has SOLID architecture in order to respect the privacy of each user&#8217;s data, this is achieved through the use of PODS to store the user&#8217;s personal data. The programming language used in the application is Typescript and React is used as the main library to facilitate the development of the application.A certain number of apis were also used to access certain resources.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -813,6 +813,22 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">REACT</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Main library to facilitate the development of the GUI</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CLOUDINARY</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">API used to download and upload the product images and edit their properties</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AXIOS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">API used to make asynchronous requests to the 'back-end'.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NODEMAILER</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">API which allows emails to be sent from different hosts (in our case Gmail).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MONGOOSE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">API that allows us to connect to the mongoDB cluster in a simple way.</p></td>
 </tr>
 </tbody>
 </table>
@@ -1120,11 +1136,11 @@ and we believe that it will be easier to achieve the objectives if we focus most
 <div class="sect2">
 <h3 id="_login">6.2. Login</h3>
 <div class="paragraph">
-<p>This view shows the administrator login. The website receives the admin&#8217;s credentials, and after verification of the information allows the admin to add, delete and update the desired products.</p>
+<p>This view shows the administrator login. The website receives the admin&#8217;s credentials, and after a back-end petition through Axios and a connection to mongoDb through Mongoose the credentials will be verified and the admin will be allowed to add, delete and update the desired products.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="./images/AdminView.png" alt="AdminView" width="376" height="283">
+<img src="./images/AdminView.png" alt="AdminView" width="625" height="404">
 </div>
 </div>
 </div>
@@ -1153,11 +1169,11 @@ and we believe that it will be easier to achieve the objectives if we focus most
 <div class="sect2">
 <h3 id="_modify_products">6.5. Modify products</h3>
 <div class="paragraph">
-<p>This view shows how the administrator will modify the catalog.</p>
+<p>This view shows how the administrator, after having logged in, will modify the catalog. The front-end makes a petition to the back-end by a petition and then the app connects to the database by mongoose.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="./images/AdminModify.png" alt="AdminModify" width="999" height="283">
+<img src="./images/AdminModify.png" alt="AdminModify" width="1000" height="343">
 </div>
 </div>
 </div>
@@ -1188,7 +1204,7 @@ and we believe that it will be easier to achieve the objectives if we focus most
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="./images/DeploymentView.png" alt="DeploymentView" width="254" height="279">
+<img src="./images/DeploymentView.png" alt="DeploymentView" width="343" height="804">
 </div>
 </div>
 <div class="dlist">
@@ -1625,6 +1641,14 @@ different functionalities from those of a standard user.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">react-toastify</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Allows the creation of notifications for the application.</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">react-router-dom</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Allows the creation of routes for the application.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">mui</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Library of React components.</p></td>
+</tr>
 </tbody>
 </table>
 <div style="page-break-after: always;"></div>
@@ -1652,7 +1676,7 @@ Created by Dr. Peter Hruschka &amp; Dr. Gernot Starke.</p>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-03-25 18:37:24 +0100
+Last updated 2022-04-27 18:27:12 +0200
 </div>
 </div>
 </body>
