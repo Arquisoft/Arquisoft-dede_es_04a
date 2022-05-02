@@ -23,15 +23,11 @@ export const VistaProductoDelete = () => {
 
 
     const params = useParams();
-    console.log("parametros")
-    console.log(params);
     
 
     const loadProductos = async () => {
         const res = await productoService.getProductos()
-        console.log(res)
         let datos = res.data
-        console.log(datos)
         setProductos(datos.products)   
     }
 
@@ -39,8 +35,6 @@ export const VistaProductoDelete = () => {
         loadProductos()
     }, [])
 
-    console.log("productos")
-    console.log(productos);
 
     useEffect(() => {
         productos.forEach(producto =>{
@@ -52,8 +46,6 @@ export const VistaProductoDelete = () => {
     }, [params._id, productos])
    
 
-    console.log("Detalle")
-    console.log(detalle)
 
     const cld = new Cloudinary({
         cloud: {
@@ -68,10 +60,7 @@ export const VistaProductoDelete = () => {
 
     const price = detalle?.basePrice + (detalle?.basePrice * detalle?.IVA)
 
-    console.log("detalle.basePrice")
-    console.log(detalle.basePrice)
-    console.log("detalle.IVA")
-    console.log(detalle.IVA)
+
     
     
     const url = "https://res.cloudinary.com/dede4a/image/upload/"+detalle.urlImage+"?_a=AJADJWI0";

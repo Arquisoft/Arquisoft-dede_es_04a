@@ -10,10 +10,7 @@ export const DeleteProduct = () => {
 
     const loadProductos = async ()=>{
         const res = await productService.getProductos()
-        console.log("carga Prods")
-        console.log(res)
         let datos = res.data
-        console.log(datos)
         setProductos(datos.products)
     }
 
