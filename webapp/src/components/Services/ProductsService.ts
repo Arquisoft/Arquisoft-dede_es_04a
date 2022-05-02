@@ -22,6 +22,5 @@ export const deleteProducto = async (username: string, token: string, producto: 
    try{
       return await axios.get((process.env.REACT_APP_API_URI ||'http://localhost:5000/api') + '/product/delete/' + producto._id + '?id=' + producto._id, {headers: { 'Content-Type': 'application/json', 'Authorization': token, 'Username': username}});
    }catch(error){
-
    }  
 };
