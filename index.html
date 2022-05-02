@@ -451,8 +451,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="#section-architecture-constraints">2. Architectural constraints</a>
 <ul class="sectlevel2">
-<li><a href="#_technical_restrictions">2.1. Technical restrictions</a></li>
-<li><a href="#_organizational_restrictions">2.2. Organizational restrictions</a></li>
+<li><a href="#_technical_constraints">2.1. Technical constraints</a></li>
+<li><a href="#_organizational_constraints">2.2. Organizational constraints</a></li>
 <li><a href="#_convections">2.3. Convections</a></li>
 </ul>
 </li>
@@ -589,19 +589,32 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <div class="paragraph">
 <p>Given that those who will habitually use the web will be the users and the administrator, the main goals would be:</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>Intuitive usability in the case of both the administrator and the user.</p>
-</li>
-<li>
-<p>The products of the store must be constantly updated (new products and new stock).</p>
-</li>
-<li>
-<p>All information regarding the data of users and their baskets must be private.</p>
-</li>
-</ul>
-</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Quality</th>
+<th class="tableblock halign-left valign-top">Motivation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Usability</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The application must be intiutive for both administrator and users.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Availability</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The application must be available all time for the users to buy products.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Privacy and Security</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">All information regarding the data of users and their carts must be private.</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="sect2">
 <h3 id="_stakeholders">1.3. Stakeholders</h3>
@@ -646,17 +659,19 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <h2 id="section-architecture-constraints">2. Architectural constraints</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_technical_restrictions">2.1. Technical restrictions</h3>
+<h3 id="_technical_constraints">2.1. Technical constraints</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
 </colgroup>
-<tbody>
+<thead>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Requirement</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Explanation</p></td>
+<th class="tableblock halign-left valign-top">Requirement</th>
+<th class="tableblock halign-left valign-top">Explanation</th>
 </tr>
+</thead>
+<tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">React</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Framework oriented to the Frontend of the application.</p></td>
@@ -681,17 +696,19 @@ For documentation of your own system you use better the <em>plain</em> version.<
 </table>
 </div>
 <div class="sect2">
-<h3 id="_organizational_restrictions">2.2. Organizational restrictions</h3>
+<h3 id="_organizational_constraints">2.2. Organizational constraints</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
 </colgroup>
-<tbody>
+<thead>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Requirement</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Explanation</p></td>
+<th class="tableblock halign-left valign-top">Requirement</th>
+<th class="tableblock halign-left valign-top">Explanation</th>
 </tr>
+</thead>
+<tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">GitHub</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Git version control system with additional tools.</p></td>
@@ -715,14 +732,16 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <h3 id="_convections">2.3. Convections</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
 </colgroup>
-<tbody>
+<thead>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Requirement</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Explanation</p></td>
+<th class="tableblock halign-left valign-top">Requirement</th>
+<th class="tableblock halign-left valign-top">Explanation</th>
 </tr>
+</thead>
+<tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Arc42</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">To develop the documentation we will follow the Arc42 model.</p></td>
@@ -790,14 +809,16 @@ For documentation of your own system you use better the <em>plain</em> version.<
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
 </colgroup>
-<tbody>
+<thead>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Technology</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Definition</p></td>
+<th class="tableblock halign-left valign-top">Technology</th>
+<th class="tableblock halign-left valign-top">Definition</th>
 </tr>
+</thead>
+<tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">SOLID</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Architecture to facilitate code cleanliness and maintainability</p></td>
@@ -885,6 +906,12 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <li>
 <p>Cloudinary: Service that provides an API to upload and download the images of the products.</p>
 </li>
+<li>
+<p>Nodemailer: API that allows us to send emails to the user with the details of the orders.</p>
+</li>
+<li>
+<p>Shippo: Provides an API to calculate the shipping costs and the estimated day of arrival of the orders.</p>
+</li>
 </ul>
 </div>
 </div>
@@ -901,7 +928,21 @@ from the logic and the user interface.</p>
 <p>In order to achieve the proposed objectives we have decided to distribute the work in such a way that part of the group focuses more on
 the backend and the other one on the frontend.
 We have taken this decision since all the technologies to be used are new for all of us,
-and we believe that it will be easier to achieve the objectives if we focus mostly on one part</p>
+and we believe that it will be easier to achieve the objectives if we focus mostly on one part.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Having half of the group focused on frontend, we believe that it will be easier to to achive the usability goal.</p>
+</li>
+<li>
+<p>To achive the availability goal, we will have the application deployed in Amazon Web Services and it will be accesible from everywhere.</p>
+</li>
+<li>
+<p>Privacy and Security are another goals that we are focused on. To achive this, the users must have a username and password to access to the application,
+and we are going to use PODs to get the address from the user, so we are not storing any personal information apart from the name, email and DNI.</p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect2">
@@ -1383,18 +1424,20 @@ different functionalities from those of a standard user.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
+<col style="width: 10%;">
+<col style="width: 20%;">
+<col style="width: 30%;">
+<col style="width: 40%;">
 </colgroup>
-<tbody>
+<thead>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Decision</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Pros</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Cons</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Link</p></td>
+<th class="tableblock halign-left valign-top">Decision</th>
+<th class="tableblock halign-left valign-top">Pros</th>
+<th class="tableblock halign-left valign-top">Cons</th>
+<th class="tableblock halign-left valign-top">Link</th>
 </tr>
+</thead>
+<tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">MongoDB</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Database that allows to modify data in a more flexible way</p></td>
@@ -1428,7 +1471,7 @@ different functionalities from those of a standard user.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">cloudinary</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Host that stores the product images for free</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">We have never worked with an image processing API.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">We have never worked with an image processing API</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/Arquisoft/dede_es4a/wiki/Decisiones-arquitect%C3%B3nicas">DA #06</a></p></td>
 </tr>
 <tr>
@@ -1437,6 +1480,36 @@ different functionalities from those of a standard user.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Increased number of connections and keys</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/Arquisoft/dede_es4a/wiki/Decisiones-arquitect%C3%B3nicas">DA #08</a></p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">nodemailer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">It allows us to send emails from different hosts such as gmail, outlook&#8230;&#8203;</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">We have never worked with an email delivery API.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/Arquisoft/dede_es4a/wiki/Decisiones-arquitect%C3%B3nicas">DA #09</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">react-toastify</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">It allows you to create visual notifications in react in a simple way</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">We have never worked with this library</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/Arquisoft/dede_es4a/wiki/Decisiones-arquitect%C3%B3nicas">DA #10</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">react-client-session</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A simple object to manage client session data in a React app.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">We have never worked with the user session on the web</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/Arquisoft/dede_es4a/wiki/Decisiones-arquitect%C3%B3nicas">DA #11</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">react-router-dom</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Library that allows to implement routes dynamically</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Learn how to use this library to create application routes and links to routes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/Arquisoft/dede_es4a/wiki/Decisiones-arquitect%C3%B3nicas">DA #12</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">shippo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">API that automatically calculates shipping costs in a simple way</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Learn how to use the API and how to pass the address of a POD to it</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/Arquisoft/dede_es4a/wiki/Decisiones-arquitect%C3%B3nicas">DA #13</a></p></td>
+</tr>
 </tbody>
 </table>
 <div class="paragraph">
@@ -1444,18 +1517,20 @@ different functionalities from those of a standard user.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
+<col style="width: 10%;">
+<col style="width: 20%;">
+<col style="width: 30%;">
+<col style="width: 40%;">
 </colgroup>
-<tbody>
+<thead>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Decision</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Pros</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Cons</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Link</p></td>
+<th class="tableblock halign-left valign-top">Decision</th>
+<th class="tableblock halign-left valign-top">Pros</th>
+<th class="tableblock halign-left valign-top">Cons</th>
+<th class="tableblock halign-left valign-top">Link</th>
 </tr>
+</thead>
+<tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Heroku</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Allows projects to be deployed free of charge</p></td>
@@ -1482,7 +1557,7 @@ different functionalities from those of a standard user.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="./images/Quality%20tree.png" alt="Quality tree" width="570" height="657">
+<img src="./images/Quality%20tree.png" alt="Quality tree" width="346" height="247">
 </div>
 </div>
 <div class="dlist">
@@ -1492,14 +1567,16 @@ different functionalities from those of a standard user.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 16.6666%;">
-<col style="width: 33.3333%;">
-<col style="width: 50.0001%;">
+<col style="width: 10%;">
+<col style="width: 20%;">
+<col style="width: 30%;">
+<col style="width: 40%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-top">Quality objectives</th>
 <th class="tableblock halign-left valign-top">Motivation</th>
+<th class="tableblock halign-left valign-top">Scenarios</th>
 <th class="tableblock halign-left valign-top">Priority</th>
 </tr>
 </thead>
@@ -1507,21 +1584,25 @@ different functionalities from those of a standard user.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Security</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The use of Solid PODs helps each customer to own their data and prevent data loss. In addition, each customer should be the only one who knows what products they have in their cart.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In Tech Zone the shipping address is obtained through the customer&#8217;s POD, which is the only one who knows what products are in the cart.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Hard</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Usability</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The application should have a good interface for all customers, whether or not they have experience in online stores. In addition, the interface should also facilitate the work of administrators. The application will be implemented in English so that it can be used by more people and the interface should make the customer feel comfortable through a readable and functional presentation of the products.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Medium</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Integrity</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Users (clients and administrators), will have different options within the application depending on their role. The products in the store must be constantly updated (new products and new stock) and never with inconsistent values.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The application should have a good interface for all customers, whether or not they have experience in online stores.the interface should make the customer feel comfortable through a readable and functional presentation of the products.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Tech Zone has a simple catalog where products can be viewed and added to the cart in an intuitive way. During the login, registration and purchase process, notifications appear to help the customer in case of mistakes. The application is implemented in English so that it can be used by more people.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Hard</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Integrity</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Users (clients and administrators), will have different options within the application depending on their role. Products added to the store should not have inconsistent values.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Whenever a product is added, it is verified that its price and stock is greater than 0. On the other hand, administrators have an additional role that prevents normal customers from accessing their options.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Medium</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Performance</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Response times should be as short as possible so as not to make the user impatient with a low latency and the code should be as optimal as possible for the application to run efficiently.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Response times should be as short as possible so as not to make the user impatient with a low latency.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">We must optimize the code as much as possible in order to give the fastest possible response.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Medium- Low</p></td>
 </tr>
 </tbody>
@@ -1648,6 +1729,14 @@ different functionalities from those of a standard user.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">mui</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Library of React components.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">shippo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">API for calculating shipping costs from the USA with different parcel carriers.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">nodemailer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Module for node.js that allows sending emails from different hosts such as gmail, outlook&#8230;&#8203;</p></td>
 </tr>
 </tbody>
 </table>
