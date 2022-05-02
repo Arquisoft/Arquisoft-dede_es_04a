@@ -37,9 +37,10 @@ Given that those who will habitually use the web will be the users and the admin
 [options="header"]
 |===
 | ID | Priority | Quality | Motivation
-| QG1 | 1 | Usability | The application must be intiutive for both administrator and users.
-| QG2 | 2 | Availability | The application must be available all time for the users to buy products.
-| QG3 | 3 | Privacy and Security | All information regarding the data of users and their carts must be private.
+| QG1 | 1 | Privacy and Security | All information regarding the data of users and their carts must be private.
+| QG2 | 2 | Usability | The application must be intiutive for both administrator and users.
+| QG3 | 3 | Availability | The application must be available all time for the users to buy products.
+| QG4 | 4 | Performance | Response times should be as short as possible so as not to make the user impatient with a low latency.
 |===
 
 
