@@ -6,18 +6,27 @@
 These are the technologies we have decided to use:
 
 * MongoDB: NoSQL database.
-* Express: Node.js web application infrastructure.
-* React: Library for creating user interfaces.
-* Node.js: Allows to execute TypeScript on the server side.
 * TypeScript: JavaScript superset, which mainly adds static typing to JavaScript.
 * GitHub: Allows to host Git-based projects.
-* Visual Studio Code: Code editor that thanks to its large number of extensions will facilitate our work.
 * SOLID: Project that aims to allow users to decide where their data is stored, in order to improve privacy.
-* Amazon Web Services: Web server provider where we will deploy our application.
-* Docker: Project that automates deployment of applications inside containers. We will create containers for both restapi and webapp to deloy them on AWS.
-* Postman: Software to test APIs.
-* Supertest and Jest: Modules to test our application.
-* Cloudinary: Service that provides an API to upload and download the images of the products.
+* Libraries
+** React: Library for creating user interfaces.
+** Node.js: Allows to execute TypeScript on the server side.
+** Express: Node.js web application infrastructure.
+** Mongoose: Library to connect to the database and add functionality.
+** Axios: Library to make async petitions.
+** Supertest and Jest: Modules to test our application.
+** jsPDF: Library to create PDFs, we will generate our invoices in PDF.
+** Programs:
+** Visual Studio Code: Code editor that thanks to its large number of extensions will facilitate our work.
+** Postman: Software to test APIs.
+* Deployment:
+** Amazon Web Services: Web server provider where we will deploy our application.
+** Docker: Project that automates deployment of applications inside containers. We will create containers for both restapi and webapp to deloy them on AWS.
+* APIs:
+** Cloudinary: Service that provides an API to upload and download the images of the products.
+** Nodemailer: API that allows us to send emails to the user with the details of the orders.
+** Shippo: Provides an API to calculate the shipping costs and the estimated day of arrival of the orders.
 
 === Architectural and design patterns
 
@@ -29,7 +38,12 @@ from the logic and the user interface.
 In order to achieve the proposed objectives we have decided to distribute the work in such a way that part of the group focuses more on
 the backend and the other one on the frontend.
 We have taken this decision since all the technologies to be used are new for all of us,
-and we believe that it will be easier to achieve the objectives if we focus mostly on one part
+and we believe that it will be easier to achieve the objectives if we focus mostly on one part.
+
+* Having half of the group focused on frontend, we believe that it will be easier to to achive the usability goal.
+* To achive the availability goal, we will have the application deployed in Amazon Web Services and it will be accesible from everywhere.
+* Privacy and Security are another goals that we are focused on. To achive this, the users must have a username and password to access to the application, 
+and we are going to use PODs to get the address from the user, so we are not storing any personal information apart from the name, email and DNI.
 
 === Organizational decisions
 

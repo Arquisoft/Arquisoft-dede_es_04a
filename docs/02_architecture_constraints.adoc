@@ -1,8 +1,9 @@
 [[section-architecture-constraints]]
 == Architectural constraints
 
-=== Technical restrictions
+=== Technical constraints
 
+[options="header",cols="1,2"]
 |===
 |Requirement|Explanation
 |React|Framework oriented to the Frontend of the application.
@@ -12,11 +13,12 @@
 |Testing|Automatic and manual tests on the code.
 |===
 
-=== Organizational restrictions
+=== Organizational constraints
 
+[options="header",cols="1,2"]
 |===
 |Requirement|Explanation
-|GitHub|Git version control system with additional tools.
+|GitHub|GitHub provides tools such as issues and actions to help us in development.
 |Working group|The group is made up of 4 people.
 |Meetings|At least one team meeting per week will be held and recorded.
 |Delivery times|Approximately every 3 weeks there will be deliveries to know the status of the application and its documentation.
@@ -24,9 +26,9 @@
 
 === Convections
 
+[options="header",cols="1,2"]
 |===
 |Requirement|Explanation
 |Arc42|To develop the documentation we will follow the Arc42 model.
 |SOLID|SOLID principles will be followed with respect to customer privacy.
-|Interface|The interface must be intuitive for non-technical people.
 |===

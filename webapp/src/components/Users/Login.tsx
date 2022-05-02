@@ -1,6 +1,6 @@
 import { ChangeEvent, FormEvent, useState } from "react";
-import { User } from "./User";
-import * as userService from './UserService';
+import { User } from "../../shared/sharedtypes";
+import * as userService from '../Services/UserService';
 import { useNavigate } from 'react-router-dom';
 import { toast } from "react-toastify";
 import {ReactSession} from 'react-client-session';
@@ -11,9 +11,7 @@ const Login = () => {
 
     const initialState = {
         username: "",
-        email: "",
         password: "",
-        dni: "",
     };
 
     const [user, setUser] = useState<User>({ username: '', password: '' })
@@ -32,13 +30,17 @@ const Login = () => {
             try {
                 const result = await userService.login(user);
                 if (result.status === 200) {
-                    ReactSession.set("username", user.username);
-                    toast.success("Welcome back " + ReactSession.get("username"));
+                    user.token = result.data.token;
+                    user.role = result.data.userResult.userRol;
+                    user.email = result.data.userResult.userEmail;
+                    ReactSession.set("user", user);
+                    toast.success("Welcome back " + ReactSession.get("user").username);
                     navigate('/');
+                }else{ 
+                    setUser(initialState);
                 }
             } catch (error) {
                 setUser(initialState);
-                toast.error("Username or password dont exist");
             }
         }
     }
@@ -59,10 +61,10 @@ const Login = () => {
                         <h3>Login</h3>
                         <form onSubmit={submit}>
                             <div className="form-group">
+                                <label htmlFor="username">Username:</label>
                                 <input
                                     type="text"
                                     name="username"
-                                    placeholder="Username"
                                     className="form-control"
                                     onChange={inputChange}
                                     value={user.username}
@@ -71,17 +73,17 @@ const Login = () => {
                             </div>
 
                             <div className="form-group">
+                                <label htmlFor="password">Password:</label>
                                 <input
                                     type="password"
                                     name="password"
-                                    placeholder="Password"
                                     className="form-control"
                                     onChange={inputChange}
                                     value={user.password}
                                 />
                             </div>
 
-                            <button className="btn btn-primary">
+                            <button aria-label = "submit" className="btn btn-primary">
                                 Submit
                             </button>
                         </form>

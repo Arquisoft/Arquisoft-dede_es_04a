@@ -1,27 +1,34 @@
 import { ChangeEvent, FormEvent, useState } from "react";
-import { Producto } from "./Producto";
-import * as productosService from './ProductosService';
+import { Producto } from "../../shared/sharedtypes";
+import * as productsService from '../Services/ProductsService';
 import { useNavigate } from 'react-router-dom';
 import { toast } from "react-toastify";
+import {ReactSession} from 'react-client-session';
 
 const AniadirProducto = () => {
 
     const navigate = useNavigate();
 
     const initialState = {
-        categoria:"",
+        category:"",
         name: "",
         description: "",
         urlImage: "",
-        price: 0,
+        basePrice: 0,
         units: 0,
         onSale: true,
+        IVA: 0.21
     };
 
     const [producto, setProducto] = useState<Producto>(initialState);
 
     const inputChange = (e: ChangeEvent<HTMLInputElement>) => {
         setProducto({ ...producto, [e.target.name]: e.target.value })
+    }
+
+    const inputChangeCat = (e: ChangeEvent<HTMLInputElement>) => {
+        setProducto({ ...producto, [e.target.name]: e.target.value })
+        
     }
 
     const submit = async (e: FormEvent<HTMLFormElement>) => {
@@ -36,18 +43,19 @@ const AniadirProducto = () => {
         }
         else {
             try {
-                await productosService.addProducto(producto);
-                toast.success("Succesfully registered");
+                const user = ReactSession.get("user");
+                await productsService.addProducto(user.username, user.token, producto);
+                toast.success("Succesfully added");
                 navigate('/');
             } catch (error) {
                 setProducto(initialState);
-                toast.error("Username or email are already used");
+                toast.error("Error at adding");
             }
         }
     }
 
     const checkPrice = (): boolean => {
-        if (producto.price !== 0)
+        if (producto.basePrice !== 0)
             return true;
         return false;
     }
@@ -59,6 +67,12 @@ const AniadirProducto = () => {
             return false;
         if (producto.urlImage === initialState.urlImage)
             return false;
+        if (producto.category === initialState.category)
+            return false;
+        if (producto.basePrice === initialState.basePrice)
+            return false;
+        if (producto.units === initialState.units)
+            return false
         return true;
     }
 
@@ -67,22 +81,12 @@ const AniadirProducto = () => {
             <div className="col-md-4 offset-md-4">
                 <div className="card">
                     <div className="card-body">
-                        <h3>Nuevo Producto</h3>
-                        <form onSubmit={submit}>
-                        <div className="form-group">
-                                <input
-                                    type="text"
-                                    name="categoria"
-                                    placeholder="Categoria"
-                                    className="form-control"
-                                    onChange={inputChange}
-                                    value={producto.categoria}
-                                    autoFocus
-                                />
-                            </div>
-
+                        <h3>New Product</h3>
+                        <form onSubmit={submit} encType="multipart/form-data">
+                    
 
                             <div className="form-group">
+                                <label htmlFor="name">Name:</label>
                                 <input
                                     type="text"
                                     name="name"
@@ -96,6 +100,7 @@ const AniadirProducto = () => {
 
 
                             <div className="form-group">
+                                <label htmlFor="description">Description:</label>
                                 <input
                                     type="text"
                                     name="description"
@@ -107,33 +112,51 @@ const AniadirProducto = () => {
                             </div>
 
                             <div className="form-group">
+                            <label htmlFor="category">Category:</label>
                                 <input
                                     type="text"
-                                    name="urlImagen"
-                                    placeholder="urlImagen"
+                                    name="category"
+                                    placeholder="Category"
+                                    className="form-control"
+                                    onChange={inputChangeCat}
+                                    value={producto.category}
+                                />
+                            </div>
+
+                            <div className="form-group">
+                                <label htmlFor="urlImage">Image URL:</label>
+                                <input
+                                    type="text"
+                                    name="urlImage"
+                                    placeholder="UrlImage"
                                     className="form-control"
                                     onChange={inputChange}
                                     value={producto.urlImage}
-                                />
+                                ></input>
                             </div>
 
+                           
                             <div className="form-group">
+                                <label htmlFor="basePrice">Base price:</label>
                                 <input
                                     type="number"
-                                    name="price"
+                                    name="basePrice"
                                     placeholder="Price"
+                                    min="1"
                                     className="form-control"
                                     onChange={inputChange}
-                                    value={producto.price}
+                                    value= {producto.basePrice}
                                 />
                             </div>
 
                             <div className="form-group">
+                            <label htmlFor="units">Units:</label>
                                 <input
-                                    type="number"
+                                    type= "number"
                                     name="units"
                                     placeholder="Units"
                                     className="form-control"
+                                    min= "1"
                                     onChange={inputChange}
                                     value={producto.units}
                                     autoFocus
