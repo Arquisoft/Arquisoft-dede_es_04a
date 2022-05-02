@@ -298,6 +298,10 @@ button{
   margin-left: 10rem;
 }
 
+.filtros .search{
+  margin-left: 16rem;
+}
+
 /*-----------------Detalles------------------*/
 .detalles{
   display: flex;
