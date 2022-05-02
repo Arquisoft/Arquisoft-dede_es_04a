@@ -102,23 +102,26 @@ Frontend --> Client: Inform the customer of his order
 
 === Sign up
 
-This view shows the sign up process by a customer.
+This view shows the sign up process by a client.
 
 [plantuml,"SignUpProcess",png]
 ----
 @startuml
 actor Client
-participant DeDe
-database MongoDb
-database Solid
-Client -> DeDe: Request store registration
-DeDe -> Client: Request for Pod access
-DeDe -> Solid: Pod Access
-Solid --> DeDe: Return of personal information
-DeDe -> Client: User and password request
-Client --> DeDe: User and password return
-DeDe -> MongoDb: Save credentials
-DeDe --> Client: Successful registration
+participant Frontend
+participant Backend
+database MongoDB
+Client -> Frontend: Enters username, email, password, confirm password and dni
+Frontend -> Backend: Sends fields for validation
+alt Validators pass
+Backend -> MongoDB: Creates the user
+MongoDB --> Backend: Sends the new user
+Backend --> Frontend: Sends status code
+Frontend --> Client: Successful registration, redirects to login
+else Validators fail
+Backend --> Frontend: Message with fails
+Frontend --> Client: Notifies the error and requests fields again
+end
 @enduml
 ----
 
@@ -130,16 +133,14 @@ This view shows how the administrator, after having logged in, will modify the c
 ----
 @startuml
 actor Admin
-participant DeDe
-participant Axios
-participant Mongoose
-database MongoDb
-Admin -> DeDe: Enters all the data from the product he wants to add, modify or delete
-DeDe --> Axios: Connects front-end to back-end by a petition
-DeDe -> Mongoose: Verifies that the user is an administrator, validates the data
-Mongoose --> MongoDb: Modifies the database
-DeDe --> Admin: Successful modification of the catalog
-
+participant Frontend
+participant Backend
+database MongoDB
+Admin -> Frontend: Enters all the data from the product he wants to add, modify or delete
+Frontend -> Backend: Sends the fields to update to the backend
+Backend -> MongoDB: Modifies the database
+Backend --> Frontend: Sends the product updated
+Frontend --> Admin: Successful modification of the catalog
 @enduml
 ----
 
@@ -152,11 +153,14 @@ This view shows how a client will obtain a list of all his orders.
 ----
 @startuml
 actor Client
-participant DeDe
-database MongoDb
-Client -> DeDe: Request his orders
-DeDe -> MongoDb: Ask for the list of orders of the client
-MongoDb --> DeDe: Get the list of orders
-DeDe --> Client: Gets all of his orders
+participant Frontend
+participant Backend
+database MongoDB
+Client -> Frontend: Clicks the MyOrders option
+Frontend -> Backend: Request for the orders of the client
+Backend -> MongoDB: Ask for the list of orders of the client
+MongoDB --> Backend: Get the list of orders
+Backend --> Frontend: Returs the orders of the client
+Frontend --> Client: Shows all of his orders
 @enduml
 ----
