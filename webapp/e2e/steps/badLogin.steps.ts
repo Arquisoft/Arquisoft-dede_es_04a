@@ -24,13 +24,13 @@ defineFeature(feature, test => {
 
   test('Un usuario no registrado intenta logearse', ({given,when,then}) => {
     
-    let username: string;
-    let password: string;
+    let s1: string;
+    let s2: string;
   
 
     given('An unregistered user', () => {
-      username= "pru"
-      password= "Prueba"
+      s1= "pru"
+      s2= "Prueba"
     });
 
     when('I login', async () => {
@@ -38,8 +38,8 @@ defineFeature(feature, test => {
         await page.setViewport({ width: 1200, height: 1300 });
         await expect(page).toMatch('PRODUCTS')
         await page.goto("http://localhost:3000/login")
-        await expect(page).toFill('input[name="username"]', username)
-        await expect(page).toFill('input[name="password"]', password)
+        await expect(page).toFill('input[name="username"]', s1)
+        await expect(page).toFill('input[name="password"]', s2)
         await expect(page).toClick('button[aria-label="submit"]')
 
     //   await expect(page).toClick("button[text ='Login']")

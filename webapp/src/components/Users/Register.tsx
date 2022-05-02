@@ -129,7 +129,7 @@ const Register = () => {
                                 />
                             </div>
 
-                            <button className="btn btn-primary">
+                            <button aria-label = "submitBtn" className="btn btn-primary">
                                 Submit
                             </button>
                         </form>

@@ -8,6 +8,6 @@ router.get("/product/list", findAll);
 router.post("/product/add", validateToken, validateRol, productCreate);
 router.post("/product/update/:id", validateToken, validateRol, updateProduct);
 router.get("/product/delete/:id", validateToken, validateRol, deleteProduct);
-router.get("/product/filter/:categories", findByCategory);
+router.get("/product/filter/:category", findByCategory);
 
 export default router;
