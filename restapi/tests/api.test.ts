@@ -205,11 +205,11 @@ describe('user ', () => {
         }
 
         const expected = {
-            country_name: 'España',
+            country_name: 'Spain',
             region: 'Asturias',
             locality: 'Oviedo',
-            street_address: 'Agapito 13',
-            postal_code: '123'
+            street_address: 'C/Valdes Salas 10',
+            postal_code: '33001'
         }
 
         const address = await (await request(app).post('/user/pod').send(name).set('Authorization', token).set('Accept', 'application/json')).body;
