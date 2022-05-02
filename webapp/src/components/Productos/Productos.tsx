@@ -18,17 +18,13 @@ const Productos = (props: Products) => {
     
     const loadProductos = async ()=>{
         const res = await productService.getProductos()
-        console.log("productos");
-        console.log(res)
         let datos = res.data
-        console.log(datos)
         setProductos(datos.products)
         setProductosFiltrados(datos.products)
     }
 
     const handleBusquedaChange = (e: any) => {
         const termino = e.target.value;
-        console.log({ termino });
         // setTerminoBusqueda(termino);
         setProductosFiltrados(
             productos.filter(({ name }) => name.toLowerCase().includes(termino.toLowerCase()))
@@ -39,30 +35,17 @@ const Productos = (props: Products) => {
     //     const preMax = inputPrecioMax.current?.value;
     //     const preMin = inputPrecioMin.current?.value;
 
-    //     console.log("max")
-    //     console.log(preMax)
-
-    //     console.log("min")
-    //     console.log(preMin)
 
 
     //     setProductosFiltrados(productos)
 
-    //     console.log("prods")
-    //     console.log(productos)
-
-    //     console.log("prodsFiltrados")
-    //     console.log(productosFiltrados)
-        
     //     if(preMax !== undefined && preMax !== ""){
-    //         console.log("Llego a filtrar por max")
     //         setProductosFiltrados(
     //             productosFiltrados.filter(({ basePrice, IVA }) => basePrice + (basePrice * IVA) <= parseInt(preMax))
     //         );
     //     }
 
     //     if(preMin !== undefined && preMin !== ""){
-    //         console.log("Llego a filtrar por min")
     //         setProductosFiltrados(
     //             productosFiltrados.filter(({ basePrice, IVA }) => basePrice + (basePrice * IVA) >= parseInt(preMin))
     //         );
@@ -72,9 +55,7 @@ const Productos = (props: Products) => {
 
     const handlePrecioChangeMax = (e: any) => {
         const termino = e.target.value;
-        console.log({ termino });
-        console.log("Valor variable");
-        console.log(inputPrecioMax);
+
 
         setProductosFiltrados(
             productos.filter(({ basePrice, IVA }) => basePrice + (basePrice * IVA) <= termino)
@@ -88,7 +69,6 @@ const Productos = (props: Products) => {
 
     const handlePrecioChangeMin = (e: any) => {
         const termino = e.target.value;
-        console.log({ termino });
         
         setProductosFiltrados(
             productos.filter(({ basePrice, IVA }) =>(basePrice + (basePrice * IVA) >= termino))
@@ -111,11 +91,12 @@ const Productos = (props: Products) => {
             <h1 className='title'>PRODUCTS</h1>
             <div className='filtros'>
                 <div>
+                    <h5 className='search'>Search:</h5>
                     <input aria-label= "searchProd" className = 'barra_busqueda' type='text' placeholder='Search product' ref={inputBusqueda} onChange={handleBusquedaChange} />
                 </div>
                 <div>
-                    <input aria-label= "minPrice" className = 'barra_precio_min' type='number' placeholder='Minimum price' ref={inputPrecioMin} onChange={handlePrecioChangeMin} />
-                    <input aria-label= "maxPrice" className = 'barra_precio_max' type='number' placeholder='Maximum price' ref={inputPrecioMax} onChange={handlePrecioChangeMax} />
+                    <input min={1} aria-label= "minPrice" className = 'barra_precio_min' type='number' placeholder='Minimum price' ref={inputPrecioMin} onChange={handlePrecioChangeMin} />
+                    <input min= {1}aria-label= "maxPrice" className = 'barra_precio_max' type='number' placeholder='Maximum price' ref={inputPrecioMax} onChange={handlePrecioChangeMax} />
                 </div>
             </div>
             <div className='productos'>

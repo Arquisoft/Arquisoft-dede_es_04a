@@ -35,12 +35,15 @@ const Register = () => {
         }
         else {
             try {
-                await userService.createNewUser(user);
-                toast.success("Succesfully registered");
-                navigate('/login');
+                const res = await userService.createNewUser(user);
+                if(res.status === 200){
+                    toast.success("Succesfully registered");
+                    navigate('/login');
+                }else{  
+                    setUser(initialState);
+                }
             } catch (error) {
                 setUser(initialState);
-                toast.error("Username or email are already used");
             }
         }
     }

@@ -74,11 +74,16 @@ const Payment = () => {
             toast.error("code can only contain numbers");
             return false;
         }
+        if (payment.code.length!=16){
+            toast.error("creditcard code length must be 16");
+            return false;
+        }
         if (isNaN(Number(payment.cvv))){
             toast.error("cvv can only contain numbers");
             return false;
-        }else if(payment.cvv.length!==3){
-            toast.error("cvv format is wrong");
+        }
+        if(payment.cvv.length!==3){
+            toast.error("cvv length must be 3");
             return false;
         }
         return true;

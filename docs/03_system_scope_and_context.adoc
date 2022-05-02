@@ -17,32 +17,8 @@ The home page will show all the products available in the shop. The customer wil
 
 The customer will have access to his shopping basket where he will be able to increase or reduce each product quantity as well as remove them from the basket or finalise his purchase.
 
-[plantuml,"Context",png]
-----
-@startuml
-node "Server" {
-    [dede]
- }
-database MongoDB
-Actor usuario
-rectangle PODs
-rectangle Cloudinary
-rectangle Axios
-rectangle Nodemailer
-rectangle Mongoose
-
-usuario --> [dede]: log in
-[dede] --> usuario: show products
-Mongoose ..> MongoDB : save products
-Mongoose <.. MongoDB : get products
-[dede] <..> PODs : personal information
-[dede] <..> Cloudinary: Upload/download product images
-[dede] <..> Axios: Async petitions to backend
-[dede] ..> Nodemailer: Send order summaries
-[dede] ..> Mongoose
-[dede] <.. Mongoose
-@enduml
-----
+:imagesdir: ./images
+image:03_Diagram.jpg[]
 
 === Technical Context
 
@@ -56,7 +32,6 @@ The system has SOLID architecture in order to respect the privacy of each user's
 | TYPESCRIPT     | Language used for the development of the application
 | REACT     | Main library to facilitate the development of the GUI
 | CLOUDINARY     | API used to download and upload the product images and edit their properties
-| AXIOS     | API used to make asynchronous requests to the 'back-end'.
 | NODEMAILER     | API which allows emails to be sent from different hosts (in our case Gmail).
-| MONGOOSE     | API that allows us to connect to the mongoDB cluster in a simple way.
+| SHIPPO    | API which gives information about the shipping costs.
 |===
