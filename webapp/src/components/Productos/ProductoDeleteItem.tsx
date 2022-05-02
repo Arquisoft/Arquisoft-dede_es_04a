@@ -18,17 +18,13 @@ const ProductoDeleteItem = ({producto}: Props) => {
     }
 
     const deleteFromBase = async () =>{
-            console.log("nombre que llega")
             
             if(!checkNotFound()){
                 toast.error("The product does not exist");
             }
             else {
-                console.log("paso campos")
                 try {
                     const user = ReactSession.get("user");
-                    console.log("El producto que llega");
-                    console.log(producto);
                     await productService.deleteProducto(user.username, user.token, producto);
                     toast.success("Succesfully deleted");
                     //window.location.reload();
