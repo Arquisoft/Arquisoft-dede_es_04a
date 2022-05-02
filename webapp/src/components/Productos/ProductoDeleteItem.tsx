@@ -32,7 +32,7 @@ const ProductoDeleteItem = ({producto}: Props) => {
                     await productService.deleteProducto(user.username, user.token, producto);
                     toast.success("Succesfully deleted");
                     //window.location.reload();
-                    window.location.assign("/deleteProduct")
+                    window.location.assign("/");
                 } catch (error) {
                     toast.error("Error at deleting");
                 }

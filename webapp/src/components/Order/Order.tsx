@@ -47,7 +47,7 @@ const Order = () => {
         )})}
         </ol>
       </div>
-      <h2>Total: {order?.totalPrice}€</h2>
+      <h2>Total: {order?.totalPrice}$</h2>
     </div>
   )
 }
