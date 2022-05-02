@@ -20,7 +20,7 @@ code {
 .productos{
   padding: 5rem 2rem;
   margin: 0 auto;
-  display: flex;
+  display: grid;
   grid-template-columns: repeat(auto-fit, minmax(25rem, 30fr));
   gap: 8rem 1rem;
   box-sizing: border-box;
@@ -34,6 +34,7 @@ code {
   border: 6px solid transparent;
   border-radius: 5px;
   max-width: 400px;
+  min-width: 399px;
 }
 
 .imagen_producto{
