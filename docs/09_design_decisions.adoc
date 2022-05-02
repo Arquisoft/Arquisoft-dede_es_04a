@@ -3,6 +3,7 @@
 
 This section shows the different design decisions presented in a table sorted by importance with their pros and cons.
 
+[options="header",cols="1,2,3,4"]
 |===
 |Decision|Pros|Cons|Link
 |MongoDB|Database that allows to modify data in a more flexible way|No transactions and no atomicity|https://github.com/Arquisoft/dede_es4a/wiki/Decisiones-arquitect%C3%B3nicas[DA #01]
@@ -14,6 +15,7 @@ This section shows the different design decisions presented in a table sorted by
 |Cluster for tests|Allows testing to be performed in a more secure manner as no application data is being worked on|Increased number of connections and keys|https://github.com/Arquisoft/dede_es4a/wiki/Decisiones-arquitect%C3%B3nicas[DA #08]
 |===
 
+[options="header",cols="1,2,3,4"]
 The rejected decisions are shown below.
 |===
 |Decision|Pros|Cons|Link
