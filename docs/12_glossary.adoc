@@ -19,4 +19,6 @@
 |Acceptance testing|Acceptance testing is a test conducted to determine if the requirements of a specification or contract are met.
 |ReactSession| Store the data throughout the session and move the data between components.
 |react-toastify| Allows the creation of notifications for the application.
+|react-router-dom| Allows the creation of routes for the application.
+|mui| Library of React components.
 |===
