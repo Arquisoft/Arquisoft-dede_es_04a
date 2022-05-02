@@ -46,11 +46,11 @@ export const updateProduct = async (req: Request, res: Response): Promise<Respon
 // Delete product
 export const deleteProduct = async (req: Request, res: Response): Promise<Response> => {
     const { id } = req.params;
-    console.log(id);
+    
     const deletedProduct = await Product.findByIdAndDelete( id ).then((product) => {
         cloudinary.v2.uploader.destroy(product?.urlImage!);
     });
-    return res.status(200).json({deletedProduct});
+    return res.status(200).json({msg: "Product deleted"});
 };
 
 // Find by category
