@@ -39,6 +39,15 @@ jobs:
     - uses: actions/setup-node@v2
       with:
         node-version: 16
+    - name: Create env
+      run: |
+        cd restapi
+        touch .env
+        echo DATABASE_URL=${{ secrets.DATABASE_URL }} >> .env
+        echo CLOUDINARY_URL=${{ secrets.CLOUDINARY_URL }} >> .env
+        echo SECRET=${{ secrets.SECRET }} >> .env
+        echo PASS1=${{ secrets.PASS1 }} >> .env
+        cat .env
     - run: npm --prefix webapp install
     - run: npm --prefix restapi install
     - run: npm --prefix webapp run build
