@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { AdvancedImage } from '@cloudinary/react';
 import { Cloudinary } from "@cloudinary/url-gen";
 import { pad } from "@cloudinary/url-gen/actions/resize";
 import {Producto} from '../../shared/sharedtypes';
@@ -75,13 +74,14 @@ export const VistaProductoDelete = () => {
     console.log(detalle.IVA)
     
     
+    const url = "https://res.cloudinary.com/dede4a/image/upload/"+detalle.urlImage+"?_a=AJADJWI0";
 
   return (
     <div className='detalles'>
         <h2>{detalle?.name}</h2>
         <div className='separacion'>
-            <AdvancedImage className='imagenc' cldImg={myImage} />
-            <a className='precio'>Price: {price.toFixed(2)}$</a>
+            <img alt="" className='imagenc' src={url}></img>
+            <p className='precio'>Price: {price.toFixed(2)}$</p>
         </div>
         <p className='descripcion'>{detalle?.description}</p>
     </div>
