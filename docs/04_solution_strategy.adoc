@@ -14,6 +14,7 @@ These are the technologies we have decided to use:
 ** Node.js: Allows to execute TypeScript on the server side.
 ** Express: Node.js web application infrastructure.
 ** Mongoose: Library to connect to the database and add functionality.
+** Axios: Library to make async petitions.
 ** Supertest and Jest: Modules to test our application.
 ** Programs:
 ** Visual Studio Code: Code editor that thanks to its large number of extensions will facilitate our work.
