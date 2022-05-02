@@ -11,8 +11,7 @@ test('check register fail', async () => {
 
   const component = render(<BrowserRouter><Productos products={listProd}/></BrowserRouter>);
 
-  component.getByText("Productos");
-
-  
+  component.getByText("PRODUCTS");
+  component.getByText("Search:");
   
 })
