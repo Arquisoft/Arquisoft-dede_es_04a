@@ -3,6 +3,7 @@
 
 This section shows the different design decisions presented in a table sorted by importance with their pros and cons.
 
+[options="header",cols="1,2,3,4"]
 |===
 |Decision|Pros|Cons|Link
 |MongoDB|Database that allows to modify data in a more flexible way|No transactions and no atomicity|https://github.com/Arquisoft/dede_es4a/wiki/Decisiones-arquitect%C3%B3nicas[DA #01]
@@ -10,11 +11,17 @@ This section shows the different design decisions presented in a table sorted by
 |mongoose|API that facilitates the connection to MongoDB|Never used|https://github.com/Arquisoft/dede_es4a/wiki/Decisiones-arquitect%C3%B3nicas[DA #03]
 |AWS|Platform that enables deployment of Docker images|Problems related to downloading images from the virtual machine|https://github.com/Arquisoft/dede_es4a/wiki/Decisiones-arquitect%C3%B3nicas[DA #07]
 |axios|API allowing requests to be made to back-end from front-end|Different response times for requests depending on the amount of data to be processed|https://github.com/Arquisoft/dede_es4a/wiki/Decisiones-arquitect%C3%B3nicas[DA #04]
-|cloudinary|Host that stores the product images for free|We have never worked with an image processing API.|https://github.com/Arquisoft/dede_es4a/wiki/Decisiones-arquitect%C3%B3nicas[DA #06]
+|cloudinary|Host that stores the product images for free|We have never worked with an image processing API|https://github.com/Arquisoft/dede_es4a/wiki/Decisiones-arquitect%C3%B3nicas[DA #06]
 |Cluster for tests|Allows testing to be performed in a more secure manner as no application data is being worked on|Increased number of connections and keys|https://github.com/Arquisoft/dede_es4a/wiki/Decisiones-arquitect%C3%B3nicas[DA #08]
+|nodemailer|It allows us to send emails from different hosts such as gmail, outlook...|We have never worked with an email delivery API.|https://github.com/Arquisoft/dede_es4a/wiki/Decisiones-arquitect%C3%B3nicas[DA #09]
+|react-toastify|It allows you to create visual notifications in react in a simple way|We have never worked with this library|https://github.com/Arquisoft/dede_es4a/wiki/Decisiones-arquitect%C3%B3nicas[DA #10]
+|react-client-session|A simple object to manage client session data in a React app.|We have never worked with the user session on the web|https://github.com/Arquisoft/dede_es4a/wiki/Decisiones-arquitect%C3%B3nicas[DA #11]
+|react-router-dom|Library that allows to implement routes dynamically|Learn how to use this library to create application routes and links to routes|https://github.com/Arquisoft/dede_es4a/wiki/Decisiones-arquitect%C3%B3nicas[DA #12]
+|shippo|API that automatically calculates shipping costs in a simple way|Learn how to use the API and how to pass the address of a POD to it|https://github.com/Arquisoft/dede_es4a/wiki/Decisiones-arquitect%C3%B3nicas[DA #13]
 |===
 
 The rejected decisions are shown below.
+[options="header",cols="1,2,3,4"]
 |===
 |Decision|Pros|Cons|Link
 |Heroku|Allows projects to be deployed free of charge|Difficulties in deploying multi-repository and Docker images|https://github.com/Arquisoft/dede_es4a/wiki/Decisiones-arquitect%C3%B3nicas[DA #05]
