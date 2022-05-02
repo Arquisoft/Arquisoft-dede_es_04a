@@ -37,6 +37,8 @@ const Login = () => {
                     console.log(user)
                     toast.success("Welcome back " + ReactSession.get("user").username);
                     navigate('/');
+                }else{ 
+                    setUser(initialState);
                 }
             } catch (error) {
                 setUser(initialState);
