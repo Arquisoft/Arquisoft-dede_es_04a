@@ -34,12 +34,12 @@ The website must mainly meet the following requirements:
 
 Given that those who will habitually use the web will be the users and the administrator, the main goals would be:
 
-[options="header",cols="1,2"]
+[options="header"]
 |===
-| Quality | Motivation
-| Usability | The application must be intiutive for both administrator and users.
-| Availability | The application must be available all time for the users to buy products.
-| Privacy and Security | All information regarding the data of users and their carts must be private.
+| ID | Priority | Quality | Motivation
+| QG1 | 1 | Usability | The application must be intiutive for both administrator and users.
+| QG2 | 2 | Availability | The application must be available all time for the users to buy products.
+| QG3 | 3 | Privacy and Security | All information regarding the data of users and their carts must be private.
 |===
 
 
@@ -55,6 +55,4 @@ The stakeholders will be the developers, the users and the teachers.
 | Teachers | Overseeing the project
 | Clients | Users who will be able to freely use the store either to make a purchase or a return or simply to consult the store.
 | Administrator | A special user who will be able to manage the products and client information from the app
-
-
 |===
