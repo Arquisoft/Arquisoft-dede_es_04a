@@ -14,10 +14,10 @@ export const signUp = async (req: Request, res: Response): Promise<Response> => 
 
     let user = await User.findOne({ username: req.body.username.toString() });
     if (user)
-        return res.status(412).json({ msg: "The username already exists" });
+        return res.status(413).json({ msg: "The username already exists" });
     user = await User.findOne({ email: req.body.email.toString() });
     if (user)
-        return res.status(412).json({ msg: "The email already exists" });
+        return res.status(414).json({ msg: "The email already exists" });
 
 
     const newUser = new User(req.body);

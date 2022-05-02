@@ -60,9 +60,9 @@ beforeAll(async () => {
     app.use(order);
 
     server = app.listen(port, (): void => {
-        console.log('Restapi server for testing listening on ' + port);
+        // console.log('Restapi server for testing listening on ' + port);
     }).on("error", (error: Error) => {
-        console.error('Error occured: ' + error.message);
+        // console.error('Error occured: ' + error.message);
     });
 
     await mongoose.connection.collections['users'].insertOne(admin)

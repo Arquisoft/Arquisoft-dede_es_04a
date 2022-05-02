@@ -21,4 +21,6 @@
 |react-toastify| Allows the creation of notifications for the application.
 |react-router-dom| Allows the creation of routes for the application.
 |mui| Library of React components.
+|shippo|API for calculating shipping costs from the USA with different parcel carriers.
+|nodemailer|Module for node.js that allows sending emails from different hosts such as gmail, outlook...
 |===
