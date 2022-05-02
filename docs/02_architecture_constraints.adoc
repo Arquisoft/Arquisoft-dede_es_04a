@@ -18,7 +18,7 @@
 [options="header",cols="1,2"]
 |===
 |Requirement|Explanation
-|GitHub|Git version control system with additional tools.
+|GitHub|GitHub provides tools such issues and actions to help us in development.
 |Working group|The group is made up of 4 people.
 |Meetings|At least one team meeting per week will be held and recorded.
 |Delivery times|Approximately every 3 weeks there will be deliveries to know the status of the application and its documentation.
@@ -31,5 +31,4 @@
 |Requirement|Explanation
 |Arc42|To develop the documentation we will follow the Arc42 model.
 |SOLID|SOLID principles will be followed with respect to customer privacy.
-|Interface|The interface must be intuitive for non-technical people.
 |===
