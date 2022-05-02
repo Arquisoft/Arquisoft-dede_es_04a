@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom';
 import { OrderType } from "../../shared/sharedtypes";
 import * as orderService from '../Services/OrderService';
 import {ReactSession} from 'react-client-session';
+import jsPDF from 'jspdf';
+import DownloadIcon from '@mui/icons-material/Download';
 
 type Product = {
     name:string,
@@ -29,6 +31,19 @@ const Order = () => {
     }
   }
 
+  const download = () => {
+      var doc = new jsPDF('landscape','px','a4',false);
+      doc.text('TechZone',120,100);
+      doc.text('Invoice',120,120);
+      var j = 0;
+      for (var i = 0; i < productos.length; i ++){
+        doc.text(i+"."+" "+productos[i].name+" x"+productos[i].num,120,140+j)
+        j+=20;
+      }
+      doc.text("Total: "+order?.totalPrice+"$",120,140+j)
+      doc.save('invoice.pdf')
+  }
+
   useEffect(() => {
     loadOrder();
   }, [])
@@ -48,6 +63,7 @@ const Order = () => {
         </ol>
       </div>
       <h2>Total: {order?.totalPrice}$</h2>
+      <button className='btn btn-primary' onClick={download}><DownloadIcon/> Invoice</button>
     </div>
   )
 }
