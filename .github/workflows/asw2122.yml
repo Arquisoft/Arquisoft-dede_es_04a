@@ -48,6 +48,7 @@ jobs:
         echo SECRET=${{ secrets.SECRET }} >> .env
         echo PASS1=${{ secrets.PASS1 }} >> .env
         cat .env
+        pwd
     - run: npm --prefix webapp install
     - run: npm --prefix restapi install
     - run: npm --prefix webapp run build
