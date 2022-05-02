@@ -18,6 +18,8 @@ These are the technologies we have decided to use:
 * Postman: Software to test APIs.
 * Supertest and Jest: Modules to test our application.
 * Cloudinary: Service that provides an API to upload and download the images of the products.
+* Nodemailer: API that allows us to send emails to the user with the details of the orders.
+* Shippo: Provides an API to calculate the shipping costs and the estimated day of arrival of the orders.
 
 === Architectural and design patterns
 
@@ -29,7 +31,7 @@ from the logic and the user interface.
 In order to achieve the proposed objectives we have decided to distribute the work in such a way that part of the group focuses more on
 the backend and the other one on the frontend.
 We have taken this decision since all the technologies to be used are new for all of us,
-and we believe that it will be easier to achieve the objectives if we focus mostly on one part
+and we believe that it will be easier to achieve the objectives if we focus mostly on one part.
 
 === Organizational decisions
 
