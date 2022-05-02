@@ -26,7 +26,7 @@ defineFeature(feature, test => {
     let name:string;
 
     given('An unregistered user', () => {
-      name = "IPhoneX"
+      name = "IPhone"
     });
 
     when('I fill a name in the search bar', async () => {
@@ -35,7 +35,7 @@ defineFeature(feature, test => {
     });
 
     then('Only the product with the name will be shown', async () => {
-      await expect(page).toMatch('IPhoneX')
+      await expect(page).toMatch('IPhone 13')
     });
   })
 
@@ -55,7 +55,6 @@ defineFeature(feature, test => {
     });
 
     then('The products containing the name will be shown', async () => {
-      await expect(page).toMatch('IPhoneX')
       await expect(page).toMatch('IPhone 13')
     });
   })

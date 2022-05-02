@@ -49,7 +49,7 @@ defineFeature(feature, test => {
 
     then('I am at the login view and an error message is shown', async () => {
       await expect(page).toMatch('Login')
-      await expect(page).toMatch('Username or password dont exist')
+      await expect(page).toMatch('The username or password are incorrect')
     });
   })
 
