@@ -16,6 +16,7 @@ These are the technologies we have decided to use:
 ** Mongoose: Library to connect to the database and add functionality.
 ** Axios: Library to make async petitions.
 ** Supertest and Jest: Modules to test our application.
+** jsPDF: Library to create PDFs, we will generate our invoices in PDF.
 ** Programs:
 ** Visual Studio Code: Code editor that thanks to its large number of extensions will facilitate our work.
 ** Postman: Software to test APIs.
