@@ -40,6 +40,7 @@ Given that those who will habitually use the web will be the users and the admin
 | Usability | The application must be intiutive for both administrator and users.
 | Availability | The application must be available all time for the users to buy products.
 | Privacy and Security | All information regarding the data of users and their carts must be private.
+|===
 
 
 === Stakeholders
