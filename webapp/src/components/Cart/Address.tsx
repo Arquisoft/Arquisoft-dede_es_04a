@@ -65,7 +65,7 @@ const Address = () => {
         const response = await orderService.getShippingDetails(user.username,address,user.token);
         if (response.status === 200){
             order.shippingCost=response.data.amount;
-            setCost(String(response.data.amount)+"€");
+            setCost(String(response.data.amount)+"$");
 
             var today = new Date(Date.now());
             var date = addDays(today,response.data.estimated_days);
