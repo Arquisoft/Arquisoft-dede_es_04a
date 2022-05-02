@@ -15,35 +15,45 @@ This view shows a request from a customer to view the product catalog. The web r
 ----
 @startuml
 actor Client
-participant DeDe
-database MongoDb
-Client -> DeDe: Request product catalog
-DeDe -> MongoDb: Ask for the list of products
-MongoDb --> DeDe: Get the list of products
-DeDe --> Client: Get the catalog
+participant Frontend
+participant Cloudinary
+participant Backend
+database MongoDB
+Client -> Frontend: Access to products catalog
+Frontend -> Backend: Request product list
+Backend -> MongoDB: Ask for the list of products
+MongoDB --> Backend: Get the list of products
+Backend --> Frontend: Send the list of products
+Frontend -> Cloudinary: Request for the image of the product
+Cloudinary --> Frontend: Sends the image of the product
+Frontend --> Client: Get the catalog
 @enduml
 ----
 
 
 === Login
 
-This view shows the administrator login. The website receives the admin's credentials, and after a back-end petition through Axios and a connection to mongoDb through Mongoose the credentials will be verified and the admin will be allowed to add, delete and update the desired products.
+This view shows the login process. The website receives the user's credentials, and after a back-end petition the credentials will be verified and the user will be allowed to buy products.
 
-[plantuml,"AdminView",png]
+[plantuml,"LoginView",png]
 ----
 @startuml
-actor Admin
-participant DeDe
-participant Axios
-participant Mongoose
-database MongoDb
-Admin -> DeDe: Enter credentials
-DeDe --> Axios: Sents a petition to the back-end
-DeDe -> Mongoose: Asks for connection to database
-Mongoose --> MongoDb: Verifies the credentials
-MongoDb --> Mongoose: Returns information
-Mongoose --> DeDe: Gives information
-DeDe --> Admin: Successful login
+actor Client
+participant Frontend
+participant Backend
+database MongoDB
+Client -> Frontend: Enter credentials
+Frontend -> Backend: Sends a petition with the credential
+Backend -> MongoDB: Checks that user with that credentials match
+alt Credentials match
+MongoDB --> Backend: Returns information
+Backend  --> Frontend: Gives information
+Frontend --> Client: Successful login
+else Credentials don't match
+MongoDB --> Backend: Returns error message
+Backend  --> Frontend: Returns error message
+Frontend --> Client: Asks again for credentials showing error message
+end
 @enduml
 ----
 
