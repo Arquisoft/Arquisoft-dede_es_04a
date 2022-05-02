@@ -591,27 +591,43 @@ For documentation of your own system you use better the <em>plain</em> version.<
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 66.6667%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
 </colgroup>
 <thead>
 <tr>
+<th class="tableblock halign-left valign-top">ID</th>
+<th class="tableblock halign-left valign-top">Priority</th>
 <th class="tableblock halign-left valign-top">Quality</th>
 <th class="tableblock halign-left valign-top">Motivation</th>
 </tr>
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">QG1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Privacy and Security</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">All information regarding the data of users and their carts must be private.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">QG2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Usability</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The application must be intiutive for both administrator and users.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">QG3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Availability</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The application must be available all time for the users to buy products.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Privacy and Security</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">All information regarding the data of users and their carts must be private.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">QG4</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Performance</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Response times should be as short as possible so as not to make the user impatient with a low latency.</p></td>
 </tr>
 </tbody>
 </table>
@@ -711,7 +727,7 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">GitHub</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Git version control system with additional tools.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">GitHub provides tools such as issues and actions to help us in development.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Working group</p></td>
@@ -749,10 +765,6 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">SOLID</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">SOLID principles will be followed with respect to customer privacy.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Interface</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The interface must be intuitive for non-technical people.</p></td>
 </tr>
 </tbody>
 </table>
@@ -796,10 +808,8 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <div class="paragraph">
 <p>The customer will have access to his shopping basket where he will be able to increase or reduce each product quantity as well as remove them from the basket or finalise his purchase.</p>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="./images/Context.png" alt="Context" width="902" height="489">
-</div>
+<div class="paragraph">
+<p><span class="image"><img src="./images/03_Diagram.jpg" alt="03 Diagram"></span></p>
 </div>
 </div>
 <div class="sect2">
@@ -840,16 +850,12 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <td class="tableblock halign-left valign-top"><p class="tableblock">API used to download and upload the product images and edit their properties</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">AXIOS</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">API used to make asynchronous requests to the 'back-end'.</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">NODEMAILER</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">API which allows emails to be sent from different hosts (in our case Gmail).</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MONGOOSE</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">API that allows us to connect to the mongoDB cluster in a simple way.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SHIPPO</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">API which gives information about the shipping costs.</p></td>
 </tr>
 </tbody>
 </table>
@@ -871,8 +877,18 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <p>MongoDB: NoSQL database.</p>
 </li>
 <li>
-<p>Express: Node.js web application infrastructure.</p>
+<p>TypeScript: JavaScript superset, which mainly adds static typing to JavaScript.</p>
 </li>
+<li>
+<p>GitHub: Allows to host Git-based projects.</p>
+</li>
+<li>
+<p>SOLID: Project that aims to allow users to decide where their data is stored, in order to improve privacy.</p>
+</li>
+<li>
+<p>Libraries</p>
+<div class="ulist">
+<ul>
 <li>
 <p>React: Library for creating user interfaces.</p>
 </li>
@@ -880,29 +896,49 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <p>Node.js: Allows to execute TypeScript on the server side.</p>
 </li>
 <li>
-<p>TypeScript: JavaScript superset, which mainly adds static typing to JavaScript.</p>
+<p>Express: Node.js web application infrastructure.</p>
 </li>
 <li>
-<p>GitHub: Allows to host Git-based projects.</p>
+<p>Mongoose: Library to connect to the database and add functionality.</p>
+</li>
+<li>
+<p>Axios: Library to make async petitions.</p>
+</li>
+<li>
+<p>Supertest and Jest: Modules to test our application.</p>
+</li>
+<li>
+<p>jsPDF: Library to create PDFs, we will generate our invoices in PDF.</p>
+</li>
+<li>
+<p>Programs:</p>
 </li>
 <li>
 <p>Visual Studio Code: Code editor that thanks to its large number of extensions will facilitate our work.</p>
 </li>
 <li>
-<p>SOLID: Project that aims to allow users to decide where their data is stored, in order to improve privacy.</p>
+<p>Postman: Software to test APIs.</p>
 </li>
+</ul>
+</div>
+</li>
+<li>
+<p>Deployment:</p>
+<div class="ulist">
+<ul>
 <li>
 <p>Amazon Web Services: Web server provider where we will deploy our application.</p>
 </li>
 <li>
 <p>Docker: Project that automates deployment of applications inside containers. We will create containers for both restapi and webapp to deloy them on AWS.</p>
 </li>
-<li>
-<p>Postman: Software to test APIs.</p>
+</ul>
+</div>
 </li>
 <li>
-<p>Supertest and Jest: Modules to test our application.</p>
-</li>
+<p>APIs:</p>
+<div class="ulist">
+<ul>
 <li>
 <p>Cloudinary: Service that provides an API to upload and download the images of the products.</p>
 </li>
@@ -911,6 +947,9 @@ For documentation of your own system you use better the <em>plain</em> version.<
 </li>
 <li>
 <p>Shippo: Provides an API to calculate the shipping costs and the estimated day of arrival of the orders.</p>
+</li>
+</ul>
+</div>
 </li>
 </ul>
 </div>
@@ -1170,18 +1209,18 @@ and we are going to use PODs to get the address from the user, so we are not sto
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="./images/PresentationOfTheProductCatalog.png" alt="PresentationOfTheProductCatalog" width="400" height="313">
+<img src="./images/PresentationOfTheProductCatalog.png" alt="PresentationOfTheProductCatalog" width="742" height="435">
 </div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_login">6.2. Login</h3>
 <div class="paragraph">
-<p>This view shows the administrator login. The website receives the admin&#8217;s credentials, and after a back-end petition through Axios and a connection to mongoDb through Mongoose the credentials will be verified and the admin will be allowed to add, delete and update the desired products.</p>
+<p>This view shows the login process. The website receives the user&#8217;s credentials, and after a back-end petition the credentials will be verified and the user will be allowed to buy products.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="./images/AdminView.png" alt="AdminView" width="625" height="404">
+<img src="./images/LoginView.png" alt="LoginView" width="920" height="513">
 </div>
 </div>
 </div>
@@ -1192,18 +1231,18 @@ and we are going to use PODs to get the address from the user, so we are not sto
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="./images/BuyingProcess.png" alt="BuyingProcess" width="520" height="465">
+<img src="./images/BuyingProcess.png" alt="BuyingProcess" width="1074" height="920">
 </div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_sign_up">6.4. Sign up</h3>
 <div class="paragraph">
-<p>This view shows the sign up process by a customer.</p>
+<p>This view shows the sign up process by a client.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="./images/SignUpProcess.png" alt="SignUpProcess" width="428" height="435">
+<img src="./images/SignUpProcess.png" alt="SignUpProcess" width="787" height="483">
 </div>
 </div>
 </div>
@@ -1214,7 +1253,7 @@ and we are going to use PODs to get the address from the user, so we are not sto
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="./images/AdminModify.png" alt="AdminModify" width="1000" height="343">
+<img src="./images/AdminModify.png" alt="AdminModify" width="901" height="343">
 </div>
 </div>
 </div>
@@ -1225,7 +1264,7 @@ and we are going to use PODs to get the address from the user, so we are not sto
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="./images/ClientOrders.png" alt="ClientOrders" width="436" height="313">
+<img src="./images/ClientOrders.png" alt="ClientOrders" width="698" height="374">
 </div>
 </div>
 <div style="page-break-after: always;"></div>
@@ -1245,7 +1284,7 @@ and we are going to use PODs to get the address from the user, so we are not sto
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="./images/DeploymentView.png" alt="DeploymentView" width="343" height="804">
+<img src="./images/DeploymentView.png" alt="DeploymentView" width="591" height="879">
 </div>
 </div>
 <div class="dlist">
