@@ -39,9 +39,8 @@ const Register = () => {
                 if(res.status === 200){
                     toast.success("Succesfully registered");
                     navigate('/login');
-                }else{
+                }else{  
                     setUser(initialState);
-                    toast.error("Something was wrong!");
                 }
             } catch (error) {
                 setUser(initialState);
