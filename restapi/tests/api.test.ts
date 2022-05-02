@@ -107,7 +107,7 @@ describe('user ', () => {
             dni: '12345678A'
         }
         const response: Response = await request(app).post('/signup').send(user).set('Accept', 'application/json');
-        expect(response.statusCode).toBe(412);
+        expect(response.statusCode).toBe(413);
     });
 
     /**

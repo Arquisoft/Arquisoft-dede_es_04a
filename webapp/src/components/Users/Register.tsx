@@ -40,7 +40,6 @@ const Register = () => {
                 navigate('/login');
             } catch (error) {
                 setUser(initialState);
-                toast.error("Username or email are already used");
             }
         }
     }

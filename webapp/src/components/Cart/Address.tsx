@@ -41,7 +41,6 @@ const Address = () => {
                 }       
             }catch(error){
                 setPod(initialState.pod);
-                toast.error("Wrong pod");
             }      
         }else{
             setPod(initialState.pod);
