@@ -41,7 +41,10 @@ defineFeature(feature, test => {
         await expect(page).toFill('input[name="password"]', s2)
         await expect(page).toClick('button[aria-label="submit"]')
 
-        await expect(page).toFill('input[aria-label="searchProd"]', "IPhoneX")
+
+        await expect(page).toMatch('PRODUCTS')
+        await expect(page).toFill('input[aria-label="searchProd"]', "IPhone 13")
+        await expect(page).toMatch('IPhone 13')
         await expect(page).toClick('button[aria-label="btnAñadir"]')
 
         await page.goto("http://localhost:3000/cart")

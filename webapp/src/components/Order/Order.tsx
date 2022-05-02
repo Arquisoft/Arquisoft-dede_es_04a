@@ -46,7 +46,7 @@ const Order = () => {
 
   useEffect(() => {
     loadOrder();
-  }, [])
+  })
 
   return (
     <div>

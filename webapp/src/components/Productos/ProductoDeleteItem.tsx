@@ -1,7 +1,7 @@
 import {Producto} from '../../shared/sharedtypes';
 import {ReactSession} from 'react-client-session';
 import * as productService from '../Services/ProductsService';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 interface Props{
@@ -9,8 +9,6 @@ interface Props{
 }
 
 const ProductoDeleteItem = ({producto}: Props) => {
-      
-    const navigate = useNavigate();
 
 
     const checkNotFound = (): boolean => {
@@ -20,17 +18,13 @@ const ProductoDeleteItem = ({producto}: Props) => {
     }
 
     const deleteFromBase = async () =>{
-            console.log("nombre que llega")
             
             if(!checkNotFound()){
                 toast.error("The product does not exist");
             }
             else {
-                console.log("paso campos")
                 try {
                     const user = ReactSession.get("user");
-                    console.log("El producto que llega");
-                    console.log(producto);
                     await productService.deleteProducto(user.username, user.token, producto);
                     toast.success("Succesfully deleted");
                     //window.location.reload();
@@ -50,9 +44,9 @@ const ProductoDeleteItem = ({producto}: Props) => {
 
   return (
     <div className="producto">
-            <a href="#">
+            <a href="/deleteProduct#">
                 <div className="producto__img">
-                    <img src={url}></img>
+                    <img  alt='' src={url}></img>
                 </div>
             </a>
             <div className="producto__footer">

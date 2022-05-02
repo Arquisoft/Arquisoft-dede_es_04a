@@ -26,7 +26,7 @@ const Carrito = (props: Products) => {
 
   useEffect(()=>{
     calculateTotalPrice();
-  }, [])
+  })
 
   const removeFromCart = (producto: Item)=>{
     props.products.forEach( item => {
@@ -67,8 +67,8 @@ const Carrito = (props: Products) => {
               <div key={item.producto.name} >
                   <CartItem producto={item.producto} num={item.num}/>
                   <div className="buttom">
-                      <a href="#" className="btn" onClick={() => addFromCart(item)}><AddIcon fontSize='large'/></a>
-                      <a href="#" className="btn" onClick={() => removeFromCart(item)}><RemoveIcon fontSize='large'/></a>               
+                      <a href= "/cart#" className="btn" onClick={() => addFromCart(item)}><AddIcon fontSize='large'/></a>
+                      <a href ="/cart#" className="btn" onClick={() => removeFromCart(item)}><RemoveIcon fontSize='large'/></a>               
                   </div>
               </div>
         )})}
