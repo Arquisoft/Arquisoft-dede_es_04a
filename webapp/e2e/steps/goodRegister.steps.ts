@@ -55,7 +55,7 @@ defineFeature(feature, test => {
 
     then('An error message is shown', async () => {
       await expect(page).toMatch('Login')
-      await expect(page).toMatch('Username or email are already used')
+      await expect(page).toMatch('Succesfully registered')
   })
 
 });

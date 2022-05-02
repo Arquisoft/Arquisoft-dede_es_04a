@@ -23,8 +23,7 @@ export interface IAddress extends Document{
 const userSchema = new Schema({
     dni: {
         type: String,
-        require: [true, "Dni is mandatory"],
-        unique:true
+        require: [true, "Dni is mandatory"]
     },
     username: {
         type: String,

@@ -24,13 +24,9 @@ const AniadirProducto = () => {
 
     const inputChange = (e: ChangeEvent<HTMLInputElement>) => {
         setProducto({ ...producto, [e.target.name]: e.target.value })
-        console.log("Cambio" + e.target.name)
-        console.log(producto)
     }
 
     const inputChangeCat = (e: ChangeEvent<HTMLInputElement>) => {
-        console.log("nombre")
-        console.log(e.target.value)
         setProducto({ ...producto, [e.target.name]: e.target.value })
         
     }

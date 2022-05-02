@@ -9,5 +9,5 @@ test('check the cart renders correctly with cart items', async () => {
     const {getByText, container} = render(<BrowserRouter><Cart products={listProd}/></BrowserRouter>);
     expect(getByText(product.name)).toBeInTheDocument(); 
     expect(getByText("Units: "+listProd[0].num)).toBeInTheDocument();
-    expect(getByText((product.basePrice+(product.basePrice*product.IVA)).toFixed(2)+"€")).toBeInTheDocument();
+    expect(getByText((product.basePrice+(product.basePrice*product.IVA)).toFixed(2)+"$")).toBeInTheDocument();
   });

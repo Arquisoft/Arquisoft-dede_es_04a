@@ -34,9 +34,10 @@ const Login = () => {
                     user.role = result.data.userResult.userRol;
                     user.email = result.data.userResult.userEmail;
                     ReactSession.set("user", user);
-                    console.log(user)
                     toast.success("Welcome back " + ReactSession.get("user").username);
                     navigate('/');
+                }else{ 
+                    setUser(initialState);
                 }
             } catch (error) {
                 setUser(initialState);
