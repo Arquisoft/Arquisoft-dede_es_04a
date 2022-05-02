@@ -33,8 +33,8 @@ const Order = () => {
 
   const download = () => {
       var doc = new jsPDF('landscape','px','a4',false);
-      doc.text('TechZone',120,100);
-      doc.text('Invoice',120,120);
+      doc.text('TechZone - Invoice',120,100);
+      doc.text("Order "+ order?._id!,120,120);
       var j = 0;
       for (var i = 0; i < productos.length; i ++){
         doc.text(i+"."+" "+productos[i].name+" x"+productos[i].num,120,140+j)
