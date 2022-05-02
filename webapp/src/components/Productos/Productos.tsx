@@ -111,6 +111,7 @@ const Productos = (props: Products) => {
             <h1 className='title'>PRODUCTS</h1>
             <div className='filtros'>
                 <div>
+                    <h5 className='search'>Search:</h5>
                     <input aria-label= "searchProd" className = 'barra_busqueda' type='text' placeholder='Search product' ref={inputBusqueda} onChange={handleBusquedaChange} />
                 </div>
                 <div>
