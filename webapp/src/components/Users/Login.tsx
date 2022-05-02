@@ -40,7 +40,6 @@ const Login = () => {
                 }
             } catch (error) {
                 setUser(initialState);
-                toast.error("Username or password dont exist");
             }
         }
     }
