@@ -12,20 +12,23 @@ left to right direction
 (Performance) as (Pr)
 (Usability) as (U)
 (Security) as (Se)
-(Integrity) as (In)
+(Availability) as (Av)
 QT --> Pr
 QT --> U
 QT --> Se
-QT --> In
+QT --> Av
 ----
 
 Quality Scenarios::
-[options="header",cols="1,2,3,4"]
+[options="header",cols="1,2,3,4,5"]
 
 |===
-|Quality objectives|Motivation|Scenarios|Priority
-|Security|The use of Solid PODs helps each customer to own their data and prevent data loss. In addition, each customer should be the only one who knows what products they have in their cart.|In Tech Zone the shipping address is obtained through the customer's POD, which is the only one who knows what products are in the cart.|Hard
-|Usability|The application should have a good interface for all customers, whether or not they have experience in online stores.the interface should make the customer feel comfortable through a readable and functional presentation of the products.|Tech Zone has a simple catalog where products can be viewed and added to the cart in an intuitive way. During the login, registration and purchase process, notifications appear to help the customer in case of mistakes. The application is implemented in English so that it can be used by more people.|Hard
-|Integrity|Users (clients and administrators), will have different options within the application depending on their role. Products added to the store should not have inconsistent values.|Whenever a product is added, it is verified that its price and stock is greater than 0. On the other hand, administrators have an additional role that prevents normal customers from accessing their options.|Medium
-|Performance|Response times should be as short as possible so as not to make the user impatient with a low latency.|We must optimize the code as much as possible in order to give the fastest possible response.| Medium- Low
+|Identifier|Quality objectives|Scenarios|Priority|Difficulty
+|QG1-1|Security|In Tech Zone the shipping address is obtained through the customer's POD.|High|High
+|QG1-2|Security|The customer is the only person who knows what products he has in his cart.|Medium|Medium
+|QG2-1|Usability|During the login, registration and purchase process, notifications appear to help the customer in case of mistakes.|Medium|Low
+|QG2-2|Usability|The application is implemented in English so that it can be used by more people.|Medium|Low
+|QG3|Availability|The application is contained on an AWS machine that is accessible at all times while it is powered on.|Medium|Medium
+|QG4|Performance|We try to make our code as optimal as possible. We have a code duplicity of 4.7% that only appears in tests.|Low|High
 |===
+

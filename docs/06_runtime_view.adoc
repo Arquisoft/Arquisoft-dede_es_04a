@@ -7,7 +7,7 @@
 This section shows the main sequence diagrams between the users and the application.
 
 
-=== Request
+=== Products catalog
 
 This view shows a request from a customer to view the product catalog. The web receives the request where it will access the database to get the list of products. Once obtained, it returns them to the customer.
 
@@ -127,7 +127,7 @@ end
 
 === Modify products
 
-This view shows how the administrator, after having logged in, will modify the catalog. The front-end makes a petition to the back-end by a petition and then the app connects to the database by mongoose.
+This view shows how the administrator, after having logged in, will modify the catalog. The front-end makes a petition to the back-end by a petition and then the app connects to the database.
 
 [plantuml,"AdminModify",png]
 ----
