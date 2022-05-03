@@ -20,7 +20,7 @@ The customer will have access to his shopping basket where he will be able to in
 :imagesdir: ./images
 image:03_Diagram.jpg[]
 
-[options:"header"]
+[options="header",cols="1,2,3"]
 |===
 | Entity | Inputs | Outputs
 | User | Interface of the webapp | Data that user provides to the application
