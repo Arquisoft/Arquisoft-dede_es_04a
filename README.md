@@ -19,6 +19,12 @@ This project is a basic example of website using **React** with **Typescript** a
 - UO276417 - Iker Jiménez Herrero
 - UO270157 - Pablo Fernández Díaz
 
+## Access to the store
+http://ec2-44-204-145-82.compute-1.amazonaws.com:3000/
+
+## Access to the documentation
+https://arquisoft.github.io/dede_es4a/
+
 ## Quick start guide
 <mark>In case you already have node.js and npm, make sure you update them before attempting to build the images</mark>
 
