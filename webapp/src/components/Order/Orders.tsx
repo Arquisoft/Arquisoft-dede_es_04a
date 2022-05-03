@@ -9,13 +9,14 @@ const Orders = () => {
   const [orders, setOrders] = useState<OrderType[]>([]);
 
   const loadOrders = async () => {
-    let res = await orderService.getOrdersOf(ReactSession.get("user"));
-    setOrders(res.data.orders);
+      let res = await orderService.getOrdersOf(ReactSession.get("user"));
+      setOrders(res.data.orders);
   }
 
   useEffect(() => {
     loadOrders();
   }, [])
+
 
   return (
     <div>

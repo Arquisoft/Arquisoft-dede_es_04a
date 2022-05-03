@@ -15,7 +15,8 @@ export const getOrdersOf = async (u: User) => {
 };
 
 export const getOrder = async (id: string, token:string) => {
-    return await axios.get(`${API}/order/`+id, {headers:{'Authorization': token}});
+    let res = await axios.get(`${API}/order/`+id, {headers:{'Authorization': token}});
+    return res.data.order;
 };
 
 export const getShippingDetails = async (user:string, address: AddressType, token:string) => {
