@@ -32,11 +32,11 @@ defineFeature(feature, test => {
 
   
     given('An unregistered user', () => {
-        s1= "pruebapa2"
-        s2= "Prueba1234@gmail.com"
+        s1= "pruebapa222"
+        s2= "Prueba123456@gmail.com"
         s3 ="PruebaPrueba1+"
         s4 = "PruebaPrueba1+"
-        s5 = "68561654"
+        s5 = "68451687S"
     });
 
     when('I try to register with repeated email', async () => {
