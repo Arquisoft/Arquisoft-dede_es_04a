@@ -479,7 +479,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </li>
 <li><a href="#section-runtime-view">6. Runtime View</a>
 <ul class="sectlevel2">
-<li><a href="#_request">6.1. Request</a></li>
+<li><a href="#_products_catalog">6.1. Products catalog</a></li>
 <li><a href="#_login">6.2. Login</a></li>
 <li><a href="#_buy_process">6.3. Buy process</a></li>
 <li><a href="#_sign_up">6.4. Sign up</a></li>
@@ -811,6 +811,55 @@ For documentation of your own system you use better the <em>plain</em> version.<
 <div class="paragraph">
 <p><span class="image"><img src="./images/03_Diagram.jpg" alt="03 Diagram"></span></p>
 </div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Entity</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Inputs</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Outputs</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">User</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Interface of the webapp</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Data that user provides to the application</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DeDe</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Interaction and data from the user and APIs</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Information to the users and data to the APIs</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">MongoDB</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Data from DeDe to store</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Data required from DeDe to show to the users and admins</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PODs</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Inrupt username of the client</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Address of the client</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cloudinary</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Image to store in</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ID of the image to show</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NodeMailer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Email address of the client and details of the order</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sends an email to the client</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Shippo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Address of the client</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Shipping cost and estimated arrival day of the order</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="sect2">
 <h3 id="_technical_context">3.2. Technical Context</h3>
@@ -1203,7 +1252,7 @@ and we are going to use PODs to get the address from the user, so we are not sto
 <p>This section shows the main sequence diagrams between the users and the application.</p>
 </div>
 <div class="sect2">
-<h3 id="_request">6.1. Request</h3>
+<h3 id="_products_catalog">6.1. Products catalog</h3>
 <div class="paragraph">
 <p>This view shows a request from a customer to view the product catalog. The web receives the request where it will access the database to get the list of products. Once obtained, it returns them to the customer.</p>
 </div>
@@ -1249,7 +1298,7 @@ and we are going to use PODs to get the address from the user, so we are not sto
 <div class="sect2">
 <h3 id="_modify_products">6.5. Modify products</h3>
 <div class="paragraph">
-<p>This view shows how the administrator, after having logged in, will modify the catalog. The front-end makes a petition to the back-end by a petition and then the app connects to the database by mongoose.</p>
+<p>This view shows how the administrator, after having logged in, will modify the catalog. The front-end makes a petition to the back-end by a petition and then the app connects to the database.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1606,43 +1655,63 @@ different functionalities from those of a standard user.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 10%;">
+<col style="width: 6.6666%;">
+<col style="width: 13.3333%;">
 <col style="width: 20%;">
-<col style="width: 30%;">
-<col style="width: 40%;">
+<col style="width: 26.6666%;">
+<col style="width: 33.3335%;">
 </colgroup>
 <thead>
 <tr>
+<th class="tableblock halign-left valign-top">Identifier</th>
 <th class="tableblock halign-left valign-top">Quality objectives</th>
-<th class="tableblock halign-left valign-top">Motivation</th>
 <th class="tableblock halign-left valign-top">Scenarios</th>
 <th class="tableblock halign-left valign-top">Priority</th>
+<th class="tableblock halign-left valign-top">Difficulty</th>
 </tr>
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">QG1-1</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Security</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The use of Solid PODs helps each customer to own their data and prevent data loss. In addition, each customer should be the only one who knows what products they have in their cart.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">In Tech Zone the shipping address is obtained through the customer&#8217;s POD, which is the only one who knows what products are in the cart.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Hard</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In Tech Zone the shipping address is obtained through the customer&#8217;s POD.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">High</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">High</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Usability</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The application should have a good interface for all customers, whether or not they have experience in online stores.the interface should make the customer feel comfortable through a readable and functional presentation of the products.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Tech Zone has a simple catalog where products can be viewed and added to the cart in an intuitive way. During the login, registration and purchase process, notifications appear to help the customer in case of mistakes. The application is implemented in English so that it can be used by more people.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Hard</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Integrity</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Users (clients and administrators), will have different options within the application depending on their role. Products added to the store should not have inconsistent values.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Whenever a product is added, it is verified that its price and stock is greater than 0. On the other hand, administrators have an additional role that prevents normal customers from accessing their options.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">QG1-2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Security</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The customer is the only person who knows what products he has in his cart.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Medium</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Medium</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">QG2-1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Usability</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">During the login, registration and purchase process, notifications appear to help the customer in case of mistakes.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Medium</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Low</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">QG2-2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Usability</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The application is implemented in English so that it can be used by more people.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Medium</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Low</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">QG3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Availability</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The application is contained on an AWS machine that is accessible at all times while it is powered on.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Medium</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Medium</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">QG4</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Performance</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Response times should be as short as possible so as not to make the user impatient with a low latency.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">We must optimize the code as much as possible in order to give the fastest possible response.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Medium- Low</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">We try to make our code as optimal as possible. We have a code duplicity of 4.7% that only appears in tests.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Low</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">High</p></td>
 </tr>
 </tbody>
 </table>
@@ -1680,6 +1749,22 @@ different functionalities from those of a standard user.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Merge problems in git</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Set guidelines for a stable merge</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Options for editing products, canceling an order and banning users</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Implementing the frontend part of these options</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">LogIn with SOLID</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Change the Solid API we use to one that allows users to login</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">e2e testing in deployment</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Get the webapp to connect to restapi during the testing of these tests</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Continuous deployment</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Change the hosting plant, which would imply an economic cost</p></td>
 </tr>
 </tbody>
 </table>
