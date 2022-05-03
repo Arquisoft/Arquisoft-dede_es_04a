@@ -7,7 +7,7 @@
 This section shows the main sequence diagrams between the users and the application.
 
 
-=== Request
+=== Products catalog
 
 This view shows a request from a customer to view the product catalog. The web receives the request where it will access the database to get the list of products. Once obtained, it returns them to the customer.
 
@@ -15,35 +15,45 @@ This view shows a request from a customer to view the product catalog. The web r
 ----
 @startuml
 actor Client
-participant DeDe
-database MongoDb
-Client -> DeDe: Request product catalog
-DeDe -> MongoDb: Ask for the list of products
-MongoDb --> DeDe: Get the list of products
-DeDe --> Client: Get the catalog
+participant Frontend
+participant Cloudinary
+participant Backend
+database MongoDB
+Client -> Frontend: Access to products catalog
+Frontend -> Backend: Request product list
+Backend -> MongoDB: Ask for the list of products
+MongoDB --> Backend: Get the list of products
+Backend --> Frontend: Send the list of products
+Frontend -> Cloudinary: Request for the image of the product
+Cloudinary --> Frontend: Sends the image of the product
+Frontend --> Client: Get the catalog
 @enduml
 ----
 
 
 === Login
 
-This view shows the administrator login. The website receives the admin's credentials, and after a back-end petition through Axios and a connection to mongoDb through Mongoose the credentials will be verified and the admin will be allowed to add, delete and update the desired products.
+This view shows the login process. The website receives the user's credentials, and after a back-end petition the credentials will be verified and the user will be allowed to buy products.
 
-[plantuml,"AdminView",png]
+[plantuml,"LoginView",png]
 ----
 @startuml
-actor Admin
-participant DeDe
-participant Axios
-participant Mongoose
-database MongoDb
-Admin -> DeDe: Enter credentials
-DeDe --> Axios: Sents a petition to the back-end
-DeDe -> Mongoose: Asks for connection to database
-Mongoose --> MongoDb: Verifies the credentials
-MongoDb --> Mongoose: Returns information
-Mongoose --> DeDe: Gives information
-DeDe --> Admin: Successful login
+actor Client
+participant Frontend
+participant Backend
+database MongoDB
+Client -> Frontend: Enter credentials
+Frontend -> Backend: Sends a petition with the credential
+Backend -> MongoDB: Checks that user with that credentials match
+alt Credentials match
+MongoDB --> Backend: Returns information
+Backend  --> Frontend: Gives information
+Frontend --> Client: Successful login
+else Credentials don't match
+MongoDB --> Backend: Returns error message
+Backend  --> Frontend: Returns error message
+Frontend --> Client: Asks again for credentials showing error message
+end
 @enduml
 ----
 
@@ -56,62 +66,81 @@ This view shows a request from a customer to buy a product from the catalog.
 ----
 @startuml
 actor Client
-participant DeDe
-database MongoDb
-database Solid
-Client -> DeDe: Add products to cart
-DeDe -> MongoDb: Save the products of client
-Client -> DeDe: Delete products of the cart
-DeDe -> MongoDb: Restore products
-Client -> DeDe: Checkout the products in the cart
-DeDe -> Solid: Ask for the data of client
-Solid --> DeDe: Personal data of client
-DeDe -> MongoDb: Save purchase data
-DeDe --> Client: Inform the customer of his purchase
+participant Frontend
+participant Backend
+database MongoDB
+database SOLID
+participant Shippo
+participant Nodemailer
+Client -> Frontend: Add products to cart
+Frontend --> Client: Show products in the cart
+Client -> Frontend: Delete products of the cart
+Client -> Frontend: Checkout the products in the cart
+Client -> Frontend: Enters Inrupt username
+Frontend -> Backend: Sends petition with the username
+Backend -> SOLID: Sends username
+SOLID --> Backend: Returns the address of the user
+Backend --> Frontend: Returns the address of the user
+Frontend --> Client: Shows the address
+Client -> Frontend: Requests for shipping costs
+Frontend -> Backend: Petition to calculate shipping costs
+Backend -> Shippo: Sends address calculate shipping costs
+Shippo --> Backend: Returns shipping costs and estimated arrival day
+Backend --> Frontend: Returns shipping costs and estimated arrival day
+Frontend --> Client: Shows shipping costs and estimated arrival day
+Client -> Frontend: Enter credit card data to pay
+Frontend -> Backend: Sends petition to create order
+Backend -> MongoDB: Creates the order
+MongoDB --> Backend: Returns order details
+Backend --> Frontend: Sends status code
+Backend -> Nodemailer: Sends data of the order to send an email with the details
+Nodemailer --> Client: Sends email with the details of the order
+Frontend --> Client: Inform the customer of his order
 @enduml
 ----
 
 
 === Sign up
 
-This view shows the sign up process by a customer.
+This view shows the sign up process by a client.
 
 [plantuml,"SignUpProcess",png]
 ----
 @startuml
 actor Client
-participant DeDe
-database MongoDb
-database Solid
-Client -> DeDe: Request store registration
-DeDe -> Client: Request for Pod access
-DeDe -> Solid: Pod Access
-Solid --> DeDe: Return of personal information
-DeDe -> Client: User and password request
-Client --> DeDe: User and password return
-DeDe -> MongoDb: Save credentials
-DeDe --> Client: Successful registration
+participant Frontend
+participant Backend
+database MongoDB
+Client -> Frontend: Enters username, email, password, confirm password and dni
+Frontend -> Backend: Sends fields for validation
+alt Validators pass
+Backend -> MongoDB: Creates the user
+MongoDB --> Backend: Sends the new user
+Backend --> Frontend: Sends status code
+Frontend --> Client: Successful registration, redirects to login
+else Validators fail
+Backend --> Frontend: Message with fails
+Frontend --> Client: Notifies the error and requests fields again
+end
 @enduml
 ----
 
 === Modify products
 
-This view shows how the administrator, after having logged in, will modify the catalog. The front-end makes a petition to the back-end by a petition and then the app connects to the database by mongoose.
+This view shows how the administrator, after having logged in, will modify the catalog. The front-end makes a petition to the back-end by a petition and then the app connects to the database.
 
 [plantuml,"AdminModify",png]
 ----
 @startuml
 actor Admin
-participant DeDe
-participant Axios
-participant Mongoose
-database MongoDb
-Admin -> DeDe: Enters all the data from the product he wants to add, modify or delete
-DeDe --> Axios: Connects front-end to back-end by a petition
-DeDe -> Mongoose: Verifies that the user is an administrator, validates the data
-Mongoose --> MongoDb: Modifies the database
-DeDe --> Admin: Successful modification of the catalog
-
+participant Frontend
+participant Backend
+database MongoDB
+Admin -> Frontend: Enters all the data from the product he wants to add, modify or delete
+Frontend -> Backend: Sends the fields to update to the backend
+Backend -> MongoDB: Modifies the database
+Backend --> Frontend: Sends the product updated
+Frontend --> Admin: Successful modification of the catalog
 @enduml
 ----
 
@@ -124,11 +153,14 @@ This view shows how a client will obtain a list of all his orders.
 ----
 @startuml
 actor Client
-participant DeDe
-database MongoDb
-Client -> DeDe: Request his orders
-DeDe -> MongoDb: Ask for the list of orders of the client
-MongoDb --> DeDe: Get the list of orders
-DeDe --> Client: Gets all of his orders
+participant Frontend
+participant Backend
+database MongoDB
+Client -> Frontend: Clicks the MyOrders option
+Frontend -> Backend: Request for the orders of the client
+Backend -> MongoDB: Ask for the list of orders of the client
+MongoDB --> Backend: Get the list of orders
+Backend --> Frontend: Returs the orders of the client
+Frontend --> Client: Shows all of his orders
 @enduml
 ----

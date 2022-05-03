@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import { AdvancedImage } from '@cloudinary/react';
 import { Cloudinary } from "@cloudinary/url-gen";
 import { pad } from "@cloudinary/url-gen/actions/resize";
 import {Producto, Item} from '../../shared/sharedtypes'
@@ -31,15 +30,11 @@ export const VistaProducto = ({cart}: Props) => {
 
 
     const params = useParams();
-    console.log("parametros")
-    console.log(params);
     
 
     const loadProductos = async () => {
         const res = await productoService.getProductos()
-        console.log(res)
         let datos = res.data
-        console.log(datos)
         setProductos(datos.products)   
     }
 
@@ -47,8 +42,6 @@ export const VistaProducto = ({cart}: Props) => {
         loadProductos()
     }, [])
 
-    console.log("productos")
-    console.log(productos);
 
     useEffect(() => {
         productos.forEach(producto =>{
@@ -60,8 +53,6 @@ export const VistaProducto = ({cart}: Props) => {
     }, [params._id, productos])
    
 
-    console.log("Detalle")
-    console.log(detalle)
 
     const cld = new Cloudinary({
         cloud: {
@@ -96,19 +87,16 @@ export const VistaProducto = ({cart}: Props) => {
     }
     const price = detalle?.basePrice + (detalle?.basePrice * detalle?.IVA)
 
-    console.log("detalle.basePrice")
-    console.log(detalle.basePrice)
-    console.log("detalle.IVA")
-    console.log(detalle.IVA)
     
+    const url = "https://res.cloudinary.com/dede4a/image/upload/"+detalle.urlImage+"?_a=AJADJWI0";
     
 
   return (
     <div className='detalles'>
         <h2>{detalle?.name}</h2>
         <div className='separacion'>
-            <AdvancedImage className='imagenc' cldImg={myImage} />
-            <a className='precio'>Price: {price.toFixed(2)}$</a>
+            <img alt="" className='imagenc' src={url}></img>
+            <p className='precio'>Price: {price.toFixed(2)}$</p>
         </div>
         <p className='descripcion'>{detalle?.description}</p>
         <button className="btn" onClick={addToCart}>

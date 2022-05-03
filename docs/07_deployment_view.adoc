@@ -9,26 +9,38 @@ To use our online shop you only need a mobile device (mobile phone, tablet...) o
 ----
 @startuml
 allowmixing
-Rectangle Server{
-    package restapi{
-       class userController
-       class userRoute
-    }
-    package webapp{
-       class userService
-       class App
-    }
- }
-database MongoDB
-rectangle Device
-rectangle PODs
+node Device{
+     component webBrowser
+}
+node webServer{
+  node Docker_restapi{
+   component restapi
+  }
+  node Docker_webapp{
+   component webapp
+  }
+}
 
-App --> userService
-userService <..> userRoute : getAddress()
-userRoute--> userController
-Device --> webapp
-restapi <..> MongoDB
-userController <..> PODs : readAddress()
+node Atlas{
+  component MongoDB
+}
+
+node Inrupt{
+  component POD
+}
+actor user
+Database Shippo
+Database Nodemailer
+Database Cloudinary
+
+user --> Device
+Device --> webServer: https
+webapp --> restapi: http
+Docker_restapi <--> POD : https
+Docker_restapi <--> MongoDB: mongodb
+Docker_restapi --> Nodemailer : https
+Docker_restapi <--> Shippo: https
+webServer <--> Cloudinary: https
 @enduml
 ----
 

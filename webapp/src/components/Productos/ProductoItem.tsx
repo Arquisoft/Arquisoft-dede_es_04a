@@ -36,9 +36,9 @@ const ProductoItem = ({producto, cart}: Props) => {
     
   return (
     <div className="producto">
-            <a href="#">
+            <a href="/#">
                 <div className="producto__img">
-                    <img src={url}></img>
+                    <img alt="" src={url}></img>
                 </div>
             </a>
             <div className="producto__footer">
