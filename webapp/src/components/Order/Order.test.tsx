@@ -9,8 +9,8 @@ jest.mock('../Services/OrderService');
 
 test('check the payment form render properly', async () => {
     const user: User = {
-        username: "user",
-        password: "user",
+        username: process.env.USER2!,
+        password: process.env.USER2!,
         token: ""
     };
     const product: Producto = { category: 'cellular', name: 'IPhone', description: 'a', urlImage: 'aaaaa', basePrice: 200, units: 2, onSale: true, IVA: 0.21 };

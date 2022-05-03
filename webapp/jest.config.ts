@@ -3,5 +3,6 @@ export default {
         "\\.[jt]sx?$": "babel-jest",
         "^.+\\.tsx?$": "ts-jest",
     },
-    collectCoverage: true
+    collectCoverage: true,
+    setupFiles: ['<rootDir>/vars.ts']
 }
