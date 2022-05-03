@@ -20,6 +20,18 @@ The customer will have access to his shopping basket where he will be able to in
 :imagesdir: ./images
 image:03_Diagram.jpg[]
 
+[options="header",cols="1,2,3"]
+|===
+| Entity | Inputs | Outputs
+| User | Interface of the webapp | Data that user provides to the application
+| DeDe | Interaction and data from the user and APIs | Information to the users and data to the APIs
+| MongoDB | Data from DeDe to store | Data required from DeDe to show to the users and admins
+| PODs | Inrupt username of the client | Address of the client
+| Cloudinary | Image to store in | ID of the image to show
+| NodeMailer | Email address of the client and details of the order | Sends an email to the client
+| Shippo | Address of the client | Shipping cost and estimated arrival day of the order
+|===
+
 === Technical Context
 
 The system has SOLID architecture in order to respect the privacy of each user's data, this is achieved through the use of PODS to store the user's personal data. The programming language used in the application is Typescript and React is used as the main library to facilitate the development of the application.A certain number of apis were also used to access certain resources.
