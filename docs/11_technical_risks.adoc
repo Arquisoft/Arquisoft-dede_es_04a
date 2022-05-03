@@ -8,4 +8,8 @@
 | Lack of time regarding deliveries | Set guidelines for a regular and stable progress
 | Misunderstanding of the application requirements | Clarify the requirements with the teacher
 | Merge problems in git | Set guidelines for a stable merge
+| Options for editing products, canceling an order and banning users | Implementing the frontend part of these options
+|LogIn with SOLID|Change the Solid API we use to one that allows users to login
+|e2e testing in deployment|Get the webapp to connect to restapi during the testing of these tests
+|Continuous deployment|Change the hosting plant, which would imply an economic cost
 |===
