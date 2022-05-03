@@ -51,4 +51,12 @@ Contained Building Blocks::
 |Name| Description
 |Webapp | Part of the application that the user will see and interact with.
 |Restapi | Part of the application responsible for persistence.
+|Register | Part of the application responsible for creating new users.
+|Login | Part of the application responsible for user access.
+|Orders | Part of the application responsible for order management.
+|Cart | Part of the application responsible for storing the products that the user wants to buy.
+|Products | Part of the application responsible for products management.
+|Cloudinary | External service responsible for storing the images of the application.
+|Shippo | External service responsible for providing the shipping cost.
+|Nodemailer | External service responsible for sending emails.
 |===

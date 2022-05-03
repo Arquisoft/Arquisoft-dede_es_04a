@@ -18,17 +18,18 @@ const Order = () => {
   const params = useParams();
 
   const loadOrder = async () => {
-    let user = ReactSession.get("user");
-    let res = await orderService.getOrder(params._id as string,user.token);
-    if(res.data.order){
-      setOrder(res.data.order)
+      let user = ReactSession.get("user");
+      let ord = await orderService.getOrder(params._id as string,user.token);
+      
+      setOrder(ord);
       let prods:Product[] = [];
-      for(var p in res.data.order.products){
-        var product = {name:p,num:res.data.order.products[p]};
-        prods.push(product);
+      if(order != undefined){
+        for(var p in order!.products){
+          var product = {name:p,num:order!.products[p].num};
+          prods.push(product);
+        }
+        setProductos(prods); 
       }
-      setProductos(prods); 
-    }
   }
 
   const download = () => {
